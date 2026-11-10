@@ -1,0 +1,34 @@
+# ROADMAP
+
+Roadmap items are goals, not claims of completed capability. Move an item only when its exit criteria are met and evidence is linked.
+
+| Phase | Focus | Deliverables | Exit criteria |
+|---|---|---|---|
+| P0 | Foundation | Repository structure, conventions, schemas, templates | New target and research case can be added consistently |
+| P1 | Target baseline | Exact device/build inventory, artifact provenance, protection-state record | Every target field has a source or is explicitly `unknown` |
+| P2 | Architecture model | A14-scoped PPL/SPTM/TXM applicability matrix, build-payload evidence, and adjacent trust-boundary notes | Claims are scoped to source version, build, and target applicability |
+| P3 | Public research survey | Dated source register, A14/24A446 compatibility matrix, candidate cases | Each relevant claim has provenance and confidence |
+| P4 | Offline tooling | Inventory, hashing, metadata parsing, evidence indexing | Tool outputs are deterministic and tested against fixtures |
+| P5 | Safe validation | Synthetic protection models, test cases, result schema | Tests are repeatable without bypassing protections on a live device |
+| P6 | Closure | Technical report, limitations, regression archive | Findings are reviewed, reproducible, and appropriately disclosed |
+
+## Current A14 baseline (2026-11-05)
+
+- Target specification: A14 / iPhone 12 mini / iOS 27.0.1 build 24A446. The build is user-specified and corroborated by Apple's release listing (`EVD-0001`); physical device identity and installation are still pending.
+- Build-level mechanism: the 24A446 restore BuildManifests for iPhone13,1 and iPhone13,4 contain SPTM (`Firmware/sptm.t8101.release.im4p`) and TXM (`Firmware/txm.iphoneos.release.im4p`) payloads and mark `InstalledSPTM`/`RestoreSPTM` as `Production` (`EVD-0010`, `EVD-0014`, `VAL-0002`, `VAL-0004`). The decompressed iPhone13,1 kernelcache has `__DATA_SPTM`/`__TEXT_BOOT_EXEC` segments and no PPL segment names (`EVD-0012`, `VAL-0003`). The build is therefore modeled as SPTM/TXM-based, not PPL-based.
+- Documentation conflict: Apple's 2026-01-28 Operating system integrity page places A12-A14 in the PPL column (`EVD-0002`, `EVD-0003`); the guide's revision history does not list that page as updated after January 2026 (`EVD-0013`). Secondary September 2026 reports corroborate the SPTM/TXM change (`EVD-0006`-`EVD-0008`); a contemporaneous survey and a 2026-11-04 community tracker repeat the older model and are retained as counter-evidence (`EVD-0009`, `EVD-0015`).
+- Runtime state: PPL, SPTM, and TXM remain `unknown` for the exact target. `VAL-0001` is `not-run` because no device was available.
+- Cases: `CASE-0001` records the mechanism finding; `CASE-0002` records the iOS 27 vulnerability baseline (`research/public-research/ios27-vulnerability-register.yaml`); `CASE-0003` records public bypass scope for A14.
+
+## Immediate work queue
+
+1. Verify the physical device identity and exact iOS build from the device itself using non-invasive metadata.
+2. Complete P1 by linking device evidence in the target manifest; keep runtime protection states `unknown` until observed, and label build-level inferences separately.
+3. Maintain the P2 A14 scope: model SPTM/TXM as packaged in 24A446, PPL as the historical A14 boundary for earlier iOS versions, and runtime state as unverified.
+4. Expand P3 with dated third-party research and Apple security notes specific to build 24A446; check the remaining A14 product types, and keep the vulnerability register (`CASE-0002`) and bypass scope survey (`CASE-0003`) separate.
+5. Design the P5 non-invasive validation and keep `VAL-0001` `not-run` until it is executed; `VAL-0002` and `VAL-0003` record the completed offline build-artifact checks.
+6. Keep bypass, exploitation, and protection-disablement work out of scope.
+
+## Completion rule
+
+A phase is not complete because files exist. It is complete when its exit criteria are met, supporting evidence is linked, and unresolved limitations are documented.

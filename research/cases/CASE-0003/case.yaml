@@ -1,0 +1,81 @@
+schema_version: 1
+id: CASE-0003
+title: "Public PPL/SPTM bypass research scope for A14"
+status: analyzed
+created_at: "2026-11-05T09:02:49+09:00"
+updated_at: "2026-11-05T10:10:29+09:00"
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+owner: null
+reviewer: null
+objective: "Catalog the publicly documented PPL/SPTM bypass research that claims A14 coverage, compare its claimed iOS ranges with the 24A446 target, and determine whether any reviewed source demonstrates A14 applicability on iOS 27.0.1. Technique-level details, exploit code, offsets, and operational steps are out of scope."
+kinds:
+  - bypass-research-survey
+  - architecture-applicability
+components:
+  - PPL
+  - SPTM
+  - TXM
+scope:
+  in_scope:
+    - "Public bypass names, claimed iOS ranges, claimed SoC ranges, and disclosure status."
+    - "Dated secondary reporting about public jailbreak compatibility."
+    - "The relationship between historical A14 PPL research and the 24A446 SPTM/TXM build evidence."
+  out_of_scope:
+    - "Exploit code, kernel read/write primitives, patch offsets, or bypass steps."
+    - "Protection-disablement procedures, persistence, or weaponization."
+    - "Testing any bypass on a device."
+    - "Claims that a named bypass works on A14/24A446 without a source that states that scope."
+hypothesis:
+  claim: "The reviewed Dopamine 3.0 release lists stable A14/M1 support at iOS 16.6 through 17.3.1, and Titan's own claimed range extends to 17.4 beta 3. No reviewed source demonstrates an A14 bypass on iOS 27.0.1 build 24A446; the 24A446 A14 images are SPTM/TXM-based, so an A14 PPL bypass is not the correct boundary for that build."
+  preconditions:
+    - "The compatibility ranges reported for public tools accurately reflect the cited bypass releases."
+    - "The 24A446 BuildManifest evidence for iPhone13,1 is representative of the target build."
+    - "An absence of reviewed A14/24A446 coverage is treated as an evidence gap, not proof of impossibility."
+  expected_behavior: "If the claim is correct, the reviewed Dopamine 3.0 summary should show A14 support ending at iOS 17.3.1, and iOS 27 entries should be limited to other SoCs or omit A14 support. The 24A446 A14 build should contain SPTM/TXM payloads rather than a PPL-only configuration."
+  rejection_criteria:
+    - "A public source demonstrates an A14-specific PPL or SPTM bypass on 24A446."
+    - "A build-specific source shows the 24A446 A14 image is PPL-based and does not use SPTM/TXM."
+    - "The cited A14 compatibility range is shown to extend beyond iOS 17.3.x on a public tool."
+evidence:
+  supporting:
+    - EVD-0006
+    - EVD-0009
+    - EVD-0010
+    - EVD-0011
+    - EVD-0012
+    - EVD-0013
+    - EVD-0014
+  counter:
+    - EVD-0015
+analysis:
+  methods:
+    - public-source-cataloguing
+    - scope-comparison
+    - build-payload-cross-check
+    - cross-product-build-check
+  artifacts: []
+  tools:
+    - manual-document-review
+validation:
+  safe_method: "Offline document review and comparison with the build-manifest evidence. No bypass is reproduced and no device is modified."
+  validation_ids: []
+conclusion:
+  state: inferred
+  confidence: medium
+  summary: "The reviewed Dopamine 3.0 release lists stable A14/M1 support through iOS 17.3.1, with Titan's own claimed range extending to 17.4 beta 3. The Apple Wiki lists momentarius for iOS 27, but the reviewed text does not state A14 support for that entry. The 24A446 A14 images for iPhone13,1 and iPhone13,4 contain SPTM/TXM payloads, and the iPhone13,1 kernelcache is SPTM-structured, so an A14 PPL bypass is mis-scoped for that build. A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). No reviewed source demonstrates an A14 bypass on 24A446; this is an evidence gap, not proof that none exists."
+  limitations:
+    - "The public record is incomplete, community-maintained, and changes over time."
+    - "The Apple Wiki iOS 27 entry lacks SoC-level detail in the reviewed revision."
+    - "A community tracker still frames A14/M1 as PPL without a build-specific measurement; this is retained as counter-evidence."
+    - "The compatibility ranges describe public tools, not every private or unpublished bypass."
+    - "No bypass was tested; this case is a scope survey only."
+    - "The 24A446 evidence is build-level, not a runtime measurement."
+references:
+  - SRC-0005
+  - SRC-0007
+  - SRC-0010
+  - SRC-0011
+  - SRC-0012
+  - SRC-0013
+  - SRC-0014
+  - SRC-0015

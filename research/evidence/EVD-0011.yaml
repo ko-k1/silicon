@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0011
+class: secondary
+state: observed
+claim: "A 2026-08-07 iClarified report on Dopamine 3.0 states that Titan covered iOS 16.5.1 through 17.3.1, that momentarius was an A12/A13 PPL bypass for iOS 16.6 through 18.7.1 and 26.0 through 26.0.1, and that A14/M1 stable public jailbreak support was iOS 16.6 through 17.3.1."
+source:
+  type: technical-news-report
+  locator: "https://www.iclarified.com/101697/dopamine-30-jailbreak-released-with-ios-1731-support-ios-26-on-a12a13"
+  published_at: "2026-08-07"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A12-A17"
+    - "M1-M2"
+    - "iOS 16.5.1 through 18.7.1"
+    - "iOS 26.0 through 26.0.1"
+artifact: null
+limitations:
+  - "Secondary reporting of a tool release, not a primary measurement."
+  - "The compatibility ranges describe one public tool's support, not the entire public bypass record."
+  - "The report predates iOS 27.0.1 and does not establish A14 support on 24A446."
+  - "The statement that no SPTM bypass existed for iOS 17.4 or later is scoped to the publication date."
+related_cases:
+  - CASE-0003

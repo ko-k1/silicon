@@ -1,0 +1,28 @@
+schema_version: 1
+id: SRC-0004
+title: "Apple security releases index"
+authors:
+  - "Apple Inc."
+source_type: apple-documentation
+url: "https://support.apple.com/en-us/100100"
+published_at: null
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "iPhone 11 and later"
+  socs: []
+  os_versions:
+    - "iOS 27.0.1"
+    - "iPadOS 27.0.1"
+  builds:
+    - "24A446"
+claims:
+  - "Apple lists iOS 27.0.1 and iPadOS 27.0.1, released 2026-09-28, as having no published CVE entries."
+  - "Apple lists the iOS 27 advisory separately, released 2026-09-14."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0004
+  notes:
+    - "A 'no published CVE entries' statement means Apple published no CVE detail for that update; it does not prove the update contains no security changes."
+license_or_terms: "Apple website terms. Only short factual metadata is retained."

@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0005
+class: derived
+state: observed
+claim: "The Apple CSAF advisory APPLE-SA-149034 for iOS 27 and iPadOS 27 contains 163 vulnerability entries, of which 25 have the component title 'Kernel'; none explicitly names PPL, SPTM, TXM, page tables, code signing, or trust cache."
+source:
+  type: apple-csaf-json
+  locator: "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149034.json"
+  published_at: "2026-09-14"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "iOS 27"
+    - "iPadOS 27"
+artifact:
+  sha256: "1ac13876dd9605fc0f99b460520811c3edad4676002d836044f701da113ef140"
+  bytes: 278681
+  path_or_uri: "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149034.json"
+limitations:
+  - "Counts are derived by parsing the CSAF JSON; component titles and note text are not severity ratings."
+  - "The advisory covers iOS 27, not the later 27.0.1 build 24A446 specifically."
+  - "Absence of a mechanism label does not prove no CVE can affect that mechanism."
+related_cases:
+  - CASE-0002

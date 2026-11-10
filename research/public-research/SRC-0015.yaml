@@ -1,0 +1,36 @@
+schema_version: 1
+id: SRC-0015
+title: "iOS 27.0.1 jailbreak event fact-check and tracker"
+authors:
+  - "iMaxTomas and contributors"
+source_type: repository
+url: "https://github.com/iMaxTomas/ios27-jb-tracker"
+published_at: "2026-11-04"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "A14/M1 devices"
+    - "iPhone 12 family"
+  socs:
+    - "A14"
+    - "M1"
+  os_versions:
+    - "iOS 27.0.1"
+    - "iOS 26.0-26.0.1"
+    - "iOS 17.3.1"
+  builds:
+    - "24A446"
+claims:
+  - "The tracker's chip-camp table places A14/M1 in a PPL camp and states that A14+ still needs an n-day SPTM bypass."
+  - "It states that Dopamine 3.0's iOS 26.0-26.0.1 support covers only A12/A13, and that public A14/A15 support remains at iOS 17.3.1."
+  - "It reports an iOS 27.0.1 untethered demo and related claims as a developing event; those claims are outside this repository's scope."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0015
+  notes:
+    - "Community-maintained fact-check archive, not a primary measurement."
+    - "Its A14/M1 PPL framing conflicts with the 24A446 BuildManifest and kernelcache evidence (EVD-0010, EVD-0012, EVD-0014)."
+    - "Retained as counter-evidence; the tracker does not provide a build-specific A14/24A446 measurement."
+    - "No jailbreak tooling or exploit content is reproduced."
+license_or_terms: "CC BY 4.0 per the repository README; attribution retained."

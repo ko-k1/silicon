@@ -1,0 +1,27 @@
+schema_version: 1
+id: EVD-0010
+class: primary
+state: observed
+claim: "Apple's iOS 27.0.1 (24A446) restore build manifest for iPhone13,1 contains Secure Page Table Monitor and Trusted Execution Monitor payloads: Firmware/sptm.t8101.release.im4p and Firmware/txm.iphoneos.release.im4p; VariantContents marks InstalledSPTM and RestoreSPTM as Production."
+source:
+  type: apple-build-manifest
+  locator: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact:
+  sha256: "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+  bytes: 351384
+  path_or_uri: "BuildManifest.plist inside iPhone13,1_27.0.1_24A446_Restore.ipsw"
+limitations:
+  - "Build packaging establishes that SPTM/TXM images are included for this product type and build; it is not a runtime measurement of a device."
+  - "The build manifest does not show whether every boot path loads the monitors, how they are configured, or whether enforcement succeeds."
+  - "The IPSW is a public restore image; its presence does not prove the target device is running 24A446."
+  - "The extracted BuildManifest.plist is not committed; only its hash and selected metadata are retained."
+related_cases:
+  - CASE-0001
+  - CASE-0003

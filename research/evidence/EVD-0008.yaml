@@ -1,0 +1,22 @@
+schema_version: 1
+id: EVD-0008
+class: secondary
+state: observed
+claim: "A public tooling evidence note states that StikDebug 3.1.6 and later treat every iOS 27 device as TXM except the A12X iPad Pro, and identifies A13, A14, and M1 devices on iOS 27 as the case that change was intended for."
+source:
+  type: public-repository-evidence-note
+  locator: "https://github.com/playportdev/playport/blob/main/docs/evidence/2026-09-28-stikjit-pin-cost.md"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A13"
+    - "A14"
+    - "M1"
+    - "iOS 27"
+artifact: null
+limitations:
+  - "Tool behavior is not an Apple statement or a direct protection-state measurement."
+  - "The note is about TXM detection, not proof of a bypass or of SPTM enforcement."
+related_cases:
+  - CASE-0001
+  - CASE-0003

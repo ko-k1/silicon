@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0006
+class: secondary
+state: observed
+claim: "The Apple Wiki states that with the release of iOS 27.0 beta, SPTM bypasses apply to A13-A14 and M1 devices in addition to A15-and-later devices."
+source:
+  type: community-wiki
+  locator: "https://theapplewiki.com/wiki/PPL/SPTM_Bypasses"
+  published_at: "2026-09-23"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A13"
+    - "A14"
+    - "M1"
+    - "iOS 27.0"
+artifact: null
+limitations:
+  - "Community wiki, not an Apple source."
+  - "The page does not provide reproducible build-specific evidence for 27.0.1."
+  - "It lists exploit names and ranges; this repository does not reproduce or use the exploit material."
+related_cases:
+  - CASE-0001
+  - CASE-0003

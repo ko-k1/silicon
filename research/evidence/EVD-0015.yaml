@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0015
+class: secondary
+state: observed
+claim: "A 2026-11-04 community tracker describes A14/M1 as PPL and states that A14+ still needs an n-day SPTM bypass; it does not report a build-specific A14/24A446 measurement."
+source:
+  type: repository
+  locator: "https://github.com/iMaxTomas/ios27-jb-tracker"
+  published_at: "2026-11-04"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A14/M1"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact: null
+limitations:
+  - "Community-maintained and evolving; not a primary measurement."
+  - "The tracker does not identify a build-specific A14/24A446 measurement supporting its A14/PPL framing."
+  - "Its A14/M1 PPL statement conflicts with the 24A446 BuildManifest and kernelcache evidence (EVD-0010, EVD-0012, EVD-0014)."
+  - "The statement may reflect older iOS versions or general expectations rather than the 24A446 runtime."
+related_cases:
+  - CASE-0001
+  - CASE-0003

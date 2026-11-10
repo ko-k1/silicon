@@ -1,0 +1,28 @@
+schema_version: 1
+id: SRC-0009
+title: "The core of Apple is PPL: Breaking the XNU kernel's kernel"
+authors:
+  - "Brandon Azad"
+  - "Google Project Zero"
+source_type: paper
+url: "https://projectzero.google/2020/07/the-core-of-apple-is-ppl-breaking-xnu.html"
+published_at: "2020-07-31"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "A12 and later iPhones"
+  socs:
+    - "A12"
+  os_versions:
+    - "iOS 13"
+  builds: []
+claims:
+  - "The article describes PPL as a page-table protection boundary that remains relevant after a kernel compromise."
+  - "It documents a historical PPL bypass that was reported as Project Zero issue 2035 and fixed in iOS 13.6."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids: []
+  notes:
+    - "Historical architecture and research context; it predates A14 and iOS 27."
+    - "Technique details are deliberately not reproduced in this repository."
+license_or_terms: "Project Zero blog terms; short factual excerpts only."

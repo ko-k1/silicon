@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silicon.local/schemas/validation-result.schema.json",
+  "title": "silicon Validation Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "case_id",
+    "target_manifest",
+    "environment",
+    "result",
+    "inputs",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^VAL-[0-9]{4}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[0-9]{4}$"
+    },
+    "target_manifest": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "offline",
+            "synthetic",
+            "device-observation"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tool_versions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "inconclusive",
+            "not-run"
+          ]
+        },
+        "reproducible": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "timestamp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,32 @@
+schema_version: 1
+id: SRC-0008
+title: "Playport evidence note - StikDebug TXM detection on iOS 27"
+authors:
+  - "playportdev"
+source_type: repository
+url: "https://github.com/playportdev/playport/blob/main/docs/evidence/2026-09-28-stikjit-pin-cost.md"
+published_at: "2026-09-28"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "A13"
+    - "A14"
+    - "M1"
+  socs:
+    - "A13"
+    - "A14"
+    - "M1"
+  os_versions:
+    - "iOS 27"
+  builds: []
+claims:
+  - "The note states that StikDebug 3.1.6 and later treat every device on iOS 27 as TXM except the A12X iPad Pro."
+  - "The note identifies A13, A14, and M1 devices on iOS 27 as the case that change was intended for."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0008
+  notes:
+    - "This is tooling behavior, not an Apple statement or a direct protection-state measurement."
+    - "It independently corroborates the claim that TXM is expected on A13/A14/M1 under iOS 27."
+license_or_terms: "Repository license/terms; short factual excerpts only."

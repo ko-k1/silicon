@@ -1,0 +1,19 @@
+schema_version: 1
+id: EVD-0004
+class: primary
+state: observed
+claim: "Apple's security-releases index states that iOS 27.0.1 and iPadOS 27.0.1, released 2026-09-28, have no published CVE entries."
+source:
+  type: apple-security-releases-index
+  locator: "https://support.apple.com/en-us/100100"
+  published_at: null
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "iOS 27.0.1"
+    - "24A446"
+artifact: null
+limitations:
+  - "No published CVE entries does not prove the update contains no security-relevant changes."
+  - "The index does not provide build-level vulnerability detail for 24A446."
+related_cases:
+  - CASE-0002

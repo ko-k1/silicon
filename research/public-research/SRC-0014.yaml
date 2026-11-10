@@ -1,0 +1,38 @@
+schema_version: 1
+id: SRC-0014
+title: "Apple iOS 27.0.1 (24A446) BuildManifest for iPhone13,4"
+authors:
+  - "Apple Inc."
+source_type: apple-build-manifest
+url: "https://updates.cdn-apple.com/2026FallFCS/969bb521-9314-4059-aa2f-a010d2ed8a44/iPhone13,4_27.0.1_24A446_Restore.ipsw"
+published_at: "2026-09-28"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "iPhone 12 Pro Max (iPhone13,4)"
+  socs:
+    - "A14 (T8101)"
+  os_versions:
+    - "iOS 27.0.1"
+  builds:
+    - "24A446"
+claims:
+  - "The BuildManifest for iPhone13,4 on 24A446 contains Ap,SecurePageTableMonitor pointing to Firmware/sptm.t8101.release.im4p and Ap,TrustedExecutionMonitor pointing to Firmware/txm.iphoneos.release.im4p."
+  - "VariantContents marks InstalledSPTM, RestoreSPTM, InstalledKernelCache, and RestoreKernelCache as Production."
+  - "The restore SPTM and TXM entries are marked IsLoadedByiBoot: true; the installed entries are marked IsFUDFirmware: true and Personalize: true."
+  - "The restore image declares ProductVersion 27.0.1, ProductBuildVersion 24A446, and SupportedProductTypes [iPhone13,4]."
+artifact:
+  name: "BuildManifest.plist"
+  container: "iPhone13,4_27.0.1_24A446_Restore.ipsw"
+  extraction: "HTTP range request into the ZIP central directory; BuildManifest.plist read directly; raw IPSW and manifest not committed"
+  sha256: "342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392"
+  bytes: 351382
+silicon_assessment:
+  applicability: confirmed
+  evidence_ids:
+    - EVD-0014
+  notes:
+    - "Second A14 product type checked in the same 24A446 build; it uses the same sptm.t8101 payload name as iPhone13,1."
+    - "This is build-packaging evidence, not a runtime measurement."
+    - "It does not establish that every A14 product type or every boot path uses SPTM/TXM."
+license_or_terms: "Apple firmware and website terms. Only derived metadata, hashes, and short factual excerpts are retained."

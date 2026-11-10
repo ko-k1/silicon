@@ -1,0 +1,74 @@
+schema_version: 1
+id: CASE-0002
+title: "iOS 27 / 27.0.1 public vulnerability baseline for A14"
+status: analyzed
+created_at: "2026-11-05T08:38:54+09:00"
+updated_at: "2026-11-05T09:25:02+09:00"
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+owner: null
+reviewer: null
+objective: "Build an A14-scoped, reproducible public vulnerability baseline for iOS 27 and iOS 27.0.1 from Apple's advisory data, without claiming exploitability or providing exploitation guidance."
+kinds:
+  - vulnerability-survey
+  - public-register
+components:
+  - kernel
+  - PPL
+  - SPTM
+  - TXM
+  - sandbox
+scope:
+  in_scope:
+    - "Apple's iOS 27 security advisory and security-releases index."
+    - "CVE metadata, component names, impacts, and stated device ranges."
+    - "Derived counts and A14 scope classification."
+  out_of_scope:
+    - "Exploitability testing, weaponization, or proof-of-concept development."
+    - "Bypass or protection-disablement techniques."
+    - "Claims that a CVE defeats PPL, SPTM, or TXM without a source that says so."
+hypothesis:
+  claim: "Apple's public iOS 27 advisory can be represented as a 163-CVE register, of which 161 are in the iPhone 11-and-later range that includes A14 devices and 25 are in the Kernel component; iOS 27.0.1 build 24A446 has no published CVE entries."
+  preconditions:
+    - "The advisory JSON at the recorded URL is the same artifact identified by the recorded SHA-256."
+    - "The stated device range 'iPhone 11 and later' includes A14-based iPhone 12 models."
+    - "Component titles and note text are sufficient to derive counts, not severity or exploitability."
+  expected_behavior: "Re-parsing the advisory JSON with the documented rules should reproduce the same totals and A14 scope counts. The 27.0.1 security-releases entry should state that it has no published CVE entries."
+  rejection_criteria:
+    - "Apple revises the advisory and the recorded counts no longer match the current artifact."
+    - "The scope rule incorrectly includes or excludes A14 devices."
+    - "The 27.0.1 entry is replaced with one containing published CVE detail."
+evidence:
+  supporting:
+    - EVD-0004
+    - EVD-0005
+    - EVD-0010
+    - EVD-0012
+  counter: []
+analysis:
+  methods:
+    - csaf-json-parsing
+    - scope-classification
+    - component-counting
+  artifacts:
+    - research/public-research/ios27-vulnerability-register.yaml
+    - research/public-research/ios27-vulnerability-register.md
+  tools:
+    - python-3.14.9
+    - pyyaml-6.0.3
+validation:
+  safe_method: "Offline re-parse of the recorded CSAF JSON and comparison of derived counts; no device or vulnerability execution."
+  validation_ids: []
+conclusion:
+  state: observed
+  confidence: high
+  summary: "The derived register matches the recorded Apple advisory: 163 CVEs total, 161 in the A14 device range, 25 Kernel entries, and no explicit PPL/SPTM/TXM mechanism labels. iOS 27.0.1 has no published CVE entries. These are register facts, not exploitability findings."
+  limitations:
+    - "The advisory covers iOS 27, not build 24A446 specifically."
+    - "A14 scope is based on Apple's 'iPhone 11 and later' device range, not per-build testing."
+    - "Counts and categories are derived from titles and note text; they are not severity ratings."
+    - "No CVE is asserted to be a protection bypass."
+references:
+  - SRC-0003
+  - SRC-0004
+  - SRC-0010
+  - SRC-0012

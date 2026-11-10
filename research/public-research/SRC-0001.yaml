@@ -1,0 +1,44 @@
+schema_version: 1
+id: SRC-0001
+title: "Apple Platform Security - Operating system integrity"
+authors:
+  - "Apple Inc."
+source_type: apple-documentation
+url: "https://support.apple.com/guide/security/operating-system-integrity-sec8b776536b/web"
+published_at: "2026-01-28"
+accessed_at: "2026-11-05"
+source_scope:
+  devices: []
+  socs:
+    - "A10"
+    - "A11"
+    - "S3"
+    - "A12-A14"
+    - "S4-S10"
+    - "A15-A18"
+    - "M1"
+    - "M2-M4"
+    - "A19"
+    - "M5"
+  os_versions:
+    - "iOS"
+    - "iPadOS"
+    - "macOS"
+    - "tvOS"
+    - "visionOS"
+    - "watchOS"
+  builds: []
+claims:
+  - "The SoC applicability table places PPL on A12-A14/S4-S10 and SPTM on A15-A18 and M2-M4/A19-M5."
+  - "SPTM is supported on A15 or later and M2 or later SoCs and replaces PPL on supported platforms."
+  - "PPL manages page-table permission overrides so that only PPL can alter protected pages containing user code and page tables."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0002
+    - EVD-0003
+  notes:
+    - "Platform-general documentation; it does not state runtime protection state for a specific device or build."
+    - "The page carries a 2026-01-28 published date. The guide's document revision history (SRC-0013, EVD-0013) lists 'Operating system integrity' as updated in January 2026 and does not list it under the August 2026 revision."
+    - "The A14/PPL statement is superseded for the 24A446 build by SRC-0010; this record remains the vendor's published platform model for the versions it covers."
+license_or_terms: "Apple website terms. Only short factual excerpts are retained as provenance."

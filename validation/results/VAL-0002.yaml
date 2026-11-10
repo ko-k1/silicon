@@ -1,0 +1,26 @@
+schema_version: 1
+id: VAL-0002
+case_id: CASE-0001
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-05T09:02:49+09:00"
+environment:
+  type: offline
+  description: "Offline inspection of the public iOS 27.0.1 restore image for iPhone13,1. No device was connected."
+  tool_versions:
+    python: "3.14.9"
+    remotezip: "0.12.6"
+inputs:
+  - name: "iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: null
+  - name: "BuildManifest.plist extracted from the restore image"
+    sha256: "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+expected_outcome: "The iPhone13,1 24A446 BuildManifest should either contain SPTM/TXM payload entries or not; the observed result should be recorded without inferring runtime state."
+observed_outcome: "The manifest contains Ap,SecurePageTableMonitor -> Firmware/sptm.t8101.release.im4p and Ap,TrustedExecutionMonitor -> Firmware/txm.iphoneos.release.im4p. Restore variants are marked IsLoadedByiBoot: true. VariantContents marks InstalledSPTM, RestoreSPTM, InstalledKernelCache, and RestoreKernelCache as Production."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "Build-level check passed: the A14/iPhone13,1 24A446 restore image packages SPTM and TXM. This does not measure runtime enforcement."
+limitations:
+  - "Only packaging metadata was inspected; no kernelcache, boot chain, or device runtime was observed."
+  - "The artifact is hosted on Apple's CDN and may be replaced or removed; the recorded hash identifies the inspected BuildManifest.plist."
+  - "The exact target device identity and installed build remain unverified; VAL-0001 is still not-run."

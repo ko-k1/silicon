@@ -1,0 +1,84 @@
+# Initial target scaffold. Verify every field against the physical device.
+schema_version: 1
+target:
+  id: iphone12mini-ios27.0.1
+  device_marketing_name: iPhone 12 mini
+  product_type:
+    value: iPhone13,1
+    state: pending
+    evidence: [EVD-0010]
+    note: "BuildManifest confirms iPhone13,1 is a supported product type for 24A446; physical device identity remains unverified."
+hardware:
+  soc:
+    value: A14 (T8101)
+    state: pending
+    evidence: [EVD-0010]
+    note: "The 24A446 SPTM payload is sptm.t8101; the physical device SoC remains unverified."
+  architecture:
+    value: arm64e
+    state: pending
+    evidence: []
+software:
+  platform: iOS
+  version:
+    value: 27.0.1
+    state: user-specified
+    evidence: [EVD-0001]
+  build:
+    value: 24A446
+    state: user-specified
+    evidence: [EVD-0001, EVD-0010]
+protection:
+  PPL:
+    state: unknown
+    evidence: [EVD-0010]
+    note: "The 24A446 image ships SPTM/TXM, which Apple documents as replacing PPL. PPL is therefore not expected to be the active boundary, but runtime state is unverified."
+  SPTM:
+    state: inferred
+    evidence: [EVD-0010]
+    note: "BuildManifest includes Ap,SecurePageTableMonitor (Firmware/sptm.t8101.release.im4p) and marks InstalledSPTM/RestoreSPTM Production."
+  TXM:
+    state: inferred
+    evidence: [EVD-0010]
+    note: "BuildManifest includes Ap,TrustedExecutionMonitor (Firmware/txm.iphoneos.release.im4p) and marks the installed/restore entries Personalize: true."
+  PAC:
+    state: unknown
+    evidence: []
+  AMFI:
+    state: unknown
+    evidence: []
+artifacts:
+  - id: ART-0001
+    type: apple-build-manifest
+    product_type: iPhone13,1
+    os_version: 27.0.1
+    build: 24A446
+    source_url: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    extracted_path: BuildManifest.plist
+    sha256: "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+    bytes: 351384
+    retained: false
+    notes: "Extracted from the public restore IPSW via an HTTP range request; the raw IPSW and BuildManifest are not committed."
+  - id: ART-0002
+    type: apple-kernelcache-macho
+    product_type: iPhone13,1
+    os_version: 27.0.1
+    build: 24A446
+    source_url: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    extracted_path: kernelcache.release.iphone13
+    sha256: "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4"
+    bytes: 66535424
+    im4p_sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+    retained: false
+    notes: "IM4P extracted with pyimg4 and decompressed; top-level Mach-O segments include __DATA_SPTM and __TEXT_BOOT_EXEC, with no PPL segment names."
+verification:
+  status: partial
+  verified_at: "2026-11-05"
+  notes:
+    - Confirm product type, SoC, OS version, and build on the device.
+    - Do not infer runtime protection state from build packaging alone.
+    - Build 24A446 is the public iOS 27.0.1 build listed by Apple (EVD-0001); confirm the device actually runs it.
+    - The 24A446 BuildManifest for iPhone13,1 contains SPTM and TXM payloads and marks InstalledSPTM/RestoreSPTM Production (EVD-0010, VAL-0002). This is build-level evidence, not a device measurement.
+    - The 24A446 kernelcache for iPhone13,1 has __DATA_SPTM/__TEXT_BOOT_EXEC segments and no PPL segment names (EVD-0012, VAL-0003). This is build-level evidence, not a runtime measurement.
+    - A second A14 product type, iPhone13,4, has the same SPTM/TXM packaging in its 24A446 BuildManifest (EVD-0014, VAL-0004). This extends the build-level finding but does not verify the target device or runtime state.
+    - Apple's 2026-01-28 Operating system integrity page places A12-A14 in the PPL scope (EVD-0002, EVD-0003); the guide's revision history does not list that page as updated after January 2026 (EVD-0013), and it does not describe the 24A446 build.

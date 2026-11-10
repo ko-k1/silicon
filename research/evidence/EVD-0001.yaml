@@ -1,0 +1,19 @@
+schema_version: 1
+id: EVD-0001
+class: primary
+state: observed
+claim: "Apple's release listing identifies iOS 27.0.1 build 24A446 with a release date of 2026-09-28."
+source:
+  type: apple-developer-release-listing
+  locator: "https://developer.apple.com/news/releases?id=09282026a"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "iOS 27.0.1"
+    - "24A446"
+artifact: null
+limitations:
+  - "Establishes that the build exists, not that the target device is running it."
+  - "The listing does not document protection architecture or runtime protection state."
+related_cases:
+  - CASE-0001

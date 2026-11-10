@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silicon.local/schemas/research-case.schema.json",
+  "title": "silicon Research Case",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "status",
+    "target_manifest",
+    "objective",
+    "kinds",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^CASE-[0-9]{4}$"
+    },
+    "status": {
+      "enum": [
+        "new",
+        "scoped",
+        "investigating",
+        "hypothesis",
+        "analyzed",
+        "validated",
+        "rejected",
+        "inconclusive",
+        "reported",
+        "archived"
+      ]
+    },
+    "target_manifest": {
+      "type": "string"
+    },
+    "objective": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "kinds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "supporting",
+        "counter"
+      ],
+      "properties": {
+        "supporting": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-[0-9]{4}$"
+          }
+        },
+        "counter": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-[0-9]{4}$"
+          }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

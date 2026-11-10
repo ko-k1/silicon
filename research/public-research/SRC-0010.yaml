@@ -1,0 +1,38 @@
+schema_version: 1
+id: SRC-0010
+title: "Apple iOS 27.0.1 (24A446) BuildManifest for iPhone13,1"
+authors:
+  - "Apple Inc."
+source_type: apple-build-manifest
+url: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+published_at: "2026-09-28"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "iPhone 12 mini (iPhone13,1)"
+  socs:
+    - "A14 (T8101)"
+  os_versions:
+    - "iOS 27.0.1"
+  builds:
+    - "24A446"
+claims:
+  - "The BuildManifest.plist inside the iPhone13,1 24A446 restore image lists Ap,SecurePageTableMonitor pointing to Firmware/sptm.t8101.release.im4p and Ap,TrustedExecutionMonitor pointing to Firmware/txm.iphoneos.release.im4p."
+  - "The same build identity lists InstalledSPTM, RestoreSPTM, InstalledKernelCache, and RestoreKernelCache as Production in VariantContents."
+  - "The restore SPTM and TXM entries are marked IsLoadedByiBoot: true; the installed SPTM and TXM entries are marked IsFUDFirmware: true and Personalize: true."
+  - "The restore image declares ProductVersion 27.0.1, ProductBuildVersion 24A446, and SupportedProductTypes [iPhone13,1]."
+artifact:
+  name: "BuildManifest.plist"
+  container: "iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  extraction: "HTTP range request into the ZIP central directory; BuildManifest.plist read directly; raw IPSW and manifest not committed"
+  sha256: "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+  bytes: 351384
+silicon_assessment:
+  applicability: confirmed
+  evidence_ids:
+    - EVD-0010
+  notes:
+    - "Primary build-packaging evidence for the exact product type and build. It does not measure runtime state on a device."
+    - "T8101 is the A14 SoC identifier used by the SPTM payload name."
+    - "The presence of SPTM and TXM payloads is consistent with the September 2026 reports that iOS 27 moves A13/A14/M1 to the SPTM/TXM mechanism family."
+license_or_terms: "Apple firmware and website terms. Only derived metadata, hashes, and short factual excerpts are retained."

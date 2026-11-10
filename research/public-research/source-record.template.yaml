@@ -1,0 +1,19 @@
+schema_version: 1
+id: SRC-0000
+title: null
+authors: []
+source_type: unknown  # apple-documentation | advisory | paper | repository | write-up | other
+url: null
+published_at: null
+accessed_at: null
+source_scope:
+  devices: []
+  socs: []
+  os_versions: []
+  builds: []
+claims: []
+silicon_assessment:
+  applicability: unknown  # confirmed | partial | comparative-only | not-applicable | unknown
+  evidence_ids: []
+  notes: []
+license_or_terms: unknown

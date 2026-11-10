@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0013
+class: primary
+state: observed
+claim: "Apple's Platform Security document revision history lists 'Operating system integrity' under topics updated in January 2026, and does not list it under the August 2026 revision's added or updated topics."
+source:
+  type: apple-documentation
+  locator: "https://support.apple.com/guide/security/document-revision-history-secb82d6b274/web"
+  published_at: null
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "Apple Platform Security guide"
+artifact:
+  sha256: "033f688650e17acea933629db6aaeb48b2b2b95923423dbb7c17fa76bfc75453"
+  bytes: 765709
+  path_or_uri: "Saved HTML of the revision-history page; not committed"
+limitations:
+  - "A guide-level revision history is not a build-specific statement about iOS 27.0.1 or 24A446."
+  - "Apple may update a page without listing it in the revision history; absence of a listing is not proof of unchanged content."
+  - "The saved HTML may differ from the live page as Apple updates the guide."
+related_cases:
+  - CASE-0001
+  - CASE-0003

@@ -1,0 +1,41 @@
+schema_version: 1
+id: SRC-0011
+title: "Dopamine 3.0 release coverage - public PPL/SPTM bypass scope"
+authors:
+  - "Shalom Levytam"
+  - "iClarified"
+source_type: write-up
+url: "https://www.iclarified.com/101697/dopamine-30-jailbreak-released-with-ios-1731-support-ios-26-on-a12a13"
+published_at: "2026-08-07"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "A12-A17 devices"
+    - "M1-M2 devices"
+  socs:
+    - "A12"
+    - "A13"
+    - "A14"
+    - "A15"
+    - "A16"
+    - "A17"
+    - "M1"
+    - "M2"
+  os_versions:
+    - "iOS 16.5.1 through iOS 18.7.1"
+    - "iOS 26.0 through iOS 26.0.1"
+  builds: []
+claims:
+  - "The article reports Titan as a PPL/SPTM bypass used for iOS 16.5.1 through 17.3.1."
+  - "It reports momentarius as an A12/A13 PPL bypass for iOS 16.6 through 18.7.1 and iOS 26.0 through 26.0.1."
+  - "It lists stable public jailbreak support for A14/M1 as iOS 16.6 through 17.3.1."
+  - "It reports that real-device SPTM support remained limited to iOS 17.3.1 because no SPTM bypass existed for iOS 17.4 or later at the time of publication."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0011
+  notes:
+    - "Secondary reporting of a tool release; it is not a primary measurement and its scope is the tool, not every public bypass."
+    - "The article predates the iOS 27.0.1 release and does not establish A14 support on 24A446."
+    - "The article is useful for mapping publicly claimed compatibility ranges, not for proving that no other bypass exists."
+license_or_terms: "iClarified website terms. Short factual excerpts only."

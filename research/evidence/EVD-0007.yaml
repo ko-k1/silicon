@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0007
+class: secondary
+state: observed
+claim: "A public SPTM introduction map lists A13/A14 and M1 as introducing SPTM in Darwin 27.0 and iOS 27.0, and states that GXF first appeared in A13."
+source:
+  type: community-gist
+  locator: "https://gist.github.com/asdfugil/101ae32734938cf2c186ff330fba1e97"
+  published_at: null
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A13"
+    - "A14"
+    - "M1"
+    - "iOS 27.0"
+artifact: null
+limitations:
+  - "Community reverse-engineering note, not Apple documentation."
+  - "No reproducible target measurement or build hash is provided."
+  - "Conflicts with Apple's January 2026 applicability table."
+related_cases:
+  - CASE-0001
+  - CASE-0003

@@ -1,0 +1,33 @@
+schema_version: 1
+id: VAL-0001
+case_id: CASE-0001
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-05T10:08:14+09:00"
+environment:
+  type: device-observation
+  description: "Planned non-invasive device metadata check; no target device was connected."
+  tool_versions:
+    python: "3.14.9"
+    pyyaml: "6.0.3"
+inputs:
+  - name: "Apple Platform Security - Operating system integrity"
+    sha256: null
+  - name: "Apple Developer - iOS 27.0.1 (24A446) release listing"
+    sha256: null
+  - name: "Target manifest"
+    sha256: "74f7097e92c0b1e13201802e688e9d42d0bb8cfbf3ad82ae91976c6281ec958b"
+  - name: "research/public-research/SRC-0001.yaml"
+    sha256: "7358c51b1a74b87595275714ec50d4348f0e081ed40e1b1c6286acb1d14842f0"
+  - name: "research/public-research/SRC-0002.yaml"
+    sha256: "e5eac59ff891af37f3da31166770a2fd325279f26b33073834f154a5d20b74ba"
+expected_outcome: "A non-invasive device metadata check would confirm ProductType and BuildVersion against the target manifest."
+observed_outcome: "Not executed. No device access was available in this session."
+result:
+  status: not-run
+  reproducible: unknown
+  summary: "Validation was not run. Build-level mechanism evidence is recorded in VAL-0002; device runtime state remains unknown."
+limitations:
+  - "No device metadata was collected."
+  - "No runtime protection-state evidence was collected."
+  - "The target manifest's physical device identity, SoC, and installation state remain pending."
+  - "This is a validation plan; input hashes identify the current planning revision."

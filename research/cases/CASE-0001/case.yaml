@@ -1,0 +1,105 @@
+schema_version: 1
+id: CASE-0001
+title: "Page-table protection mechanism for A14 / iOS 27.0.1 (24A446)"
+status: analyzed
+created_at: "2026-11-05T08:38:54+09:00"
+updated_at: "2026-11-05T10:08:14+09:00"
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+owner: null
+reviewer: null
+objective: "Determine whether the A14 / iOS 27.0.1 build 24A446 page-table protection boundary is PPL or SPTM with TXM, and reconcile conflicting public sources. Exploitation, bypass, and protection-disablement work is explicitly out of scope."
+kinds:
+  - architecture-applicability
+  - protection-state-baseline
+components:
+  - PPL
+  - SPTM
+  - TXM
+scope:
+  in_scope:
+    - "Apple platform-security documentation and release metadata."
+    - "Apple build-manifest metadata for the target product type and build."
+    - "Dated public research and community reports about PPL/SPTM/TXM applicability."
+    - "Non-invasive target identity checks against the target manifest."
+  out_of_scope:
+    - "Exploit chains, kernel read/write primitives, or privilege-escalation payloads."
+    - "PPL, SPTM, or TXM bypass techniques or protection-disablement procedures."
+    - "Persistence, patch-finding, or operational instructions."
+    - "State-changing or destructive device operations."
+hypothesis:
+  claim: "The A14 / iOS 27.0.1 build 24A446 packages and uses SPTM with TXM for page-table and code-execution protection; Apple's 2026-01-28 PPL applicability statement no longer describes the iOS 27 runtime."
+  preconditions:
+    - "Target is an A14-based device running iOS 27.0.1 build 24A446."
+    - "The iPhone13,1 and iPhone13,4 24A446 BuildManifests are representative of the A14 product family."
+    - "The public iOS 27 reports refer to the shipping iOS 27 architecture, not only a beta or a single tool's fallback heuristic."
+    - "Apple's January 2026 Operating system integrity page was not listed as updated after January 2026 in the guide's revision history (EVD-0013) and may not reflect a mid-cycle mechanism change."
+  expected_behavior: "If the claim is correct, the A14 24A446 image should contain SPTM/TXM payloads, public compatibility/tooling reports should treat A14 iOS 27 devices as SPTM/TXM-capable, and Apple's pre-iOS 27 PPL table would remain valid only for earlier OS versions on A14."
+  rejection_criteria:
+    - "A build-specific Apple source states that A14 on iOS 27.0.1 uses PPL and does not use SPTM."
+    - "Reproducible non-invasive evidence from the exact target shows PPL active and SPTM/TXM absent."
+    - "The A14 iOS 27 SPTM reports are shown to describe only a different SoC, a beta-only configuration, or a tool fallback rather than the shipping architecture."
+    - "The target is shown not to be an A14 device or not to be running 24A446."
+evidence:
+  supporting:
+    - EVD-0001
+    - EVD-0006
+    - EVD-0007
+    - EVD-0008
+    - EVD-0010
+    - EVD-0012
+    - EVD-0013
+    - EVD-0014
+  counter:
+    - EVD-0002
+    - EVD-0003
+    - EVD-0009
+    - EVD-0015
+analysis:
+  methods:
+    - documentary-source-analysis
+    - source-triangulation
+    - document-revision-review
+    - build-manifest-inspection
+    - kernelcache-segment-inspection
+    - cross-product-build-check
+    - contradiction-analysis
+  artifacts:
+    - "BuildManifest.plist from iPhone13,1_27.0.1_24A446_Restore.ipsw (sha256 f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f; not committed)"
+    - "Decompressed kernelcache.release.iphone13 from the same image (sha256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4; not committed)"
+    - "BuildManifest.plist from iPhone13,4_27.0.1_24A446_Restore.ipsw (sha256 342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392; not committed)"
+  tools:
+    - python-3.14.9
+    - remotezip-0.12.6
+    - pyimg4-0.8.9
+    - manual-document-review
+validation:
+  safe_method: "Offline source review, build-manifest inspection, and kernelcache segment inspection, plus a non-invasive device metadata check of ProductType and BuildVersion if an owned target device is available. Runtime mechanism confirmation is not attempted in this case."
+  validation_ids:
+    - VAL-0001
+    - VAL-0002
+    - VAL-0003
+    - VAL-0004
+conclusion:
+  state: inferred
+  confidence: high
+  summary: "The 24A446 restore build manifest for iPhone13,1 contains SPTM (Firmware/sptm.t8101.release.im4p) and TXM (Firmware/txm.iphoneos.release.im4p) payloads and marks InstalledSPTM/RestoreSPTM as Production. The decompressed kernelcache independently shows __DATA_SPTM and __TEXT_BOOT_EXEC segments and no __PPLTEXT/__PPLDATA segment names. The iPhone13,4 BuildManifest for the same build independently shows the same SPTM/TXM packaging, extending the build-level finding to a second A14 product type. This resolves the build-level mechanism in favor of SPTM/TXM; Apple's January 2026 PPL table was not listed as updated after January 2026 in the guide's revision history (EVD-0013). A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). The target device's runtime state remains unknown."
+  limitations:
+    - "Build packaging and kernelcache structure are primary evidence that SPTM/TXM is included, but they are not runtime measurements."
+    - "Segment naming is a structural indicator; it is not a proof that no PPL-related code exists in any component."
+    - "The second A14 product type check covers packaging only; the iPhone13,4 kernelcache was not inspected."
+    - "The target device identity and installed build are not verified on hardware."
+    - "No build-specific Apple security note describing the mechanism change was found."
+    - "The contradictory Apple page carries a January 2026 date and was not listed as updated after that in the guide's revision history; the contradictory survey and community tracker may be imprecise or based on the older documentation."
+references:
+  - SRC-0001
+  - SRC-0002
+  - SRC-0005
+  - SRC-0006
+  - SRC-0007
+  - SRC-0008
+  - SRC-0009
+  - SRC-0010
+  - SRC-0012
+  - SRC-0013
+  - SRC-0014
+  - SRC-0015

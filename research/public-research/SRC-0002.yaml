@@ -1,0 +1,26 @@
+schema_version: 1
+id: SRC-0002
+title: "Apple Developer - iOS 27.0.1 (24A446) release listing"
+authors:
+  - "Apple Inc."
+source_type: apple-documentation
+url: "https://developer.apple.com/news/releases?id=09282026a"
+published_at: "2026-09-28"
+accessed_at: "2026-11-05"
+source_scope:
+  devices: []
+  socs: []
+  os_versions:
+    - "iOS 27.0.1"
+  builds:
+    - "24A446"
+claims:
+  - "Apple lists iOS 27.0.1 build 24A446 with a release date of 2026-09-28."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0001
+  notes:
+    - "Confirms that the build exists as a public iOS release; it does not confirm installation on the target device."
+    - "The listing contains no build-specific protection-architecture statement."
+license_or_terms: "Apple website terms. Only short factual excerpts are retained as provenance."

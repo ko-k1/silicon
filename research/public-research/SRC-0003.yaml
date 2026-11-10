@@ -1,0 +1,28 @@
+schema_version: 1
+id: SRC-0003
+title: "Apple security content of iOS 27 and iPadOS 27"
+authors:
+  - "Apple Inc."
+source_type: apple-documentation
+url: "https://support.apple.com/en-us/149034"
+published_at: "2026-09-14"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "iPhone 11 and later"
+  socs: []
+  os_versions:
+    - "iOS 27"
+    - "iPadOS 27"
+  builds: []
+claims:
+  - "Apple published the security content of iOS 27 and iPadOS 27 on 2026-09-14 and last updated the advisory on 2026-10-26."
+  - "The advisory uses CVE identifiers and component names for the fixed issues."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0005
+  notes:
+    - "The advisory covers the iOS 27 release, not the later 27.0.1 build 24A446 specifically."
+    - "The structured CSAF JSON was used to derive the vulnerability register; it is not committed as a raw artifact."
+license_or_terms: "Apple website terms. CVE identifiers and short factual metadata are retained for research provenance."

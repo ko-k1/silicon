@@ -1,0 +1,27 @@
+schema_version: 1
+id: VAL-0003
+case_id: CASE-0001
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-05T09:02:49+09:00"
+environment:
+  type: offline
+  description: "Offline extraction and Mach-O segment inspection of the public iPhone13,1 24A446 kernelcache. No device was connected."
+  tool_versions:
+    python: "3.14.9"
+    remotezip: "0.12.6"
+    pyimg4: "0.8.9"
+inputs:
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  - name: "Decompressed kernelcache Mach-O"
+    sha256: "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4"
+expected_outcome: "Inspect the kernelcache Mach-O load commands and compare the segment set with the PPL and SPTM build models."
+observed_outcome: "Top-level segments include __DATA_SPTM and __TEXT_BOOT_EXEC; __PPLTEXT, __PPLDATA, and __PPLDATA_CONST are absent from the top-level segment list and from a byte scan of the full decompressed image. The IM4P identifies KernelManagement_host-514.2.2."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The 24A446 A14 kernelcache is structurally an SPTM build, not a PPL build. This is build-level evidence; it does not measure runtime enforcement."
+limitations:
+  - "Only the kernelcache Mach-O segments were inspected; SPTM/TXM runtime state and configuration were not measured."
+  - "Segment naming is a build-structure indicator; it is not a proof that no PPL-related code exists in any component."
+  - "The exact target device identity and installed build remain unverified; VAL-0001 is still not-run."

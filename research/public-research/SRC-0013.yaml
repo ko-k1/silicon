@@ -1,0 +1,33 @@
+schema_version: 1
+id: SRC-0013
+title: "Apple Platform Security - Document revision history"
+authors:
+  - "Apple Inc."
+source_type: apple-documentation
+url: "https://support.apple.com/guide/security/document-revision-history-secb82d6b274/web"
+published_at: null
+accessed_at: "2026-11-05"
+source_scope:
+  devices: []
+  socs: []
+  os_versions:
+    - "iOS"
+    - "iPadOS"
+    - "macOS"
+    - "tvOS"
+    - "visionOS"
+    - "watchOS"
+  builds: []
+claims:
+  - "The revision history lists 'Operating system integrity' under topics updated in January 2026."
+  - "The August 2026 revision lists added and updated topics but does not list 'Operating system integrity' among them."
+  - "The March 2026 revision lists only 'Mac on-screen camera indicator light' as an added topic."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0013
+  notes:
+    - "The page is a guide-level revision history, not a build-specific statement about iOS 27.0.1."
+    - "It supports the observation that the Operating system integrity page was last listed as updated in January 2026, before iOS 27."
+    - "Apple can revise pages without listing them; the absence of a listing is not proof that the page content is unchanged."
+license_or_terms: "Apple website terms. Only short factual excerpts are retained as provenance."

@@ -1,0 +1,21 @@
+schema_version: 1
+id: EVD-0003
+class: primary
+state: observed
+claim: "Apple places A12-A14/S4-S10 in the PPL applicability column and describes PPL as managing page-table permission overrides so that only PPL can alter protected pages containing user code and page tables."
+source:
+  type: apple-platform-security-guide
+  locator: "https://support.apple.com/guide/security/operating-system-integrity-sec8b776536b/web"
+  published_at: "2026-01-28"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A12-A14"
+    - "S4-S10"
+artifact: null
+limitations:
+  - "The guide describes the mechanism family, not whether the mechanism is enabled or correctly configured on a particular device/build."
+  - "A14 is covered by the table's SoC grouping; the guide does not provide per-product or per-build measurements."
+  - "The guide's revision history does not list the Operating system integrity page as updated after January 2026 (EVD-0013)."
+  - "Superseded for the 24A446 A14 build by EVD-0010 and EVD-0012; this record remains an accurate observation of Apple's published table."
+related_cases:
+  - CASE-0001

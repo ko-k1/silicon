@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0002
+class: primary
+state: observed
+claim: "Apple documents SPTM as supported on A15 or later and M2 or later SoCs, replacing PPL on supported platforms; its applicability table does not mark SPTM support for A12-A14."
+source:
+  type: apple-platform-security-guide
+  locator: "https://support.apple.com/guide/security/operating-system-integrity-sec8b776536b/web"
+  published_at: "2026-01-28"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A15-A18"
+    - "M2-M4"
+    - "A19"
+    - "M5"
+artifact: null
+limitations:
+  - "Documentation is platform-general and carries a 2026-01-28 published date."
+  - "The guide's revision history does not list the Operating system integrity page as updated after January 2026 (EVD-0013)."
+  - "The absence of an A14 mark in the SPTM column is not a build-specific runtime measurement."
+  - "Superseded for the 24A446 A14 build by EVD-0010 and EVD-0012; this record remains an accurate observation of Apple's published table."
+related_cases:
+  - CASE-0001

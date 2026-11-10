@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silicon.local/schemas/evidence-record.schema.json",
+  "title": "silicon Evidence Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "class",
+    "state",
+    "claim",
+    "source",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^EVD-[0-9]{4}$"
+    },
+    "class": {
+      "enum": [
+        "primary",
+        "reproduced",
+        "secondary",
+        "anecdotal",
+        "derived"
+      ]
+    },
+    "state": {
+      "enum": [
+        "unknown",
+        "observed",
+        "inferred",
+        "confirmed",
+        "contradicted"
+      ]
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "published_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "accessed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artifact": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "path_or_uri": {
+          "type": "string"
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_cases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^CASE-[0-9]{4}$"
+      }
+    }
+  },
+  "additionalProperties": true
+}

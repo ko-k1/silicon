@@ -1,0 +1,27 @@
+schema_version: 1
+id: EVD-0014
+class: primary
+state: observed
+claim: "The iOS 27.0.1 (24A446) BuildManifest for iPhone13,4 (iPhone 12 Pro Max, A14/T8101) contains SPTM and TXM payloads and marks InstalledSPTM/RestoreSPTM as Production, matching the iPhone13,1 build-level finding."
+source:
+  type: apple-build-manifest
+  locator: "https://updates.cdn-apple.com/2026FallFCS/969bb521-9314-4059-aa2f-a010d2ed8a44/iPhone13,4_27.0.1_24A446_Restore.ipsw"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "iPhone13,4"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact:
+  sha256: "342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392"
+  bytes: 351382
+  path_or_uri: "BuildManifest.plist inside iPhone13,4_27.0.1_24A446_Restore.ipsw"
+limitations:
+  - "Build packaging establishes that SPTM/TXM images are included for this product type and build; it is not a runtime measurement."
+  - "A second A14 product type supports generalization, but it does not establish behavior for every A14 device or every boot path."
+  - "The IPSW is a public restore image; its presence does not prove the target device is running 24A446."
+  - "The extracted BuildManifest.plist is not committed; only its hash and selected metadata are retained."
+related_cases:
+  - CASE-0001
+  - CASE-0003

@@ -1,0 +1,31 @@
+# Local environments
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+.idea/
+.vscode/
+
+# Local/raw research artifacts (keep outside public Git unless explicitly cleared)
+.local/
+artifacts/raw/
+artifacts/private/
+lab/private/
+validation/results/raw/
+*.ips
+*.crash
+*.core
+*.dSYM/
+*.ipsw
+*.img4
+*.im4p
+*.im4m
+*.bin
+
+# Generated outputs
+build/
+dist/
+site/

@@ -1,0 +1,24 @@
+schema_version: 1
+id: EVD-0009
+class: secondary
+state: observed
+claim: "An Exploit Reversing write-up dated 2026-09-30 states that PPL applies to A12-A14 and M1, while SPTM applies to A15 and later, and discusses Titan as a PPL/SPTM bypass for iOS 16.1 through 17.4 beta 3 on A14-A17 devices."
+source:
+  type: technical-write-up
+  locator: "https://exploitreversing.com/wp-content/uploads/2026/10/exploit_reversing_10.pdf"
+  published_at: "2026-09-30"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "A12-A14"
+    - "A15 and later"
+    - "M1"
+    - "iOS 16 through iOS 27"
+artifact: null
+limitations:
+  - "The generation statement conflicts with multiple September 2026 reports of SPTM on A13/A14/M1 under iOS 27."
+  - "The document is a broad survey, not a build-specific measurement of 24A446."
+  - "It is retained as counter-evidence, not adopted as the target conclusion."
+  - "Its PPL-on-A14 generation statement is contradicted at build level by EVD-0010 for A14 24A446."
+related_cases:
+  - CASE-0001
+  - CASE-0003

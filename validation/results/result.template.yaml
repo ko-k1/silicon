@@ -1,0 +1,17 @@
+schema_version: 1
+id: VAL-0000
+case_id: CASE-0000
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: null
+environment:
+  type: offline  # offline | synthetic | device-observation
+  description: null
+  tool_versions: {}
+inputs: []
+expected_outcome: null
+observed_outcome: null
+result:
+  status: not-run  # passed | failed | inconclusive | not-run
+  reproducible: unknown  # yes | no | unknown
+  summary: null
+limitations: []

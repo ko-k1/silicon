@@ -1,0 +1,37 @@
+schema_version: 1
+id: SRC-0005
+title: "The Apple Wiki - PPL/SPTM Bypasses"
+authors:
+  - "The Apple Wiki contributors"
+source_type: write-up
+url: "https://theapplewiki.com/wiki/PPL/SPTM_Bypasses"
+published_at: "2026-09-23"
+accessed_at: "2026-11-05"
+source_scope:
+  devices:
+    - "A12 and later"
+    - "A13-A14"
+    - "M1"
+  socs:
+    - "A12"
+    - "A13"
+    - "A14"
+    - "A15"
+    - "A16"
+    - "A17"
+    - "M1"
+    - "M2"
+  os_versions:
+    - "iOS 12 through iOS 27"
+  builds: []
+claims:
+  - "The page states that with the release of iOS 27.0 beta, SPTM bypasses apply to A13-A14 and M1 devices in addition to A15-and-later devices."
+  - "The page lists momentarius as its iOS 27 PPL/SPTM exploit entry."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0006
+  notes:
+    - "Community wiki page, not an Apple source. It does not provide build-specific reproducible evidence for 27.0.1."
+    - "The page lists exploit names and iOS ranges; this repository does not reproduce or use the exploit material."
+license_or_terms: "CC BY-SA 4.0 per the wiki footer; short factual excerpts are used for research provenance."

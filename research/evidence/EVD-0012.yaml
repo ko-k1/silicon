@@ -1,0 +1,27 @@
+schema_version: 1
+id: EVD-0012
+class: primary
+state: observed
+claim: "The iOS 27.0.1 (24A446) kernelcache for iPhone13,1 contains the Mach-O segments __DATA_SPTM and __TEXT_BOOT_EXEC and does not contain __PPLTEXT, __PPLDATA, or __PPLDATA_CONST segment names."
+source:
+  type: apple-kernelcache
+  locator: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-05"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact:
+  sha256: "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4"
+  bytes: 66535424
+  path_or_uri: "kernelcache.release.iphone13 inside iPhone13,1_27.0.1_24A446_Restore.ipsw; decompressed Mach-O"
+limitations:
+  - "The Mach-O segment list establishes the kernel's build configuration, not runtime enforcement."
+  - "The absence of PPL segment names is a strong structural indicator, but it is not a proof that no PPL-related code exists elsewhere."
+  - "The IPSW is a public restore image; its presence does not prove the target device is running 24A446."
+  - "The decompressed kernelcache is not committed; only its hash and selected segment names are retained."
+related_cases:
+  - CASE-0001
+  - CASE-0003

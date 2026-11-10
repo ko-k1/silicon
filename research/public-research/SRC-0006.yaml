@@ -1,0 +1,35 @@
+schema_version: 1
+id: SRC-0006
+title: "sptm introduction map (GitHub Gist)"
+authors:
+  - "asdfugil"
+source_type: repository
+url: "https://gist.github.com/asdfugil/101ae32734938cf2c186ff330fba1e97"
+published_at: null
+accessed_at: "2026-11-05"
+source_scope:
+  devices: []
+  socs:
+    - "A13"
+    - "A14"
+    - "A15"
+    - "A16"
+    - "A17"
+    - "M1"
+    - "M2"
+    - "M3"
+    - "M4"
+  os_versions:
+    - "iOS 27.0"
+  builds: []
+claims:
+  - "SPTM introduction for A13/A14 and M1 is listed as Darwin 27.0 and iOS 27.0."
+  - "GXF is described as first introduced in A13; hardware older than A13 is described as unable to use SPTM."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0007
+  notes:
+    - "Community reverse-engineering note, not Apple documentation and not a reproducible target measurement."
+    - "The mapping is consistent with other public iOS 27 reports but conflicts with Apple's January 2026 applicability table."
+license_or_terms: "GitHub Gist terms; short factual excerpts only."
