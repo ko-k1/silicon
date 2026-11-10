@@ -21,11 +21,12 @@ Initial research target: **A14 / iOS 27.0.1 (24A446)**. The repository is design
 
 1. Read [VISION.md](VISION.md), [AGENTS.md](AGENTS.md), and [ROADMAP.md](ROADMAP.md).
 2. Review `targets/manifests/iphone12mini-ios27.0.1.yaml`. Values not directly verified are deliberately marked `unknown`, `pending`, `inferred`, or `user-specified` with their evidence links.
-3. Read `docs/research/methodology.md` and `docs/research/evidence-model.md` before opening a research case.
-4. Review `research/cases/CASE-0001/` for the A14 PPL/SPTM applicability question, `CASE-0002/` and `research/public-research/ios27-vulnerability-register.yaml` for the iOS 27 vulnerability baseline, and `CASE-0003/` for public bypass scope.
-5. Read `reports/technical/A14-iOS-27.0.1-baseline.md` for the consolidated baseline and its evidence map.
-6. Copy `research/cases/_template/` to a new case ID only after defining a falsifiable question; do not edit the template in place.
-7. Store bulky or sensitive raw artifacts outside Git. Commit metadata, hashes, provenance, and sanitized summaries instead.
+3. Check `docs/workflow/implementation-state-checklist.md` for the current implementation snapshot, claim states, and verification commands.
+4. Read `docs/research/methodology.md` and `docs/research/evidence-model.md` before opening a research case.
+5. Review `research/cases/CASE-0001/` for the A14 PPL/SPTM applicability question, `CASE-0002/` and `research/public-research/ios27-vulnerability-register.yaml` for the iOS 27 vulnerability baseline, and `CASE-0003/` for public bypass scope.
+6. Read `reports/technical/A14-iOS-27.0.1-baseline.md` for the consolidated baseline and its evidence map.
+7. Copy `research/cases/_template/` to a new case ID only after defining a falsifiable question; do not edit the template in place.
+8. Store bulky or sensitive raw artifacts outside Git. Commit metadata, hashes, provenance, and sanitized summaries instead.
 
 ## Repository map
 
