@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silicon.local/schemas/source-record.schema.json",
+  "title": "silicon Source Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "authors",
+    "source_type",
+    "url",
+    "published_at",
+    "accessed_at",
+    "source_scope",
+    "claims",
+    "silicon_assessment",
+    "license_or_terms"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^SRC-[0-9]{4}$"
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "additional_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "published_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "accessed_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_scope": {
+      "type": "object",
+      "required": [
+        "devices",
+        "socs",
+        "os_versions",
+        "builds"
+      ],
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "socs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "os_versions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "builds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "container": {
+          "type": "string"
+        },
+        "extraction": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "sha384": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{96}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "im4p_sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "im4p_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{64}$"
+              },
+              "sha384": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{96}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "decompressed_sha256": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{64}$"
+              },
+              "decompressed_bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "silicon_assessment": {
+      "type": "object",
+      "required": [
+        "applicability",
+        "evidence_ids"
+      ],
+      "properties": {
+        "applicability": {
+          "enum": [
+            "confirmed",
+            "partial",
+            "comparative-only",
+            "not-applicable",
+            "unknown"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-[0-9]{4}$"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "license_or_terms": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

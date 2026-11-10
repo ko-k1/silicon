@@ -1,0 +1,51 @@
+# Target manifest template.
+# Copy to targets/manifests/<target-id>.yaml and replace every placeholder.
+# Use `unknown` until evidence supports a stronger state; see docs/research/evidence-model.md.
+schema_version: 1
+target:
+  id: example-target
+  device_marketing_name: null
+  product_type:
+    value: null
+    state: unknown
+    evidence: []
+hardware:
+  soc:
+    value: null
+    state: unknown
+    evidence: []
+  architecture:
+    value: null
+    state: unknown
+    evidence: []
+software:
+  platform: unknown
+  version:
+    value: null
+    state: unknown
+    evidence: []
+  build:
+    value: null
+    state: unknown
+    evidence: []
+protection:
+  PPL:
+    state: unknown
+    evidence: []
+  SPTM:
+    state: unknown
+    evidence: []
+  TXM:
+    state: unknown
+    evidence: []
+  PAC:
+    state: unknown
+    evidence: []
+  AMFI:
+    state: unknown
+    evidence: []
+artifacts: []
+verification:
+  status: pending
+  verified_at: null
+  notes: []

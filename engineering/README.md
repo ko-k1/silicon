@@ -10,4 +10,7 @@ Reusable research-support tools belong here. Initial candidates: target inventor
 - `engineering/inventory/record_integrity.py` - read-only integrity checker for `EVD`, `SRC`, `VAL`, and `CASE` records. It checks identifiers, required fields, cross-references, case/evidence and case/validation symmetry, target-manifest paths, and index coverage. It does not validate JSON Schema conformance, verify artifact hashes, or rewrite records.
   - Run: `python3 -m engineering.inventory.record_integrity .`
   - Output: deterministic JSON with counts and sorted issues; exit status 1 when an error is found.
-  - Requires: `PyYAML` (`python3 -m pip install -r requirements-dev.txt`).
+- `engineering/inventory/schema_validation.py` - read-only JSON Schema validator for target manifests and `EVD`, `SRC`, `VAL`, and `CASE` records. It checks structural conformance, enums, identifier patterns, and required fields. It does not check cross-references or artifact hashes.
+  - Run: `python3 -m engineering.inventory.schema_validation .`
+  - Output: deterministic JSON with counts and sorted issues; exit status 1 when a record violates its schema.
+  - Requires: `PyYAML` and `jsonschema` (`python3 -m pip install -r requirements-dev.txt`).

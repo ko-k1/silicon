@@ -20,7 +20,7 @@ Initial research target: **A14 / iOS 27.0.1 (24A446)**. The repository is design
 ## Start here
 
 1. Read [VISION.md](VISION.md), [AGENTS.md](AGENTS.md), and [ROADMAP.md](ROADMAP.md).
-2. Review `targets/manifests/iphone12mini-ios27.0.1.yaml`. Values not directly verified are deliberately marked `unknown`, `pending`, `inferred`, or `user-specified` with their evidence links.
+2. Review `targets/manifests/iphone12mini-ios27.0.1.yaml`. Values not directly verified are deliberately marked `unknown`, `pending`, `inferred`, or `user-specified` with their evidence links. Start a new target from `targets/manifests/target-manifest.template.yaml`.
 3. Check `docs/workflow/implementation-state-checklist.md` for the current implementation snapshot, claim states, and verification commands.
 4. Read `docs/research/methodology.md` and `docs/research/evidence-model.md` before opening a research case.
 5. Review `research/cases/CASE-0001/` for the A14 PPL/SPTM applicability question, `CASE-0002/` and `research/public-research/ios27-vulnerability-register.yaml` for the iOS 27 vulnerability baseline, and `CASE-0003/` for public bypass scope.
