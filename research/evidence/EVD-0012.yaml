@@ -26,4 +26,5 @@ limitations:
   - "The decompressed kernelcache is not committed; only its hash and selected segment names are retained."
 related_cases:
   - CASE-0001
+  - CASE-0002
   - CASE-0003

@@ -24,4 +24,5 @@ limitations:
   - "The extracted BuildManifest.plist is not committed; only its hash and selected metadata are retained."
 related_cases:
   - CASE-0001
+  - CASE-0002
   - CASE-0003

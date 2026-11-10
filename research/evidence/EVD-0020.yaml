@@ -29,3 +29,4 @@ limitations:
   - "Digest equality at the IM4P level is build-artifact evidence, not a runtime measurement or a boot-path claim."
 related_cases:
   - CASE-0001
+  - CASE-0003

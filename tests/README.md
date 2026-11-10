@@ -5,7 +5,8 @@ Test schemas, parsers, deterministic outputs, and fixture handling. Tests should
 ## Running the tooling tests
 
 ```sh
+python3 -m pip install -r requirements-dev.txt
 python3 -m unittest discover -s tests/unit -t .
 ```
 
-Fixtures live under `tests/unit/fixtures/`. Keep them synthetic and small; do not commit extracted firmware or device data.
+The record integrity tests read the committed `EVD`, `SRC`, `VAL`, and `CASE` records and require `PyYAML`. Fixtures live under `tests/unit/fixtures/`. Keep them synthetic and small; do not commit extracted firmware or device data.
