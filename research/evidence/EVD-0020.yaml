@@ -1,0 +1,31 @@
+schema_version: 1
+id: EVD-0020
+class: derived
+state: observed
+claim: "The 24A446 iPhone13,1 BuildManifest restore entries for SPTM and TXM are fourcc-retagged copies of the installed IM4P payloads. Replacing only the IM4P type field `sptm` -> `rspt` gives SHA-384 64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955, equal to the `Ap,RestoreSecurePageTableMonitor` Digest; replacing only `trxm` -> `rtrx` gives SHA-384 573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d, equal to the `Ap,RestoreTrustedExecutionMonitor` Digest. The file lengths and all other bytes remain unchanged. Public restore implementations document this re-tagging and outer IMG4 stitching pattern (`SRC-0018`, `SRC-0019`)."
+source:
+  type: derived-image4-retag-comparison
+  locator: "Derived from Apple's public iPhone13,1 iOS 27.0.1 (24A446) restore image: https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-10"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact:
+  sha256: "34798b746599f17eb4ea67c6808d10a4e24b2762f96f0d808159fb9c3a5fd2b4"
+  bytes: 187580
+  path_or_uri: "Derived rspt retag of Firmware/sptm.t8101.release.im4p (not committed)"
+  sha384: "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955"
+related_evidence:
+  - EVD-0010
+  - EVD-0018
+  - EVD-0019
+limitations:
+  - "The retagged IM4P files were generated for the comparison and are not committed; the recorded hashes identify the checked bytes."
+  - "The check covers the IM4P type field only. It does not construct the outer IMG4 with an AP ticket or IM4R, verify signatures, or test device acceptance."
+  - "Only the iPhone13,1 image was checked directly; the matching restore digests in the other A14 manifests are manifest-level observations, not separate retag reproductions."
+  - "Digest equality at the IM4P level is build-artifact evidence, not a runtime measurement or a boot-path claim."
+related_cases:
+  - CASE-0001

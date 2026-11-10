@@ -29,9 +29,10 @@ related_evidence:
   - EVD-0010
   - EVD-0017
   - EVD-0019
+  - EVD-0020
 limitations:
   - "The SHA-384 equality links the extracted file to the manifest's installed SPTM Digest field; it is not a signature verification or a statement that the device will accept the payload."
-  - "The manifest's restore entry Ap,RestoreSecurePageTableMonitor points to the same path but carries the distinct digest 64ba16b4... with Img4PayloadType rspt; that restore-wrapped variant was not resolved or inspected."
+  - "The manifest's restore entry Ap,RestoreSecurePageTableMonitor points to the same path but carries the distinct digest 64ba16b4... with Img4PayloadType rspt; EVD-0020 shows that this digest is reproduced by a fourcc-only retag. This record covers the installed-role payload."
   - "The payload structure and embedded identifiers are build-level evidence, not a runtime measurement of SPTM on a device."
   - "Only the iPhone13,1 payload was extracted directly; cross-product identity is supported by matching manifest digests and the byte-identical release kernelcache, not by extracting this payload from every image."
   - "The absence check covers top-level Mach-O segment names and a strings scan; it is not a proof that no PPL-related code exists elsewhere in the image."

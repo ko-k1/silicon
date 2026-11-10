@@ -1,0 +1,76 @@
+schema_version: 1
+id: VAL-0008
+case_id: CASE-0001
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-10T12:38:30+09:00"
+environment:
+  type: offline
+  description: "Offline SHA-384 comparison of the iPhone13,1 24A446 BuildManifest restore digests against fourcc-retagged copies of the installed SPTM and TXM IM4P files. No device was connected."
+  tool_versions:
+    python: "3.14.9"
+    hashlib: "Python 3.14 standard library"
+    pyimg4: "0.8.9"
+inputs:
+  - name: "BuildManifest.plist extracted from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+  - name: "Firmware/sptm.t8101.release.im4p"
+    sha256: "fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb"
+  - name: "Firmware/txm.iphoneos.release.im4p"
+    sha256: "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff"
+expected_outcome: "If the manifest restore entries are fourcc-retagged copies of the installed payloads, changing only the IM4P type field from sptm to rspt and from trxm to rtrx should reproduce the manifest's Ap,RestoreSecurePageTableMonitor and Ap,RestoreTrustedExecutionMonitor Digest values. A mismatch should be recorded as a failed or inconclusive check."
+observed_outcome: >-
+  The BuildManifest restore entries point to the same paths as the installed
+  entries and carry distinct digests: Ap,RestoreSecurePageTableMonitor has
+  Img4PayloadType rspt and Digest
+  64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955;
+  Ap,RestoreTrustedExecutionMonitor has Img4PayloadType rtrx and Digest
+  573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d.
+  Replacing only the four IM4P type bytes `sptm` -> `rspt` in a copy of
+  Firmware/sptm.t8101.release.im4p produced a 187,580-byte file with SHA-384
+  64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955
+  and SHA-256
+  34798b746599f17eb4ea67c6808d10a4e24b2762f96f0d808159fb9c3a5fd2b4.
+  Replacing only `trxm` -> `rtrx` in a copy of Firmware/txm.iphoneos.release.im4p
+  produced a 223,884-byte file with SHA-384
+  573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d
+  and SHA-256
+  cc2c5321b0ee0019a5de92e55601725a81b85dd63b9ce68b58420f2521879cd2.
+  Both retagged copies parse as Image4 payloads with the expected rspt/rtrx
+  FourCC and the same compressed and uncompressed data sizes as the installed
+  payloads. No other byte was changed.
+digest_comparison:
+  restore_sptm:
+    path: "Firmware/sptm.t8101.release.im4p"
+    installed_file_sha384: "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f"
+    manifest_restore_digest_hex: "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955"
+    retagged_file_sha384: "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955"
+    retagged_file_sha256: "34798b746599f17eb4ea67c6808d10a4e24b2762f96f0d808159fb9c3a5fd2b4"
+    retagged_bytes: 187580
+    changed_bytes: "IM4P type field only: sptm -> rspt"
+    match: true
+  restore_txm:
+    path: "Firmware/txm.iphoneos.release.im4p"
+    installed_file_sha384: "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f"
+    manifest_restore_digest_hex: "573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d"
+    retagged_file_sha384: "573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d"
+    retagged_file_sha256: "cc2c5321b0ee0019a5de92e55601725a81b85dd63b9ce68b58420f2521879cd2"
+    retagged_bytes: 223884
+    changed_bytes: "IM4P type field only: trxm -> rtrx"
+    match: true
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The 24A446 restore digests for SPTM and TXM are reproduced exactly by changing only the four-byte IM4P type field in copies of the installed payloads. This resolves the restore-role digest difference at the IM4P level: it is a re-tagging operation, not evidence of a distinct payload body. It is not a signature, personalized-IMG4, boot-path, or runtime check."
+reproduction:
+  - "Extract BuildManifest.plist, Firmware/sptm.t8101.release.im4p, and Firmware/txm.iphoneos.release.im4p from the iPhone13,1 24A446 restore image and verify the SHA-256 values above."
+  - "Parse the customer BuildIdentity and read Digest for Ap,RestoreSecurePageTableMonitor and Ap,RestoreTrustedExecutionMonitor."
+  - "Copy each IM4P and replace only the four type bytes after the IM4P magic (offsets 13-16 in these files): sptm -> rspt and trxm -> rtrx."
+  - "Compute SHA-384 of each retagged copy and compare with the manifest restore Digest; also confirm the byte lengths are unchanged."
+  - "Optionally run pyimg4 im4p info on the retagged copies to confirm the rspt/rtrx FourCC and unchanged data sizes."
+related_evidence:
+  - EVD-0020
+limitations:
+  - "The retagged IM4P files were generated for this check and are not committed; the recorded hashes identify the checked bytes."
+  - "The check does not construct the outer IMG4 with an AP ticket or IM4R, verify signatures, or test whether a device accepts the result."
+  - "Only the iPhone13,1 image was checked directly; the matching restore digests in the other A14 manifests are manifest-level observations, not independently reproduced retags."
+  - "No boot-path selection or runtime protection state was measured; VAL-0001 remains not-run."

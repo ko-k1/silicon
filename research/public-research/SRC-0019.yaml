@@ -1,0 +1,29 @@
+schema_version: 1
+id: SRC-0019
+title: "idevice crate - IMG4 restore component stitching (img4.rs)"
+authors:
+  - "jkcoxson"
+  - "idevice contributors"
+source_type: public-implementation-source
+url: "https://docs.rs/idevice/0.1.65/src/idevice/services/restore/img4.rs.html"
+published_at: "2026-07-11"
+accessed_at: "2026-11-10"
+source_scope:
+  devices: []
+  socs: []
+  os_versions: []
+  builds: []
+claims:
+  - "stitch_component() embeds an IM4P payload into an outer IMG4 container with the AP ticket and optional IM4R restore-info element."
+  - "patch_im4p_fourcc() copies the payload and replaces only the 4-byte IM4P type field."
+  - "restore_fourcc_override() returns rspt for Ap,RestoreSecurePageTableMonitor and rtrx for Ap,RestoreTrustedExecutionMonitor."
+  - "The same mapping includes restore components such as rkrn, rdtr, rsep, and rlgo."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0020
+  notes:
+    - "Implementation source, not Apple documentation; it independently describes the re-tagging operation and the outer IMG4 construction."
+    - "The source is newer than the 24A446 build but documents the same component-tag convention observed in the BuildManifest."
+    - "It does not establish device acceptance, the exact personalized IMG4 bytes, or the target runtime state."
+license_or_terms: "MIT-licensed crate source as displayed by docs.rs. Only short factual excerpts are retained."

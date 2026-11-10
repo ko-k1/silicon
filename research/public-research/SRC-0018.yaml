@@ -1,0 +1,28 @@
+schema_version: 1
+id: SRC-0018
+title: "idevicerestore - img4_stitch_component restore tag lookup"
+authors:
+  - "Nikias Bassen"
+  - "libimobiledevice contributors"
+source_type: public-implementation-source
+url: "https://cgit.libimobiledevice.org/idevicerestore.git/patch/?id=75fb578c161aea212f6a09714be02ba013a015fb"
+published_at: "2025-09-05"
+accessed_at: "2026-11-10"
+source_scope:
+  devices: []
+  socs: []
+  os_versions: []
+  builds: []
+claims:
+  - "The patch adds Ap,RestoreSecurePageTableMonitor -> rspt and Ap,RestoreTrustedExecutionMonitor -> rtrx to the component-tag lookup table."
+  - "img4_stitch_component() rewrites the IM4P type tag to the mapped restore tag before stitching the component."
+  - "The same mechanism is used for other restore components such as RestoreKernelCache (rkrn), RestoreDeviceTree (rdtr), and RestoreSEP (rsep)."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0020
+  notes:
+    - "Implementation source, not Apple documentation; it describes how restore tooling re-tags a payload."
+    - "The patch predates iOS 27. Its relevance to 24A446 is the tag mapping and stitching pattern, which the offline digest check in EVD-0020 corroborates for the SPTM/TXM payloads."
+    - "It does not establish that the target device accepts the payload, which restore identity or IM4R properties are used, or the runtime protection state."
+license_or_terms: "libimobiledevice project source. Only short factual excerpts are retained."

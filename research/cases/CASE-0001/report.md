@@ -4,7 +4,7 @@
 
 ## Status
 
-Analyzed at the build level. `VAL-0002` (offline BuildManifest inspection for iPhone13,1), `VAL-0003` (offline kernelcache segment inspection), `VAL-0004` (offline BuildManifest inspection for iPhone13,4), `VAL-0005` (offline BuildManifest inspection for iPhone13,2/iPhone13,3 plus cross-product digest comparison), `VAL-0006` (offline byte comparison of the release kernelcache across all four product types), and `VAL-0007` (offline SPTM/TXM Image4 payload and Mach-O inspection) passed; `VAL-0001` (device metadata check) remains `not-run`. No runtime protection measurement was performed.
+Analyzed at the build level. `VAL-0002` (offline BuildManifest inspection for iPhone13,1), `VAL-0003` (offline kernelcache segment inspection), `VAL-0004` (offline BuildManifest inspection for iPhone13,4), `VAL-0005` (offline BuildManifest inspection for iPhone13,2/iPhone13,3 plus cross-product digest comparison), `VAL-0006` (offline byte comparison of the release kernelcache across all four product types), `VAL-0007` (offline SPTM/TXM Image4 payload and Mach-O inspection), and `VAL-0008` (offline restore-role digest reproduction by fourcc retag) passed; `VAL-0001` (device metadata check) remains `not-run`. No runtime protection measurement was performed.
 
 ## Question
 
@@ -30,7 +30,8 @@ Is PPL or SPTM/TXM the page-table protection boundary on an A14 device running i
    - The SPTM payload decompresses to a 1,179,680-byte arm64e Mach-O with UUID `1693386C-1F3A-346B-906D-804E7138B2F1` and `LC_SOURCE_VERSION 820.0.22`; it contains `sptm.t8101.release` and embeds `SPTM-820.0.22|2026-08-08:13:24:32.076410|` (`EVD-0018`, `VAL-0007`).
    - `Firmware/txm.iphoneos.release.im4p` is 223,884 bytes with FourCC `trxm`, LZFSE compression, and no encryption flag. Its SHA-384 is `6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f`, equal to the manifest's `Ap,TrustedExecutionMonitor` Digest (`EVD-0019`, `VAL-0007`).
    - The TXM payload decompresses to a 557,088-byte arm64e Mach-O with UUID `9F80F5EC-09C8-3E9F-A196-13A6250C04E0` and `LC_SOURCE_VERSION 217.0.2`; it contains `txm.iphoneos.release`, embeds `txm.iphoneos.release.TrustedExecutionMonitor_Guarded-217.0.2`, and has a `__TEXT_BOOT_EXEC` segment with a `__bootcode` section (`EVD-0019`, `VAL-0007`).
-   - Neither payload has a top-level segment named `__PPLTEXT`, `__PPLDATA`, or `__PPLDATA_CONST`. The manifest's restore-specific `rspt`/`rtrx` entries carry different digests and were not resolved to wrapped payloads.
+   - Neither payload has a top-level segment named `__PPLTEXT`, `__PPLDATA`, or `__PPLDATA_CONST`.
+   - The manifest's restore-specific `rspt`/`rtrx` entries point to the same two paths but carry different digests. Replacing only the four-byte IM4P type field (`sptm` -> `rspt`, `trxm` -> `rtrx`) in copies of the installed payloads reproduces those restore digests exactly: SPTM becomes `64ba16b4...` and TXM becomes `573a242a...`; the file lengths and all other bytes are unchanged (`EVD-0020`, `VAL-0008`). Public restore implementations document the same re-tagging and outer IMG4 stitching pattern (`SRC-0018`, `SRC-0019`).
 6. The 24A446 BuildManifest for iPhone13,4 (iPhone 12 Pro Max, A14/T8101) independently contains the same SPTM and TXM entries and the same `InstalledSPTM`/`RestoreSPTM` `Production` markers (`EVD-0014`, `VAL-0004`). The build-level finding is therefore not specific to iPhone13,1.
 7. The combined 24A446 BuildManifest for iPhone13,2 (iPhone 12) and iPhone13,3 (iPhone 12 Pro) contains the same SPTM/TXM packaging and the same release payload digests (`EVD-0016`, `VAL-0005`). Across the iPhone13,1, iPhone13,2/3, and iPhone13,4 manifests, the installed/restore SPTM, release TXM, and release kernelcache digests are identical. The combined manifest also contains Research identities with a distinct research TXM payload; these are recorded separately and are not treated as the production configuration. Together the three manifests cover all four iPhone 12-family A14 product types.
 8. Multiple secondary sources dated September 2026 independently report that iOS 27 introduces SPTM/TXM on A13/A14/M1:
@@ -50,6 +51,7 @@ The build-level evidence resolves the contradiction: **the A14 / 24A446 images f
 
 - The 24A446 A14 builds for iPhone13,1, iPhone13,2, iPhone13,3, and iPhone13,4 contain SPTM (`sptm.t8101`) and TXM (`txm.iphoneos`) as installed/restore components, with matching release payload digests.
 - The extracted iPhone13,1 installed SPTM and TXM payloads are valid Image4 containers whose SHA-384 values match the manifest digest fields; both decompress to arm64e Mach-O with SPTM/TXM build identifiers and no top-level PPL segment names.
+- The restore-role `rspt`/`rtrx` digest difference is explained at the IM4P level by a four-byte type-field retag, not by a distinct payload body.
 - The 24A446 release kernelcache is byte-identical across all four product types and is structurally an SPTM build (`__DATA_SPTM`, `__TEXT_BOOT_EXEC`) with no PPL segment names.
 - An "A14 PPL bypass" is mis-scoped for 24A446; the build-level boundary is SPTM/TXM.
 - The public September 2026 reports are corroborated by Apple build artifacts.
@@ -60,7 +62,7 @@ The build-level evidence resolves the contradiction: **the A14 / 24A446 images f
 - That SPTM/TXM is active, correctly configured, or enforcing on the exact target.
 - That every boot path loads the monitors or that no fallback exists.
 - That the extracted payloads are correctly signed or will be accepted by a device; no signature or trust evaluation was performed.
-- That the restore-specific `rspt`/`rtrx` payload variants match the installed payloads; their manifest digests differ and they were not resolved.
+- That the retagged IM4P is the exact personalized restore object a device receives; no outer IMG4 with an AP ticket or IM4R was constructed, and device acceptance was not tested.
 - That the combined image's research kernelcache variant has the same structure as the release kernelcache.
 - That any A14 iPad product type uses the same packaging.
 - That any specific CVE or public bypass affects 24A446.
@@ -71,7 +73,7 @@ The build-level evidence resolves the contradiction: **the A14 / 24A446 images f
 - No device was available for metadata or runtime observation.
 - Build packaging, payload structure, and kernelcache structure are not runtime measurements.
 - No code-signature or trust evaluation was performed; matching manifest digests link the extracted bytes to the manifest fields but do not establish device acceptance.
-- The restore-specific `rspt`/`rtrx` entries carry different digests and were not resolved to wrapped payloads.
+- The restore-role `rspt`/`rtrx` digests are reproduced at the IM4P level by a fourcc-only retag; the stitched IMG4/AP-ticket path and device acceptance were not tested.
 - Segment naming is a structural indicator, not proof that no PPL-related code exists in any component.
 - The release kernelcache is byte-identical across all four product types; the combined image's research kernelcache variant was not compared.
 - A14 iPad product types were not checked.
@@ -84,6 +86,6 @@ The build-level evidence resolves the contradiction: **the A14 / 24A446 images f
 1. Verify product type, SoC, OS version, and build on the owned target device using non-invasive metadata.
 2. If permitted non-invasive observation can establish SPTM/TXM presence, record it as a validation result; otherwise keep the runtime state `unknown`.
 3. Look for an Apple security note or platform-security update specific to iOS 27.0.1 / 24A446.
-4. Resolve the restore-specific `rspt`/`rtrx` payload variants if a restore-path question enters scope; they were not inspected.
+4. If a restore-path question enters scope, inspect the stitched IMG4/IM4R and AP-ticket path; the `rspt`/`rtrx` IM4P digest difference itself is resolved (`EVD-0020`, `VAL-0008`).
 5. If A14 iPad product types enter scope, extend the build-packaging and kernelcache-digest check beyond the iPhone 12 family.
 6. Use `CASE-0003` for public bypass scope; keep bypass and exploitation work outside this repository.

@@ -24,7 +24,7 @@ claims:
   - "The BuildManifest `Ap,TrustedExecutionMonitor` Digest field for the iPhone13,1 customer identity equals that SHA-384 value."
   - "The TXM payload decompresses to a 557,088-byte arm64e Mach-O with UUID 9F80F5EC-09C8-3E9F-A196-13A6250C04E0 and LC_SOURCE_VERSION 217.0.2; its __binname section contains `txm.iphoneos.release`, and it embeds `txm.iphoneos.release.TrustedExecutionMonitor_Guarded-217.0.2` and the info-plist identifier `com.apple.security.libimage4.TXMonitor`."
   - "The TXM Mach-O has a __TEXT_BOOT_EXEC segment containing a __bootcode section. Neither payload has a top-level segment named __PPLTEXT, __PPLDATA, or __PPLDATA_CONST."
-  - "The BuildManifest restore entries Ap,RestoreSecurePageTableMonitor (Img4PayloadType rspt) and Ap,RestoreTrustedExecutionMonitor (rtrx) reference the same paths but have distinct digests; those restore-wrapped variants were not resolved."
+  - "The BuildManifest restore entries Ap,RestoreSecurePageTableMonitor (Img4PayloadType rspt) and Ap,RestoreTrustedExecutionMonitor (rtrx) reference the same paths but have distinct digests; EVD-0020 shows those digests are reproduced by changing only the IM4P type field."
 artifact:
   name: "Firmware/sptm.t8101.release.im4p and Firmware/txm.iphoneos.release.im4p"
   container: "iPhone13,1_27.0.1_24A446_Restore.ipsw"
@@ -50,6 +50,6 @@ silicon_assessment:
   notes:
     - "The extracted payloads match the manifest's installed SPTM/TXM digest fields at the byte level; this connects the manifest declarations to actual payload bytes."
     - "This is build-level evidence for the payload contained in the restore image, not a runtime measurement and not a signature or trust evaluation."
-    - "The restore-specific rspt/rtrx entries have different digests and were not resolved to their wrapped payloads."
+    - "The restore-specific rspt/rtrx digests are reproduced at the IM4P level by a fourcc-only retag (EVD-0020, VAL-0008); the stitched IMG4/AP-ticket path remains untested."
     - "Only the iPhone13,1 payloads were inspected directly; the matching manifest digests and byte-identical kernelcache support the cross-product build-level finding."
 license_or_terms: "Apple firmware and website terms. Only derived metadata, hashes, and short factual excerpts are retained."

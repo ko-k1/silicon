@@ -39,7 +39,7 @@ Apple's 2026-01-28 Operating system integrity page places A12-A14 in the PPL col
 - `Ap,TrustedExecutionMonitor` -> `Firmware/txm.iphoneos.release.im4p`
 - `InstalledSPTM` and `RestoreSPTM` marked `Production` in `VariantContents`
 
-The decompressed release kernelcache independently contains `__DATA_SPTM` and `__TEXT_BOOT_EXEC` segments and no `__PPLTEXT`/`__PPLDATA` segment names (`EVD-0012`). The 24A446 BuildManifest for iPhone13,4, a second A14 product type, independently contains the same SPTM/TXM entries and `Production` markers (`EVD-0014`), and the combined iPhone13,2/iPhone13,3 manifest does too, with matching release payload digests (`EVD-0016`, `VAL-0005`). The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images (`EVD-0017`, `VAL-0006`). For iPhone13,1, the extracted installed SPTM/TXM payloads match the manifest digest fields and decompress to arm64e Mach-O with SPTM/TXM identifiers (`EVD-0018`, `EVD-0019`, `VAL-0007`). This is build-level evidence that the A14 24A446 image family, across all four iPhone 12-family product types, ships the SPTM/TXM mechanism family. It does not measure runtime enforcement.
+The decompressed release kernelcache independently contains `__DATA_SPTM` and `__TEXT_BOOT_EXEC` segments and no `__PPLTEXT`/`__PPLDATA` segment names (`EVD-0012`). The 24A446 BuildManifest for iPhone13,4, a second A14 product type, independently contains the same SPTM/TXM entries and `Production` markers (`EVD-0014`), and the combined iPhone13,2/iPhone13,3 manifest does too, with matching release payload digests (`EVD-0016`, `VAL-0005`). The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images (`EVD-0017`, `VAL-0006`). For iPhone13,1, the extracted installed SPTM/TXM payloads match the manifest digest fields and decompress to arm64e Mach-O with SPTM/TXM identifiers (`EVD-0018`, `EVD-0019`, `VAL-0007`), and the restore-role `rspt`/`rtrx` digests are fourcc-only retags of the same payloads (`EVD-0020`, `VAL-0008`). This is build-level evidence that the A14 24A446 image family, across all four iPhone 12-family product types, ships the SPTM/TXM mechanism family. It does not measure runtime enforcement.
 
 ## Expected behavior
 
@@ -66,6 +66,7 @@ If the claim is wrong:
 - `EVD-0017` - The release kernelcache is byte-identical across all four product types, so the SPTM segment finding applies to the same payload in each image.
 - `EVD-0018` - The extracted iPhone13,1 SPTM payload matches the manifest's installed digest and is an arm64e Mach-O with SPTM identifiers.
 - `EVD-0019` - The extracted iPhone13,1 TXM payload matches the manifest's installed digest and is an arm64e Mach-O with TXM identifiers.
+- `EVD-0020` - The restore-role `rspt`/`rtrx` digests match fourcc-only retags of the same SPTM/TXM IM4P payloads, so the restore entries do not indicate a different payload body.
 
 ## Counter-evidence and alternatives
 

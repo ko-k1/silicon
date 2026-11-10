@@ -3,7 +3,7 @@ id: CASE-0001
 title: "Page-table protection mechanism for A14 / iOS 27.0.1 (24A446)"
 status: analyzed
 created_at: "2026-11-05T08:38:54+09:00"
-updated_at: "2026-11-10T12:06:11+09:00"
+updated_at: "2026-11-10T12:38:30+09:00"
 target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
 owner: null
 reviewer: null
@@ -53,6 +53,7 @@ evidence:
     - EVD-0017
     - EVD-0018
     - EVD-0019
+    - EVD-0020
   counter:
     - EVD-0002
     - EVD-0003
@@ -67,6 +68,7 @@ analysis:
     - kernelcache-segment-inspection
     - kernelcache-byte-comparison
     - image4-payload-inspection
+    - restore-variant-digest-comparison
     - macho-header-inspection
     - cross-product-build-check
     - contradiction-analysis
@@ -96,14 +98,15 @@ validation:
     - VAL-0005
     - VAL-0006
     - VAL-0007
+    - VAL-0008
 conclusion:
   state: inferred
   confidence: high
-  summary: "The 24A446 restore build manifests for all four iPhone 12-family A14 product types (iPhone13,1, iPhone13,2, iPhone13,3, and iPhone13,4) contain SPTM (Firmware/sptm.t8101.release.im4p) and TXM (Firmware/txm.iphoneos.release.im4p) payloads and mark InstalledSPTM/RestoreSPTM as Production. The installed/restore SPTM, release TXM, and release kernelcache digests match across the four product types. The release kernelcache is byte-identical across the four images; its decompressed Mach-O independently shows __DATA_SPTM and __TEXT_BOOT_EXEC segments and no __PPLTEXT/__PPLDATA segment names. The extracted iPhone13,1 SPTM and TXM payloads themselves have SHA-384 values matching the manifest's installed-component Digest fields and decompress to arm64e Mach-O with SPTM/TXM build identifiers (EVD-0018, EVD-0019). This resolves the build-level mechanism in favor of SPTM/TXM; Apple's January 2026 PPL table was not listed as updated after January 2026 in the guide's revision history (EVD-0013). A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). The target device's runtime state remains unknown."
+  summary: "The 24A446 restore build manifests for all four iPhone 12-family A14 product types (iPhone13,1, iPhone13,2, iPhone13,3, and iPhone13,4) contain SPTM (Firmware/sptm.t8101.release.im4p) and TXM (Firmware/txm.iphoneos.release.im4p) payloads and mark InstalledSPTM/RestoreSPTM as Production. The installed/restore SPTM, release TXM, and release kernelcache digests match across the four product types. The release kernelcache is byte-identical across the four images; its decompressed Mach-O independently shows __DATA_SPTM and __TEXT_BOOT_EXEC segments and no __PPLTEXT/__PPLDATA segment names. The extracted iPhone13,1 SPTM and TXM payloads themselves have SHA-384 values matching the manifest's installed-component Digest fields and decompress to arm64e Mach-O with SPTM/TXM build identifiers (EVD-0018, EVD-0019). The distinct restore-role rspt/rtrx digests are reproduced exactly by changing only the four-byte IM4P type field in copies of those payloads (EVD-0020, VAL-0008). This resolves the build-level mechanism in favor of SPTM/TXM; Apple's January 2026 PPL table was not listed as updated after January 2026 in the guide's revision history (EVD-0013). A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). The target device's runtime state remains unknown."
   limitations:
     - "Build packaging, payload structure, and kernelcache structure are primary evidence that SPTM/TXM is included, but they are not runtime measurements."
     - "No code-signature or trust evaluation was performed on the extracted payloads; matching manifest digests link the bytes to the manifest fields but do not establish device acceptance."
-    - "The restore-specific rspt/rtrx entries carry different digests and were not resolved to their wrapped payloads."
+    - "The restore-role rspt/rtrx digests are resolved at the IM4P level by a fourcc-only retag, but no outer IMG4 with an AP ticket or IM4R was constructed and device acceptance was not tested."
     - "Segment naming is a structural indicator; it is not a proof that no PPL-related code exists in any component."
     - "The release kernelcache is byte-identical across the four product types; the combined image's research kernelcache variant was not compared."
     - "A14 iPad product types were not checked."
@@ -125,3 +128,5 @@ references:
   - SRC-0015
   - SRC-0016
   - SRC-0017
+  - SRC-0018
+  - SRC-0019

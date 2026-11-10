@@ -36,7 +36,7 @@ The iOS 27.0.1 (24A446) restore BuildManifest for iPhone13,1 (`T8101`, A14) cont
 
 The BuildManifest SHA-256 is `f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f` (`EVD-0010`). The raw IPSW and BuildManifest are not committed.
 
-The extracted iPhone13,1 installed payloads link to those manifest entries at the byte level: the 187,580-byte `Firmware/sptm.t8101.release.im4p` has SHA-384 `3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f`, equal to the `Ap,SecurePageTableMonitor` Digest, and the 223,884-byte `Firmware/txm.iphoneos.release.im4p` has SHA-384 `6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f`, equal to the `Ap,TrustedExecutionMonitor` Digest (`EVD-0018`, `EVD-0019`, `VAL-0007`). After LZFSE decompression, SPTM is a 1,179,680-byte arm64e Mach-O (UUID `1693386C-1F3A-346B-906D-804E7138B2F1`, source version 820.0.22) and TXM is a 557,088-byte arm64e Mach-O (UUID `9F80F5EC-09C8-3E9F-A196-13A6250C04E0`, source version 217.0.2). Neither has a top-level `__PPL*` segment. The restore-specific `rspt`/`rtrx` entries have different digests and were not resolved.
+The extracted iPhone13,1 installed payloads link to those manifest entries at the byte level: the 187,580-byte `Firmware/sptm.t8101.release.im4p` has SHA-384 `3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f`, equal to the `Ap,SecurePageTableMonitor` Digest, and the 223,884-byte `Firmware/txm.iphoneos.release.im4p` has SHA-384 `6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f`, equal to the `Ap,TrustedExecutionMonitor` Digest (`EVD-0018`, `EVD-0019`, `VAL-0007`). After LZFSE decompression, SPTM is a 1,179,680-byte arm64e Mach-O (UUID `1693386C-1F3A-346B-906D-804E7138B2F1`, source version 820.0.22) and TXM is a 557,088-byte arm64e Mach-O (UUID `9F80F5EC-09C8-3E9F-A196-13A6250C04E0`, source version 217.0.2). Neither has a top-level `__PPL*` segment. The restore-specific `rspt`/`rtrx` entries point to the same files but carry distinct digests; replacing only the four-byte IM4P type field (`sptm` -> `rspt`, `trxm` -> `rtrx`) reproduces those digests exactly, with the payload body and all other bytes unchanged (`EVD-0020`, `VAL-0008`). Public restore implementations document the same re-tagging and outer IMG4 stitching pattern (`SRC-0018`, `SRC-0019`).
 
 The 24A446 BuildManifest for iPhone13,4 (iPhone 12 Pro Max, also A14/T8101) independently contains the same SPTM and TXM entries and the same `InstalledSPTM`/`RestoreSPTM` `Production` markers. Its BuildManifest SHA-256 is `342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392` (`EVD-0014`, `VAL-0004`).
 
@@ -49,7 +49,7 @@ The decompressed 24A446 release kernelcache independently shows the same build s
 - The decompressed Mach-O SHA-256 is `76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4` (`EVD-0012`, `VAL-0003`).
 - The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images; all three IM4P copies hash to `15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced` (`EVD-0017`, `VAL-0006`).
 
-This is primary evidence that the build packages SPTM/TXM, that the extracted installed payloads match the manifest digest fields, and that its kernel is built with SPTM structure. It is not a runtime measurement or a signature/trust evaluation.
+This is primary evidence that the build packages SPTM/TXM, that the extracted installed payloads match the manifest digest fields, that the restore-role digests are fourcc retags of the same payloads, and that its kernel is built with SPTM structure. It is not a runtime measurement or a signature/trust evaluation.
 
 ## Secondary reports about iOS 27
 
@@ -75,7 +75,7 @@ This does not establish that SPTM/TXM is enabled, correctly configured, or enfor
 
 ## Build 24A446
 
-Apple's release listing confirms iOS 27.0.1 build 24A446 was released on 2026-09-28 (`SRC-0002`, `EVD-0001`). The build manifests for iPhone13,1, iPhone13,2/3, and iPhone13,4 confirm the SPTM/TXM payloads (`EVD-0010`, `EVD-0014`, `EVD-0016`); for iPhone13,1, the extracted payloads match the manifest's installed digest fields and decompress to arm64e Mach-O with SPTM/TXM identifiers (`EVD-0018`, `EVD-0019`, `VAL-0007`). The byte-identical release kernelcache confirms an SPTM-structured kernel (`EVD-0012`, `EVD-0017`) packaged for all four product types. No build-specific Apple security note describing the mechanism change was found in the reviewed material. The Operating system integrity page carries a January 2026 date, was not listed as updated after that in the guide's revision history (`EVD-0013`), and does not describe the 24A446 build contents.
+Apple's release listing confirms iOS 27.0.1 build 24A446 was released on 2026-09-28 (`SRC-0002`, `EVD-0001`). The build manifests for iPhone13,1, iPhone13,2/3, and iPhone13,4 confirm the SPTM/TXM payloads (`EVD-0010`, `EVD-0014`, `EVD-0016`); for iPhone13,1, the extracted payloads match the manifest's installed digest fields and decompress to arm64e Mach-O with SPTM/TXM identifiers (`EVD-0018`, `EVD-0019`, `VAL-0007`), and the restore-role digests are explained by a fourcc-only retag (`EVD-0020`, `VAL-0008`). The byte-identical release kernelcache confirms an SPTM-structured kernel (`EVD-0012`, `EVD-0017`) packaged for all four product types. No build-specific Apple security note describing the mechanism change was found in the reviewed material. The Operating system integrity page carries a January 2026 date, was not listed as updated after that in the guide's revision history (`EVD-0013`), and does not describe the 24A446 build contents.
 
 ## Open questions
 
@@ -85,7 +85,7 @@ Apple's release listing confirms iOS 27.0.1 build 24A446 was released on 2026-09
 4. Can SPTM/TXM runtime state be established on an owned A14 device through permitted, non-invasive observation?
 5. Does the target device actually match the manifest's A14 / iPhone 12 mini / 24A446 assumptions?
 6. Do A14 iPad product types or regional builds package the same SPTM/TXM components?
-7. How do the restore-specific `rspt`/`rtrx` entries relate to the installed SPTM/TXM payloads, given their distinct manifest digests?
+7. Does the stitched IMG4/IM4R and AP-ticket path produce a restore object that a device accepts, and does it change the payload beyond the fourcc retag?
 
 ## Boundaries
 

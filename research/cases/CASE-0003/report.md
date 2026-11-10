@@ -4,7 +4,7 @@
 
 ## Status
 
-Analyzed. Public-source survey only; no bypass was reproduced, tested, or adapted. The conclusion is an inference from the reviewed public record and the 24A446 build metadata. The build-level check now covers all four iPhone 12-family A14 product types, including payload-level digest matches for iPhone13,1 and a byte-identical release kernelcache (`EVD-0010`, `EVD-0014`, `EVD-0016`, `EVD-0017`, `EVD-0018`, `EVD-0019`; `VAL-0002`-`VAL-0007`).
+Analyzed. Public-source survey only; no bypass was reproduced, tested, or adapted. The conclusion is an inference from the reviewed public record and the 24A446 build metadata. The build-level check now covers all four iPhone 12-family A14 product types, including payload-level digest matches for iPhone13,1, a fourcc-only retag explanation for the restore-role digests, and a byte-identical release kernelcache (`EVD-0010`, `EVD-0014`, `EVD-0016`, `EVD-0017`, `EVD-0018`, `EVD-0019`, `EVD-0020`; `VAL-0002`-`VAL-0008`).
 
 ## Question
 

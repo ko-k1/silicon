@@ -23,3 +23,5 @@ Store one dated record per paper, repository, advisory, or technical write-up. P
 | `SRC-0015` | iOS 27.0.1 jailbreak event fact-check and tracker | 2026-11-04 | Community counter-claim (A14/M1 as PPL) |
 | `SRC-0016` | Apple iOS 27.0.1 (24A446) BuildManifest for iPhone13,2 and iPhone13,3 | 2026-09-28 | Remaining iPhone 12-family A14 build-packaging check |
 | `SRC-0017` | Apple iOS 27.0.1 (24A446) SPTM and TXM payloads for iPhone13,1 | 2026-09-28 | Primary Image4 payload verification |
+| `SRC-0018` | idevicerestore - restore component tag lookup and stitching | 2025-09-05 | Public restore-implementation source |
+| `SRC-0019` | idevice crate - IMG4 restore component stitching (`img4.rs`) | 2026-07-11 | Public restore-implementation source |

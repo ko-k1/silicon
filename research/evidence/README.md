@@ -25,5 +25,6 @@ Create one YAML file per evidence record using `schemas/evidence-record.schema.j
 | `EVD-0017` | 24A446 release kernelcache is byte-identical across four A14 product types | primary | observed |
 | `EVD-0018` | iPhone13,1 SPTM payload matches manifest digest and is an arm64e Mach-O | primary | observed |
 | `EVD-0019` | iPhone13,1 TXM payload matches manifest digest and is an arm64e Mach-O | primary | observed |
+| `EVD-0020` | 24A446 restore SPTM/TXM digests match fourcc-only retags of the installed IM4P files | derived | observed |
 
-`EVD-0010`, `EVD-0012`, `EVD-0014`, `EVD-0016`, and `EVD-0017` are the build-level mechanism evidence for the four iPhone 12-family A14 product types; `EVD-0018` and `EVD-0019` link the iPhone13,1 manifest declarations to the extracted installed payload bytes. They are not runtime measurements. `EVD-0002`, `EVD-0003`, and `EVD-0009` are retained as the pre-iOS 27/counter-evidence view.
+`EVD-0010`, `EVD-0012`, `EVD-0014`, `EVD-0016`, and `EVD-0017` are the build-level mechanism evidence for the four iPhone 12-family A14 product types; `EVD-0018` and `EVD-0019` link the iPhone13,1 manifest declarations to the extracted installed payload bytes; `EVD-0020` resolves the restore-role digest difference as a fourcc retag at the IM4P level. They are not runtime measurements. `EVD-0002`, `EVD-0003`, and `EVD-0009` are retained as the pre-iOS 27/counter-evidence view.

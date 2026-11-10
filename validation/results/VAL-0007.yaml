@@ -51,8 +51,8 @@ observed_outcome: >-
   equal to the BuildManifest Ap,TrustedExecutionMonitor Digest. Neither payload
   has a top-level segment named __PPLTEXT, __PPLDATA, or __PPLDATA_CONST, and a
   strings scan found no __PPL/PPLTEXT/PPLDATA occurrences. The manifest's
-  restore entries carry distinct digests (rspt 64ba16b4..., rtrx 573a242a...)
-  and were not resolved to wrapped payloads.
+  restore entries carry distinct digests (rspt 64ba16b4..., rtrx 573a242a...);
+  VAL-0008 reproduces both by a fourcc-only retag of the installed IM4P files.
 digest_comparison:
   installed_sptm:
     path: "Firmware/sptm.t8101.release.im4p"
@@ -88,7 +88,7 @@ reproduction:
 limitations:
   - "Only packaging and payload structure were inspected; no runtime state, boot path, or device behavior was measured."
   - "No code-signature, certificate, or trust-cache evaluation was performed. Digest equality links the file to the manifest field but does not establish device acceptance."
-  - "The restore-specific rspt/rtrx entries have different digests and were not resolved to their wrapped payloads."
+  - "The restore-specific rspt/rtrx digests are resolved at the IM4P level by VAL-0008; the stitched IMG4/AP-ticket path and device acceptance were not tested."
   - "The absence check covers top-level Mach-O segment names and a strings scan; it is not a proof that no PPL-related code exists elsewhere."
   - "Only the iPhone13,1 payloads were inspected directly; cross-product identity relies on matching manifest digests and the byte-identical release kernelcache."
   - "The extracted payloads and Mach-O files are not committed; the recorded hashes identify the inspected bytes."
