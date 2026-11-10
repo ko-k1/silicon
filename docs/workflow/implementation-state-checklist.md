@@ -1,7 +1,7 @@
 # Implementation state checklist
 
 - **Last verified:** 2026-11-10
-- **Verified against commit:** `7b7ca30`
+- **Verified against commit:** `e348266`
 - **Target scope:** A14 / iPhone 12 mini / iOS 27.0.1 (24A446), plus repository-level implementation
 - **Purpose:** give a human reviewer and an LLM agent the same view of what exists, what is proven, what is blocked, and how to verify it
 
