@@ -1,8 +1,8 @@
 """Deterministic archive manifest for tracked repository files.
 
-The tool reads the Git index, hashes each tracked file with SHA-256, and emits a
-stable JSON inventory. It does not hash untracked files, follow symlinks, fetch
-artifacts, or modify source files.
+The tool reads the Git index for the tracked path list, hashes each working-tree
+file with SHA-256, and emits a stable JSON inventory. It does not hash untracked
+files, follow symlinks, fetch artifacts, or modify source files.
 
 Usage:
     python3 -m engineering.inventory.archive_manifest . --output MANIFEST.json

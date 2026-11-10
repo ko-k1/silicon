@@ -58,7 +58,7 @@ Use `passed`, `failed`, `inconclusive`, and `not-run` only for validation result
 | BuildManifest tooling (P4) | `done` | Read-only deterministic summarizer and 6 fixture tests | No fetching, signature verification, or runtime assertion by design | Section 6 commands 2-3 |
 | Record integrity tooling (P4) | `done` | Read-only cross-reference validator for `EVD`/`SRC`/`VAL`/`CASE`, synthetic negative tests, and a repository integration test | Does not validate JSON Schema conformance or artifact hashes | Section 6 commands 2-6 |
 | Schema validation tooling (P4) | `done` | Read-only JSON Schema validator for target manifests and all record families, with negative, malformed-input, template, and integration tests | Does not check cross-references or artifact hashes | Section 6 commands 2-6 |
-| Repository archive manifest (P4) | `done` | Root `MANIFEST.json` is generated from the Git index by `archive_manifest.py` and checked by a unit test | Covers tracked files only; untracked and external artifacts are excluded by design | Section 6 commands 2-6 |
+| Repository archive manifest (P4) | `done` | Root `MANIFEST.json` is generated from the Git-tracked working-tree file list by `archive_manifest.py` and checked by a unit test | Covers tracked files only; untracked and external artifacts are excluded by design | Section 6 commands 2-6 |
 | Validation surface (P5) | `partial` | 7 offline validations passed; 1 device validation is `not-run` | No synthetic protection model; no device runtime measurement | `validation/README.md`; `VAL-0001`-`VAL-0008` |
 | Closure/reporting (P6) | `partial` | Baseline and case reports exist | Independent review, closure report, and disclosure decision are not complete | `reports/technical/` |
 

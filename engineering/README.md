@@ -14,7 +14,7 @@ Reusable research-support tools belong here. Initial candidates: target inventor
   - Run: `python3 -m engineering.inventory.schema_validation .`
   - Output: deterministic JSON with counts and sorted issues; exit status 1 when a record violates its schema.
   - Requires: `PyYAML` and `jsonschema` (`python3 -m pip install -r requirements-dev.txt`).
-- `engineering/inventory/archive_manifest.py` - deterministic SHA-256 inventory of Git-tracked files, used to generate the root `MANIFEST.json`. It does not include untracked, ignored, or external artifacts, and it does not follow symlinks.
+- `engineering/inventory/archive_manifest.py` - deterministic SHA-256 inventory of Git-tracked working-tree files, used to generate the root `MANIFEST.json`. It does not include untracked, ignored, or external artifacts, and it does not follow symlinks.
   - Write: `python3 -m engineering.inventory.archive_manifest . --output MANIFEST.json`
   - Check: `python3 -m engineering.inventory.archive_manifest . --check MANIFEST.json`
   - Output: sorted JSON; `--check` exits 1 when the manifest is missing or stale.

@@ -97,8 +97,8 @@
     },
     {
       "path": "docs/workflow/implementation-state-checklist.md",
-      "bytes": 14141,
-      "sha256": "a40b9be604790b2b31aff1a6f45e8824c766907ff26a49b74a1849ff1ff611f7"
+      "bytes": 14166,
+      "sha256": "6162c7a7337b79237a0bdb3d2a9395c6cd89d6171e66a4245bba9059d91b59c8"
     },
     {
       "path": "docs/workflow/research-lifecycle.md",
@@ -112,8 +112,8 @@
     },
     {
       "path": "engineering/README.md",
-      "bytes": 2245,
-      "sha256": "c168113c57fb1c61e8f96140c2650076dfc13067717fac47b3de8211783ed32a"
+      "bytes": 2258,
+      "sha256": "6f2be124b32ee7de159e04545cf743bc51f264bea99c3c049dc3319626b2d016"
     },
     {
       "path": "engineering/__init__.py",
@@ -132,8 +132,8 @@
     },
     {
       "path": "engineering/inventory/archive_manifest.py",
-      "bytes": 6918,
-      "sha256": "e5d6bf74803d51d469a2670598ad4d88db3a9f02f52d47e22fb7bd611a1b8fca"
+      "bytes": 6949,
+      "sha256": "a88ef1bf4b5d17b7d73d6ed2c00cad446ab586d6ed4ef275221a47a2e8308d58"
     },
     {
       "path": "engineering/inventory/build_manifest.py",
