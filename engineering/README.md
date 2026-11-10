@@ -18,3 +18,6 @@ Reusable research-support tools belong here. Initial candidates: target inventor
   - Write: `python3 -m engineering.inventory.archive_manifest . --output MANIFEST.json`
   - Check: `python3 -m engineering.inventory.archive_manifest . --check MANIFEST.json`
   - Output: sorted JSON; `--check` exits 1 when the manifest is missing or stale.
+- `engineering/parsers/image4.py` - read-only Image4 (IM4P) and Mach-O inspection for build artifacts. It reports container structure, payload hashes, compression, Mach-O segments/sections, UUID, source version, and PPL/`__TEXT_BOOT_EXEC` markers. It does not decompress Image4 payloads, verify signatures, evaluate trust, or execute code.
+  - Run: `python3 -m engineering.parsers.image4 <artifact>`
+  - Requires: Python standard library only.
