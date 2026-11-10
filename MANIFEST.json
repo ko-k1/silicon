@@ -3,7 +3,7 @@
   "project": "silicon",
   "archive": "silicon-repository",
   "algorithm": "sha256",
-  "file_count": 134,
+  "file_count": 138,
   "files": [
     {
       "path": ".gitignore",
@@ -98,7 +98,7 @@
     {
       "path": "docs/workflow/implementation-state-checklist.md",
       "bytes": 14166,
-      "sha256": "6162c7a7337b79237a0bdb3d2a9395c6cd89d6171e66a4245bba9059d91b59c8"
+      "sha256": "b8ea6bafc6267e6959811154d816cc4d5f5cd0c28a893e148adb4c04bf8d766a"
     },
     {
       "path": "docs/workflow/research-lifecycle.md",
@@ -112,8 +112,8 @@
     },
     {
       "path": "engineering/README.md",
-      "bytes": 2258,
-      "sha256": "6f2be124b32ee7de159e04545cf743bc51f264bea99c3c049dc3319626b2d016"
+      "bytes": 2702,
+      "sha256": "f9ee9243920fe4ec26d89695f73e43ada99c59ec18b2e0b588c0929ee71c2a01"
     },
     {
       "path": "engineering/__init__.py",
@@ -154,6 +154,21 @@
       "path": "engineering/parsers/.gitkeep",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "engineering/parsers/__init__.py",
+      "bytes": 73,
+      "sha256": "51ded3fb679251f34618a698017c476f015386c0d672e4799a8a29e6c865316f"
+    },
+    {
+      "path": "engineering/parsers/image4.py",
+      "bytes": 5898,
+      "sha256": "d5eaa5041bc4d9295a91340d424ddba959f867faaa927092cc7b6c2c3d1a81da"
+    },
+    {
+      "path": "engineering/parsers/macho.py",
+      "bytes": 10629,
+      "sha256": "602aae5b26c69c602a61efec5f2ef94e674a615556dcba6a0ee2a2ddcbce0a8f"
     },
     {
       "path": "engineering/reporting/.gitkeep",
@@ -594,6 +609,11 @@
       "path": "tests/unit/test_build_manifest.py",
       "bytes": 4671,
       "sha256": "e34af3708e80228dffbbc3d2f84c34fda11cd0f6730a0a7b371e9f00fe7bc013"
+    },
+    {
+      "path": "tests/unit/test_parsers.py",
+      "bytes": 11258,
+      "sha256": "e3d8876c4e7f8933a3826b1a1308ca1ba8515e6388773812acf200fb97333648"
     },
     {
       "path": "tests/unit/test_record_integrity.py",
