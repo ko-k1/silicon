@@ -1,7 +1,7 @@
 # Implementation state checklist
 
 - **Last verified:** 2026-11-10
-- **Verified against commit:** `341dcce`
+- **Verified against commit:** `e11fef5`
 - **Target scope:** A14 / iPhone 12 mini / iOS 27.0.1 (24A446), plus repository-level implementation
 - **Purpose:** give a human reviewer and an LLM agent the same view of what exists, what is proven, what is blocked, and how to verify it
 
@@ -131,7 +131,7 @@ Use this matrix to keep observations, build-level inferences, and runtime unknow
 - [x] Synthetic BuildManifest fixture committed
 - [x] Unit tests cover identity, components, digests, kernel references, CLI output, and missing components
 - [x] Tool output is deterministic JSON
-- [ ] Image4/Mach-O inspection automated inside the repository
+- [x] Image4/Mach-O inspection automated inside the repository
 - [ ] Artifact hashing/provenance inventory for external firmware implemented
 - [x] Evidence index or cross-reference validator implemented
 - [x] JSON Schema validation implemented for target manifests and all record families
