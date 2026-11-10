@@ -23,6 +23,7 @@ The A14 / iOS 27.0.1 build 24A446 packages and uses SPTM with TXM for page-table
 | Apple 24A446 BuildManifest for iPhone13,1 (`SRC-0010`) | 2026-09-28 | The image contains `sptm.t8101` and `txm.iphoneos`; `InstalledSPTM`/`RestoreSPTM` are `Production`. | primary, build artifact |
 | Apple 24A446 kernelcache for iPhone13,1 (`SRC-0012`) | 2026-09-28 | The Mach-O has `__DATA_SPTM` and `__TEXT_BOOT_EXEC` segments and no `__PPLTEXT`/`__PPLDATA` segment names. | primary, build artifact |
 | Apple 24A446 BuildManifest for iPhone13,4 (`SRC-0014`) | 2026-09-28 | A second A14 product type contains the same `sptm.t8101` and `txm.iphoneos` entries, with `InstalledSPTM`/`RestoreSPTM` marked `Production`. | primary, build artifact |
+| Apple 24A446 BuildManifest for iPhone13,2/iPhone13,3 (`SRC-0016`) | 2026-09-28 | The combined manifest for the remaining iPhone 12-family A14 product types contains the same SPTM/TXM entries and release payload digests. | primary, build artifact |
 | Community iOS 27.0.1 tracker (`SRC-0015`) | 2026-11-04 | Frames A14/M1 as PPL and says A14+ still needs an n-day SPTM bypass; no build-specific measurement. | secondary, counter-evidence |
 
 The primary Apple guide and the September 2026 secondary reports could not both describe the shipping iOS 27 runtime. The contradiction was the core of this case.
@@ -34,8 +35,10 @@ The primary Apple guide and the September 2026 secondary reports could not both 
 - SoC: A14 (user-specified; still `pending` in the manifest until device verification)
 - Build artifact: iPhone13,1 24A446 restore image, BuildManifest SHA-256 `f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f` (`EVD-0010`)
 - Cross-product artifact: iPhone13,4 24A446 restore image, BuildManifest SHA-256 `342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392` (`EVD-0014`)
+- Cross-product artifact: combined iPhone13,2/iPhone13,3 24A446 restore image, BuildManifest SHA-256 `51827a7ebd3b9130d03acf200e269ba66768fa42e1569b246b053a1c22c29364` (`EVD-0016`)
+- Cross-product artifact: release kernelcache from the iPhone13,1, iPhone13,2/3, and iPhone13,4 images, IM4P SHA-256 `15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced` (`EVD-0017`)
 - Required configuration: unmodified, owned target device if a metadata check is performed
-- Known limitations: no device inspection; no build-specific Apple narrative describing the mechanism change
+- Known limitations: no device inspection; no build-specific Apple narrative describing the mechanism change; the combined image's research kernelcache variant was not compared; A14 iPad product types were not checked
 
 ## Expected behavior
 
@@ -52,6 +55,8 @@ If the claim is wrong, the A14 24A446 image should not package SPTM/TXM as insta
 - `EVD-0010` - Apple's 24A446 BuildManifest for iPhone13,1 includes SPTM and TXM payloads and marks installed/restore SPTM as `Production`.
 - `EVD-0012` - The 24A446 kernelcache for iPhone13,1 has `__DATA_SPTM` and `__TEXT_BOOT_EXEC` segments and no `__PPLTEXT`/`__PPLDATA` segment names.
 - `EVD-0014` - The 24A446 BuildManifest for iPhone13,4, a second A14 product type, contains the same SPTM/TXM payloads and `Production` markers.
+- `EVD-0016` - The combined 24A446 BuildManifest for iPhone13,2/iPhone13,3 contains the same SPTM/TXM packaging and release payload digests, completing the four iPhone 12-family A14 product types.
+- `EVD-0017` - The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images, so the SPTM segment finding applies to all four product types.
 
 ## Build-level resolution
 
@@ -62,7 +67,7 @@ The BuildManifest is primary evidence for what the build packages. For iPhone13,
 - `Ap,RestoreSecurePageTableMonitor` and `Ap,RestoreTrustedExecutionMonitor`, both `IsLoadedByiBoot: true`
 - `InstalledSPTM` and `RestoreSPTM` marked `Production` in `VariantContents`
 
-The decompressed kernelcache independently shows a top-level Mach-O segment set that includes `__DATA_SPTM` and `__TEXT_BOOT_EXEC`, and no `__PPLTEXT`, `__PPLDATA`, or `__PPLDATA_CONST` segment names (`EVD-0012`, `VAL-0003`). The iPhone13,4 / 24A446 BuildManifest independently contains the same SPTM and TXM entries and the same `InstalledSPTM`/`RestoreSPTM` `Production` markers (`EVD-0014`, `VAL-0004`), so the finding is not specific to iPhone13,1. `T8101` is the A14 SoC identifier in the SPTM payload name. This resolves the build-level mechanism in favor of SPTM/TXM and explains why the January 2026 guide is not sufficient for the 24A446 target; the guide's revision history does not list that page as updated after January 2026 (`EVD-0013`). It does not measure the runtime state of a specific device.
+The decompressed kernelcache independently shows a top-level Mach-O segment set that includes `__DATA_SPTM` and `__TEXT_BOOT_EXEC`, and no `__PPLTEXT`, `__PPLDATA`, or `__PPLDATA_CONST` segment names (`EVD-0012`, `VAL-0003`). The iPhone13,4 / 24A446 BuildManifest independently contains the same SPTM and TXM entries and the same `InstalledSPTM`/`RestoreSPTM` `Production` markers (`EVD-0014`, `VAL-0004`), and the combined iPhone13,2/iPhone13,3 manifest does the same (`EVD-0016`, `VAL-0005`). The installed/restore SPTM, release TXM, and release kernelcache digests match across the three manifests, and the release kernelcache bytes are identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images (`EVD-0017`, `VAL-0006`). The finding is therefore not specific to iPhone13,1, and the same SPTM-structured release kernelcache is packaged for all four product types. `T8101` is the A14 SoC identifier in the SPTM payload name. This resolves the build-level mechanism in favor of SPTM/TXM and explains why the January 2026 guide is not sufficient for the 24A446 target; the guide's revision history does not list that page as updated after January 2026 (`EVD-0013`). It does not measure the runtime state of a specific device.
 
 ## Counter-evidence and alternatives
 
@@ -85,7 +90,7 @@ The decompressed kernelcache independently shows a top-level Mach-O segment set 
 
 1. Review Apple's build-specific security notes and platform-security documentation for iOS 27/27.0.1.
 2. If an owned target device is available, read only non-invasive identity metadata (product type, build version) and compare it with the manifest.
-3. Keep build-artifact checks offline: hash the artifact, inspect manifest entries and Mach-O segment names, compare a second A14 product type where practical, and do not modify the artifact in place.
+3. Keep build-artifact checks offline: hash the artifact, inspect manifest entries and Mach-O segment names, compare the remaining iPhone 12-family A14 product types, payload digests, and kernelcache bytes, and do not modify the artifact in place.
 4. Do not attempt kernel memory access, page-table modification, code-signing changes, SPTM/TXM patching, protection disablement, or persistence.
 5. If runtime mechanism state cannot be established through permitted means, keep it `unknown`. Do not convert build packaging, kernelcache structure, or secondary reports into a runtime measurement.
 

@@ -17,6 +17,8 @@ artifact:
   sha256: "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4"
   bytes: 66535424
   path_or_uri: "kernelcache.release.iphone13 inside iPhone13,1_27.0.1_24A446_Restore.ipsw; decompressed Mach-O"
+related_evidence:
+  - EVD-0017
 limitations:
   - "The Mach-O segment list establishes the kernel's build configuration, not runtime enforcement."
   - "The absence of PPL segment names is a strong structural indicator, but it is not a proof that no PPL-related code exists elsewhere."

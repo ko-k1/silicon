@@ -1,0 +1,40 @@
+schema_version: 1
+id: SRC-0016
+title: "Apple iOS 27.0.1 (24A446) BuildManifest for iPhone13,2 and iPhone13,3"
+authors:
+  - "Apple Inc."
+source_type: apple-build-manifest
+url: "https://updates.cdn-apple.com/2026FallFCS/8cd410bb-bddb-4483-8638-ac75d2c5e944/iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+published_at: "2026-09-28"
+accessed_at: "2026-11-10"
+source_scope:
+  devices:
+    - "iPhone 12 (iPhone13,2)"
+    - "iPhone 12 Pro (iPhone13,3)"
+  socs:
+    - "A14 (T8101)"
+  os_versions:
+    - "iOS 27.0.1"
+  builds:
+    - "24A446"
+claims:
+  - "The combined BuildManifest declares ProductVersion 27.0.1, ProductBuildVersion 24A446, and SupportedProductTypes [iPhone13,2, iPhone13,3]."
+  - "The manifest contains six build identities: Customer Erase Install and Customer Upgrade Install entries for device classes d53gap and d53pap, plus two Research entries."
+  - "Customer identities reference Firmware/sptm.t8101.release.im4p and Firmware/txm.iphoneos.release.im4p; Research identities reference Firmware/txm.iphoneos.research.im4p for installed TXM."
+  - "Customer identities mark InstalledSPTM, RestoreSPTM, InstalledKernelCache, and RestoreKernelCache as Production. Research identities mark InstalledSPTM and InstalledKernelCache as Research while RestoreSPTM and RestoreKernelCache remain Production."
+  - "The installed/restore SPTM digests, the release TXM digest, and the release kernelcache digest match those in the iPhone13,1 and iPhone13,4 24A446 manifests."
+artifact:
+  name: "BuildManifest.plist"
+  container: "iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+  extraction: "HTTP range request into the ZIP central directory; BuildManifest.plist read directly; raw IPSW and manifest not committed"
+  sha256: "51827a7ebd3b9130d03acf200e269ba66768fa42e1569b246b053a1c22c29364"
+  bytes: 1053229
+silicon_assessment:
+  applicability: confirmed
+  evidence_ids:
+    - EVD-0016
+  notes:
+    - "Combined with SRC-0010 and SRC-0014, this completes build-packaging coverage of the four iPhone 12-family A14 product types."
+    - "This is build-packaging evidence, not a runtime measurement."
+    - "The Research identities are recorded separately and are not treated as the production configuration."
+license_or_terms: "Apple firmware and website terms. Only derived metadata, hashes, and short factual excerpts are retained."

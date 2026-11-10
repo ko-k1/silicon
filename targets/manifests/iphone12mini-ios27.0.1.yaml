@@ -81,4 +81,7 @@ verification:
     - The 24A446 BuildManifest for iPhone13,1 contains SPTM and TXM payloads and marks InstalledSPTM/RestoreSPTM Production (EVD-0010, VAL-0002). This is build-level evidence, not a device measurement.
     - The 24A446 kernelcache for iPhone13,1 has __DATA_SPTM/__TEXT_BOOT_EXEC segments and no PPL segment names (EVD-0012, VAL-0003). This is build-level evidence, not a runtime measurement.
     - A second A14 product type, iPhone13,4, has the same SPTM/TXM packaging in its 24A446 BuildManifest (EVD-0014, VAL-0004). This extends the build-level finding but does not verify the target device or runtime state.
+    - The combined 24A446 BuildManifest for iPhone13,2 and iPhone13,3 has the same SPTM/TXM packaging and matching release payload digests (EVD-0016, VAL-0005). This completes build-level coverage of the four iPhone 12-family A14 product types but does not verify the target device or runtime state.
+    - The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images (EVD-0017, VAL-0006). This extends the SPTM segment finding to the same release kernelcache payload in all four images; it is not a runtime measurement.
+    - A14 iPad product types were not checked; do not generalize the four-product-type result to every A14 device.
     - Apple's 2026-01-28 Operating system integrity page places A12-A14 in the PPL scope (EVD-0002, EVD-0003); the guide's revision history does not list that page as updated after January 2026 (EVD-0013), and it does not describe the 24A446 build.

@@ -17,7 +17,8 @@ Store one dated record per paper, repository, advisory, or technical write-up. P
 | `SRC-0009` | Project Zero - The core of Apple is PPL | 2020-07-31 | Historical architecture |
 | `SRC-0010` | Apple iOS 27.0.1 (24A446) BuildManifest for iPhone13,1 | 2026-09-28 | Primary build-packaging evidence |
 | `SRC-0011` | iClarified - Dopamine 3.0 release coverage | 2026-08-07 | Public bypass compatibility ranges |
-| `SRC-0012` | Apple iOS 27.0.1 (24A446) kernelcache for iPhone13,1 | 2026-09-28 | Primary kernel-build evidence |
+| `SRC-0012` | Apple iOS 27.0.1 (24A446) release kernelcache across four A14 product types | 2026-09-28 | Primary kernel-build evidence |
 | `SRC-0013` | Apple Platform Security - Document revision history | accessed 2026-11-05 | Guide revision provenance |
 | `SRC-0014` | Apple iOS 27.0.1 (24A446) BuildManifest for iPhone13,4 | 2026-09-28 | Second A14 build-packaging check |
 | `SRC-0015` | iOS 27.0.1 jailbreak event fact-check and tracker | 2026-11-04 | Community counter-claim (A14/M1 as PPL) |
+| `SRC-0016` | Apple iOS 27.0.1 (24A446) BuildManifest for iPhone13,2 and iPhone13,3 | 2026-09-28 | Remaining iPhone 12-family A14 build-packaging check |

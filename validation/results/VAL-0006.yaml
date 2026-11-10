@@ -1,0 +1,35 @@
+schema_version: 1
+id: VAL-0006
+case_id: CASE-0001
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-10T11:55:00+09:00"
+environment:
+  type: offline
+  description: "Offline extraction and byte comparison of kernelcache.release.iphone13 from the 24A446 restore images for iPhone13,1, iPhone13,2/iPhone13,3, and iPhone13,4. No device was connected."
+  tool_versions:
+    python: "3.14.9"
+    remotezip: "0.12.6"
+    pyimg4: "0.8.9"
+inputs:
+  - name: "kernelcache.release.iphone13 from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  - name: "kernelcache.release.iphone13 from iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  - name: "kernelcache.release.iphone13 from iPhone13,4_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+expected_outcome: "The three release kernelcache payloads should have identical SHA-256 values and decompress to identical Mach-O bytes, matching the iPhone13,1 payload inspected in VAL-0003. Any difference should be recorded rather than normalized."
+observed_outcome: "All three extracted IM4P files are 20,978,972 bytes with SHA-256 15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced. All three decompressed Mach-O files are 66,535,424 bytes with SHA-256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4. Byte comparison with cmp reports no differences, and the decompressed hash matches the iPhone13,1 Mach-O recorded in VAL-0003."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The release kernelcache is byte-identical across all four iPhone 12-family A14 product types. The SPTM segment structure recorded in VAL-0003 therefore applies to the same kernelcache payload in the iPhone13,2/iPhone13,3 and iPhone13,4 images. This is build-level evidence, not a runtime measurement."
+reproduction:
+  - "Extract kernelcache.release.iphone13 from each restore image; verify SHA-256 15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced."
+  - "Decompress with: pyimg4 im4p extract -i kernelcache.release.iphone13 -o kernelcache.macho"
+  - "Verify SHA-256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4 and compare the decompressed files with cmp."
+limitations:
+  - "Only the release kernelcache was compared; the research kernelcache variant in the combined image was not compared."
+  - "No runtime state, boot path, or device behavior was measured."
+  - "The extracted IM4P and Mach-O files are not committed; the recorded hashes identify the compared payloads."
+  - "Byte identity establishes that the same payload is packaged; it does not establish that every device or boot path loads it."
+  - "The target device identity and installed build remain unverified; VAL-0001 is still not-run."

@@ -1,15 +1,21 @@
 schema_version: 1
 id: SRC-0012
-title: "Apple iOS 27.0.1 (24A446) kernelcache for iPhone13,1"
+title: "Apple iOS 27.0.1 (24A446) release kernelcache across four A14 product types"
 authors:
   - "Apple Inc."
 source_type: apple-kernelcache
 url: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+additional_urls:
+  - "https://updates.cdn-apple.com/2026FallFCS/8cd410bb-bddb-4483-8638-ac75d2c5e944/iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+  - "https://updates.cdn-apple.com/2026FallFCS/969bb521-9314-4059-aa2f-a010d2ed8a44/iPhone13,4_27.0.1_24A446_Restore.ipsw"
 published_at: "2026-09-28"
-accessed_at: "2026-11-05"
+accessed_at: "2026-11-10"
 source_scope:
   devices:
     - "iPhone 12 mini (iPhone13,1)"
+    - "iPhone 12 (iPhone13,2)"
+    - "iPhone 12 Pro (iPhone13,3)"
+    - "iPhone 12 Pro Max (iPhone13,4)"
   socs:
     - "A14 (T8101)"
   os_versions:
@@ -17,12 +23,13 @@ source_scope:
   builds:
     - "24A446"
 claims:
-  - "The iPhone13,1 24A446 kernelcache is a Mach-O fileset whose top-level segments include __DATA_SPTM and __TEXT_BOOT_EXEC."
+  - "The 24A446 release kernelcache is a Mach-O fileset whose top-level segments include __DATA_SPTM and __TEXT_BOOT_EXEC."
   - "The top-level Mach-O segment list does not include __PPLTEXT, __PPLDATA, or __PPLDATA_CONST; a byte scan of the full decompressed image found none of those names."
   - "The kernelcache IM4P identifies KernelManagement_host-514.2.2; the decompressed Mach-O is 66,535,424 bytes."
+  - "The release kernelcache IM4P is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images; all copies have IM4P SHA-256 15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced and decompressed Mach-O SHA-256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4."
 artifact:
   name: "kernelcache.release.iphone13"
-  container: "iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  container: "24A446 restore images for iPhone13,1, iPhone13,2/3, and iPhone13,4"
   extraction: "HTTP range request; IM4P extracted with pyimg4 0.8.9; Mach-O load commands parsed directly; raw artifacts not committed"
   sha256: "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4"
   bytes: 66535424
@@ -32,8 +39,10 @@ silicon_assessment:
   applicability: confirmed
   evidence_ids:
     - EVD-0012
+    - EVD-0017
   notes:
     - "Segment names were read from the Mach-O load commands; the absence check also scanned the full decompressed image."
     - "This is build-level evidence for the kernel's protection configuration, not a runtime measurement."
     - "The kernelcache contains SPTM and boot-exec segments; it does not contain the PPL segment names used by the pre-iOS 27 A14 kernels."
+    - "The release kernelcache payload is byte-identical across the four iPhone 12-family A14 product types; the combined image's research kernelcache variant was not compared."
 license_or_terms: "Apple firmware and website terms. Only derived metadata, hashes, and short factual excerpts are retained."

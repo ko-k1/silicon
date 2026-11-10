@@ -1,0 +1,68 @@
+schema_version: 1
+id: VAL-0005
+case_id: CASE-0001
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-10T11:42:42+09:00"
+environment:
+  type: offline
+  description: "Offline inspection of the public iOS 27.0.1 (24A446) restore BuildManifests for the remaining iPhone 12-family A14 product types, iPhone13,2 and iPhone13,3, plus a cross-manifest SPTM/TXM/kernelcache digest comparison with iPhone13,1 and iPhone13,4. No device was connected."
+  tool_versions:
+    python: "3.14.9"
+    remotezip: "0.12.6"
+    build_manifest.py: "sha256 85084c6eba3a0205518b918ffa3dba4e20b2b7e99587ded32ed127962db11a62"
+inputs:
+  - name: "BuildManifest.plist from iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+    sha256: "51827a7ebd3b9130d03acf200e269ba66768fa42e1569b246b053a1c22c29364"
+  - name: "BuildManifest.plist from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+  - name: "BuildManifest.plist from iPhone13,4_27.0.1_24A446_Restore.ipsw"
+    sha256: "342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392"
+expected_outcome: "The combined 24A446 manifest should list iPhone13,2 and iPhone13,3, contain SPTM/TXM entries with Production markers in customer identities, and reference the same SPTM, release TXM, and release kernelcache payload digests as the iPhone13,1 and iPhone13,4 manifests. Any difference should be recorded rather than normalized."
+observed_outcome: >-
+  The combined manifest declares ProductVersion 27.0.1, ProductBuildVersion 24A446,
+  SupportedProductTypes [iPhone13,2, iPhone13,3], and six identities: Customer Erase
+  Install and Customer Upgrade Install for device classes d53gap and d53pap, plus two
+  Research identities. Customer identities reference Firmware/sptm.t8101.release.im4p
+  and Firmware/txm.iphoneos.release.im4p and mark InstalledSPTM, RestoreSPTM,
+  InstalledKernelCache, and RestoreKernelCache as Production. Research identities
+  reference Firmware/txm.iphoneos.research.im4p for installed TXM and mark InstalledSPTM
+  and InstalledKernelCache as Research. Across the three manifests, the installed SPTM,
+  restore SPTM, release TXM, and release kernelcache digests are identical; the exact
+  values are recorded in digest_comparison. The combined manifest additionally contains
+  distinct research TXM and research kernelcache digests, which are recorded but not
+  treated as production.
+digest_comparison:
+  installed_sptm:
+    path: "Firmware/sptm.t8101.release.im4p"
+    digest_hex: "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f"
+  restore_sptm:
+    path: "Firmware/sptm.t8101.release.im4p"
+    digest_hex: "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955"
+  installed_txm_release:
+    path: "Firmware/txm.iphoneos.release.im4p"
+    digest_hex: "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f"
+  restore_txm_release:
+    path: "Firmware/txm.iphoneos.release.im4p"
+    digest_hex: "573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d"
+  installed_kernelcache_release:
+    path: "kernelcache.release.iphone13"
+    digest_hex: "2959b13c30596396cb0113c8f021af584ea30d6883b4519139f5248709062d7208e49c874ffe456865871574399ca45f"
+  restore_kernelcache_release:
+    path: "kernelcache.release.iphone13"
+    digest_hex: "8b403769d5f0ab15aa3d47e3ed78d1147a479e8f24a49c1942c605aefca7ab614f48fd76a1a8796819314c8943fe48ae"
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "Build-level check passed: the combined iPhone13,2/iPhone13,3 24A446 manifest packages SPTM/TXM and references the same release SPTM, TXM, and kernelcache payload digests as the iPhone13,1 and iPhone13,4 manifests. This completes build-packaging coverage of the four iPhone 12-family A14 product types and does not measure runtime enforcement."
+reproduction:
+  - "Read BuildManifest.plist from the restore image through an HTTP range request; verify sha256 51827a7ebd3b9130d03acf200e269ba66768fa42e1569b246b053a1c22c29364."
+  - "Run: python3 -m engineering.inventory.build_manifest <BuildManifest.plist> and compare identities, VariantContents markers, paths, and 48-byte digest values."
+  - "Run the fixture tests: python3 -m unittest discover -s tests/unit -t ."
+limitations:
+  - "Only packaging metadata was inspected; no runtime state, boot path, or device behavior was measured."
+  - "The 11.3 GB combined IPSW was not downloaded in full; its container SHA-256 was not recomputed. The BuildManifest extraction is pinned by the recorded BuildManifest SHA-256."
+  - "Research identities are present in the combined manifest; they are not treated as the target or production configuration."
+  - "Digest equality identifies the payloads referenced by the manifests; it does not verify the remote payload bytes or establish that every boot path loads them. VAL-0006 records the later byte-level kernelcache comparison."
+  - "Coverage is limited to the four iPhone 12-family A14 product types; A14 iPad product types were not checked."
+  - "The kernelcache Mach-O inspection in VAL-0003 was performed on the iPhone13,1 image. This validation relies on matching manifest kernelcache digests; VAL-0006 records the byte-level comparison that extends the same release payload to the other product types."
+  - "The exact target device identity and installed build remain unverified; VAL-0001 is still not-run."

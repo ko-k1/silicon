@@ -3,7 +3,7 @@ id: CASE-0003
 title: "Public PPL/SPTM bypass research scope for A14"
 status: analyzed
 created_at: "2026-11-05T09:02:49+09:00"
-updated_at: "2026-11-05T10:10:29+09:00"
+updated_at: "2026-11-10T11:58:10+09:00"
 target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
 owner: null
 reviewer: null
@@ -45,6 +45,8 @@ evidence:
     - EVD-0012
     - EVD-0013
     - EVD-0014
+    - EVD-0016
+    - EVD-0017
   counter:
     - EVD-0015
 analysis:
@@ -62,7 +64,7 @@ validation:
 conclusion:
   state: inferred
   confidence: medium
-  summary: "The reviewed Dopamine 3.0 release lists stable A14/M1 support through iOS 17.3.1, with Titan's own claimed range extending to 17.4 beta 3. The Apple Wiki lists momentarius for iOS 27, but the reviewed text does not state A14 support for that entry. The 24A446 A14 images for iPhone13,1 and iPhone13,4 contain SPTM/TXM payloads, and the iPhone13,1 kernelcache is SPTM-structured, so an A14 PPL bypass is mis-scoped for that build. A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). No reviewed source demonstrates an A14 bypass on 24A446; this is an evidence gap, not proof that none exists."
+  summary: "The reviewed Dopamine 3.0 release lists stable A14/M1 support through iOS 17.3.1, with Titan's own claimed range extending to 17.4 beta 3. The Apple Wiki lists momentarius for iOS 27, but the reviewed text does not state A14 support for that entry. The 24A446 A14 images for all four iPhone 12-family product types contain SPTM/TXM payloads, and the release kernelcache is byte-identical across the four images with SPTM structure, so an A14 PPL bypass is mis-scoped for that build. A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). No reviewed source demonstrates an A14 bypass on 24A446; this is an evidence gap, not proof that none exists."
   limitations:
     - "The public record is incomplete, community-maintained, and changes over time."
     - "The Apple Wiki iOS 27 entry lacks SoC-level detail in the reviewed revision."
@@ -70,6 +72,7 @@ conclusion:
     - "The compatibility ranges describe public tools, not every private or unpublished bypass."
     - "No bypass was tested; this case is a scope survey only."
     - "The 24A446 evidence is build-level, not a runtime measurement."
+    - "The release kernelcache is byte-identical across the four product types; the combined image's research kernelcache variant was not compared. A14 iPad product types were not checked."
 references:
   - SRC-0005
   - SRC-0007
@@ -79,3 +82,4 @@ references:
   - SRC-0013
   - SRC-0014
   - SRC-0015
+  - SRC-0016

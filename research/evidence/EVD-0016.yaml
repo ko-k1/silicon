@@ -1,0 +1,33 @@
+schema_version: 1
+id: EVD-0016
+class: primary
+state: observed
+claim: "The combined iOS 27.0.1 (24A446) BuildManifest for iPhone13,2 and iPhone13,3 contains SPTM and TXM payloads, marks customer identities' InstalledSPTM/RestoreSPTM as Production, and references the same SPTM, release TXM, and release kernelcache payload digests as the iPhone13,1 and iPhone13,4 manifests."
+source:
+  type: apple-build-manifest
+  locator: "https://updates.cdn-apple.com/2026FallFCS/8cd410bb-bddb-4483-8638-ac75d2c5e944/iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-10"
+  target_scope:
+    - "iPhone13,2"
+    - "iPhone13,3"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact:
+  sha256: "51827a7ebd3b9130d03acf200e269ba66768fa42e1569b246b053a1c22c29364"
+  bytes: 1053229
+  path_or_uri: "BuildManifest.plist inside iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+related_evidence:
+  - EVD-0010
+  - EVD-0014
+limitations:
+  - "Build packaging establishes that SPTM, TXM, and kernelcache payloads are referenced for these product types and build; it is not a runtime measurement."
+  - "The cross-product digest comparison uses the iPhone13,1 manifest (EVD-0010) and iPhone13,4 manifest (EVD-0014), each pinned by its own SHA-256."
+  - "The combined manifest covers iPhone13,2 and iPhone13,3 together; it does not establish per-device installation or boot behavior."
+  - "Research identities are present in the manifest; they are recorded separately and are not treated as the production configuration."
+  - "Digest equality identifies the payloads referenced by the manifests; it is not a byte-for-byte comparison of the remote payload files. EVD-0017 and VAL-0006 add the later byte-level kernelcache comparison."
+  - "The extracted BuildManifest.plist is not committed; only its hash and selected metadata are retained."
+related_cases:
+  - CASE-0001
+  - CASE-0003

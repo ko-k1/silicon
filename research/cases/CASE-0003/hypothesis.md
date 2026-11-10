@@ -14,7 +14,7 @@ The reviewed Dopamine 3.0 release lists stable A14/M1 support at iOS 16.6 throug
 
 - Target manifest: `targets/manifests/iphone12mini-ios27.0.1.yaml`
 - Target: A14 / iPhone 12 mini / iOS 27.0.1, build 24A446
-- Build evidence: `EVD-0010` shows SPTM and TXM payloads in the iPhone13,1 24A446 restore image
+- Build evidence: `EVD-0010`, `EVD-0014`, and `EVD-0016` show SPTM and TXM payloads in the 24A446 restore images for the four iPhone 12-family A14 product types
 - Precondition: public compatibility ranges are treated as claims, not as target measurements
 - Precondition: missing A14/24A446 coverage is an evidence gap, not proof that no bypass exists
 
@@ -39,7 +39,7 @@ Apple's 2026-01-28 Operating system integrity page places A12-A14 in the PPL col
 - `Ap,TrustedExecutionMonitor` -> `Firmware/txm.iphoneos.release.im4p`
 - `InstalledSPTM` and `RestoreSPTM` marked `Production` in `VariantContents`
 
-The decompressed kernelcache independently contains `__DATA_SPTM` and `__TEXT_BOOT_EXEC` segments and no `__PPLTEXT`/`__PPLDATA` segment names (`EVD-0012`). The 24A446 BuildManifest for iPhone13,4, a second A14 product type, independently contains the same SPTM/TXM entries and `Production` markers (`EVD-0014`). This is build-level evidence that the A14 24A446 image family ships the SPTM/TXM mechanism family. It does not measure runtime enforcement.
+The decompressed release kernelcache independently contains `__DATA_SPTM` and `__TEXT_BOOT_EXEC` segments and no `__PPLTEXT`/`__PPLDATA` segment names (`EVD-0012`). The 24A446 BuildManifest for iPhone13,4, a second A14 product type, independently contains the same SPTM/TXM entries and `Production` markers (`EVD-0014`), and the combined iPhone13,2/iPhone13,3 manifest does too, with matching release payload digests (`EVD-0016`, `VAL-0005`). The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images (`EVD-0017`, `VAL-0006`). This is build-level evidence that the A14 24A446 image family, across all four iPhone 12-family product types, ships the SPTM/TXM mechanism family. It does not measure runtime enforcement.
 
 ## Expected behavior
 
@@ -62,6 +62,8 @@ If the claim is wrong:
 - `EVD-0011` - Dopamine 3.0 reporting places A14/M1 stable public support at iOS 16.6-17.3.1 and momentarius at A12/A13.
 - `EVD-0012` - The 24A446 kernelcache is structurally an SPTM build (`__DATA_SPTM`, `__TEXT_BOOT_EXEC`) with no PPL segment names.
 - `EVD-0014` - The 24A446 BuildManifest for iPhone13,4 also contains SPTM/TXM payloads and `Production` markers.
+- `EVD-0016` - The combined 24A446 BuildManifest for iPhone13,2/iPhone13,3 contains the same packaging and release payload digests, covering the remaining iPhone 12-family A14 product types.
+- `EVD-0017` - The release kernelcache is byte-identical across all four product types, so the SPTM segment finding applies to the same payload in each image.
 
 ## Counter-evidence and alternatives
 

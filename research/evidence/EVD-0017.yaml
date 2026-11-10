@@ -1,0 +1,38 @@
+schema_version: 1
+id: EVD-0017
+class: primary
+state: observed
+claim: "The release kernelcache payload in the iOS 27.0.1 (24A446) restore images is byte-identical across iPhone13,1, iPhone13,2/iPhone13,3, and iPhone13,4: the extracted IM4P files share SHA-256 15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced and the decompressed Mach-O files share SHA-256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4. The SPTM segment finding in EVD-0012 therefore applies to all four iPhone 12-family A14 product types."
+source:
+  type: apple-kernelcache
+  locator: "kernelcache.release.iphone13 inside the 24A446 restore images for iPhone13,1, iPhone13,2/iPhone13,3, and iPhone13,4"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-10"
+  target_scope:
+    - "iPhone13,1"
+    - "iPhone13,2"
+    - "iPhone13,3"
+    - "iPhone13,4"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+  urls:
+    - "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    - "https://updates.cdn-apple.com/2026FallFCS/8cd410bb-bddb-4483-8638-ac75d2c5e944/iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw"
+    - "https://updates.cdn-apple.com/2026FallFCS/969bb521-9314-4059-aa2f-a010d2ed8a44/iPhone13,4_27.0.1_24A446_Restore.ipsw"
+artifact:
+  sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  bytes: 20978972
+  path_or_uri: "kernelcache.release.iphone13 (IM4P) extracted from each restore image"
+  decompressed_sha256: "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4"
+  decompressed_bytes: 66535424
+related_evidence:
+  - EVD-0012
+limitations:
+  - "Byte identity applies to the release kernelcache payload; the combined image's research kernelcache variant was not compared."
+  - "Extracted files are not committed; the recorded hashes identify the compared payloads."
+  - "Build-level byte identity does not establish that every device or boot path loads this payload, nor runtime enforcement."
+  - "The comparison used the local iPhone13,1 image and HTTP-range extraction from the other images."
+related_cases:
+  - CASE-0001
+  - CASE-0003
