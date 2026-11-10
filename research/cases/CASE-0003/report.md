@@ -4,7 +4,7 @@
 
 ## Status
 
-Analyzed. Public-source survey only; no bypass was reproduced, tested, or adapted. The conclusion is an inference from the reviewed public record and the 24A446 build metadata. The build-level check now covers all four iPhone 12-family A14 product types, including a byte-identical release kernelcache (`EVD-0010`, `EVD-0014`, `EVD-0016`, `EVD-0017`; `VAL-0002`-`VAL-0006`).
+Analyzed. Public-source survey only; no bypass was reproduced, tested, or adapted. The conclusion is an inference from the reviewed public record and the 24A446 build metadata. The build-level check now covers all four iPhone 12-family A14 product types, including payload-level digest matches for iPhone13,1 and a byte-identical release kernelcache (`EVD-0010`, `EVD-0014`, `EVD-0016`, `EVD-0017`, `EVD-0018`, `EVD-0019`; `VAL-0002`-`VAL-0007`).
 
 ## Question
 
@@ -14,7 +14,7 @@ What public PPL/SPTM bypass research claims A14 coverage, and does any of it app
 
 1. The reviewed public reporting places the Titan PPL/SPTM bypass at iOS 16.1 through 17.4 beta 3, with A14-A17 SoC coverage (`EVD-0009`). Stable Dopamine 3.0 support lists A14/M1 at iOS 16.6 through 17.3.1 (`EVD-0011`).
 2. The reviewed reporting places momentarius at A12/A13, covering iOS 16.6 through 18.7.1 and 26.0 through 26.0.1 (`EVD-0011`). The Apple Wiki lists momentarius for iOS 27, but the reviewed text does not state A14 support for that entry (`EVD-0006`).
-3. The 24A446 BuildManifest for iPhone13,1 contains `Ap,SecurePageTableMonitor` (`Firmware/sptm.t8101.release.im4p`) and `Ap,TrustedExecutionMonitor` (`Firmware/txm.iphoneos.release.im4p`). `VariantContents` marks `InstalledSPTM` and `RestoreSPTM` as `Production` (`EVD-0010`).
+3. The 24A446 BuildManifest for iPhone13,1 contains `Ap,SecurePageTableMonitor` (`Firmware/sptm.t8101.release.im4p`) and `Ap,TrustedExecutionMonitor` (`Firmware/txm.iphoneos.release.im4p`). `VariantContents` marks `InstalledSPTM` and `RestoreSPTM` as `Production` (`EVD-0010`). The extracted installed payloads match the manifest digest fields at the byte level and decompress to arm64e Mach-O with SPTM/TXM identifiers (`EVD-0018`, `EVD-0019`).
 4. The 24A446 release kernelcache is byte-identical across all four product types (`EVD-0017`, `VAL-0006`) and contains `__DATA_SPTM` and `__TEXT_BOOT_EXEC` segments with no `__PPLTEXT`/`__PPLDATA` segment names (`EVD-0012`, `VAL-0003`).
 5. The 24A446 BuildManifest for iPhone13,4, a second A14 product type, independently contains the same SPTM/TXM entries and `Production` markers (`EVD-0014`). The combined 24A446 BuildManifest for iPhone13,2/iPhone13,3 does too, with matching release payload digests (`EVD-0016`, `VAL-0005`). The build-level finding therefore covers all four iPhone 12-family A14 product types.
 6. A 2026-11-04 community tracker still frames A14/M1 as PPL and says A14+ needs an n-day SPTM bypass, but it provides no build-specific measurement (`EVD-0015`). It is retained as counter-evidence.

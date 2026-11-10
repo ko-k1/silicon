@@ -1,0 +1,41 @@
+schema_version: 1
+id: EVD-0018
+class: primary
+state: observed
+claim: "The iOS 27.0.1 (24A446) restore image for iPhone13,1 contains Firmware/sptm.t8101.release.im4p, a valid Image4 `sptm` payload of 187,580 bytes whose SHA-384 value equals the BuildManifest `Ap,SecurePageTableMonitor` Digest. It decompresses with LZFSE to a 1,179,680-byte arm64e Mach-O with UUID 1693386C-1F3A-346B-906D-804E7138B2F1, LC_SOURCE_VERSION 820.0.22, embedded `sptm.t8101.release` / `SPTM-820.0.22` identifiers, and no top-level __PPL-named segment."
+source:
+  type: apple-image4-payload
+  locator: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-10"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact:
+  sha256: "fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb"
+  bytes: 187580
+  path_or_uri: "Firmware/sptm.t8101.release.im4p inside iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  sha384: "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f"
+  im4p_payload_type: "sptm"
+  compression: "LZFSE"
+  encrypted: false
+  decompressed_sha256: "e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a"
+  decompressed_bytes: 1179680
+  macho_uuid: "1693386C-1F3A-346B-906D-804E7138B2F1"
+  macho_source_version: "820.0.22"
+related_evidence:
+  - EVD-0010
+  - EVD-0017
+  - EVD-0019
+limitations:
+  - "The SHA-384 equality links the extracted file to the manifest's installed SPTM Digest field; it is not a signature verification or a statement that the device will accept the payload."
+  - "The manifest's restore entry Ap,RestoreSecurePageTableMonitor points to the same path but carries the distinct digest 64ba16b4... with Img4PayloadType rspt; that restore-wrapped variant was not resolved or inspected."
+  - "The payload structure and embedded identifiers are build-level evidence, not a runtime measurement of SPTM on a device."
+  - "Only the iPhone13,1 payload was extracted directly; cross-product identity is supported by matching manifest digests and the byte-identical release kernelcache, not by extracting this payload from every image."
+  - "The absence check covers top-level Mach-O segment names and a strings scan; it is not a proof that no PPL-related code exists elsewhere in the image."
+  - "The extracted payload and Mach-O are not committed; the recorded hashes identify the inspected bytes."
+related_cases:
+  - CASE-0001
+  - CASE-0003

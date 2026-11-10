@@ -1,0 +1,95 @@
+schema_version: 1
+id: VAL-0007
+case_id: CASE-0001
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-10T12:06:11+09:00"
+environment:
+  type: offline
+  description: "Offline extraction and Image4/Mach-O inspection of the SPTM and TXM payloads in the public iPhone13,1 24A446 restore image, including a SHA-384 comparison with the BuildManifest installed-component digest fields. No device was connected."
+  tool_versions:
+    python: "3.14.9"
+    pyimg4: "0.8.9"
+    llvm-objdump: "23.1.4"
+    unzip: "6.00"
+inputs:
+  - name: "iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: null
+  - name: "BuildManifest.plist extracted from the restore image"
+    sha256: "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+  - name: "Firmware/sptm.t8101.release.im4p"
+    sha256: "fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb"
+  - name: "Firmware/txm.iphoneos.release.im4p"
+    sha256: "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff"
+  - name: "Decompressed SPTM Mach-O"
+    sha256: "e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a"
+  - name: "Decompressed TXM Mach-O"
+    sha256: "e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04"
+expected_outcome: "The two payload files should be valid Image4 containers that decompress to arm64e Mach-O binaries. Their 48-byte SHA-384 values should match the BuildManifest installed SPTM/TXM Digest fields, and SPTM/TXM identifiers should be present. Any mismatch or unexpected segment should be recorded rather than normalized."
+observed_outcome: >-
+  Firmware/sptm.t8101.release.im4p is 187,580 bytes with FourCC `sptm`,
+  LZFSE compression, and encrypted: false. It decompresses to 1,179,680 bytes
+  with SHA-256 e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a.
+  The decompressed Mach-O is arm64e (MH_EXECUTE, NOUNDEFS, PIE) with UUID
+  1693386C-1F3A-346B-906D-804E7138B2F1 and LC_SOURCE_VERSION 820.0.22. Its
+  __binname section contains `sptm.t8101.release`; it embeds
+  `SPTM-820.0.22|2026-08-08:13:24:32.076410|`. Its top-level segments are
+  __TEXT, __DATA_CONST, __LATE_CONST, __TEXT_EXEC, __LAST, __DATA, __BOOTDATA,
+  and __LINKEDIT. The file SHA-384 is
+  3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f,
+  equal to the BuildManifest Ap,SecurePageTableMonitor Digest.
+  Firmware/txm.iphoneos.release.im4p is 223,884 bytes with FourCC `trxm`,
+  LZFSE compression, and encrypted: false. It decompresses to 557,088 bytes
+  with SHA-256 e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04.
+  The decompressed Mach-O is arm64e (MH_EXECUTE, NOUNDEFS, PIE) with UUID
+  9F80F5EC-09C8-3E9F-A196-13A6250C04E0 and LC_SOURCE_VERSION 217.0.2. Its
+  __binname section contains `txm.iphoneos.release`; it embeds
+  `txm.iphoneos.release.TrustedExecutionMonitor_Guarded-217.0.2` and the
+  info-plist identifier `com.apple.security.libimage4.TXMonitor`. Its top-level
+  segments are __TEXT, __DATA_CONST, __TEXT_EXEC, __TEXT_BOOT_EXEC, __DATA, and
+  __LINKEDIT; __TEXT_BOOT_EXEC contains a __bootcode section. The file SHA-384 is
+  6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f,
+  equal to the BuildManifest Ap,TrustedExecutionMonitor Digest. Neither payload
+  has a top-level segment named __PPLTEXT, __PPLDATA, or __PPLDATA_CONST, and a
+  strings scan found no __PPL/PPLTEXT/PPLDATA occurrences. The manifest's
+  restore entries carry distinct digests (rspt 64ba16b4..., rtrx 573a242a...)
+  and were not resolved to wrapped payloads.
+digest_comparison:
+  installed_sptm:
+    path: "Firmware/sptm.t8101.release.im4p"
+    file_sha384: "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f"
+    manifest_digest_hex: "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f"
+    match: true
+  installed_txm:
+    path: "Firmware/txm.iphoneos.release.im4p"
+    file_sha384: "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f"
+    manifest_digest_hex: "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f"
+    match: true
+  restore_sptm:
+    path: "Firmware/sptm.t8101.release.im4p"
+    manifest_digest_hex: "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955"
+    img4_payload_type: "rspt"
+    resolved: false
+  restore_txm:
+    path: "Firmware/txm.iphoneos.release.im4p"
+    manifest_digest_hex: "573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d"
+    img4_payload_type: "rtrx"
+    resolved: false
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The extracted iPhone13,1 24A446 SPTM and TXM payloads are valid Image4 containers whose SHA-384 values match the manifest's installed-component digest fields. Both decompress to arm64e Mach-O binaries with the expected SPTM/TXM identifiers and no top-level PPL segment names. This confirms the manifest's installed payload references at the byte level; it is not a runtime measurement or a signature/trust evaluation."
+reproduction:
+  - "Extract Firmware/sptm.t8101.release.im4p and Firmware/txm.iphoneos.release.im4p from the 24A446 iPhone13,1 restore image; verify SHA-256 values fd020710... and b81fb0c2..."
+  - "Run: pyimg4 im4p info -i <payload> and pyimg4 im4p extract -i <payload> -o <output>"
+  - "Verify decompressed SHA-256 values e531396c... (SPTM) and e0589318... (TXM)."
+  - "Run: llvm-objdump --macho --private-headers <output> and inspect cputype, UUID, LC_SOURCE_VERSION, and top-level segment names."
+  - "Compute SHA-384 of each IM4P file and compare it with the BuildManifest Ap,SecurePageTableMonitor and Ap,TrustedExecutionMonitor Digest fields."
+  - "Run the fixture tests: python3 -m unittest discover -s tests/unit -t ."
+limitations:
+  - "Only packaging and payload structure were inspected; no runtime state, boot path, or device behavior was measured."
+  - "No code-signature, certificate, or trust-cache evaluation was performed. Digest equality links the file to the manifest field but does not establish device acceptance."
+  - "The restore-specific rspt/rtrx entries have different digests and were not resolved to their wrapped payloads."
+  - "The absence check covers top-level Mach-O segment names and a strings scan; it is not a proof that no PPL-related code exists elsewhere."
+  - "Only the iPhone13,1 payloads were inspected directly; cross-product identity relies on matching manifest digests and the byte-identical release kernelcache."
+  - "The extracted payloads and Mach-O files are not committed; the recorded hashes identify the inspected bytes."
+  - "The exact target device identity and installed build remain unverified; VAL-0001 is still not-run."

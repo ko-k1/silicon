@@ -3,7 +3,7 @@ id: CASE-0001
 title: "Page-table protection mechanism for A14 / iOS 27.0.1 (24A446)"
 status: analyzed
 created_at: "2026-11-05T08:38:54+09:00"
-updated_at: "2026-11-10T11:58:10+09:00"
+updated_at: "2026-11-10T12:06:11+09:00"
 target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
 owner: null
 reviewer: null
@@ -30,7 +30,7 @@ hypothesis:
   claim: "The A14 / iOS 27.0.1 build 24A446 packages and uses SPTM with TXM for page-table and code-execution protection; Apple's 2026-01-28 PPL applicability statement no longer describes the iOS 27 runtime."
   preconditions:
     - "Target is an A14-based device running iOS 27.0.1 build 24A446."
-    - "The iPhone13,1 and iPhone13,4 24A446 BuildManifests are representative of the A14 product family."
+    - "The 24A446 BuildManifests for iPhone13,1, iPhone13,2, iPhone13,3, and iPhone13,4 are representative of the A14 product family."
     - "The public iOS 27 reports refer to the shipping iOS 27 architecture, not only a beta or a single tool's fallback heuristic."
     - "Apple's January 2026 Operating system integrity page was not listed as updated after January 2026 in the guide's revision history (EVD-0013) and may not reflect a mid-cycle mechanism change."
   expected_behavior: "If the claim is correct, the A14 24A446 image should contain SPTM/TXM payloads, public compatibility/tooling reports should treat A14 iOS 27 devices as SPTM/TXM-capable, and Apple's pre-iOS 27 PPL table would remain valid only for earlier OS versions on A14."
@@ -51,6 +51,8 @@ evidence:
     - EVD-0014
     - EVD-0016
     - EVD-0017
+    - EVD-0018
+    - EVD-0019
   counter:
     - EVD-0002
     - EVD-0003
@@ -64,6 +66,8 @@ analysis:
     - build-manifest-inspection
     - kernelcache-segment-inspection
     - kernelcache-byte-comparison
+    - image4-payload-inspection
+    - macho-header-inspection
     - cross-product-build-check
     - contradiction-analysis
   artifacts:
@@ -72,14 +76,18 @@ analysis:
     - "BuildManifest.plist from iPhone13,4_27.0.1_24A446_Restore.ipsw (sha256 342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392; not committed)"
     - "BuildManifest.plist from the combined iPhone13,2,iPhone13,3_27.0.1_24A446_Restore.ipsw (sha256 51827a7ebd3b9130d03acf200e269ba66768fa42e1569b246b053a1c22c29364; not committed)"
     - "kernelcache.release.iphone13 (IM4P) from the iPhone13,1, iPhone13,2/3, and iPhone13,4 images; all three copies sha256 15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced; decompressed Mach-O sha256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4; not committed"
+    - "Firmware/sptm.t8101.release.im4p from the iPhone13,1 image; sha256 fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb; sha384 3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f; decompressed Mach-O sha256 e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a; not committed"
+    - "Firmware/txm.iphoneos.release.im4p from the iPhone13,1 image; sha256 b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff; sha384 6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f; decompressed Mach-O sha256 e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04; not committed"
   tools:
     - python-3.14.9
     - remotezip-0.12.6
     - pyimg4-0.8.9
+    - llvm-objdump-23.1.4
+    - unzip-6.00
     - "engineering/inventory/build_manifest.py (sha256 85084c6eba3a0205518b918ffa3dba4e20b2b7e99587ded32ed127962db11a62)"
     - manual-document-review
 validation:
-  safe_method: "Offline source review, build-manifest inspection, and kernelcache segment and byte comparison, plus a non-invasive device metadata check of ProductType and BuildVersion if an owned target device is available. Runtime mechanism confirmation is not attempted in this case."
+  safe_method: "Offline source review, build-manifest inspection, Image4 payload and Mach-O header inspection, and kernelcache segment and byte comparison, plus a non-invasive device metadata check of ProductType and BuildVersion if an owned target device is available. Runtime mechanism confirmation is not attempted in this case."
   validation_ids:
     - VAL-0001
     - VAL-0002
@@ -87,12 +95,15 @@ validation:
     - VAL-0004
     - VAL-0005
     - VAL-0006
+    - VAL-0007
 conclusion:
   state: inferred
   confidence: high
-  summary: "The 24A446 restore build manifests for all four iPhone 12-family A14 product types (iPhone13,1, iPhone13,2, iPhone13,3, and iPhone13,4) contain SPTM (Firmware/sptm.t8101.release.im4p) and TXM (Firmware/txm.iphoneos.release.im4p) payloads and mark InstalledSPTM/RestoreSPTM as Production. The installed/restore SPTM, release TXM, and release kernelcache digests match across the four product types. The release kernelcache is byte-identical across the four images; its decompressed Mach-O independently shows __DATA_SPTM and __TEXT_BOOT_EXEC segments and no __PPLTEXT/__PPLDATA segment names. This resolves the build-level mechanism in favor of SPTM/TXM; Apple's January 2026 PPL table was not listed as updated after January 2026 in the guide's revision history (EVD-0013). A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). The target device's runtime state remains unknown."
+  summary: "The 24A446 restore build manifests for all four iPhone 12-family A14 product types (iPhone13,1, iPhone13,2, iPhone13,3, and iPhone13,4) contain SPTM (Firmware/sptm.t8101.release.im4p) and TXM (Firmware/txm.iphoneos.release.im4p) payloads and mark InstalledSPTM/RestoreSPTM as Production. The installed/restore SPTM, release TXM, and release kernelcache digests match across the four product types. The release kernelcache is byte-identical across the four images; its decompressed Mach-O independently shows __DATA_SPTM and __TEXT_BOOT_EXEC segments and no __PPLTEXT/__PPLDATA segment names. The extracted iPhone13,1 SPTM and TXM payloads themselves have SHA-384 values matching the manifest's installed-component Digest fields and decompress to arm64e Mach-O with SPTM/TXM build identifiers (EVD-0018, EVD-0019). This resolves the build-level mechanism in favor of SPTM/TXM; Apple's January 2026 PPL table was not listed as updated after January 2026 in the guide's revision history (EVD-0013). A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). The target device's runtime state remains unknown."
   limitations:
-    - "Build packaging and kernelcache structure are primary evidence that SPTM/TXM is included, but they are not runtime measurements."
+    - "Build packaging, payload structure, and kernelcache structure are primary evidence that SPTM/TXM is included, but they are not runtime measurements."
+    - "No code-signature or trust evaluation was performed on the extracted payloads; matching manifest digests link the bytes to the manifest fields but do not establish device acceptance."
+    - "The restore-specific rspt/rtrx entries carry different digests and were not resolved to their wrapped payloads."
     - "Segment naming is a structural indicator; it is not a proof that no PPL-related code exists in any component."
     - "The release kernelcache is byte-identical across the four product types; the combined image's research kernelcache variant was not compared."
     - "A14 iPad product types were not checked."
@@ -113,3 +124,4 @@ references:
   - SRC-0014
   - SRC-0015
   - SRC-0016
+  - SRC-0017

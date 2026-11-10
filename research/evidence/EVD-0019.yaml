@@ -1,0 +1,41 @@
+schema_version: 1
+id: EVD-0019
+class: primary
+state: observed
+claim: "The iOS 27.0.1 (24A446) restore image for iPhone13,1 contains Firmware/txm.iphoneos.release.im4p, a valid Image4 `trxm` payload of 223,884 bytes whose SHA-384 value equals the BuildManifest `Ap,TrustedExecutionMonitor` Digest. It decompresses with LZFSE to a 557,088-byte arm64e Mach-O with UUID 9F80F5EC-09C8-3E9F-A196-13A6250C04E0, LC_SOURCE_VERSION 217.0.2, embedded `txm.iphoneos.release` / `txm.iphoneos.release.TrustedExecutionMonitor_Guarded-217.0.2` identifiers, a `__TEXT_BOOT_EXEC` segment with a `__bootcode` section, and no top-level __PPL-named segment."
+source:
+  type: apple-image4-payload
+  locator: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-10"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+artifact:
+  sha256: "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff"
+  bytes: 223884
+  path_or_uri: "Firmware/txm.iphoneos.release.im4p inside iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  sha384: "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f"
+  im4p_payload_type: "trxm"
+  compression: "LZFSE"
+  encrypted: false
+  decompressed_sha256: "e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04"
+  decompressed_bytes: 557088
+  macho_uuid: "9F80F5EC-09C8-3E9F-A196-13A6250C04E0"
+  macho_source_version: "217.0.2"
+related_evidence:
+  - EVD-0010
+  - EVD-0017
+  - EVD-0018
+limitations:
+  - "The SHA-384 equality links the extracted file to the manifest's installed TXM Digest field; it is not a signature verification or a statement that the device will accept the payload."
+  - "The manifest's restore entry Ap,RestoreTrustedExecutionMonitor points to the same path but carries the distinct digest 573a242a... with Img4PayloadType rtrx; that restore-wrapped variant was not resolved or inspected."
+  - "The payload structure and embedded identifiers are build-level evidence, not a runtime measurement of TXM on a device."
+  - "Only the iPhone13,1 payload was extracted directly; cross-product identity is supported by matching manifest digests and the byte-identical release kernelcache, not by extracting this payload from every image."
+  - "The absence check covers top-level Mach-O segment names and a strings scan; it is not a proof that no PPL-related code exists elsewhere in the image."
+  - "The extracted payload and Mach-O are not committed; the recorded hashes identify the inspected bytes."
+related_cases:
+  - CASE-0001
+  - CASE-0003

@@ -35,12 +35,12 @@ protection:
     note: "The 24A446 image ships SPTM/TXM, which Apple documents as replacing PPL. PPL is therefore not expected to be the active boundary, but runtime state is unverified."
   SPTM:
     state: inferred
-    evidence: [EVD-0010]
-    note: "BuildManifest includes Ap,SecurePageTableMonitor (Firmware/sptm.t8101.release.im4p) and marks InstalledSPTM/RestoreSPTM Production."
+    evidence: [EVD-0010, EVD-0018]
+    note: "BuildManifest includes Ap,SecurePageTableMonitor (Firmware/sptm.t8101.release.im4p) and marks InstalledSPTM/RestoreSPTM Production. The extracted installed payload's SHA-384 matches the manifest Digest field (EVD-0018). Runtime state is still unverified."
   TXM:
     state: inferred
-    evidence: [EVD-0010]
-    note: "BuildManifest includes Ap,TrustedExecutionMonitor (Firmware/txm.iphoneos.release.im4p) and marks the installed/restore entries Personalize: true."
+    evidence: [EVD-0010, EVD-0019]
+    note: "BuildManifest includes Ap,TrustedExecutionMonitor (Firmware/txm.iphoneos.release.im4p) and marks the installed/restore entries Personalize: true. The extracted installed payload's SHA-384 matches the manifest Digest field (EVD-0019). Runtime state is still unverified."
   PAC:
     state: unknown
     evidence: []
@@ -71,9 +71,39 @@ artifacts:
     im4p_sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
     retained: false
     notes: "IM4P extracted with pyimg4 and decompressed; top-level Mach-O segments include __DATA_SPTM and __TEXT_BOOT_EXEC, with no PPL segment names."
+  - id: ART-0003
+    type: apple-sptm-image4-payload
+    product_type: iPhone13,1
+    os_version: 27.0.1
+    build: 24A446
+    source_url: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    extracted_path: Firmware/sptm.t8101.release.im4p
+    sha256: "fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb"
+    sha384: "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f"
+    bytes: 187580
+    decompressed_sha256: "e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a"
+    decompressed_bytes: 1179680
+    im4p_payload_type: sptm
+    retained: false
+    notes: "SHA-384 matches the BuildManifest Ap,SecurePageTableMonitor Digest. Decompresses to an arm64e Mach-O with UUID 1693386C-1F3A-346B-906D-804E7138B2F1 and source version 820.0.22. No signature or trust evaluation was performed."
+  - id: ART-0004
+    type: apple-txm-image4-payload
+    product_type: iPhone13,1
+    os_version: 27.0.1
+    build: 24A446
+    source_url: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    extracted_path: Firmware/txm.iphoneos.release.im4p
+    sha256: "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff"
+    sha384: "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f"
+    bytes: 223884
+    decompressed_sha256: "e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04"
+    decompressed_bytes: 557088
+    im4p_payload_type: trxm
+    retained: false
+    notes: "SHA-384 matches the BuildManifest Ap,TrustedExecutionMonitor Digest. Decompresses to an arm64e Mach-O with UUID 9F80F5EC-09C8-3E9F-A196-13A6250C04E0 and source version 217.0.2. No signature or trust evaluation was performed."
 verification:
   status: partial
-  verified_at: "2026-11-05"
+  verified_at: "2026-11-10"
   notes:
     - Confirm product type, SoC, OS version, and build on the device.
     - Do not infer runtime protection state from build packaging alone.
@@ -83,5 +113,6 @@ verification:
     - A second A14 product type, iPhone13,4, has the same SPTM/TXM packaging in its 24A446 BuildManifest (EVD-0014, VAL-0004). This extends the build-level finding but does not verify the target device or runtime state.
     - The combined 24A446 BuildManifest for iPhone13,2 and iPhone13,3 has the same SPTM/TXM packaging and matching release payload digests (EVD-0016, VAL-0005). This completes build-level coverage of the four iPhone 12-family A14 product types but does not verify the target device or runtime state.
     - The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images (EVD-0017, VAL-0006). This extends the SPTM segment finding to the same release kernelcache payload in all four images; it is not a runtime measurement.
+    - The extracted iPhone13,1 SPTM/TXM payloads are valid Image4 containers whose SHA-384 values match the manifest's installed-component digest fields; both decompress to arm64e Mach-O with SPTM/TXM identifiers (EVD-0018, EVD-0019, VAL-0007). The restore-specific rspt/rtrx entries carry different digests and were not resolved. This is still build-level evidence, not a runtime or signature/trust measurement.
     - A14 iPad product types were not checked; do not generalize the four-product-type result to every A14 device.
     - Apple's 2026-01-28 Operating system integrity page places A12-A14 in the PPL scope (EVD-0002, EVD-0003); the guide's revision history does not list that page as updated after January 2026 (EVD-0013), and it does not describe the 24A446 build.

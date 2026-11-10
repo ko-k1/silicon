@@ -47,6 +47,8 @@ evidence:
     - EVD-0014
     - EVD-0016
     - EVD-0017
+    - EVD-0018
+    - EVD-0019
   counter:
     - EVD-0015
 analysis:
@@ -64,7 +66,7 @@ validation:
 conclusion:
   state: inferred
   confidence: medium
-  summary: "The reviewed Dopamine 3.0 release lists stable A14/M1 support through iOS 17.3.1, with Titan's own claimed range extending to 17.4 beta 3. The Apple Wiki lists momentarius for iOS 27, but the reviewed text does not state A14 support for that entry. The 24A446 A14 images for all four iPhone 12-family product types contain SPTM/TXM payloads, and the release kernelcache is byte-identical across the four images with SPTM structure, so an A14 PPL bypass is mis-scoped for that build. A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). No reviewed source demonstrates an A14 bypass on 24A446; this is an evidence gap, not proof that none exists."
+  summary: "The reviewed Dopamine 3.0 release lists stable A14/M1 support through iOS 17.3.1, with Titan's own claimed range extending to 17.4 beta 3. The Apple Wiki lists momentarius for iOS 27, but the reviewed text does not state A14 support for that entry. The 24A446 A14 images for all four iPhone 12-family product types contain SPTM/TXM payloads, the extracted iPhone13,1 installed payloads match the manifest digest fields, and the release kernelcache is byte-identical across the four images with SPTM structure, so an A14 PPL bypass is mis-scoped for that build. A community tracker still frames A14/M1 as PPL but provides no build-specific measurement (EVD-0015). No reviewed source demonstrates an A14 bypass on 24A446; this is an evidence gap, not proof that none exists."
   limitations:
     - "The public record is incomplete, community-maintained, and changes over time."
     - "The Apple Wiki iOS 27 entry lacks SoC-level detail in the reviewed revision."
@@ -83,3 +85,4 @@ references:
   - SRC-0014
   - SRC-0015
   - SRC-0016
+  - SRC-0017

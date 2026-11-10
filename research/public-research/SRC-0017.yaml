@@ -1,0 +1,55 @@
+schema_version: 1
+id: SRC-0017
+title: "Apple iOS 27.0.1 (24A446) SPTM and TXM payloads for iPhone13,1"
+authors:
+  - "Apple Inc."
+source_type: apple-image4-payload
+url: "https://updates.cdn-apple.com/2026FallFCS/d1cd8e9c-7afc-42aa-99d4-dda92b9fe9db/iPhone13,1_27.0.1_24A446_Restore.ipsw"
+published_at: "2026-09-28"
+accessed_at: "2026-11-10"
+source_scope:
+  devices:
+    - "iPhone 12 mini (iPhone13,1)"
+  socs:
+    - "A14 (T8101)"
+  os_versions:
+    - "iOS 27.0.1"
+  builds:
+    - "24A446"
+claims:
+  - "Firmware/sptm.t8101.release.im4p is a 187,580-byte Image4 payload with FourCC `sptm`, LZFSE compression, and no encryption flag; its SHA-384 value is 3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f."
+  - "The BuildManifest `Ap,SecurePageTableMonitor` Digest field for the iPhone13,1 customer identity equals that SHA-384 value."
+  - "The SPTM payload decompresses to a 1,179,680-byte arm64e Mach-O with UUID 1693386C-1F3A-346B-906D-804E7138B2F1 and LC_SOURCE_VERSION 820.0.22; its __binname section contains `sptm.t8101.release`, and it embeds the string `SPTM-820.0.22|2026-08-08:13:24:32.076410|`."
+  - "Firmware/txm.iphoneos.release.im4p is a 223,884-byte Image4 payload with FourCC `trxm`, LZFSE compression, and no encryption flag; its SHA-384 value is 6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f."
+  - "The BuildManifest `Ap,TrustedExecutionMonitor` Digest field for the iPhone13,1 customer identity equals that SHA-384 value."
+  - "The TXM payload decompresses to a 557,088-byte arm64e Mach-O with UUID 9F80F5EC-09C8-3E9F-A196-13A6250C04E0 and LC_SOURCE_VERSION 217.0.2; its __binname section contains `txm.iphoneos.release`, and it embeds `txm.iphoneos.release.TrustedExecutionMonitor_Guarded-217.0.2` and the info-plist identifier `com.apple.security.libimage4.TXMonitor`."
+  - "The TXM Mach-O has a __TEXT_BOOT_EXEC segment containing a __bootcode section. Neither payload has a top-level segment named __PPLTEXT, __PPLDATA, or __PPLDATA_CONST."
+  - "The BuildManifest restore entries Ap,RestoreSecurePageTableMonitor (Img4PayloadType rspt) and Ap,RestoreTrustedExecutionMonitor (rtrx) reference the same paths but have distinct digests; those restore-wrapped variants were not resolved."
+artifact:
+  name: "Firmware/sptm.t8101.release.im4p and Firmware/txm.iphoneos.release.im4p"
+  container: "iPhone13,1_27.0.1_24A446_Restore.ipsw"
+  extraction: "Extracted from the local restore image with unzip; parsed and decompressed with pyimg4 0.8.9; Mach-O headers read with llvm-objdump 23.1.4; raw artifacts not committed"
+  files:
+    - name: "Firmware/sptm.t8101.release.im4p"
+      sha256: "fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb"
+      sha384: "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f"
+      bytes: 187580
+      decompressed_sha256: "e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a"
+      decompressed_bytes: 1179680
+    - name: "Firmware/txm.iphoneos.release.im4p"
+      sha256: "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff"
+      sha384: "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f"
+      bytes: 223884
+      decompressed_sha256: "e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04"
+      decompressed_bytes: 557088
+silicon_assessment:
+  applicability: confirmed
+  evidence_ids:
+    - EVD-0018
+    - EVD-0019
+  notes:
+    - "The extracted payloads match the manifest's installed SPTM/TXM digest fields at the byte level; this connects the manifest declarations to actual payload bytes."
+    - "This is build-level evidence for the payload contained in the restore image, not a runtime measurement and not a signature or trust evaluation."
+    - "The restore-specific rspt/rtrx entries have different digests and were not resolved to their wrapped payloads."
+    - "Only the iPhone13,1 payloads were inspected directly; the matching manifest digests and byte-identical kernelcache support the cross-product build-level finding."
+license_or_terms: "Apple firmware and website terms. Only derived metadata, hashes, and short factual excerpts are retained."

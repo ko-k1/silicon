@@ -1,6 +1,11 @@
 # CASE-0001 — A14 / iOS 27.0.1: PPL, SPTM, and TXM status
 
-- **Status:** Investigating
+> **Historical working note (2026-11-05) — superseded.**
+> This file predates the structured case records and uses an obsolete local evidence numbering: `EVD-0001`–`EVD-0008` here do not correspond to the current `research/evidence/` records. It is retained for provenance only. The current reviewed analysis is `research/cases/CASE-0001/report.md`.
+>
+> **Current status (2026-11-10):** the four iPhone 12-family A14 24A446 manifests package SPTM and TXM, the extracted iPhone13,1 installed payloads match the manifest digest fields and decompress to arm64e Mach-O with SPTM/TXM identifiers, and the release kernelcache is byte-identical across the four product types with SPTM structure. The build is modeled as SPTM/TXM-based; device runtime state remains `unknown` because no device measurement was performed. Do not cite this historical note for current conclusions.
+
+- **Status:** Historical draft; superseded by `research/cases/CASE-0001/`
 - **Assessment date:** 2026-11-05
 - **Target:** iPhone 12 mini / A14 / `iPhone13,1` / iOS `27.0.1`
 - **Candidate build:** `24A446` (device installation still needs local confirmation)
@@ -180,4 +185,4 @@ All sources below were accessed on 2026-11-05. Evidence IDs map to machine-reada
 
 ---
 
-**Current verdict: unresolved at the target-runtime level.** A14 should remain PPL-oriented in the architecture model, with TXM-related iOS 27 behavior tracked separately and SPTM kept as a disputed, unverified claim until the exact A14 Build 24A446 artifacts are examined.
+**Historical verdict (2026-11-05, superseded): unresolved at the target-runtime level.** At the time of this note, the exact A14 Build 24A446 artifacts had not been examined. The current build-level conclusion is recorded in `research/cases/CASE-0001/report.md`; runtime state remains `unknown`.

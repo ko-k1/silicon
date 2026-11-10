@@ -36,6 +36,8 @@ The iOS 27.0.1 (24A446) restore BuildManifest for iPhone13,1 (`T8101`, A14) cont
 
 The BuildManifest SHA-256 is `f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f` (`EVD-0010`). The raw IPSW and BuildManifest are not committed.
 
+The extracted iPhone13,1 installed payloads link to those manifest entries at the byte level: the 187,580-byte `Firmware/sptm.t8101.release.im4p` has SHA-384 `3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f`, equal to the `Ap,SecurePageTableMonitor` Digest, and the 223,884-byte `Firmware/txm.iphoneos.release.im4p` has SHA-384 `6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f`, equal to the `Ap,TrustedExecutionMonitor` Digest (`EVD-0018`, `EVD-0019`, `VAL-0007`). After LZFSE decompression, SPTM is a 1,179,680-byte arm64e Mach-O (UUID `1693386C-1F3A-346B-906D-804E7138B2F1`, source version 820.0.22) and TXM is a 557,088-byte arm64e Mach-O (UUID `9F80F5EC-09C8-3E9F-A196-13A6250C04E0`, source version 217.0.2). Neither has a top-level `__PPL*` segment. The restore-specific `rspt`/`rtrx` entries have different digests and were not resolved.
+
 The 24A446 BuildManifest for iPhone13,4 (iPhone 12 Pro Max, also A14/T8101) independently contains the same SPTM and TXM entries and the same `InstalledSPTM`/`RestoreSPTM` `Production` markers. Its BuildManifest SHA-256 is `342b8ea26ca5a940efd867ddc807d7cd9212554579f1a063d219b13ebf5d0392` (`EVD-0014`, `VAL-0004`).
 
 The combined 24A446 BuildManifest for iPhone13,2 (iPhone 12) and iPhone13,3 (iPhone 12 Pro) contains the same SPTM and TXM entries and the same `InstalledSPTM`/`RestoreSPTM` `Production` markers for its customer identities. Its BuildManifest SHA-256 is `51827a7ebd3b9130d03acf200e269ba66768fa42e1569b246b053a1c22c29364` (`EVD-0016`, `VAL-0005`). Across the iPhone13,1, iPhone13,2/3, and iPhone13,4 manifests, the installed/restore SPTM, release TXM, and release kernelcache digests match. The combined manifest's Research identities reference a distinct `txm.iphoneos.research.im4p` and research kernelcache; those are recorded separately and are not treated as the production configuration. The three manifests cover all four iPhone 12-family A14 product types, so the build-level finding is not specific to iPhone13,1.
@@ -47,7 +49,7 @@ The decompressed 24A446 release kernelcache independently shows the same build s
 - The decompressed Mach-O SHA-256 is `76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4` (`EVD-0012`, `VAL-0003`).
 - The release kernelcache is byte-identical across the iPhone13,1, iPhone13,2/3, and iPhone13,4 images; all three IM4P copies hash to `15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced` (`EVD-0017`, `VAL-0006`).
 
-This is primary evidence that the build packages SPTM/TXM and that its kernel is built with SPTM structure. It is not a runtime measurement.
+This is primary evidence that the build packages SPTM/TXM, that the extracted installed payloads match the manifest digest fields, and that its kernel is built with SPTM structure. It is not a runtime measurement or a signature/trust evaluation.
 
 ## Secondary reports about iOS 27
 
@@ -63,17 +65,17 @@ A September 2026 survey still repeats the older PPL-on-A12-A14/M1 model (`EVD-00
 
 - **PPL** prevents user-space code from being modified after code-signature verification. It manages page-table permission overrides so that only PPL can alter protected pages containing user code and page tables. It builds on Kernel Integrity Protection and Fast Permission Restrictions.
 - **SPTM** works with **TXM** to protect page tables for user and kernel processes, including against an attacker with kernel write capability. SPTM uses a privilege level higher than the kernel; TXM enforces code-execution policy at a lower privilege. Apple states that a TXM compromise is not intended to automatically yield an SPTM bypass.
-- **TXM** is packaged with SPTM in the 24A446 A14 builds. Its runtime policy and configuration on the target are not established by the build manifests.
+- **TXM** is packaged with SPTM in the 24A446 A14 builds; its extracted iPhone13,1 payload is a `trxm` Image4 container that decompresses to an arm64e Mach-O with a `__TEXT_BOOT_EXEC` segment (`EVD-0019`, `VAL-0007`). Its runtime policy and configuration on the target are not established by the build artifacts.
 
 ## Implication for A14 / 24A446
 
 For the 24A446 A14 target, the build-level boundary is **SPTM/TXM**, not PPL, across all four iPhone 12-family product types. An "A14 PPL bypass" is therefore mis-scoped for this build. PPL remains relevant as the historical A14 mechanism for earlier iOS versions and as the subject of earlier public research.
 
-This does not establish that SPTM/TXM is enabled, correctly configured, or enforcing on a particular device. It also does not establish that no PPL code or fallback exists; it establishes that the checked A14 builds package SPTM/TXM as production components and share a byte-identical SPTM-structured release kernelcache.
+This does not establish that SPTM/TXM is enabled, correctly configured, or enforcing on a particular device. It also does not establish that no PPL code or fallback exists; it establishes that the checked A14 builds package SPTM/TXM as production components, that the extracted installed iPhone13,1 payloads match the manifest digest fields, and that the builds share a byte-identical SPTM-structured release kernelcache. No signature or trust evaluation of the payloads was performed.
 
 ## Build 24A446
 
-Apple's release listing confirms iOS 27.0.1 build 24A446 was released on 2026-09-28 (`SRC-0002`, `EVD-0001`). The build manifests for iPhone13,1, iPhone13,2/3, and iPhone13,4 confirm the SPTM/TXM payloads (`EVD-0010`, `EVD-0014`, `EVD-0016`), and the byte-identical release kernelcache confirms an SPTM-structured kernel (`EVD-0012`, `EVD-0017`) packaged for all four product types. No build-specific Apple security note describing the mechanism change was found in the reviewed material. The Operating system integrity page carries a January 2026 date, was not listed as updated after that in the guide's revision history (`EVD-0013`), and does not describe the 24A446 build contents.
+Apple's release listing confirms iOS 27.0.1 build 24A446 was released on 2026-09-28 (`SRC-0002`, `EVD-0001`). The build manifests for iPhone13,1, iPhone13,2/3, and iPhone13,4 confirm the SPTM/TXM payloads (`EVD-0010`, `EVD-0014`, `EVD-0016`); for iPhone13,1, the extracted payloads match the manifest's installed digest fields and decompress to arm64e Mach-O with SPTM/TXM identifiers (`EVD-0018`, `EVD-0019`, `VAL-0007`). The byte-identical release kernelcache confirms an SPTM-structured kernel (`EVD-0012`, `EVD-0017`) packaged for all four product types. No build-specific Apple security note describing the mechanism change was found in the reviewed material. The Operating system integrity page carries a January 2026 date, was not listed as updated after that in the guide's revision history (`EVD-0013`), and does not describe the 24A446 build contents.
 
 ## Open questions
 
@@ -83,6 +85,7 @@ Apple's release listing confirms iOS 27.0.1 build 24A446 was released on 2026-09
 4. Can SPTM/TXM runtime state be established on an owned A14 device through permitted, non-invasive observation?
 5. Does the target device actually match the manifest's A14 / iPhone 12 mini / 24A446 assumptions?
 6. Do A14 iPad product types or regional builds package the same SPTM/TXM components?
+7. How do the restore-specific `rspt`/`rtrx` entries relate to the installed SPTM/TXM payloads, given their distinct manifest digests?
 
 ## Boundaries
 
