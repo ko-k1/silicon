@@ -3,7 +3,7 @@
   "project": "silicon",
   "archive": "silicon-repository",
   "algorithm": "sha256",
-  "file_count": 197,
+  "file_count": 204,
   "files": [
     {
       "path": ".gitignore",
@@ -111,6 +111,16 @@
       "sha256": "18e765f7bc4c045e427545a9fbcb82daeaa6dd769d32cbe9adb1d6b63d968842"
     },
     {
+      "path": "analysis/differential/ghidra/new-kernel/0xfffffff00a244dc8.c",
+      "bytes": 6209,
+      "sha256": "9d13c8574cc42a751eedaf27cf60c6f87a8a412f2b9ed57b28dd036038d22376"
+    },
+    {
+      "path": "analysis/differential/ghidra/new-kernel/0xfffffff00a244dc8.meta.txt",
+      "bytes": 193,
+      "sha256": "158878c43c1ac2386f52f1cd263a39e9fbc0046d388a12045ef6c48b2e2ab88e"
+    },
+    {
       "path": "analysis/differential/ghidra/new-kernel/0xfffffff00a29be58.c",
       "bytes": 32952,
       "sha256": "30dd3a0a9a568ee879b691f998c57e383b586f45b539c271aaaabaf494c2015b"
@@ -149,6 +159,16 @@
       "path": "analysis/differential/ghidra/old-kernel/0xfffffff00a1adf60.meta.txt",
       "bytes": 192,
       "sha256": "0894b86912ed6f5734733b7c27acb85823e4a14595422ca1baff3ab4973b75d9"
+    },
+    {
+      "path": "analysis/differential/ghidra/old-kernel/0xfffffff00a208a10.c",
+      "bytes": 6042,
+      "sha256": "f4af001ded309f05490dc94525d185b322a9950aadaf347081235a30d709a8f5"
+    },
+    {
+      "path": "analysis/differential/ghidra/old-kernel/0xfffffff00a208a10.meta.txt",
+      "bytes": 193,
+      "sha256": "b5214fdc92ff0146c3503ce2a207c4c8017f2c17d76f797db4d9f4c66cd27e43"
     },
     {
       "path": "analysis/differential/ghidra/old-kernel/0xfffffff00a25fa44.c",
@@ -243,7 +263,7 @@
     {
       "path": "docs/workflow/implementation-state-checklist.md",
       "bytes": 17891,
-      "sha256": "f67c5215871120ee75c368a94d871ce4818057f4f56e021503be8f53eabfb5b0"
+      "sha256": "6697f81db54cce38bb7922679e3b3772af87b50aa9512c0d9e38c76bf8a86243"
     },
     {
       "path": "docs/workflow/research-lifecycle.md",
@@ -631,6 +651,16 @@
       "sha256": "86074b5e67adc7c47ecaa8baae5ec76f7dc096b773bfe5201ddfdac00dd34c42"
     },
     {
+      "path": "research/evidence/EVD-0032.yaml",
+      "bytes": 3859,
+      "sha256": "af28602d3ef83d293455d0b085158d1b0bc8e8ead98ed82db0541620965a9338"
+    },
+    {
+      "path": "research/evidence/EVD-0033.yaml",
+      "bytes": 4181,
+      "sha256": "8e7b7f23808cb6e3ee9eee7b9e821e7aa66fee8d14d0092621c4ab8f7c2b2aeb"
+    },
+    {
       "path": "research/evidence/README.md",
       "bytes": 4585,
       "sha256": "48c017afb4fe479d9f82dd25a248ce83d2796ba51e4591c5d1e4fb8e6de31732"
@@ -979,6 +1009,11 @@
       "path": "validation/results/VAL-0014.yaml",
       "bytes": 3795,
       "sha256": "81e2ab25150047d521b72803510a47c10ac5a5f37972bf8e42fe5c2a5af7a92f"
+    },
+    {
+      "path": "validation/results/VAL-0015.yaml",
+      "bytes": 3757,
+      "sha256": "a838aedb9536b36bd6b67f45d9f424b3b227135a178fc0770dca1372e39bb5de"
     },
     {
       "path": "validation/results/result.template.yaml",
