@@ -87,8 +87,8 @@
     },
     {
       "path": "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json",
-      "bytes": 9824,
-      "sha256": "24710d7ba6702a45874ec8bb2adc5869243af926f017972a482d447aa04ba5b7"
+      "bytes": 11214,
+      "sha256": "1a71e15aabc84dce253475b2dd3282b6c6a12ff176ca6056a247bf9b79dfd537"
     },
     {
       "path": "analysis/static/.gitkeep",
@@ -337,8 +337,8 @@
     },
     {
       "path": "research/cases/CASE-0004/report.md",
-      "bytes": 18428,
-      "sha256": "8fa31665c626ad84200c9cee65a4a1c44f931dccf04ec944189daba5f8215890"
+      "bytes": 18850,
+      "sha256": "1d2a8210d62ccafb739eaae42371434ee4378ae423061957d29fbd2933ecc328"
     },
     {
       "path": "research/cases/README.md",
@@ -512,8 +512,8 @@
     },
     {
       "path": "research/evidence/EVD-0030.yaml",
-      "bytes": 3419,
-      "sha256": "fd6e1371d32fe41fd35608f9db8f20b9d3ca60e02c62471ffe0ba9c7dc4f5806"
+      "bytes": 5355,
+      "sha256": "bb5f60324617e4615c1ccda61e0baa6ecc3d1c6d189b50e812f258053b4094fa"
     },
     {
       "path": "research/evidence/EVD-0031.yaml",
@@ -867,8 +867,8 @@
     },
     {
       "path": "validation/results/VAL-0014.yaml",
-      "bytes": 3375,
-      "sha256": "766a18c117e6ca3c84793efdaf59dc928e7d09bea57173fc6b580549e67937af"
+      "bytes": 3795,
+      "sha256": "81e2ab25150047d521b72803510a47c10ac5a5f37972bf8e42fe5c2a5af7a92f"
     },
     {
       "path": "validation/results/result.template.yaml",

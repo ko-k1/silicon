@@ -160,7 +160,42 @@
         "CVE-2026-112705"
       ],
       "descriptions": "One out-of-bounds read and five out-of-bounds writes, addressed with improved input validation or bounds checking.",
-      "status": "The new routines contain range checks and are called from existing AVE2 check paths. This is a temporal and functional correlation, not a CVE attribution."
+      "status": "The new routines contain range checks and are called from existing AVE2 check paths. This is a temporal and functional correlation, not a CVE attribution.",
+      "caller_changes": [
+        {
+          "routine": "AVE_HEVC_CheckInfo",
+          "old_insns": 361,
+          "new_insns": 893,
+          "new_call_targets": [
+            "AVE_HEVC_CheckVPSExtBounds"
+          ]
+        },
+        {
+          "routine": "AVE_Client_CheckInfo",
+          "old_insns": 506,
+          "new_insns": 604,
+          "new_call_targets": [
+            "AVE_Client_CheckGGMInfo",
+            "AVE_Client_CheckLRMEInfo",
+            "AVE_Client_CheckMCTFInfo"
+          ]
+        }
+      ],
+      "added_string_categories": [
+        "HEVC VPS/PPS/RPS/SPS count out of range",
+        "HEVC VPS extension layer/OLS counts out of range",
+        "HEVC VPS num_add_layer_sets out of range",
+        "HEVC log2_max_pic_order_cnt_lsb_minus4 out of range",
+        "HEVC number of sub-layer / temporal-layer bounds",
+        "HEVC MCTF strength count out of range",
+        "LRME / MCTF info is not correct",
+        "HEVC VPS vps_max_sub_layers_minus1 / vps_num_layer_sets_minus1 / vps_num_hrd_parameters / vps_max_layer_id bounds",
+        "HEVC RPS num_short_term_ref_pic_sets bounds",
+        "MCTF/AV1 strength level range constraints",
+        "HEVC PPS tile columns/rows constraints",
+        "HEVC SPS log2_max_pic_order_cnt_lsb_minus4 / sps_max_sub_layers_minus1 constraints",
+        "HEVC iNumberOfTemporalLayers / iNumOfTemporalLayer bounds"
+      ]
     }
   },
   "ane_vtable_qualification": {

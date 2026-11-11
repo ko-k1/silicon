@@ -2,7 +2,7 @@ schema_version: 1
 id: EVD-0030
 class: derived
 state: observed
-claim: "The 24B119 AppleAVE2 binary adds three named validation routines that are absent from the 24A446 symbol map and whose 27.2 __os_log anchor strings are absent from the 24A446 binary: AVE_HEVC_CheckVPSExtBounds at 0xfffffff008421158 (310 instructions), AVE_Client_CheckMCTFInfo at 0xfffffff008423b1c (737 instructions), and AVE_Client_CheckLRMEInfo at 0xfffffff0084246a0 (571 instructions). They contain unsigned range checks with limits including 0x40/0x41, 0x2/0x8/0x6/0xf/0x10/0x1/0x3f/0x41/0x11/0xd/0x3/0x15, and 0x2/0x7/0x8/0x6/0xf/0x10/0x1/0x3f/0x41/0x11/0xd/0x15. AVE_HEVC_CheckVPSExtBounds is called from AVE_HEVC_CheckInfo, AVE_Client_CheckDMVInfo, AVE_Client_CheckGGMInfo, AVE_Client_CheckMCTFInfo, and AVE_Client_CheckLRMEInfo; the other two are called from AVE_Client_CheckInfo. The 27.2 advisory lists six AVEVideoEncoder CVEs described as one out-of-bounds read and five out-of-bounds writes addressed with improved input validation or bounds checking. This is a temporal and functional correlation, not a CVE attribution."
+claim: "The 24B119 AppleAVE2 binary adds three named validation routines that are absent from the 24A446 symbol map and whose 27.2 __os_log anchor strings are absent from the 24A446 binary: AVE_HEVC_CheckVPSExtBounds at 0xfffffff008421158 (310 instructions), AVE_Client_CheckMCTFInfo at 0xfffffff008423b1c (737 instructions), and AVE_Client_CheckLRMEInfo at 0xfffffff0084246a0 (571 instructions). They contain unsigned range checks with limits including 0x40/0x41 (VPS), 0x2/0x8/0x6/0xf/0x10/0x1/0x3f/0x41/0x11/0xd/0x3/0x15 (MCTF), and 0x2/0x7/0x8/0x6/0xf/0x10/0x1/0x3f/0x41/0x11/0xd/0x21 (LRME). Caller wiring changed: AVE_HEVC_CheckInfo grew from 361 to 893 instructions and now calls AVE_HEVC_CheckVPSExtBounds; AVE_Client_CheckInfo grew from 506 to 604 instructions and now calls AVE_Client_CheckGGMInfo, AVE_Client_CheckLRMEInfo, and AVE_Client_CheckMCTFInfo. New 27.2 log strings include HEVC VPS/PPS/RPS/SPS count out-of-range, VPS extension layer/OLS counts, VPS num_add_layer_sets, log2_max_pic_order_cnt_lsb_minus4, number of sub-layer/temporal-layer bounds, and MCTF strength count; new constraint strings cover sHEVC_VPS vps_max_sub_layers_minus1/vps_num_layer_sets_minus1/vps_num_hrd_parameters/vps_max_layer_id, sHEVC_VPS num_add_layer_sets, sHEVC_RPS num_short_term_ref_pic_sets, MCTF/AV1 strength-level ranges, sHEVC_PPS tile columns/rows, sHEVC_SPS log2_max_pic_order_cnt_lsb_minus4/sps_max_sub_layers_minus1, sHEVC iNumberOfTemporalLayers, and sGOP iNumOfTemporalLayer; three temporal-layer strings were removed (relaxed bounds). The 27.2 advisory lists six AVEVideoEncoder CVEs described as one out-of-bounds read and five out-of-bounds writes addressed with improved input validation or bounds checking. This is a temporal and functional correlation, not a CVE attribution."
 source:
   type: derived-kext-function-diff
   locator: "AppleAVE2 extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
@@ -45,6 +45,33 @@ artifact:
       correspondence: "not established"
   function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json"
   targeted_findings_artifact: "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json"
+  caller_changes:
+    - routine: "AVE_HEVC_CheckInfo"
+      old_insns: 361
+      new_insns: 893
+      new_call_targets:
+        - "AVE_HEVC_CheckVPSExtBounds"
+    - routine: "AVE_Client_CheckInfo"
+      old_insns: 506
+      new_insns: 604
+      new_call_targets:
+        - "AVE_Client_CheckGGMInfo"
+        - "AVE_Client_CheckLRMEInfo"
+        - "AVE_Client_CheckMCTFInfo"
+  added_string_categories:
+    - "HEVC VPS/PPS/RPS/SPS count out of range"
+    - "HEVC VPS extension layer/OLS counts out of range"
+    - "HEVC VPS num_add_layer_sets out of range"
+    - "HEVC log2_max_pic_order_cnt_lsb_minus4 out of range"
+    - "HEVC number of sub-layer / temporal-layer bounds"
+    - "HEVC MCTF strength count out of range"
+    - "LRME / MCTF info is not correct"
+    - "HEVC VPS vps_max_sub_layers_minus1 / vps_num_layer_sets_minus1 / vps_num_hrd_parameters / vps_max_layer_id bounds"
+    - "HEVC RPS num_short_term_ref_pic_sets bounds"
+    - "MCTF/AV1 strength level range constraints"
+    - "HEVC PPS tile columns/rows constraints"
+    - "HEVC SPS log2_max_pic_order_cnt_lsb_minus4 / sps_max_sub_layers_minus1 constraints"
+    - "HEVC iNumberOfTemporalLayers / iNumOfTemporalLayer bounds"
 limitations:
   - "The extracted kext is stripped; the routines are named by symbolicator signatures anchored on new log strings, not by local symbols."
   - "Same virtual addresses across builds are not function correspondence; the old same-VA functions have different prologues and line-number immediates."
