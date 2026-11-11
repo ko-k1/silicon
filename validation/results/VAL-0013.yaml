@@ -17,7 +17,7 @@ inputs:
   - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.2_24B119_Restore.ipsw"
     sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
 expected_outcome: "The two candidate kexts should be extractable from both kernelcaches, their version changes and function-level normalized match counts should be recorded, and no CVE should be asserted from name or version alone."
-observed_outcome: "The ipsw kext inventory lists 267 common records, 47 version changes, and no additions or removals; the MH_FILESET entry count is 250, so the inventories are not interchangeable. AppleAVE2: 913.43.1 -> 913.64.1; 2,995/2,998 function starts; 1,222 exact-normalized matches; 2,963 shape-normalized matches. AppleH11ANEInterface: 10.19.6 -> 10.102.4; 4,902/5,043 function starts; 3,080 exact-normalized matches; 4,662 shape-normalized matches. Both extracted images are stripped; no method-level names or CVE mapping were established."
+observed_outcome: "The ipsw kext inventory lists 267 common records, 47 version changes, and no additions or removals; the MH_FILESET entry count is 250, so the inventories are not interchangeable. AppleAVE2: 913.43.1 -> 913.64.1; 2,995/2,998 function starts; 1,222 exact-normalized matches; 2,963 shape-normalized matches. AppleH11ANEInterface: 10.19.6 -> 10.102.4; 4,902/5,043 function starts; 3,080 exact-normalized matches; 4,662 shape-normalized matches. Vtable comparison: AVE2 has 7 classes and 45 mapped slots (21 unchanged, 24 constant-only, 0 structural); ANE has 72 common classes plus 3 new classes and 737 mapped slots (417 unchanged, 265 constant-only, 55 structural across 34 unique target pairs). Both extracted images are stripped; no method-level names or CVE mapping were established."
 result:
   status: passed
   reproducible: "yes"
@@ -27,12 +27,14 @@ reproduction:
   - "Compare bundle versions with ipsw kernel kexts --diff <old-kernelcache> <new-kernelcache>."
   - "Generate function starts with ipsw macho info -f and disassembly with llvm-objdump -d --no-show-raw-insn for each extracted kext."
   - "Run python3 -m engineering.analyzers.kernel_function_diff for each kext pair."
-  - "Inspect analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json for the counts and input hashes."
+  - "Run ipsw kernel cpp --json --methods -e <bundle-id> for each build and compare vtable slots after mapping targets to function hashes."
+  - "Inspect analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json for the counts, vtable slots, and input hashes."
 limitations:
   - "The kexts are stripped; changed functions cannot be named from local symbols."
   - "Version and hash differences are not proof of a security fix."
   - "Shape-normalized matches may be inflated by layout-dependent immediates."
   - "The 267-record ipsw kext inventory is not the same set as the 250 MH_FILESET entries."
+  - "Vtable slot counts skip targets outside the extracted kext or not mapped to a function start; they are not a complete method inventory."
   - "No device was connected; runtime behavior and exploitability were not measured."
 related_evidence:
   - EVD-0028

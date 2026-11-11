@@ -62,8 +62,8 @@
     },
     {
       "path": "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json",
-      "bytes": 2936,
-      "sha256": "8390967ec16142d61a36f139cdd9eaa93e75576bae2fdfe7c3fe9b324fe8b307"
+      "bytes": 124155,
+      "sha256": "f30378a18c7ac3c40fcd867ebb95cb754d2771c3ed5dab9913f3f8ad3c6e44e7"
     },
     {
       "path": "analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json",
@@ -267,8 +267,8 @@
     },
     {
       "path": "reports/technical/A14-iOS-27.2-differential.md",
-      "bytes": 14338,
-      "sha256": "a27ac9c39314acddb97bab2fae26af255ba0412635a389a06855cd7d359519f7"
+      "bytes": 14669,
+      "sha256": "d727d991b5542d106ca7655fc17d7ce9cd8ee7807d5634b8fa149f6110b78f02"
     },
     {
       "path": "requirements-dev.txt",
@@ -332,8 +332,8 @@
     },
     {
       "path": "research/cases/CASE-0004/report.md",
-      "bytes": 14606,
-      "sha256": "a62eda47178fe7e22719c1ae145473fbc3ff87f94b284d9bcd9f184e07317dd8"
+      "bytes": 14937,
+      "sha256": "4091da2328eeb0071fc31f5c350f630b13927e85f08fd91eae8dab0878d14c76"
     },
     {
       "path": "research/cases/README.md",
@@ -497,13 +497,13 @@
     },
     {
       "path": "research/evidence/EVD-0028.yaml",
-      "bytes": 2896,
-      "sha256": "11e242d4a38fe5255b44887bfd38fc8b3dc2f92aae2c080f652803a0edd3cf6e"
+      "bytes": 3690,
+      "sha256": "a6831c434fb3fac65d7ebb6a0580ac438e404493d7611f86b4b5914007b05465"
     },
     {
       "path": "research/evidence/README.md",
-      "bytes": 3890,
-      "sha256": "e12fdfc7ab13ed74186491193139abd42d54996c098a864990b4ea5015c09ddb"
+      "bytes": 3899,
+      "sha256": "a5a0df4d8366a0552d7b17970599ae573f82012d1e6abe4c9399fb5539fe1ac4"
     },
     {
       "path": "research/public-research/README.md",
@@ -842,8 +842,8 @@
     },
     {
       "path": "validation/results/VAL-0013.yaml",
-      "bytes": 2918,
-      "sha256": "4a312e9af18edbdf9dd8f4fae4999704f8f91655389bfbff33cec027b9373446"
+      "bytes": 3468,
+      "sha256": "1e388bf560db3a2d4cf6ee2caee4e6f1a11ea280ac2bd21e80f7007743bbd2fe"
     },
     {
       "path": "validation/results/result.template.yaml",

@@ -33,7 +33,7 @@ Create one YAML file per evidence record using `schemas/evidence-record.schema.j
 | `EVD-0025` | 27.2 advisory: 163 CVEs, disjoint from the 27.0 set | derived | observed |
 | `EVD-0026` | 27.2.1 advisory adds nine CVEs; 24B119 is not latest | derived | observed |
 | `EVD-0027` | Kernel function diff: 13,045 exact matches, 222 structural named changes; corrects function-start count | derived | observed |
-| `EVD-0028` | AVE2 and ANE version and function-level changes | derived | observed |
+| `EVD-0028` | AVE2 and ANE version, function-level, and vtable changes | derived | observed |
 
 `EVD-0010`, `EVD-0012`, `EVD-0014`, `EVD-0016`, and `EVD-0017` are the build-level mechanism evidence for the four iPhone 12-family A14 product types; `EVD-0018` and `EVD-0019` link the iPhone13,1 manifest declarations to the extracted installed payload bytes; `EVD-0020` resolves the restore-role digest difference as a fourcc retag at the IM4P level. They are not runtime measurements. `EVD-0002`, `EVD-0003`, and `EVD-0009` are retained as the pre-iOS 27/counter-evidence view.
 

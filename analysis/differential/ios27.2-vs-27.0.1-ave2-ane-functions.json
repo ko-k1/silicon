@@ -24,10 +24,12 @@
     }
   },
   "kext_inventory": {
-    "common_kexts": 267,
-    "version_changed": 47,
-    "added": 0,
-    "removed": 0
+    "ipsw_kext_records_common": 267,
+    "ipsw_kext_records_version_changed": 47,
+    "ipsw_kext_records_added": 0,
+    "ipsw_kext_records_removed": 0,
+    "mh_fileset_entries": 250,
+    "note": "ipsw kernel kexts and the MH_FILESET entry count are different inventories and are not interchangeable."
   },
   "components": {
     "com.apple.driver.AppleAVE2": {
@@ -74,5 +76,4051 @@
     "A version change and a function-hash difference are build-level observations, not proof of a specific security fix.",
     "Shape matches can be inflated by layout-dependent immediate changes; exact matches are the stronger identity signal.",
     "No device was connected; runtime behavior and exploitability were not measured."
-  ]
+  ],
+  "vtable_diff": {
+    "source": "ipsw kernel cpp --json --methods -e <bundle> on the 24A446 and 24B119 kernelcaches; targets mapped to extracted kext function hashes",
+    "AppleAVE2": {
+      "counts": {
+        "classes_old": 7,
+        "classes_new": 7,
+        "classes_common": 7,
+        "classes_old_only": 0,
+        "classes_new_only": 0,
+        "slots_compared": 45,
+        "slots_unchanged": 21,
+        "slots_constant_only": 24,
+        "slots_changed": 0,
+        "slots_external_or_unmapped": 396
+      },
+      "changed_slots": [
+        {
+          "class": "AVE_WorkPool",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff0083ef848",
+          "new_target": "0xfffffff008418224",
+          "old_insns": 182,
+          "new_insns": 182,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AVE_WorkPool",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff0083efb58",
+          "new_target": "0xfffffff008418534",
+          "old_insns": 113,
+          "new_insns": 113,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AVE_WorkPool",
+          "index": 17,
+          "offset": 136,
+          "old_target": "0xfffffff0083efedc",
+          "new_target": "0xfffffff0084188b8",
+          "old_insns": 168,
+          "new_insns": 168,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AVE_WorkThread",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff00845af58",
+          "new_target": "0xfffffff008486f5c",
+          "old_insns": 167,
+          "new_insns": 167,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AVE_WorkThread",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff00845b1f4",
+          "new_target": "0xfffffff0084871f8",
+          "old_insns": 107,
+          "new_insns": 107,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AVE_WorkThread",
+          "index": 17,
+          "offset": 136,
+          "old_target": "0xfffffff00845bbf4",
+          "new_target": "0xfffffff008487bf8",
+          "old_insns": 168,
+          "new_insns": 168,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0085478a4",
+          "new_target": "0xfffffff008573e3c",
+          "old_insns": 111,
+          "new_insns": 111,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff008547230",
+          "new_target": "0xfffffff0085737c8",
+          "old_insns": 413,
+          "new_insns": 413,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 79,
+          "offset": 632,
+          "old_target": "0xfffffff00854ab34",
+          "new_target": "0xfffffff0085770cc",
+          "old_insns": 213,
+          "new_insns": 213,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff008547a60",
+          "new_target": "0xfffffff008573ff8",
+          "old_insns": 130,
+          "new_insns": 130,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff008547c68",
+          "new_target": "0xfffffff008574200",
+          "old_insns": 1465,
+          "new_insns": 1465,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff00854934c",
+          "new_target": "0xfffffff0085758e4",
+          "old_insns": 209,
+          "new_insns": 209,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 140,
+          "offset": 1120,
+          "old_target": "0xfffffff008549690",
+          "new_target": "0xfffffff008575c28",
+          "old_insns": 407,
+          "new_insns": 407,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 155,
+          "offset": 1240,
+          "old_target": "0xfffffff00854a744",
+          "new_target": "0xfffffff008576cdc",
+          "old_insns": 214,
+          "new_insns": 214,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 168,
+          "offset": 1344,
+          "old_target": "0xfffffff008549cec",
+          "new_target": "0xfffffff008576284",
+          "old_insns": 357,
+          "new_insns": 357,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2Driver",
+          "index": 169,
+          "offset": 1352,
+          "old_target": "0xfffffff00854a280",
+          "new_target": "0xfffffff008576818",
+          "old_insns": 305,
+          "new_insns": 305,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008544570",
+          "new_target": "0xfffffff008570b08",
+          "old_insns": 107,
+          "new_insns": 107,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff008544104",
+          "new_target": "0xfffffff00857069c",
+          "old_insns": 170,
+          "new_insns": 170,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0085443ac",
+          "new_target": "0xfffffff008570944",
+          "old_insns": 113,
+          "new_insns": 113,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 94,
+          "offset": 752,
+          "old_target": "0xfffffff008544900",
+          "new_target": "0xfffffff008570e98",
+          "old_insns": 121,
+          "new_insns": 121,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 95,
+          "offset": 760,
+          "old_target": "0xfffffff00854471c",
+          "new_target": "0xfffffff008570cb4",
+          "old_insns": 121,
+          "new_insns": 121,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 172,
+          "offset": 1376,
+          "old_target": "0xfffffff008544e60",
+          "new_target": "0xfffffff0085713f8",
+          "old_insns": 187,
+          "new_insns": 187,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 173,
+          "offset": 1384,
+          "old_target": "0xfffffff008544ae4",
+          "new_target": "0xfffffff00857107c",
+          "old_insns": 223,
+          "new_insns": 223,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleAVE2UserClient",
+          "index": 186,
+          "offset": 1488,
+          "old_target": "0xfffffff00853b78c",
+          "new_target": "0xfffffff008567d18",
+          "old_insns": 134,
+          "new_insns": 134,
+          "class_of_change": "constant_only"
+        }
+      ],
+      "new_classes": [],
+      "structural_unique_target_pairs": 0,
+      "structural_classes": [],
+      "structural_slots": []
+    },
+    "AppleH11ANEInterface": {
+      "counts": {
+        "classes_old": 72,
+        "classes_new": 75,
+        "classes_common": 72,
+        "classes_old_only": 0,
+        "classes_new_only": 3,
+        "slots_compared": 737,
+        "slots_unchanged": 417,
+        "slots_constant_only": 265,
+        "slots_changed": 55,
+        "slots_external_or_unmapped": 3244
+      },
+      "changed_slots": [
+        {
+          "class": "ANEClientDeviceWrapper",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089b0220",
+          "new_target": "0xfffffff0089a9564",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHints",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008971ee0",
+          "new_target": "0xfffffff0089aefb0",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHints",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff008971ec4",
+          "new_target": "0xfffffff0089aef94",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHints",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff008971efc",
+          "new_target": "0xfffffff0089aefcc",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHints",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff008971f3c",
+          "new_target": "0xfffffff0089af00c",
+          "old_insns": 34,
+          "new_insns": 34,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHints",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff008971f1c",
+          "new_target": "0xfffffff0089aefec",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHints",
+          "index": 141,
+          "offset": 1128,
+          "old_target": "0xfffffff008972b98",
+          "new_target": "0xfffffff0089afc78",
+          "old_insns": 180,
+          "new_insns": 180,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHintsUserClient",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008972354",
+          "new_target": "0xfffffff0089af424",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHintsUserClient",
+          "index": 44,
+          "offset": 352,
+          "old_target": "0xfffffff008972378",
+          "new_target": "0xfffffff0089af448",
+          "old_insns": 520,
+          "new_insns": 524,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEClientHintsUserClient",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff00897228c",
+          "new_target": "0xfffffff0089af35c",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientHintsUserClient",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089722ac",
+          "new_target": "0xfffffff0089af37c",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientInterface",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089b1ee4",
+          "new_target": "0xfffffff0089ab228",
+          "old_insns": 68,
+          "new_insns": 68,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientInterface",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089b20b4",
+          "new_target": "0xfffffff0089ab3f8",
+          "old_insns": 53,
+          "new_insns": 53,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEClientInterface",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff0089b27ac",
+          "new_target": "0xfffffff0089abaf0",
+          "old_insns": 165,
+          "new_insns": 165,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDebugEventMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDebugEventMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDeviceInterface",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff0088ed928",
+          "new_target": "0xfffffff00891ae18",
+          "old_insns": 20,
+          "new_insns": 20,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDeviceInterface",
+          "index": 218,
+          "offset": 1744,
+          "old_target": "0xfffffff0088edba8",
+          "new_target": "0xfffffff00891b030",
+          "old_insns": 2,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDeviceInterface",
+          "index": 220,
+          "offset": 1760,
+          "old_target": "0xfffffff0088edbb0",
+          "new_target": "0xfffffff00891b0b4",
+          "old_insns": 2,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 0,
+          "offset": 0,
+          "old_target": "0xfffffff00895eea8",
+          "new_target": "0xfffffff008990484",
+          "old_insns": 29,
+          "new_insns": 32,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 1,
+          "offset": 8,
+          "old_target": "0xfffffff00895ef1c",
+          "new_target": "0xfffffff008990504",
+          "old_insns": 18,
+          "new_insns": 18,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff00895f4ec",
+          "new_target": "0xfffffff008990afc",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff00895f4d0",
+          "new_target": "0xfffffff008990ae0",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff00895f508",
+          "new_target": "0xfffffff008990b18",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff00895f528",
+          "new_target": "0xfffffff008990b38",
+          "old_insns": 493,
+          "new_insns": 623,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089601b8",
+          "new_target": "0xfffffff008991bcc",
+          "old_insns": 114,
+          "new_insns": 126,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 111,
+          "offset": 888,
+          "old_target": "0xfffffff008960fc0",
+          "new_target": "0xfffffff008992a64",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 132,
+          "offset": 1056,
+          "old_target": "0xfffffff008960fcc",
+          "new_target": "0xfffffff008992a70",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 141,
+          "offset": 1128,
+          "old_target": "0xfffffff0089607b8",
+          "new_target": "0xfffffff008992258",
+          "old_insns": 239,
+          "new_insns": 239,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriverDebugClient",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008a2fa50",
+          "new_target": "0xfffffff0089ed9cc",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriverDebugClient",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff008a2fadc",
+          "new_target": "0xfffffff0089eda58",
+          "old_insns": 155,
+          "new_insns": 155,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriverDebugClient",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff008a2fd48",
+          "new_target": "0xfffffff0089edcc4",
+          "old_insns": 42,
+          "new_insns": 42,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriverDebugClient",
+          "index": 172,
+          "offset": 1376,
+          "old_target": "0xfffffff008a2fea0",
+          "new_target": "0xfffffff0089ede1c",
+          "old_insns": 42,
+          "new_insns": 42,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriverDebugClient",
+          "index": 173,
+          "offset": 1384,
+          "old_target": "0xfffffff008a2fdf0",
+          "new_target": "0xfffffff0089edd6c",
+          "old_insns": 44,
+          "new_insns": 44,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEDriverDebugClient",
+          "index": 187,
+          "offset": 1496,
+          "old_target": "0xfffffff008a2f8dc",
+          "new_target": "0xfffffff0089ed858",
+          "old_insns": 93,
+          "new_insns": 93,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEExclaveMemoryWiringMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008992120",
+          "new_target": "0xfffffff0089d0ae4",
+          "old_insns": 25,
+          "new_insns": 25,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEExclaveMemoryWiringMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEExclaveProxy",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089cab5c",
+          "new_target": "0xfffffff0089f4894",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEExclaveProxy",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff0089cab40",
+          "new_target": "0xfffffff0089f4878",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEExclaveProxy",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff0089cab78",
+          "new_target": "0xfffffff0089f48b0",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEExclaveProxy",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff0089cab98",
+          "new_target": "0xfffffff0089f48d0",
+          "old_insns": 153,
+          "new_insns": 153,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEExclaveProxy",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089cadfc",
+          "new_target": "0xfffffff0089f4b34",
+          "old_insns": 52,
+          "new_insns": 52,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEFWRpcMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff00899204c",
+          "new_target": "0xfffffff0089d0a10",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEFWRpcMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEFirmwareClientLoggingMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991f18",
+          "new_target": "0xfffffff0089d08dc",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEFirmwareClientLoggingMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991f6c",
+          "new_target": "0xfffffff0089d0930",
+          "old_insns": 25,
+          "new_insns": 25,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEFwToFwSignalMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEFwToFwSignalMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 0,
+          "offset": 0,
+          "old_target": "0xfffffff008985870",
+          "new_target": "0xfffffff0089c3774",
+          "old_insns": 96,
+          "new_insns": 96,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 1,
+          "offset": 8,
+          "old_target": "0xfffffff0089859fc",
+          "new_target": "0xfffffff0089c3900",
+          "old_insns": 18,
+          "new_insns": 18,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089e6a00",
+          "new_target": "0xfffffff008a10be4",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff0089e69e4",
+          "new_target": "0xfffffff008a10bc8",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff0089e6a1c",
+          "new_target": "0xfffffff008a10c00",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff0089e9550",
+          "new_target": "0xfffffff008a138c4",
+          "old_insns": 4859,
+          "new_insns": 4903,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089f6364",
+          "new_target": "0xfffffff008a21040",
+          "old_insns": 388,
+          "new_insns": 391,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 111,
+          "offset": 888,
+          "old_target": "0xfffffff0089efca0",
+          "new_target": "0xfffffff008a1a0c4",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 117,
+          "offset": 936,
+          "old_target": "0xfffffff0089f0448",
+          "new_target": "0xfffffff008a1a86c",
+          "old_insns": 123,
+          "new_insns": 138,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 132,
+          "offset": 1056,
+          "old_target": "0xfffffff0089efcac",
+          "new_target": "0xfffffff008a1a0d0",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 141,
+          "offset": 1128,
+          "old_target": "0xfffffff0089efbec",
+          "new_target": "0xfffffff008a1a010",
+          "old_insns": 45,
+          "new_insns": 45,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 155,
+          "offset": 1240,
+          "old_target": "0xfffffff0089f274c",
+          "new_target": "0xfffffff008a1d578",
+          "old_insns": 65,
+          "new_insns": 65,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 159,
+          "offset": 1272,
+          "old_target": "0xfffffff008a03498",
+          "new_target": "0xfffffff008a2e9d4",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 160,
+          "offset": 1280,
+          "old_target": "0xfffffff008a03598",
+          "new_target": "0xfffffff008a2ead4",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 168,
+          "offset": 1344,
+          "old_target": "0xfffffff008987c9c",
+          "new_target": "0xfffffff0089c5ccc",
+          "old_insns": 38,
+          "new_insns": 38,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 169,
+          "offset": 1352,
+          "old_target": "0xfffffff0089885ec",
+          "new_target": "0xfffffff0089c661c",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 170,
+          "offset": 1360,
+          "old_target": "0xfffffff00898ace0",
+          "new_target": "0xfffffff0089c92e4",
+          "old_insns": 4,
+          "new_insns": 4,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 171,
+          "offset": 1368,
+          "old_target": "0xfffffff0089f5794",
+          "new_target": "0xfffffff008a203a4",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 172,
+          "offset": 1376,
+          "old_target": "0xfffffff00898acf0",
+          "new_target": "0xfffffff0089c92f4",
+          "old_insns": 6,
+          "new_insns": 6,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 173,
+          "offset": 1384,
+          "old_target": "0xfffffff0089c463c",
+          "new_target": "0xfffffff0089ee0fc",
+          "old_insns": 465,
+          "new_insns": 465,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 174,
+          "offset": 1392,
+          "old_target": "0xfffffff0089c510c",
+          "new_target": "0xfffffff0089eebcc",
+          "old_insns": 241,
+          "new_insns": 241,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 175,
+          "offset": 1400,
+          "old_target": "0xfffffff0089c54d0",
+          "new_target": "0xfffffff0089eef90",
+          "old_insns": 187,
+          "new_insns": 187,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 176,
+          "offset": 1408,
+          "old_target": "0xfffffff0089c57bc",
+          "new_target": "0xfffffff0089ef380",
+          "old_insns": 183,
+          "new_insns": 143,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 177,
+          "offset": 1416,
+          "old_target": "0xfffffff00898ad08",
+          "new_target": "0xfffffff0089c930c",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff008985d50",
+          "new_target": "0xfffffff0089c3c5c",
+          "old_insns": 97,
+          "new_insns": 97,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 180,
+          "offset": 1440,
+          "old_target": "0xfffffff008989938",
+          "new_target": "0xfffffff0089c7968",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 181,
+          "offset": 1448,
+          "old_target": "0xfffffff008989b00",
+          "new_target": "0xfffffff0089c7b7c",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 182,
+          "offset": 1456,
+          "old_target": "0xfffffff008989c58",
+          "new_target": "0xfffffff0089c7d7c",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 183,
+          "offset": 1464,
+          "old_target": "0xfffffff008989e28",
+          "new_target": "0xfffffff0089c7f98",
+          "old_insns": 50,
+          "new_insns": 50,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 184,
+          "offset": 1472,
+          "old_target": "0xfffffff00898a17c",
+          "new_target": "0xfffffff0089c8344",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 185,
+          "offset": 1480,
+          "old_target": "0xfffffff00898a224",
+          "new_target": "0xfffffff0089c8494",
+          "old_insns": 35,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 186,
+          "offset": 1488,
+          "old_target": "0xfffffff008988d7c",
+          "new_target": "0xfffffff0089c6dac",
+          "old_insns": 53,
+          "new_insns": 53,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 187,
+          "offset": 1496,
+          "old_target": "0xfffffff008988f9c",
+          "new_target": "0xfffffff0089c6fcc",
+          "old_insns": 52,
+          "new_insns": 52,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 188,
+          "offset": 1504,
+          "old_target": "0xfffffff0089898e0",
+          "new_target": "0xfffffff0089c7910",
+          "old_insns": 22,
+          "new_insns": 22,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 189,
+          "offset": 1512,
+          "old_target": "0xfffffff00898a388",
+          "new_target": "0xfffffff0089c87e4",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 190,
+          "offset": 1520,
+          "old_target": "0xfffffff00898a574",
+          "new_target": "0xfffffff0089c8a18",
+          "old_insns": 50,
+          "new_insns": 50,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 191,
+          "offset": 1528,
+          "old_target": "0xfffffff00898a2c8",
+          "new_target": "0xfffffff0089c85e0",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 192,
+          "offset": 1536,
+          "old_target": "0xfffffff00898a8e0",
+          "new_target": "0xfffffff0089c8de8",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 193,
+          "offset": 1544,
+          "old_target": "0xfffffff00898a988",
+          "new_target": "0xfffffff0089c8e90",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 194,
+          "offset": 1552,
+          "old_target": "0xfffffff00898aa30",
+          "new_target": "0xfffffff0089c8f38",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 195,
+          "offset": 1560,
+          "old_target": "0xfffffff00898aad8",
+          "new_target": "0xfffffff0089c8fe0",
+          "old_insns": 34,
+          "new_insns": 34,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 196,
+          "offset": 1568,
+          "old_target": "0xfffffff008989ba8",
+          "new_target": "0xfffffff0089c7ccc",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 197,
+          "offset": 1576,
+          "old_target": "0xfffffff0089df11c",
+          "new_target": "0xfffffff008a08fcc",
+          "old_insns": 46,
+          "new_insns": 46,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 198,
+          "offset": 1584,
+          "old_target": "0xfffffff0089e10d4",
+          "new_target": "0xfffffff008a0b000",
+          "old_insns": 46,
+          "new_insns": 46,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 201,
+          "offset": 1608,
+          "old_target": "0xfffffff008a08f30",
+          "new_target": "0xfffffff008a3446c",
+          "old_insns": 268,
+          "new_insns": 268,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 202,
+          "offset": 1616,
+          "old_target": "0xfffffff008a09958",
+          "new_target": "0xfffffff008a34e94",
+          "old_insns": 157,
+          "new_insns": 157,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 203,
+          "offset": 1624,
+          "old_target": "0xfffffff008a09bcc",
+          "new_target": "0xfffffff008a35108",
+          "old_insns": 53,
+          "new_insns": 53,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 204,
+          "offset": 1632,
+          "old_target": "0xfffffff008a08434",
+          "new_target": "0xfffffff008a33970",
+          "old_insns": 605,
+          "new_insns": 605,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 206,
+          "offset": 1648,
+          "old_target": "0xfffffff0089d9214",
+          "new_target": "0xfffffff008a0305c",
+          "old_insns": 102,
+          "new_insns": 102,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 208,
+          "offset": 1664,
+          "old_target": "0xfffffff0089b5268",
+          "new_target": "0xfffffff0089dd974",
+          "old_insns": 38,
+          "new_insns": 38,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 209,
+          "offset": 1672,
+          "old_target": "0xfffffff0089b588c",
+          "new_target": "0xfffffff0089ddf98",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 210,
+          "offset": 1680,
+          "old_target": "0xfffffff0089b7000",
+          "new_target": "0xfffffff0089df63c",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 211,
+          "offset": 1688,
+          "old_target": "0xfffffff0089b7710",
+          "new_target": "0xfffffff0089dfd4c",
+          "old_insns": 34,
+          "new_insns": 34,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 212,
+          "offset": 1696,
+          "old_target": "0xfffffff0089d90fc",
+          "new_target": "0xfffffff008a02f44",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 214,
+          "offset": 1712,
+          "old_target": "0xfffffff00898ad48",
+          "new_target": "0xfffffff0089c934c",
+          "old_insns": 6,
+          "new_insns": 6,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 215,
+          "offset": 1720,
+          "old_target": "0xfffffff00898ad60",
+          "new_target": "0xfffffff0089c9364",
+          "old_insns": 6,
+          "new_insns": 6,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 216,
+          "offset": 1728,
+          "old_target": "0xfffffff0089a8284",
+          "new_target": "0xfffffff0089db168",
+          "old_insns": 198,
+          "new_insns": 198,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 217,
+          "offset": 1736,
+          "old_target": "0xfffffff00898ad78",
+          "new_target": "0xfffffff0089c937c",
+          "old_insns": 3,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 218,
+          "offset": 1744,
+          "old_target": "0xfffffff00898ab70",
+          "new_target": "0xfffffff0089c938c",
+          "old_insns": 35,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 219,
+          "offset": 1752,
+          "old_target": "0xfffffff00898ac0c",
+          "new_target": "0xfffffff0089dffa4",
+          "old_insns": 35,
+          "new_insns": 34,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 220,
+          "offset": 1760,
+          "old_target": "0xfffffff0089f8aa0",
+          "new_target": "0xfffffff0089c939c",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 221,
+          "offset": 1768,
+          "old_target": "0xfffffff0089f5728",
+          "new_target": "0xfffffff0089c9078",
+          "old_insns": 21,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 222,
+          "offset": 1776,
+          "old_target": "0xfffffff0089c8670",
+          "new_target": "0xfffffff0089c9114",
+          "old_insns": 74,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 223,
+          "offset": 1784,
+          "old_target": "0xfffffff0089c8798",
+          "new_target": "0xfffffff0089c91e0",
+          "old_insns": 94,
+          "new_insns": 50,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 224,
+          "offset": 1792,
+          "old_target": "0xfffffff0089c8910",
+          "new_target": "0xfffffff008a23788",
+          "old_insns": 82,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 225,
+          "offset": 1800,
+          "old_target": "0xfffffff0089c8a58",
+          "new_target": "0xfffffff008a20338",
+          "old_insns": 756,
+          "new_insns": 21,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 226,
+          "offset": 1808,
+          "old_target": "0xfffffff0089c673c",
+          "new_target": "0xfffffff0089f23a8",
+          "old_insns": 36,
+          "new_insns": 74,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 227,
+          "offset": 1816,
+          "old_target": "0xfffffff0089c6b10",
+          "new_target": "0xfffffff0089f24d0",
+          "old_insns": 21,
+          "new_insns": 94,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 228,
+          "offset": 1824,
+          "old_target": "0xfffffff0089c6c50",
+          "new_target": "0xfffffff0089f2648",
+          "old_insns": 22,
+          "new_insns": 82,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 229,
+          "offset": 1832,
+          "old_target": "0xfffffff0089c7824",
+          "new_target": "0xfffffff0089f2790",
+          "old_insns": 22,
+          "new_insns": 756,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 230,
+          "offset": 1840,
+          "old_target": "0xfffffff0089c80f4",
+          "new_target": "0xfffffff0089f0474",
+          "old_insns": 21,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDeviceClientNotificationMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDeviceClientNotificationMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDeviceTimeoutMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEHWDeviceTimeoutMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEInVMAllocator",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff00898e6c4",
+          "new_target": "0xfffffff0089ccce8",
+          "old_insns": 50,
+          "new_insns": 50,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEInVMAllocator",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff00898e78c",
+          "new_target": "0xfffffff0089ccdb0",
+          "old_insns": 185,
+          "new_insns": 185,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEInVMAllocator",
+          "index": 18,
+          "offset": 144,
+          "old_target": "0xfffffff00898ea70",
+          "new_target": "0xfffffff0089cd094",
+          "old_insns": 39,
+          "new_insns": 39,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEInVMAllocator",
+          "index": 19,
+          "offset": 152,
+          "old_target": "0xfffffff00898eb0c",
+          "new_target": "0xfffffff0089cd130",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEInVMAllocator",
+          "index": 20,
+          "offset": 160,
+          "old_target": "0xfffffff00898eb98",
+          "new_target": "0xfffffff0089cd1bc",
+          "old_insns": 39,
+          "new_insns": 39,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEInVMAllocator",
+          "index": 24,
+          "offset": 192,
+          "old_target": "0xfffffff00898ec34",
+          "new_target": "0xfffffff0089cd258",
+          "old_insns": 41,
+          "new_insns": 41,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEIspIPCEPMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEIspIPCEPMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEMessage",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEMessage",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANENotificationMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANENotificationMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPerfRequest",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008a08330",
+          "new_target": "0xfffffff008a3386c",
+          "old_insns": 38,
+          "new_insns": 38,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPowerMsg",
+          "index": 1,
+          "offset": 8,
+          "old_target": "0xfffffff00898ff08",
+          "new_target": "0xfffffff0089ce534",
+          "old_insns": 18,
+          "new_insns": 18,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPowerMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPowerMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPowerOnMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991fe0",
+          "new_target": "0xfffffff0089d09a4",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPowerOnMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPrivilegedVMAccess",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008a2cdb4",
+          "new_target": "0xfffffff008a6482c",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPrivilegedVMAccess",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff008a2cce8",
+          "new_target": "0xfffffff008a64760",
+          "old_insns": 51,
+          "new_insns": 51,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPrivilegedVMAccess",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff008a2cdd0",
+          "new_target": "0xfffffff008a64848",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEPrivilegedVMAccess",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff008a2cdf0",
+          "new_target": "0xfffffff008a64868",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEProgramEventMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEProgramEventMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANERequestCompletionMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANERequestCompletionMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANERequestTimeoutMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008991ea0",
+          "new_target": "0xfffffff0089d0864",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANERequestTimeoutMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEScheduler",
+          "index": 0,
+          "offset": 0,
+          "old_target": "0xfffffff008964aa8",
+          "new_target": "0xfffffff008996f7c",
+          "old_insns": 66,
+          "new_insns": 66,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEScheduler",
+          "index": 1,
+          "offset": 8,
+          "old_target": "0xfffffff008964bb0",
+          "new_target": "0xfffffff008997084",
+          "old_insns": 18,
+          "new_insns": 18,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEScheduler",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089660e4",
+          "new_target": "0xfffffff008998668",
+          "old_insns": 172,
+          "new_insns": 189,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEScheduler",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008964de4",
+          "new_target": "0xfffffff0089972c0",
+          "old_insns": 732,
+          "new_insns": 734,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEThrottleUpdateMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089920fc",
+          "new_target": "0xfffffff0089d0ac0",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEThrottleUpdateMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEWakeNotificationMsg",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008992070",
+          "new_target": "0xfffffff0089d0a34",
+          "old_insns": 31,
+          "new_insns": 31,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEWakeNotificationMsg",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008991ebc",
+          "new_target": "0xfffffff0089d0880",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEWorkLoop",
+          "index": 27,
+          "offset": 216,
+          "old_target": "0xfffffff008a2c934",
+          "new_target": "0xfffffff008a643ac",
+          "old_insns": 32,
+          "new_insns": 32,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "ANEWorkLoop",
+          "index": 28,
+          "offset": 224,
+          "old_target": "0xfffffff008a2c8ac",
+          "new_target": "0xfffffff008a64324",
+          "old_insns": 34,
+          "new_insns": 34,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEEPFunction",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008a00d78",
+          "new_target": "0xfffffff008a2c1e0",
+          "old_insns": 43,
+          "new_insns": 43,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEEPFunction",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff008a00e24",
+          "new_target": "0xfffffff008a2c28c",
+          "old_insns": 74,
+          "new_insns": 74,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEMPMMapMemoryFunction",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff0089f3918",
+          "new_target": "0xfffffff008a1e744",
+          "old_insns": 43,
+          "new_insns": 43,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEMPMMapMemoryFunction",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff0089f39c4",
+          "new_target": "0xfffffff008a1e7f0",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEMPMUnmapMemoryFunction",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff0089f3d8c",
+          "new_target": "0xfffffff008a1ebb8",
+          "old_insns": 43,
+          "new_insns": 43,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEMPMUnmapMemoryFunction",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff0089f3e38",
+          "new_target": "0xfffffff008a1ec64",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEPerfCounterReadFunction",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008a0af68",
+          "new_target": "0xfffffff008a367a4",
+          "old_insns": 43,
+          "new_insns": 43,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEPerfCounterReadFunction",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff008a0b014",
+          "new_target": "0xfffffff008a36850",
+          "old_insns": 52,
+          "new_insns": 52,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEPowerOnOffFunction",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff0089f2e44",
+          "new_target": "0xfffffff008a1dc70",
+          "old_insns": 43,
+          "new_insns": 43,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "AppleANEPowerOnOffFunction",
+          "index": 16,
+          "offset": 128,
+          "old_target": "0xfffffff0089f2ef0",
+          "new_target": "0xfffffff008a1dd1c",
+          "old_insns": 120,
+          "new_insns": 120,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "FWSharedMemoryRequest",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff0089e5e44",
+          "new_target": "0xfffffff008a10028",
+          "old_insns": 23,
+          "new_insns": 23,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 1,
+          "offset": 8,
+          "old_target": "0xfffffff0089e6720",
+          "new_target": "0xfffffff008a10904",
+          "old_insns": 18,
+          "new_insns": 18,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089e6a00",
+          "new_target": "0xfffffff008a10be4",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff0089e69e4",
+          "new_target": "0xfffffff008a10bc8",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff0089e6a1c",
+          "new_target": "0xfffffff008a10c00",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff0089e9550",
+          "new_target": "0xfffffff008a138c4",
+          "old_insns": 4859,
+          "new_insns": 4903,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089f6364",
+          "new_target": "0xfffffff008a21040",
+          "old_insns": 388,
+          "new_insns": 391,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 111,
+          "offset": 888,
+          "old_target": "0xfffffff0089efca0",
+          "new_target": "0xfffffff008a1a0c4",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 117,
+          "offset": 936,
+          "old_target": "0xfffffff0089f0448",
+          "new_target": "0xfffffff008a1a86c",
+          "old_insns": 123,
+          "new_insns": 138,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 132,
+          "offset": 1056,
+          "old_target": "0xfffffff0089efcac",
+          "new_target": "0xfffffff008a1a0d0",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 141,
+          "offset": 1128,
+          "old_target": "0xfffffff0089efbec",
+          "new_target": "0xfffffff008a1a010",
+          "old_insns": 45,
+          "new_insns": 45,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 155,
+          "offset": 1240,
+          "old_target": "0xfffffff0089f274c",
+          "new_target": "0xfffffff008a1d578",
+          "old_insns": 65,
+          "new_insns": 65,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 159,
+          "offset": 1272,
+          "old_target": "0xfffffff008a03498",
+          "new_target": "0xfffffff008a2e9d4",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 160,
+          "offset": 1280,
+          "old_target": "0xfffffff008a03598",
+          "new_target": "0xfffffff008a2ead4",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 168,
+          "offset": 1344,
+          "old_target": "0xfffffff008987c9c",
+          "new_target": "0xfffffff0089c5ccc",
+          "old_insns": 38,
+          "new_insns": 38,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 169,
+          "offset": 1352,
+          "old_target": "0xfffffff0089885ec",
+          "new_target": "0xfffffff0089c661c",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 170,
+          "offset": 1360,
+          "old_target": "0xfffffff0089f8b44",
+          "new_target": "0xfffffff008a2382c",
+          "old_insns": 4,
+          "new_insns": 4,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 171,
+          "offset": 1368,
+          "old_target": "0xfffffff0089f5794",
+          "new_target": "0xfffffff008a203a4",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 172,
+          "offset": 1376,
+          "old_target": "0xfffffff0089f8b54",
+          "new_target": "0xfffffff008a2383c",
+          "old_insns": 6,
+          "new_insns": 6,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 173,
+          "offset": 1384,
+          "old_target": "0xfffffff0089c463c",
+          "new_target": "0xfffffff0089ee0fc",
+          "old_insns": 465,
+          "new_insns": 465,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 174,
+          "offset": 1392,
+          "old_target": "0xfffffff0089c510c",
+          "new_target": "0xfffffff0089eebcc",
+          "old_insns": 241,
+          "new_insns": 241,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 175,
+          "offset": 1400,
+          "old_target": "0xfffffff0089c54d0",
+          "new_target": "0xfffffff0089eef90",
+          "old_insns": 187,
+          "new_insns": 187,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 176,
+          "offset": 1408,
+          "old_target": "0xfffffff0089c57bc",
+          "new_target": "0xfffffff0089ef380",
+          "old_insns": 183,
+          "new_insns": 143,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 177,
+          "offset": 1416,
+          "old_target": "0xfffffff0089f8b6c",
+          "new_target": "0xfffffff008a23854",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff008985d50",
+          "new_target": "0xfffffff0089c3c5c",
+          "old_insns": 97,
+          "new_insns": 97,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 180,
+          "offset": 1440,
+          "old_target": "0xfffffff008989938",
+          "new_target": "0xfffffff0089c7968",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 181,
+          "offset": 1448,
+          "old_target": "0xfffffff008989b00",
+          "new_target": "0xfffffff0089c7b7c",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 182,
+          "offset": 1456,
+          "old_target": "0xfffffff008989c58",
+          "new_target": "0xfffffff0089c7d7c",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 183,
+          "offset": 1464,
+          "old_target": "0xfffffff008989e28",
+          "new_target": "0xfffffff0089c7f98",
+          "old_insns": 50,
+          "new_insns": 50,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 184,
+          "offset": 1472,
+          "old_target": "0xfffffff00898a17c",
+          "new_target": "0xfffffff0089c8344",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 185,
+          "offset": 1480,
+          "old_target": "0xfffffff00898a224",
+          "new_target": "0xfffffff0089c8494",
+          "old_insns": 35,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 186,
+          "offset": 1488,
+          "old_target": "0xfffffff008988d7c",
+          "new_target": "0xfffffff0089c6dac",
+          "old_insns": 53,
+          "new_insns": 53,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 187,
+          "offset": 1496,
+          "old_target": "0xfffffff008988f9c",
+          "new_target": "0xfffffff0089c6fcc",
+          "old_insns": 52,
+          "new_insns": 52,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 188,
+          "offset": 1504,
+          "old_target": "0xfffffff0089898e0",
+          "new_target": "0xfffffff0089c7910",
+          "old_insns": 22,
+          "new_insns": 22,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 189,
+          "offset": 1512,
+          "old_target": "0xfffffff00898a388",
+          "new_target": "0xfffffff0089c87e4",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 190,
+          "offset": 1520,
+          "old_target": "0xfffffff00898a574",
+          "new_target": "0xfffffff0089c8a18",
+          "old_insns": 50,
+          "new_insns": 50,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 191,
+          "offset": 1528,
+          "old_target": "0xfffffff00898a2c8",
+          "new_target": "0xfffffff0089c85e0",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 192,
+          "offset": 1536,
+          "old_target": "0xfffffff00898a8e0",
+          "new_target": "0xfffffff0089c8de8",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 193,
+          "offset": 1544,
+          "old_target": "0xfffffff00898a988",
+          "new_target": "0xfffffff0089c8e90",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 194,
+          "offset": 1552,
+          "old_target": "0xfffffff00898aa30",
+          "new_target": "0xfffffff0089c8f38",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 195,
+          "offset": 1560,
+          "old_target": "0xfffffff00898aad8",
+          "new_target": "0xfffffff0089c8fe0",
+          "old_insns": 34,
+          "new_insns": 34,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 196,
+          "offset": 1568,
+          "old_target": "0xfffffff008989ba8",
+          "new_target": "0xfffffff0089c7ccc",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 197,
+          "offset": 1576,
+          "old_target": "0xfffffff0089df11c",
+          "new_target": "0xfffffff008a08fcc",
+          "old_insns": 46,
+          "new_insns": 46,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 198,
+          "offset": 1584,
+          "old_target": "0xfffffff0089e10d4",
+          "new_target": "0xfffffff008a0b000",
+          "old_insns": 46,
+          "new_insns": 46,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 201,
+          "offset": 1608,
+          "old_target": "0xfffffff008a08f30",
+          "new_target": "0xfffffff008a3446c",
+          "old_insns": 268,
+          "new_insns": 268,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 202,
+          "offset": 1616,
+          "old_target": "0xfffffff008a09958",
+          "new_target": "0xfffffff008a34e94",
+          "old_insns": 157,
+          "new_insns": 157,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 203,
+          "offset": 1624,
+          "old_target": "0xfffffff008a09bcc",
+          "new_target": "0xfffffff008a35108",
+          "old_insns": 53,
+          "new_insns": 53,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 204,
+          "offset": 1632,
+          "old_target": "0xfffffff008a08434",
+          "new_target": "0xfffffff008a33970",
+          "old_insns": 605,
+          "new_insns": 605,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 206,
+          "offset": 1648,
+          "old_target": "0xfffffff0089d9214",
+          "new_target": "0xfffffff008a0305c",
+          "old_insns": 102,
+          "new_insns": 102,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 208,
+          "offset": 1664,
+          "old_target": "0xfffffff0089b5268",
+          "new_target": "0xfffffff0089dd974",
+          "old_insns": 38,
+          "new_insns": 38,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 209,
+          "offset": 1672,
+          "old_target": "0xfffffff0089b588c",
+          "new_target": "0xfffffff0089ddf98",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 210,
+          "offset": 1680,
+          "old_target": "0xfffffff0089b7000",
+          "new_target": "0xfffffff0089df63c",
+          "old_insns": 36,
+          "new_insns": 36,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 211,
+          "offset": 1688,
+          "old_target": "0xfffffff0089b7710",
+          "new_target": "0xfffffff0089dfd4c",
+          "old_insns": 34,
+          "new_insns": 34,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 212,
+          "offset": 1696,
+          "old_target": "0xfffffff0089d90fc",
+          "new_target": "0xfffffff008a02f44",
+          "old_insns": 21,
+          "new_insns": 21,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 214,
+          "offset": 1712,
+          "old_target": "0xfffffff0089f8bac",
+          "new_target": "0xfffffff008a23894",
+          "old_insns": 6,
+          "new_insns": 6,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 215,
+          "offset": 1720,
+          "old_target": "0xfffffff0089f8bc4",
+          "new_target": "0xfffffff008a238ac",
+          "old_insns": 6,
+          "new_insns": 6,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 216,
+          "offset": 1728,
+          "old_target": "0xfffffff0089a8284",
+          "new_target": "0xfffffff0089db168",
+          "old_insns": 198,
+          "new_insns": 198,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 217,
+          "offset": 1736,
+          "old_target": "0xfffffff0089f8bdc",
+          "new_target": "0xfffffff008a238c4",
+          "old_insns": 3,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 218,
+          "offset": 1744,
+          "old_target": "0xfffffff00898ab70",
+          "new_target": "0xfffffff008a238d4",
+          "old_insns": 35,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 219,
+          "offset": 1752,
+          "old_target": "0xfffffff00898ac0c",
+          "new_target": "0xfffffff0089dffa4",
+          "old_insns": 35,
+          "new_insns": 34,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 220,
+          "offset": 1760,
+          "old_target": "0xfffffff0089f8aa0",
+          "new_target": "0xfffffff008a238e4",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 221,
+          "offset": 1768,
+          "old_target": "0xfffffff0089f5728",
+          "new_target": "0xfffffff0089c9078",
+          "old_insns": 21,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 222,
+          "offset": 1776,
+          "old_target": "0xfffffff0089c8670",
+          "new_target": "0xfffffff0089c9114",
+          "old_insns": 74,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 223,
+          "offset": 1784,
+          "old_target": "0xfffffff0089c8798",
+          "new_target": "0xfffffff0089c91e0",
+          "old_insns": 94,
+          "new_insns": 50,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 224,
+          "offset": 1792,
+          "old_target": "0xfffffff0089c8910",
+          "new_target": "0xfffffff008a23788",
+          "old_insns": 82,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 225,
+          "offset": 1800,
+          "old_target": "0xfffffff0089c8a58",
+          "new_target": "0xfffffff008a20338",
+          "old_insns": 756,
+          "new_insns": 21,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 226,
+          "offset": 1808,
+          "old_target": "0xfffffff0089c673c",
+          "new_target": "0xfffffff0089f23a8",
+          "old_insns": 36,
+          "new_insns": 74,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 227,
+          "offset": 1816,
+          "old_target": "0xfffffff0089c6b10",
+          "new_target": "0xfffffff0089f24d0",
+          "old_insns": 21,
+          "new_insns": 94,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 228,
+          "offset": 1824,
+          "old_target": "0xfffffff0089c6c50",
+          "new_target": "0xfffffff0089f2648",
+          "old_insns": 22,
+          "new_insns": 82,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 229,
+          "offset": 1832,
+          "old_target": "0xfffffff0089c7824",
+          "new_target": "0xfffffff0089f2790",
+          "old_insns": 22,
+          "new_insns": 756,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 230,
+          "offset": 1840,
+          "old_target": "0xfffffff0089c80f4",
+          "new_target": "0xfffffff0089f0474",
+          "old_insns": 21,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEInDirectPathClient",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089b1ee4",
+          "new_target": "0xfffffff0089ab228",
+          "old_insns": 68,
+          "new_insns": 68,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEInDirectPathClient",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff0089b27ac",
+          "new_target": "0xfffffff0089abaf0",
+          "old_insns": 165,
+          "new_insns": 165,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEInDirectPathClient",
+          "index": 186,
+          "offset": 1488,
+          "old_target": "0xfffffff0089b2690",
+          "new_target": "0xfffffff0089ab9d4",
+          "old_insns": 71,
+          "new_insns": 71,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEInUserClient",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089b1ee4",
+          "new_target": "0xfffffff0089ab228",
+          "old_insns": 68,
+          "new_insns": 68,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEInUserClient",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089b20b4",
+          "new_target": "0xfffffff0089ab3f8",
+          "old_insns": 53,
+          "new_insns": 53,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEInUserClient",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff0089b27ac",
+          "new_target": "0xfffffff0089abaf0",
+          "old_insns": 165,
+          "new_insns": 165,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H11ANEInUserClient",
+          "index": 186,
+          "offset": 1488,
+          "old_target": "0xfffffff0089b248c",
+          "new_target": "0xfffffff0089ab7d0",
+          "old_insns": 71,
+          "new_insns": 71,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 0,
+          "offset": 0,
+          "old_target": "0xfffffff00895f268",
+          "new_target": "0xfffffff00899086c",
+          "old_insns": 29,
+          "new_insns": 32,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 1,
+          "offset": 8,
+          "old_target": "0xfffffff00895f2dc",
+          "new_target": "0xfffffff0089908ec",
+          "old_insns": 18,
+          "new_insns": 18,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff00895f4ec",
+          "new_target": "0xfffffff008990afc",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 21,
+          "offset": 168,
+          "old_target": "0xfffffff00895f4d0",
+          "new_target": "0xfffffff008990ae0",
+          "old_insns": 7,
+          "new_insns": 7,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 85,
+          "offset": 680,
+          "old_target": "0xfffffff00895f508",
+          "new_target": "0xfffffff008990b18",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff00895f528",
+          "new_target": "0xfffffff008990b38",
+          "old_insns": 493,
+          "new_insns": 623,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089601b8",
+          "new_target": "0xfffffff008991bcc",
+          "old_insns": 114,
+          "new_insns": 126,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 111,
+          "offset": 888,
+          "old_target": "0xfffffff008960fc0",
+          "new_target": "0xfffffff008992a64",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 132,
+          "offset": 1056,
+          "old_target": "0xfffffff008960fcc",
+          "new_target": "0xfffffff008992a70",
+          "old_insns": 8,
+          "new_insns": 8,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 141,
+          "offset": 1128,
+          "old_target": "0xfffffff0089607b8",
+          "new_target": "0xfffffff008992258",
+          "old_insns": 239,
+          "new_insns": 239,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancerClient",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089b1ee4",
+          "new_target": "0xfffffff0089ab228",
+          "old_insns": 68,
+          "new_insns": 68,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancerClient",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089b20b4",
+          "new_target": "0xfffffff0089ab3f8",
+          "old_insns": 53,
+          "new_insns": 53,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancerClient",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff0089b27ac",
+          "new_target": "0xfffffff0089abaf0",
+          "old_insns": 165,
+          "new_insns": 165,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancerClient",
+          "index": 186,
+          "offset": 1488,
+          "old_target": "0xfffffff0089b248c",
+          "new_target": "0xfffffff0089ab7d0",
+          "old_insns": 71,
+          "new_insns": 71,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancerDirectPathClient",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089b1ee4",
+          "new_target": "0xfffffff0089ab228",
+          "old_insns": 68,
+          "new_insns": 68,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancerDirectPathClient",
+          "index": 178,
+          "offset": 1424,
+          "old_target": "0xfffffff0089b27ac",
+          "new_target": "0xfffffff0089abaf0",
+          "old_insns": 165,
+          "new_insns": 165,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "H1xANELoadBalancerDirectPathClient",
+          "index": 186,
+          "offset": 1488,
+          "old_target": "0xfffffff0089b2690",
+          "new_target": "0xfffffff0089ab9d4",
+          "old_insns": 71,
+          "new_insns": 71,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEChannel*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008900048",
+          "new_target": "0xfffffff00897ce54",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEChannel*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008900148",
+          "new_target": "0xfffffff00897cf54",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEChannelMessage*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0088ffd0c",
+          "new_target": "0xfffffff00897cb18",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEChannelMessage*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0088ffe0c",
+          "new_target": "0xfffffff00897cc18",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientContext*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089fb284",
+          "new_target": "0xfffffff008a2653c",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientContext*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089fb384",
+          "new_target": "0xfffffff008a2663c",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientDevice*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089b04c0",
+          "new_target": "0xfffffff0089a9804",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientDevice*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089b05c0",
+          "new_target": "0xfffffff0089a9904",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientDeviceCore*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008984de0",
+          "new_target": "0xfffffff0089c2cdc",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientDeviceCore*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008984ee0",
+          "new_target": "0xfffffff0089c2ddc",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientMappedSurface>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089ca584",
+          "new_target": "0xfffffff0089f42bc",
+          "old_insns": 66,
+          "new_insns": 66,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientMappedSurface>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089ca68c",
+          "new_target": "0xfffffff0089f43c4",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientMappedSurfacePR>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff00892a354",
+          "new_target": "0xfffffff00893a4b4",
+          "old_insns": 66,
+          "new_insns": 66,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientMappedSurfacePR>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff00892a45c",
+          "new_target": "0xfffffff00893a5bc",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientResource*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089102b4",
+          "new_target": "0xfffffff00891fc98",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEClientResource*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089103b4",
+          "new_target": "0xfffffff00891fd98",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANECommandChannel*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089c281c",
+          "new_target": "0xfffffff0089eb754",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANECommandChannel*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089c291c",
+          "new_target": "0xfffffff0089eb854",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANECommandChannelMessage*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089c24e0",
+          "new_target": "0xfffffff0089eb418",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANECommandChannelMessage*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089c25e0",
+          "new_target": "0xfffffff0089eb518",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANECoredumpSection>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089c3204",
+          "new_target": "0xfffffff0089ec13c",
+          "old_insns": 66,
+          "new_insns": 66,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANECoredumpSection>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089c330c",
+          "new_target": "0xfffffff0089ec244",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEFirmwareCommandBuffer*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089cb290",
+          "new_target": "0xfffffff0089f4fc8",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEFirmwareCommandBuffer*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089cb390",
+          "new_target": "0xfffffff0089f50c8",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEFirmwareCommandState*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089de9d4",
+          "new_target": "0xfffffff008a08884",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEFirmwareCommandState*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089dead4",
+          "new_target": "0xfffffff008a08984",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEGroupResource*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008912638",
+          "new_target": "0xfffffff00892201c",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEGroupResource*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008912738",
+          "new_target": "0xfffffff00892211c",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEIOReporter*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008a00810",
+          "new_target": "0xfffffff008a2bc78",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEIOReporter*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008a00910",
+          "new_target": "0xfffffff008a2bd78",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEInDebugWorkProcessorParams>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089c9edc",
+          "new_target": "0xfffffff0089f3c14",
+          "old_insns": 72,
+          "new_insns": 72,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEInDebugWorkProcessorParams>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089c9ffc",
+          "new_target": "0xfffffff0089f3d34",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEInDebugWorkProcessorRPCRequest>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089ca238",
+          "new_target": "0xfffffff0089f3f70",
+          "old_insns": 68,
+          "new_insns": 68,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEInDebugWorkProcessorRPCRequest>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089ca348",
+          "new_target": "0xfffffff0089f4080",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEMPMMemoryParams>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008a07d00",
+          "new_target": "0xfffffff008a3323c",
+          "old_insns": 66,
+          "new_insns": 66,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEMPMMemoryParams>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008a07e08",
+          "new_target": "0xfffffff008a33344",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEPatchedWeightInfo*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008a3137c",
+          "new_target": "0xfffffff008a68254",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEPatchedWeightInfo*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008a3147c",
+          "new_target": "0xfffffff008a68354",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEProcess*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff00891a358",
+          "new_target": "0xfffffff00892a380",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEProcess*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff00891a458",
+          "new_target": "0xfffffff00892a480",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEProgramResource*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008931604",
+          "new_target": "0xfffffff008941b20",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEProgramResource*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008931704",
+          "new_target": "0xfffffff008941c20",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANERequest*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff00899580c",
+          "new_target": "0xfffffff0089d44ac",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANERequest*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff00899590c",
+          "new_target": "0xfffffff0089d45ac",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANERequestEvent*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008995b48",
+          "new_target": "0xfffffff0089d47e8",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANERequestEvent*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008995c48",
+          "new_target": "0xfffffff0089d48e8",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEResource*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff008941578",
+          "new_target": "0xfffffff008952d7c",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEResource*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff008941678",
+          "new_target": "0xfffffff008952e7c",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANESharedMemorySurfaceParams>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089e629c",
+          "new_target": "0xfffffff008a10480",
+          "old_insns": 87,
+          "new_insns": 87,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANESharedMemorySurfaceParams>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089e63f8",
+          "new_target": "0xfffffff008a105dc",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEUnionResource*>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff00895ae10",
+          "new_target": "0xfffffff00896c8c4",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<ANEUnionResource*>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff00895af10",
+          "new_target": "0xfffffff00896c9c4",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<FWPendingRequest>",
+          "index": 13,
+          "offset": 104,
+          "old_target": "0xfffffff0089de698",
+          "new_target": "0xfffffff008a08548",
+          "old_insns": 64,
+          "new_insns": 64,
+          "class_of_change": "constant_only"
+        },
+        {
+          "class": "OSValueObject<FWPendingRequest>",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089de798",
+          "new_target": "0xfffffff008a08648",
+          "old_insns": 37,
+          "new_insns": 37,
+          "class_of_change": "constant_only"
+        }
+      ],
+      "new_classes": [
+        "ANEPoolRefillMsg",
+        "OSValueObject<ANEInferenceRequest*>",
+        "OSValueObject<ANEMapRequest*>"
+      ],
+      "structural_unique_target_pairs": 34,
+      "structural_classes": [
+        "ANEClientHintsUserClient",
+        "ANEDeviceInterface",
+        "ANEDriver",
+        "ANEHWDevice",
+        "ANEScheduler",
+        "H11ANEIn",
+        "H1xANELoadBalancer"
+      ],
+      "structural_slots": [
+        {
+          "class": "ANEClientHintsUserClient",
+          "index": 44,
+          "offset": 352,
+          "old_target": "0xfffffff008972378",
+          "new_target": "0xfffffff0089af448",
+          "old_insns": 520,
+          "new_insns": 524,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDeviceInterface",
+          "index": 218,
+          "offset": 1744,
+          "old_target": "0xfffffff0088edba8",
+          "new_target": "0xfffffff00891b030",
+          "old_insns": 2,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDeviceInterface",
+          "index": 220,
+          "offset": 1760,
+          "old_target": "0xfffffff0088edbb0",
+          "new_target": "0xfffffff00891b0b4",
+          "old_insns": 2,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 0,
+          "offset": 0,
+          "old_target": "0xfffffff00895eea8",
+          "new_target": "0xfffffff008990484",
+          "old_insns": 29,
+          "new_insns": 32,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff00895f528",
+          "new_target": "0xfffffff008990b38",
+          "old_insns": 493,
+          "new_insns": 623,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEDriver",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089601b8",
+          "new_target": "0xfffffff008991bcc",
+          "old_insns": 114,
+          "new_insns": 126,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff0089e9550",
+          "new_target": "0xfffffff008a138c4",
+          "old_insns": 4859,
+          "new_insns": 4903,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089f6364",
+          "new_target": "0xfffffff008a21040",
+          "old_insns": 388,
+          "new_insns": 391,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 117,
+          "offset": 936,
+          "old_target": "0xfffffff0089f0448",
+          "new_target": "0xfffffff008a1a86c",
+          "old_insns": 123,
+          "new_insns": 138,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 176,
+          "offset": 1408,
+          "old_target": "0xfffffff0089c57bc",
+          "new_target": "0xfffffff0089ef380",
+          "old_insns": 183,
+          "new_insns": 143,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 181,
+          "offset": 1448,
+          "old_target": "0xfffffff008989b00",
+          "new_target": "0xfffffff0089c7b7c",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 184,
+          "offset": 1472,
+          "old_target": "0xfffffff00898a17c",
+          "new_target": "0xfffffff0089c8344",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 185,
+          "offset": 1480,
+          "old_target": "0xfffffff00898a224",
+          "new_target": "0xfffffff0089c8494",
+          "old_insns": 35,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 191,
+          "offset": 1528,
+          "old_target": "0xfffffff00898a2c8",
+          "new_target": "0xfffffff0089c85e0",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 217,
+          "offset": 1736,
+          "old_target": "0xfffffff00898ad78",
+          "new_target": "0xfffffff0089c937c",
+          "old_insns": 3,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 218,
+          "offset": 1744,
+          "old_target": "0xfffffff00898ab70",
+          "new_target": "0xfffffff0089c938c",
+          "old_insns": 35,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 219,
+          "offset": 1752,
+          "old_target": "0xfffffff00898ac0c",
+          "new_target": "0xfffffff0089dffa4",
+          "old_insns": 35,
+          "new_insns": 34,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 220,
+          "offset": 1760,
+          "old_target": "0xfffffff0089f8aa0",
+          "new_target": "0xfffffff0089c939c",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 221,
+          "offset": 1768,
+          "old_target": "0xfffffff0089f5728",
+          "new_target": "0xfffffff0089c9078",
+          "old_insns": 21,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 222,
+          "offset": 1776,
+          "old_target": "0xfffffff0089c8670",
+          "new_target": "0xfffffff0089c9114",
+          "old_insns": 74,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 223,
+          "offset": 1784,
+          "old_target": "0xfffffff0089c8798",
+          "new_target": "0xfffffff0089c91e0",
+          "old_insns": 94,
+          "new_insns": 50,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 224,
+          "offset": 1792,
+          "old_target": "0xfffffff0089c8910",
+          "new_target": "0xfffffff008a23788",
+          "old_insns": 82,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 225,
+          "offset": 1800,
+          "old_target": "0xfffffff0089c8a58",
+          "new_target": "0xfffffff008a20338",
+          "old_insns": 756,
+          "new_insns": 21,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 226,
+          "offset": 1808,
+          "old_target": "0xfffffff0089c673c",
+          "new_target": "0xfffffff0089f23a8",
+          "old_insns": 36,
+          "new_insns": 74,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 227,
+          "offset": 1816,
+          "old_target": "0xfffffff0089c6b10",
+          "new_target": "0xfffffff0089f24d0",
+          "old_insns": 21,
+          "new_insns": 94,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 228,
+          "offset": 1824,
+          "old_target": "0xfffffff0089c6c50",
+          "new_target": "0xfffffff0089f2648",
+          "old_insns": 22,
+          "new_insns": 82,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 229,
+          "offset": 1832,
+          "old_target": "0xfffffff0089c7824",
+          "new_target": "0xfffffff0089f2790",
+          "old_insns": 22,
+          "new_insns": 756,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEHWDevice",
+          "index": 230,
+          "offset": 1840,
+          "old_target": "0xfffffff0089c80f4",
+          "new_target": "0xfffffff0089f0474",
+          "old_insns": 21,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEScheduler",
+          "index": 14,
+          "offset": 112,
+          "old_target": "0xfffffff0089660e4",
+          "new_target": "0xfffffff008998668",
+          "old_insns": 172,
+          "new_insns": 189,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "ANEScheduler",
+          "index": 15,
+          "offset": 120,
+          "old_target": "0xfffffff008964de4",
+          "new_target": "0xfffffff0089972c0",
+          "old_insns": 732,
+          "new_insns": 734,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff0089e9550",
+          "new_target": "0xfffffff008a138c4",
+          "old_insns": 4859,
+          "new_insns": 4903,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089f6364",
+          "new_target": "0xfffffff008a21040",
+          "old_insns": 388,
+          "new_insns": 391,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 117,
+          "offset": 936,
+          "old_target": "0xfffffff0089f0448",
+          "new_target": "0xfffffff008a1a86c",
+          "old_insns": 123,
+          "new_insns": 138,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 176,
+          "offset": 1408,
+          "old_target": "0xfffffff0089c57bc",
+          "new_target": "0xfffffff0089ef380",
+          "old_insns": 183,
+          "new_insns": 143,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 181,
+          "offset": 1448,
+          "old_target": "0xfffffff008989b00",
+          "new_target": "0xfffffff0089c7b7c",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 184,
+          "offset": 1472,
+          "old_target": "0xfffffff00898a17c",
+          "new_target": "0xfffffff0089c8344",
+          "old_insns": 36,
+          "new_insns": 37,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 185,
+          "offset": 1480,
+          "old_target": "0xfffffff00898a224",
+          "new_target": "0xfffffff0089c8494",
+          "old_insns": 35,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 191,
+          "offset": 1528,
+          "old_target": "0xfffffff00898a2c8",
+          "new_target": "0xfffffff0089c85e0",
+          "old_insns": 35,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 217,
+          "offset": 1736,
+          "old_target": "0xfffffff0089f8bdc",
+          "new_target": "0xfffffff008a238c4",
+          "old_insns": 3,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 218,
+          "offset": 1744,
+          "old_target": "0xfffffff00898ab70",
+          "new_target": "0xfffffff008a238d4",
+          "old_insns": 35,
+          "new_insns": 4,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 219,
+          "offset": 1752,
+          "old_target": "0xfffffff00898ac0c",
+          "new_target": "0xfffffff0089dffa4",
+          "old_insns": 35,
+          "new_insns": 34,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 220,
+          "offset": 1760,
+          "old_target": "0xfffffff0089f8aa0",
+          "new_target": "0xfffffff008a238e4",
+          "old_insns": 3,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 221,
+          "offset": 1768,
+          "old_target": "0xfffffff0089f5728",
+          "new_target": "0xfffffff0089c9078",
+          "old_insns": 21,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 222,
+          "offset": 1776,
+          "old_target": "0xfffffff0089c8670",
+          "new_target": "0xfffffff0089c9114",
+          "old_insns": 74,
+          "new_insns": 35,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 223,
+          "offset": 1784,
+          "old_target": "0xfffffff0089c8798",
+          "new_target": "0xfffffff0089c91e0",
+          "old_insns": 94,
+          "new_insns": 50,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 224,
+          "offset": 1792,
+          "old_target": "0xfffffff0089c8910",
+          "new_target": "0xfffffff008a23788",
+          "old_insns": 82,
+          "new_insns": 3,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 225,
+          "offset": 1800,
+          "old_target": "0xfffffff0089c8a58",
+          "new_target": "0xfffffff008a20338",
+          "old_insns": 756,
+          "new_insns": 21,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 226,
+          "offset": 1808,
+          "old_target": "0xfffffff0089c673c",
+          "new_target": "0xfffffff0089f23a8",
+          "old_insns": 36,
+          "new_insns": 74,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 227,
+          "offset": 1816,
+          "old_target": "0xfffffff0089c6b10",
+          "new_target": "0xfffffff0089f24d0",
+          "old_insns": 21,
+          "new_insns": 94,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 228,
+          "offset": 1824,
+          "old_target": "0xfffffff0089c6c50",
+          "new_target": "0xfffffff0089f2648",
+          "old_insns": 22,
+          "new_insns": 82,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 229,
+          "offset": 1832,
+          "old_target": "0xfffffff0089c7824",
+          "new_target": "0xfffffff0089f2790",
+          "old_insns": 22,
+          "new_insns": 756,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H11ANEIn",
+          "index": 230,
+          "offset": 1840,
+          "old_target": "0xfffffff0089c80f4",
+          "new_target": "0xfffffff0089f0474",
+          "old_insns": 21,
+          "new_insns": 36,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 0,
+          "offset": 0,
+          "old_target": "0xfffffff00895f268",
+          "new_target": "0xfffffff00899086c",
+          "old_insns": 29,
+          "new_insns": 32,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 86,
+          "offset": 688,
+          "old_target": "0xfffffff00895f528",
+          "new_target": "0xfffffff008990b38",
+          "old_insns": 493,
+          "new_insns": 623,
+          "class_of_change": "structural"
+        },
+        {
+          "class": "H1xANELoadBalancer",
+          "index": 87,
+          "offset": 696,
+          "old_target": "0xfffffff0089601b8",
+          "new_target": "0xfffffff008991bcc",
+          "old_insns": 114,
+          "new_insns": 126,
+          "class_of_change": "structural"
+        }
+      ]
+    }
+  }
 }
