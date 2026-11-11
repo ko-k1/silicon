@@ -1,7 +1,7 @@
 # Implementation state checklist
 
 - **Last verified:** 2026-11-11
-- **Verified against commit:** pending CASE-0004 working tree
+- **Verified against commit:** `4a884d3`
 - **Target scope:** A14 / iPhone 12 mini / iOS 27.0.1 (24A446) baseline, plus the iOS 27.2 (24B119) differential comparison and repository-level implementation
 - **Purpose:** give a human reviewer and an LLM agent the same view of what exists, what is proven, what is blocked, and how to verify it
 
