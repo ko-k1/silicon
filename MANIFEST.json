@@ -3,7 +3,7 @@
   "project": "silicon",
   "archive": "silicon-repository",
   "algorithm": "sha256",
-  "file_count": 161,
+  "file_count": 162,
   "files": [
     {
       "path": ".gitignore",
@@ -17,8 +17,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6249,
-      "sha256": "bd66660f45b4bb2cb933e8d48b9b0d361f2a2c4df23b840607f2f2446c1a4cac"
+      "bytes": 6330,
+      "sha256": "2de1b3d1786139665dace026b41b966c2716eeb60ab1ae5e7d9e1a8d6f415ff0"
     },
     {
       "path": "ROADMAP.md",
@@ -232,8 +232,8 @@
     },
     {
       "path": "reports/README.md",
-      "bytes": 452,
-      "sha256": "8740fff6716f606d35090ff7287325da5c9146a8d67887a25860fdd8b0400e22"
+      "bytes": 609,
+      "sha256": "9778b7706270bee4d6cafe312d5bfba46f001599b3f7a6ca7cb884bbeb66cf06"
     },
     {
       "path": "reports/disclosure/.gitkeep",
@@ -249,6 +249,11 @@
       "path": "reports/technical/A14-iOS-27.0.1-baseline.md",
       "bytes": 10657,
       "sha256": "9166ae6c84058baa61843f380822dda84ece606f3e1f012951256967a075f7b3"
+    },
+    {
+      "path": "reports/technical/A14-iOS-27.2-differential.md",
+      "bytes": 10815,
+      "sha256": "573640c7712c2b21105ead521efef5be9d6f831380fb2e9501f2f9c769b502ee"
     },
     {
       "path": "requirements-dev.txt",
