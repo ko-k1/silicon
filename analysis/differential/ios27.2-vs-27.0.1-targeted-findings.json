@@ -117,8 +117,63 @@
           "new_artifact": "analysis/differential/ghidra/ave2-new/0xfffffff0084246a0.c",
           "new_decompiled_bytes": 2284
         }
+      },
+      "thread_state_routines": {
+        "thread_set_state_internal": {
+          "old_artifact": "analysis/differential/ghidra/old-kernel/0xfffffff00a208a10.c",
+          "new_artifact": "analysis/differential/ghidra/new-kernel/0xfffffff00a244dc8.c",
+          "old_decompiled_bytes": 1296,
+          "new_decompiled_bytes": 1392
+        }
+      },
+      "vm_routines": {
+        "vm_map_remap": {
+          "old_artifact": "analysis/differential/ghidra/old-kernel/0xfffffff00a27b7ac.c",
+          "new_artifact": "analysis/differential/ghidra/new-kernel/0xfffffff00a2b7fd4.c",
+          "old_decompiled_bytes": 1580,
+          "new_decompiled_bytes": 1796
+        },
+        "vm_object_update": {
+          "old_artifact": "analysis/differential/ghidra/old-kernel/0xfffffff00a25fa44.c",
+          "new_artifact": "analysis/differential/ghidra/new-kernel/0xfffffff00a29be58.c",
+          "old_decompiled_bytes": 4116,
+          "new_decompiled_bytes": 4628
+        }
       }
     }
+  },
+  "thread_state_validation": {
+    "function": {
+      "name": "thread_set_state_internal",
+      "old_start": "0xfffffff00a208a10",
+      "new_start": "0xfffffff00a244dc8",
+      "old_insns": 324,
+      "new_insns": 348
+    },
+    "old_entitlements": [
+      "com.apple.private.thread-set-state"
+    ],
+    "new_entitlements": [
+      "com.apple.private.thread-set-state",
+      "com.apple.security.cs.debugger"
+    ],
+    "entitlement_string_addresses": {
+      "com.apple.private.thread-set-state": {
+        "old": "0xfffffff00704b11d",
+        "new": "0xfffffff00704b25b"
+      },
+      "com.apple.security.cs.debugger": {
+        "old": null,
+        "new": "0xfffffff00704b27e"
+      }
+    },
+    "observed_differences": [
+      "24B119 queries com.apple.security.cs.debugger in addition to com.apple.private.thread-set-state in three access-check paths; 24A446 queries only com.apple.private.thread-set-state.",
+      "The combined branch denies in the path where both entitlement queries succeed; because the helper return convention is inferred from its use, the net authorization effect is not established.",
+      "24B119 adds a leading call to an unidentified policy routine at 0xfffffff00aa1aedc when bit 0 of the flag argument is set; a nonzero result returns 8.",
+      "The IPC policy-violation denial path is routed through a wrapper at 0xfffffff00a1b8958 in 24B119; 24A446 calls ipc_triage_policy_violation directly. No semantic conclusion is drawn from this refactor."
+    ],
+    "interpretation": "24B119 adds a debugger-entitlement query to the thread-state path. The combined branch structure makes the net authorization effect unclear; it is an observed behavior change, not evidence of a vulnerability fix."
   },
   "ave2_validation_routines": {
     "symbol_source": "ipsw kernel symbolicate with symbolicator/kernel/27.2 signatures on the 24B119 kernelcache; the three names are absent from the 24A446 symbol map",
@@ -144,7 +199,10 @@
           "AVE_Client_CheckMCTFInfo",
           "AVE_Client_CheckLRMEInfo"
         ],
-        "unsigned_compare_limits": [64, 65]
+        "unsigned_compare_limits": [
+          64,
+          65
+        ]
       },
       {
         "name": "AVE_Client_CheckMCTFInfo",
@@ -161,7 +219,20 @@
         "call_sites": [
           "AVE_Client_CheckInfo"
         ],
-        "unsigned_compare_limits": [2, 8, 6, 15, 16, 1, 63, 65, 17, 13, 3, 21]
+        "unsigned_compare_limits": [
+          2,
+          8,
+          6,
+          15,
+          16,
+          1,
+          63,
+          65,
+          17,
+          13,
+          3,
+          21
+        ]
       },
       {
         "name": "AVE_Client_CheckLRMEInfo",
@@ -178,7 +249,20 @@
         "call_sites": [
           "AVE_Client_CheckInfo"
         ],
-        "unsigned_compare_limits": [2, 7, 8, 6, 15, 16, 1, 63, 65, 17, 13, 21]
+        "unsigned_compare_limits": [
+          2,
+          7,
+          8,
+          6,
+          15,
+          16,
+          1,
+          63,
+          65,
+          17,
+          13,
+          21
+        ]
       }
     ],
     "advisory_context": {
@@ -278,12 +362,79 @@
     ],
     "interpretation": "The raw 55-slot count overstates method-level change because it compares by slot index and includes inherited-slot and symbol-name effects. The name-aware subset is 7 unique changed-body target pairs, with 11 one-sided and 16 unnamed pairs unresolved."
   },
+  "kernel_structural_followup": {
+    "functions": [
+      {
+        "name": "vm_map_remap",
+        "old_start": "0xfffffff00a27b7ac",
+        "new_start": "0xfffffff00a2b7fd4",
+        "old_insns": 395,
+        "new_insns": 449,
+        "observed_changes": [
+          "24B119 rejects the request when flag bit 8 is set and (flag bit 43 is set, or *param_9 > 1, or *param_10 > 1).",
+          "24B119 clears bits 7 and 16 of a VM entry's flag word (mask 0xfffeff7f) when flag bit 8 is set and entry bit 7 is set.",
+          "The pmap_create_options_internal path and several object field offsets differ; their semantics were not established."
+        ],
+        "decompiled_artifacts": {
+          "old": "analysis/differential/ghidra/old-kernel/0xfffffff00a27b7ac.c",
+          "new": "analysis/differential/ghidra/new-kernel/0xfffffff00a2b7fd4.c"
+        },
+        "status": "observed code change; no CVE mapping"
+      },
+      {
+        "name": "vm_object_update",
+        "old_start": "0xfffffff00a25fa44",
+        "new_start": "0xfffffff00a29be58",
+        "old_insns": 1029,
+        "new_insns": 1157,
+        "observed_changes": [
+          "24B119 increments a 32-bit counter at object byte offset 0xe8 when the pl_req path is taken and panics on overflow (vm_object_pl_req_begin).",
+          "24B119 decrements the same counter on exit, panics on underflow (vm_object_pl_req_end), and clears bit 0 of object byte offset 0x74 when the counter reaches zero.",
+          "The existing vm_object_paging_begin/end accounting is retained; several call targets and field offsets differ because of the build change."
+        ],
+        "new_strings": [
+          "vm_object_pl_req_begin(%p): overflow",
+          "vm_object_pl_req_end(%p): underflow"
+        ],
+        "decompiled_artifacts": {
+          "old": "analysis/differential/ghidra/old-kernel/0xfffffff00a25fa44.c",
+          "new": "analysis/differential/ghidra/new-kernel/0xfffffff00a29be58.c"
+        },
+        "status": "observed code change; no CVE mapping"
+      }
+    ],
+    "advisory_context": {
+      "component": "Kernel",
+      "cves": [
+        "CVE-2026-112474",
+        "CVE-2026-112476",
+        "CVE-2026-112501",
+        "CVE-2026-112507",
+        "CVE-2026-112514",
+        "CVE-2026-112516",
+        "CVE-2026-112517",
+        "CVE-2026-112576",
+        "CVE-2026-112606",
+        "CVE-2026-112624",
+        "CVE-2026-112665",
+        "CVE-2026-112679",
+        "CVE-2026-112698",
+        "CVE-2026-65350",
+        "CVE-2026-84495"
+      ],
+      "status": "The 27.2 advisory lists 15 Kernel CVEs covering use-after-free, out-of-bounds, type-confusion, race, memory-integrity, and information-disclosure issues. The two VM changes are temporal and functional candidates only; no routine is mapped to a CVE."
+    },
+    "interpretation": "The decompilation narrows two of the 222 structural kernel candidates to concrete validation and accounting changes. Neither change is proven to be a security fix, and neither is mapped to an advisory entry."
+  },
   "limitations": [
     "No source-level semantics, call-graph equivalence, or CVE attribution is established.",
     "The extracted kernel and kext images are stripped; symbolicator labels are partial and can be wrong.",
     "Same virtual addresses across builds are not function correspondence; the AVE2 old/new pairs are recorded only as same-VA context.",
     "Vtable slot comparison by index is affected by inherited slots, slot reordering, and parser alignment; counts are not a method-change count.",
     "No device was connected; runtime behavior and exploitability were not measured.",
-    "The new AVE2 checks are described only by their range-check structure; no specific CVE is mapped to a routine."
+    "The new AVE2 checks are described only by their range-check structure; no specific CVE is mapped to a routine.",
+    "thread_set_state_internal, vm_map_remap, and vm_object_update are paired by symbolicator name; source-level equivalence is not established.",
+    "The vm_map_remap flag bits and vm_object_update field offsets are decompiler-derived and were not checked against kernel source.",
+    "The vm_object_pl_req_begin/end counter is an observed accounting change; its purpose and security relevance are not established."
   ]
 }

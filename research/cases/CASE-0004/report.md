@@ -2,7 +2,7 @@
 
 ## Summary
 
-The iOS 27.2 (24B119) iPhone13,1 restore image is a materially different build from iOS 27.0.1 (24A446). At the manifest level, 57 of 95 component entries differ and 38 are identical, with no keys added or removed. The release kernelcache changes from `KernelManagement_host-514.2.2` to `514.40.8`, its decompressed image grows by 278,528 bytes, and 207 of 250 embedded kext UUIDs change. A first normalized function diff of `com.apple.kernel` finds 20,873 and 20,897 function starts, 13,045 exact-normalized matches, and 222 structurally different named functions. SPTM changes from source version 820.0.22 to 820.40.24; TXM keeps source version 217.0.2 but has a different UUID and decompressed hash. Both 24B119 monitor payloads match the manifest's installed-component SHA-384 digests.
+The iOS 27.2 (24B119) iPhone13,1 restore image is a materially different build from iOS 27.0.1 (24A446). At the manifest level, 57 of 95 component entries differ and 38 are identical, with no keys added or removed. The release kernelcache changes from `KernelManagement_host-514.2.2` to `514.40.8`, its decompressed image grows by 278,528 bytes, and 207 of 250 embedded kext UUIDs change. A first normalized function diff of `com.apple.kernel` finds 20,873 and 20,897 function starts, 13,045 exact-normalized matches, and 222 structurally different named functions. The targeted follow-up adds `com.apple.security.cs.debugger` to two exception-port validation paths and to `thread_set_state_internal`, and narrows `vm_map_remap` and `vm_object_update` to concrete validation and accounting changes. SPTM changes from source version 820.0.22 to 820.40.24; TXM keeps source version 217.0.2 but has a different UUID and decompressed hash. Both 24B119 monitor payloads match the manifest's installed-component SHA-384 digests.
 
 Apple's `APPLE-SA-149230` advisory for 27.2 lists **163 CVEs**, including **15 Kernel** and **26 WebKit** entries, and its CVE set is **disjoint** from the 163 CVEs in the iOS 27 advisory. Apple released 27.2.1 on 2026-11-09 with nine further CVEs, so 24B119 is not the latest patch level as of 2026-11-11.
 
@@ -41,6 +41,11 @@ The question is what changed between the two builds and which advisory component
 | `EVD-0026` | 27.2.1 advisory: nine additional CVEs, disjoint from 27.2 |
 | `EVD-0027` | Kernel function diff: 13,045 exact matches, 222 structural named changes |
 | `EVD-0028` | AVE2 913.43.1 -> 913.64.1; ANE 10.19.6 -> 10.102.4; function-level counts |
+| `EVD-0029` | Exception-port validation adds a `com.apple.security.cs.debugger` query |
+| `EVD-0030` | AVE2 adds three named validation routines with HEVC VPS, MCTF, and LRME range checks |
+| `EVD-0031` | ANE raw vtable count qualification and symbol-map misattribution |
+| `EVD-0032` | `thread_set_state_internal` adds the same debugger entitlement in three paths |
+| `EVD-0033` | `vm_map_remap` and `vm_object_update` add validation and pl_req accounting |
 
 Derived summaries are committed under `analysis/differential/`. Raw IPSWs, manifests, and extracted payloads are not committed.
 
@@ -93,6 +98,10 @@ The two triaged kexts also change at the function level. `AppleAVE2` changes fro
 ### Targeted follow-up
 
 Two exception-port validation functions add a `com.apple.security.cs.debugger` entitlement query in 27.2: `ipc_is_valid_exception_port` (93 -> 99 instructions) and `set_exception_ports_validation` (178 -> 184). The string is absent from the 24A446 kernel and present once in 24B119. Both functions already accept `com.apple.private.set-exception-port`; the new query broadens the accepted entitlement set rather than narrowing it. The entitlement helper used by `ipc_is_valid_exception_port` is shape-identical between builds. No vulnerability-fix or security-impact claim is made.
+
+The same debugger entitlement query appears in `thread_set_state_internal` (324 -> 348 instructions). In 27.2 three access-check paths query `com.apple.security.cs.debugger` in addition to `com.apple.private.thread-set-state`; 24A446 queries only the private entitlement. The combined branch denies in the path where both queries succeed, so the net authorization effect (broadening or narrowing) is not established from the decompilation alone. The new function also calls an unidentified policy routine at `0xfffffff00aa1aedc` when bit 0 of its flag argument is set, returning 8 on failure, and routes the later IPC policy-violation denial path through a wrapper at `0xfffffff00a1b8958`. The wrapper refactor has no established semantic effect.
+
+Two VM functions were also decompiled to narrow structural candidates. `vm_map_remap` (395 -> 449 instructions) adds an early rejection when flag bit 8 is set and either flag bit 43 is set or the value at `*param_9` or `*param_10` exceeds 1. It also clears bits 7 and 16 of a VM entry's flag word (mask `0xfffeff7f`) when flag bit 8 is set and entry bit 7 is set. `vm_object_update` (1029 -> 1157 instructions) adds `vm_object_pl_req_begin`/`vm_object_pl_req_end` accounting on a 32-bit counter at object byte offset `0xe8`, with overflow and underflow panics, and clears bit 0 of object byte offset `0x74` when the counter reaches zero. The old function has neither the strings nor the counter logic. These are concrete code changes, but their security relevance and any CVE relationship remain unestablished.
 
 `AppleAVE2` adds three named validation routines that are absent from the 24A446 symbol map and whose 27.2 `__os_log` anchors are absent from the 24A446 binary:
 
@@ -161,7 +170,7 @@ This table is a **candidate map**, not an attribution. A changed kext or functio
 
 ## Result
 
-The differential baseline is **observed** with high confidence for the narrow build-level claims. The first kernel function-level pass is **observed** as a reproducible change inventory, with 222 structurally different named functions and two triaged kexts. Vulnerability attribution is **not established**. The case remains `investigating`.
+The differential baseline is **observed** with high confidence for the narrow build-level claims. The first kernel function-level pass is **observed** as a reproducible change inventory, with 222 structurally different named functions and two triaged kexts. The targeted follow-up is **observed** for the debugger-entitlement queries and the two VM code changes; none is mapped to a CVE or shown to be a security fix. Vulnerability attribution is **not established**. The case remains `investigating`.
 
 ## Impact assessment
 
@@ -169,13 +178,17 @@ No vulnerability, exploitability, or protection-bypass impact is claimed. The pr
 
 ## Reproducibility and limitations
 
-- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff), `VAL-0014` (targeted exception-port, AVE2, and ANE follow-up).
+- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff), `VAL-0014` (targeted exception-port, AVE2, and ANE follow-up), `VAL-0015` (thread-state and VM decompilation follow-up).
 - Derived JSON: `analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json`, `...-kernelcache.json`, `...-sptm-txm.json`, `...-kernel-functions.json`, `...-ave2-ane-functions.json`, `...-targeted-findings.json`.
+- Ghidra decompilation excerpts: `analysis/differential/ghidra/old-kernel/`, `.../new-kernel/`, and `.../ave2-new/`.
 - No device, no runtime measurement, no signature/trust evaluation.
 - Kernel is stripped; symbolicator names cover 5,318 functions at the same start in both images, leaving unmatched functions unresolved.
 - Symbolicator labels are not authoritative: `0xfffffff00a8e69e8` is named `PMSettingObject::pmSettingObject` in 27.2 but matches 27.0 `IOUserClient::sendAsyncResult`.
 - Function starts come from `ipsw` and are not guaranteed semantic boundaries; instruction-count changes are not proof of a semantic change.
 - The raw 55-slot ANE vtable change is not a method-change count; inherited slots, slot reordering, and parser alignment affect it.
+- `thread_set_state_internal`, `vm_map_remap`, and `vm_object_update` are paired by symbolicator name; source-level equivalence is not established.
+- The `vm_map_remap` flag bits and `vm_object_update` field offsets are decompiler-derived and were not checked against kernel source.
+- The `vm_object_pl_req_begin`/`end` counter is an observed accounting change; its purpose and security relevance are not established.
 - The earlier 1,361/1,382 function-start count was an undercount; `EVD-0027` records the corrected 20,873/20,897 count.
 - Encrypted system-volume cryptexes were not inspected.
 - Only iPhone13,1 customer restore identity was compared.
@@ -184,9 +197,9 @@ No vulnerability, exploitability, or protection-bypass impact is claimed. The pr
 
 ## Next steps
 
-1. Inspect the three new AVE2 check routines and their call graph in detail, including the fields and limits at each branch, before attempting any CVE-level attribution.
+1. Finish the AVE2 check-routine review by mapping each branch to the corresponding HEVC/MCTF/LRME field and bound; the current pass records the checks but does not establish which input bug, if any, they address.
 2. Resolve the ANE one-sided and unnamed vtable rows by function-start alignment and direct call-site analysis, not by symbolicator labels alone.
-3. Continue the highest-value kernel structural candidates. The exception-port change appears to broaden accepted entitlements, so deprioritize it as a fix candidate unless contrary evidence appears.
+3. Continue the highest-value kernel structural candidates. The exception-port and thread-state changes broaden accepted entitlements, so deprioritize them as fix candidates unless contrary evidence appears. `vm_map_remap` and `vm_object_update` now have concrete observed changes; the next step is to test whether either aligns with a specific advisory description without asserting attribution.
 4. Map a changed function to a 27.2 Kernel CVE only where the advisory description, strings, call sites, or other evidence support the attribution.
 5. Keep WebKit and ImageIO out of binary conclusions unless a lawful unencrypted source becomes available.
 6. Re-check the advisory register before treating 24B119 as current.
@@ -201,5 +214,5 @@ No new vulnerability is claimed. All inputs are public Apple restore images and 
 - `SRC-0004` - Apple security releases index
 - `SRC-0020` - Apple security content of iOS 27.2 / iPadOS 27.2
 - `SRC-0021` - Apple security content of iOS 27.2.1 / iPadOS 27.2.1
-- `EVD-0021` through `EVD-0031`
-- `VAL-0009` through `VAL-0014`
+- `EVD-0021` through `EVD-0033`
+- `VAL-0009` through `VAL-0015`

@@ -17,13 +17,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 6351,
-      "sha256": "1e871f6aef9653a21b2e607963a854d5ae27a007057eee3afbdba8627ced02bc"
+      "bytes": 6685,
+      "sha256": "ed30cdc04ff55f6f8f6e1866aad5b24bd04b4d074f30e570a58b2989e37f20fc"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 6168,
-      "sha256": "1ab1fe289abf1dc0eac46035a0d9f2dbcd544e94b88356257f191d64f605faa2"
+      "bytes": 6710,
+      "sha256": "1055b5c408232f35c5a9938a0adcb1922439562e5b1e1869806d2a0d600bd273"
     },
     {
       "path": "VISION.md",
@@ -57,8 +57,8 @@
     },
     {
       "path": "analysis/differential/README.md",
-      "bytes": 2610,
-      "sha256": "6c5d135721ccd4db2c742f63c41ad2091cf8aae780afe6dac625c0d202c96d84"
+      "bytes": 3709,
+      "sha256": "95b57fb743a16cb4011c4db014e7c82195500306ef5b7f7b3395f3fed944e735"
     },
     {
       "path": "analysis/differential/ghidra/ave2-new/0xfffffff008421158.c",
@@ -197,8 +197,8 @@
     },
     {
       "path": "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json",
-      "bytes": 12615,
-      "sha256": "c6c5fb66b8a1fad70e5e7bca2e889b632e07f59786e2b1a080596dbf1f027ccc"
+      "bytes": 19079,
+      "sha256": "1bd8003a12392e1635973649b8a62958b2d0bec56f6cc18c1b9b49e30680b8f2"
     },
     {
       "path": "analysis/static/.gitkeep",
@@ -242,8 +242,8 @@
     },
     {
       "path": "docs/workflow/implementation-state-checklist.md",
-      "bytes": 17336,
-      "sha256": "d98e8e7f3355d6357925ef168970cc8f06d5cf35b8a5479c789b6e3508759ea1"
+      "bytes": 17891,
+      "sha256": "f67c5215871120ee75c368a94d871ce4818057f4f56e021503be8f53eabfb5b0"
     },
     {
       "path": "docs/workflow/research-lifecycle.md",
@@ -382,8 +382,8 @@
     },
     {
       "path": "reports/technical/A14-iOS-27.2-differential.md",
-      "bytes": 18774,
-      "sha256": "418b432a5349b9ba978710da523fbc62daaf2dd12379a5175069f140850824fb"
+      "bytes": 21276,
+      "sha256": "29789e5db76ae4d2239c931ec17590baa8fde98ede7a8b9624c437d2b35bb129"
     },
     {
       "path": "requirements-dev.txt",
@@ -437,8 +437,8 @@
     },
     {
       "path": "research/cases/CASE-0004/case.yaml",
-      "bytes": 9926,
-      "sha256": "02b2968d07e6ab0858425d7ad001de9985f9d3a9bcfb989cfa7619cf4328da36"
+      "bytes": 11034,
+      "sha256": "3975b050b57007b8d8f0d91a63a483427bfa77f42971c1a7072103ace4062cff"
     },
     {
       "path": "research/cases/CASE-0004/hypothesis.md",
@@ -447,8 +447,8 @@
     },
     {
       "path": "research/cases/CASE-0004/report.md",
-      "bytes": 18850,
-      "sha256": "1d2a8210d62ccafb739eaae42371434ee4378ae423061957d29fbd2933ecc328"
+      "bytes": 22097,
+      "sha256": "fd1fc2b824101d5f511a2d033c355df3ed9b85d41f8c9b35ee5cc7c0247368e1"
     },
     {
       "path": "research/cases/README.md",
@@ -632,8 +632,8 @@
     },
     {
       "path": "research/evidence/README.md",
-      "bytes": 4273,
-      "sha256": "23c56d419fdcf0c85b25b721d7b760bcad39d530634c888058cf088a34b1d910"
+      "bytes": 4585,
+      "sha256": "48c017afb4fe479d9f82dd25a248ce83d2796ba51e4591c5d1e4fb8e6de31732"
     },
     {
       "path": "research/public-research/README.md",
@@ -892,8 +892,8 @@
     },
     {
       "path": "validation/README.md",
-      "bytes": 2290,
-      "sha256": "dbdc8b3cebe55621536913ea9b93e2d64e88f97a79d62102d21f6c79c9b6ab45"
+      "bytes": 2396,
+      "sha256": "11249c2d132956f260a88df1e4f1199e5f29215ccb9ff20cc1c20ba921aea10e"
     },
     {
       "path": "validation/fixtures/.gitkeep",

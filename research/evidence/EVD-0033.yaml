@@ -1,0 +1,67 @@
+schema_version: 1
+id: EVD-0033
+class: derived
+state: observed
+claim: "In the 24B119 com.apple.kernel, vm_map_remap (0xfffffff00a2b7fd4, 449 instructions) adds an early rejection for remap requests where flag bit 8 is set and either flag bit 43 is set or the value at *param_9 or *param_10 exceeds 1. It also clears bits 7 and 16 of VM-entry flags (mask 0xfffeff7f) when flag bit 8 is set and entry bit 7 is set; the 24A446 function has neither block. vm_object_update (0xfffffff00a29be58, 1157 instructions) adds vm_object_pl_req_begin and vm_object_pl_req_end accounting with overflow and underflow panics on a 32-bit counter at object byte offset 0xe8; the strings and counter logic are absent from the 24A446 function (0xfffffff00a25fa44, 1029 instructions). These are observed code changes. No CVE is mapped and no fix, exploitability, or protection-bypass conclusion is drawn."
+source:
+  type: derived-kernel-function-diff
+  locator: "com.apple.kernel extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: null
+  accessed_at: "2026-11-12"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "9f38cc342b8b6703e270d134d516d8337d0f363d81cd16b1f304b0bf38ba49f7"
+  bytes: 12224264
+  path_or_uri: "com.apple.kernel extracted from the 24B119 kernelcache (not committed)"
+  old_sha256: "e426a4bffbedc744142b37c21533529a03d77d0e2346930b243d90259a370147"
+  old_bytes: 12207832
+  functions:
+    - name: "vm_map_remap"
+      old_start: "0xfffffff00a27b7ac"
+      new_start: "0xfffffff00a2b7fd4"
+      old_insns: 395
+      new_insns: 449
+      old_decompiled_bytes: 1580
+      new_decompiled_bytes: 1796
+      old_artifact: "analysis/differential/ghidra/old-kernel/0xfffffff00a27b7ac.c"
+      new_artifact: "analysis/differential/ghidra/new-kernel/0xfffffff00a2b7fd4.c"
+      observed_differences:
+        - "24B119 rejects the request when flag bit 8 is set and (flag bit 43 is set, or *param_9 > 1, or *param_10 > 1)."
+        - "24B119 clears bits 7 and 16 of a VM entry's flag word when flag bit 8 is set and entry bit 7 is set."
+        - "The pmap_create_options_internal path and several object field offsets differ; their semantics were not established."
+    - name: "vm_object_update"
+      old_start: "0xfffffff00a25fa44"
+      new_start: "0xfffffff00a29be58"
+      old_insns: 1029
+      new_insns: 1157
+      old_decompiled_bytes: 4116
+      new_decompiled_bytes: 4628
+      old_artifact: "analysis/differential/ghidra/old-kernel/0xfffffff00a25fa44.c"
+      new_artifact: "analysis/differential/ghidra/new-kernel/0xfffffff00a29be58.c"
+      observed_differences:
+        - "24B119 increments a 32-bit counter at object byte offset 0xe8 when the pl_req path is taken and panics on overflow (vm_object_pl_req_begin)."
+        - "24B119 decrements the same counter on exit, panics on underflow (vm_object_pl_req_end), and clears bit 0 of object byte offset 0x74 when the counter reaches zero."
+        - "The existing vm_object_paging_begin/end accounting is retained; several call targets and field offsets differ because of the build change."
+  new_strings:
+    - "vm_object_pl_req_begin(%p): overflow"
+    - "vm_object_pl_req_end(%p): underflow"
+  ghidra_decompilation:
+    tool: "ghidra-headless 12.3_DEV"
+    method: "Ghidra headless analyzer with auto-analysis, then DecompileFuncs post-script"
+  function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json"
+limitations:
+  - "The kernel is stripped; function pairing comes from the symbolicator map, and source-level equivalence is not established."
+  - "The vm_map_remap validation and vm_object_update accounting are observations, not proof of a security fix or of the affected input class."
+  - "Field offsets and flag names are derived from the decompiler and have not been checked against kernel source."
+  - "No CVE is mapped; advisory membership does not establish reachability on A14."
+  - "No device was connected; runtime behavior was not measured."
+related_evidence:
+  - EVD-0027
+related_cases:
+  - CASE-0004

@@ -3,7 +3,7 @@ id: CASE-0004
 title: "iOS 27.2 (24B119) differential baseline for A14 / iPhone 12 mini"
 status: investigating
 created_at: "2026-11-11T11:42:00+09:00"
-updated_at: "2026-11-11T14:05:00+09:00"
+updated_at: "2026-11-12T08:30:00+09:00"
 target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
 owner: null
 reviewer: null
@@ -59,6 +59,8 @@ evidence:
     - EVD-0029
     - EVD-0030
     - EVD-0031
+    - EVD-0032
+    - EVD-0033
   counter: []
 analysis:
   methods:
@@ -76,6 +78,7 @@ analysis:
     - call-site-analysis
     - symbolicator-function-naming
     - arm64-disassembly
+    - ghidra-decompilation
     - apple-advisory-parsing
     - cve-set-comparison
     - component-to-artifact-triage
@@ -92,6 +95,7 @@ analysis:
     - "analysis/differential/ios27.2-vs-27.0.1-kernel-functions.json"
     - "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json"
     - "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json"
+    - "analysis/differential/ghidra/old-kernel/ and new-kernel/ (decompiled exception-port, thread-state, and VM functions)"
     - "research/public-research/ios27.2-vulnerability-register.yaml"
   tools:
     - python-3.14.9
@@ -114,10 +118,11 @@ validation:
     - VAL-0012
     - VAL-0013
     - VAL-0014
+    - VAL-0015
 conclusion:
   state: observed
   confidence: high
-  summary: "The 24B119 iPhone13,1 image differs from 24A446 at the manifest and binary levels. 57 of 95 BuildManifest component entries differ (56 digest changes and one path-only change), with no keys added or removed. The release kernelcache changes from KernelManagement_host-514.2.2 to 514.40.8; the decompressed image grows from 66,535,424 to 66,813,952 bytes, 207 of 250 fileset kext UUIDs change, and function starts increase from 20,873 to 20,897. A normalized function diff finds 13,045 exact matches and 222 structurally different named functions, including IPC, VM, process, filesystem, and networking paths; no function is mapped to a CVE. Both exception-port validation functions add a com.apple.security.cs.debugger entitlement query, broadening the accepted entitlement set. AppleAVE2 changes from 913.43.1 to 913.64.1 and adds three named range-check routines for HEVC VPS, MCTF, and LRME fields; the 27.2 advisory lists six AVEVideoEncoder out-of-bounds CVEs, but no routine is mapped to a CVE. AppleH11ANEInterface changes from 10.19.6 to 10.102.4, adds three classes, and its raw 55-slot vtable change resolves to 7 unique named changed-body candidate pairs plus unresolved rows; symbolicator labels are not authoritative. SPTM changes from source version 820.0.22 to 820.40.24 and TXM keeps 217.0.2 but has a different UUID and decompressed hash; both 24B119 IM4P SHA-384 values match the manifest's installed-component digests. Apple's 27.2 advisory lists 163 CVEs, disjoint from the 163 CVEs in the 27.0 advisory, including 15 Kernel and 26 WebKit entries. These are differential observations; no CVE is mapped to a changed function, and no exploitability or protection-bypass claim is made."
+  summary: "The 24B119 iPhone13,1 image differs from 24A446 at the manifest and binary levels. 57 of 95 BuildManifest component entries differ (56 digest changes and one path-only change), with no keys added or removed. The release kernelcache changes from KernelManagement_host-514.2.2 to 514.40.8; the decompressed image grows from 66,535,424 to 66,813,952 bytes, 207 of 250 fileset kext UUIDs change, and function starts increase from 20,873 to 20,897. A normalized function diff finds 13,045 exact matches and 222 structurally different named functions, including IPC, VM, process, filesystem, and networking paths; no function is mapped to a CVE. Both exception-port validation functions add a com.apple.security.cs.debugger entitlement query, broadening the accepted entitlement set; thread_set_state_internal adds the same debugger entitlement query in three access-check paths, with the net authorization effect not established. vm_map_remap adds an early rejection for remap requests with flag bit 8 and multiple inputs or flag bit 43, and clears VM-entry bits 7 and 16 when flag bit 8 and entry bit 7 are set. vm_object_update adds vm_object_pl_req_begin/end accounting with overflow and underflow panics on a 32-bit counter at object offset 0xe8. AppleAVE2 changes from 913.43.1 to 913.64.1 and adds three named range-check routines for HEVC VPS, MCTF, and LRME fields; the 27.2 advisory lists six AVEVideoEncoder out-of-bounds CVEs, but no routine is mapped to a CVE. AppleH11ANEInterface changes from 10.19.6 to 10.102.4, adds three classes, and its raw 55-slot vtable change resolves to 7 unique named changed-body candidate pairs plus unresolved rows; symbolicator labels are not authoritative. SPTM changes from source version 820.0.22 to 820.40.24 and TXM keeps 217.0.2 but has a different UUID and decompressed hash; both 24B119 IM4P SHA-384 values match the manifest's installed-component digests. Apple's 27.2 advisory lists 163 CVEs, disjoint from the 163 CVEs in the 27.0 advisory, including 15 Kernel and 26 WebKit entries. These are differential observations; no CVE is mapped to a changed function, and no exploitability or protection-bypass claim is made."
   limitations:
     - "No physical device was available; runtime protection state and installation are unmeasured."
     - "The kernel image is stripped; changed functions were not attributed to source symbols or CVEs."
@@ -125,6 +130,9 @@ conclusion:
     - "Symbolicator coverage is partial: 5,318 names matched at the same start address, while 52 old-only and 51 new-only names remain unmatched."
     - "At least one symbolicator label is demonstrably wrong: 0xfffffff00a8e69e8 is named PMSettingObject::pmSettingObject in 27.2, but its disassembly matches 27.0 IOUserClient::sendAsyncResult."
     - "The raw 55-slot ANE vtable count is not a method-change count; inherited slots, slot reordering, and parser alignment affect it (EVD-0031)."
+    - "thread_set_state_internal, vm_map_remap, and vm_object_update are paired by symbolicator name; source-level equivalence is not established (EVD-0032, EVD-0033)."
+    - "The vm_map_remap flag bits and vm_object_update field offsets are decompiler-derived and were not checked against kernel source."
+    - "The vm_object_pl_req_begin/end counter is an observed accounting change; its purpose and security relevance are not established."
     - "The earlier 1,361/1,382 function-start count was an undercount and is superseded by 20,873/20,897 (EVD-0027)."
     - "Kext UUID changes are build-identity changes, not proof of security-relevant code changes."
     - "The 27.2 advisory is documentary evidence; CVE membership does not establish reachability on A14."

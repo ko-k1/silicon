@@ -1,0 +1,46 @@
+schema_version: 1
+id: VAL-0015
+case_id: CASE-0004
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-12T08:30:00+09:00"
+environment:
+  type: offline
+  description: "Offline decompilation and disassembly review of com.apple.kernel from the 24A446 and 24B119 iPhone13,1 restore images. No device was connected."
+  tool_versions:
+    ghidra: "12.3_DEV"
+    llvm-objdump: "23.1.4"
+    ipsw: "v0.0.0-prerelease, BuildCommit 0983ab4cb"
+    symbolicator: "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950"
+    python: "3.14.9"
+inputs:
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.2_24B119_Restore.ipsw"
+    sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
+  - name: "com.apple.kernel extracted from 24A446"
+    sha256: "e426a4bffbedc744142b37c21533529a03d77d0e2346930b243d90259a370147"
+  - name: "com.apple.kernel extracted from 24B119"
+    sha256: "9f38cc342b8b6703e270d134d516d8337d0f363d81cd16b1f304b0bf38ba49f7"
+expected_outcome: "The follow-up should confirm whether thread_set_state_internal adds the com.apple.security.cs.debugger entitlement, and whether the vm_map_remap and vm_object_update structural changes correspond to identifiable validation or accounting changes. It should not attribute any change to a CVE without supporting evidence."
+observed_outcome: "thread_set_state_internal (324 -> 348 instructions) queries com.apple.security.cs.debugger in addition to com.apple.private.thread-set-state in three access-check paths; the combined branch denies where both queries succeed, so the net authorization effect is not established. vm_map_remap (395 -> 449) adds an early rejection when flag bit 8 is set with flag bit 43 or either input count above 1, and clears VM-entry bits 7 and 16 when flag bit 8 and entry bit 7 are set. vm_object_update (1029 -> 1157) adds vm_object_pl_req_begin/end accounting on a 32-bit counter at object offset 0xe8, with overflow and underflow panics. No CVE was mapped."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The follow-up confirmed one additional debugger-entitlement path and two bounded VM code changes. The changes remain observations; fix status, security impact, and CVE attribution are not established."
+reproduction:
+  - "Extract com.apple.kernel from each kernelcache with ipsw kernel extract."
+  - "Generate function starts with ipsw macho info -f and disassemble with llvm-objdump -d --no-show-raw-insn."
+  - "Symbolicate with ipsw kernel symbolicate and the matching symbolicator signature set."
+  - "Run python3 -m engineering.analyzers.kernel_function_diff on the kernel pair."
+  - "Import each extracted kernel into Ghidra 12.3_DEV and decompile thread_set_state_internal, vm_map_remap, and vm_object_update with the DecompileFuncs post-script."
+  - "Compare the committed decompiled artifacts under analysis/differential/ghidra/old-kernel and new-kernel."
+  - "Verify the com.apple.security.cs.debugger and vm_object_pl_req_begin/end strings in the 24B119 kernel string dump and their absence in 24A446."
+limitations:
+  - "The kernel is stripped; helper and policy routines have no authoritative names."
+  - "Function pairing comes from the symbolicator map; source-level equivalence is not established."
+  - "Field offsets and flag bits are decompiler-derived and were not checked against kernel source."
+  - "No CVE-to-function mapping, exploitability, or protection-bypass conclusion is established."
+  - "No device was connected; runtime behavior was not measured."
+related_evidence:
+  - EVD-0032
+  - EVD-0033

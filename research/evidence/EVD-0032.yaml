@@ -1,0 +1,60 @@
+schema_version: 1
+id: EVD-0032
+class: derived
+state: observed
+claim: "In the 24B119 com.apple.kernel, thread_set_state_internal (0xfffffff00a244dc8, 348 instructions) queries com.apple.security.cs.debugger after com.apple.private.thread-set-state in three access-check paths. The 24A446 function (0xfffffff00a208a10, 324 instructions) queries only com.apple.private.thread-set-state. The new function also calls an unidentified policy routine at 0xfffffff00aa1aedc when bit 0 of its flag argument is set, returning 8 if that call fails. The com.apple.security.cs.debugger string is absent from the 24A446 kernel and present once in 24B119. This is an observed behavior change; the net authorization effect of the combined branch (broadening or narrowing) is not established from the decompilation alone. It does not establish a vulnerability fix, a security improvement, or exploitability."
+source:
+  type: derived-kernel-function-diff
+  locator: "com.apple.kernel extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: null
+  accessed_at: "2026-11-12"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "9f38cc342b8b6703e270d134d516d8337d0f363d81cd16b1f304b0bf38ba49f7"
+  bytes: 12224264
+  path_or_uri: "com.apple.kernel extracted from the 24B119 kernelcache (not committed)"
+  old_sha256: "e426a4bffbedc744142b37c21533529a03d77d0e2346930b243d90259a370147"
+  old_bytes: 12207832
+  function:
+    name: "thread_set_state_internal"
+    old_start: "0xfffffff00a208a10"
+    new_start: "0xfffffff00a244dc8"
+    old_insns: 324
+    new_insns: 348
+    old_decompiled_bytes: 1296
+    new_decompiled_bytes: 1392
+    old_artifact: "analysis/differential/ghidra/old-kernel/0xfffffff00a208a10.c"
+    new_artifact: "analysis/differential/ghidra/new-kernel/0xfffffff00a244dc8.c"
+  entitlement_string:
+    value: "com.apple.security.cs.debugger"
+    old_address: null
+    new_address: "0xfffffff00704b27e"
+    old_occurrences: 0
+    new_occurrences: 1
+  existing_entitlement: "com.apple.private.thread-set-state"
+  observed_differences:
+    - "Three access-check paths query com.apple.security.cs.debugger in addition to com.apple.private.thread-set-state in 24B119; the 24A446 paths query only com.apple.private.thread-set-state."
+    - "The combined branch denies in the path where both entitlement queries succeed; because the helper return convention is inferred from its use, the net authorization effect is not established."
+    - "24B119 adds a leading call to an unidentified policy routine at 0xfffffff00aa1aedc when bit 0 of the flag argument is set; a nonzero result returns 8."
+    - "The later IPC policy-violation denial path is routed through a wrapper at 0xfffffff00a1b8958 in 24B119; the 24A446 path calls ipc_triage_policy_violation directly. No semantic conclusion is drawn from this refactor."
+  ghidra_decompilation:
+    tool: "ghidra-headless 12.3_DEV"
+    method: "Ghidra headless analyzer with auto-analysis, then DecompileFuncs post-script"
+  function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json"
+limitations:
+  - "The function is stripped; the policy routine at 0xfffffff00aa1aedc and the wrapper at 0xfffffff00a1b8958 have no authoritative names."
+  - "The additional entitlement query changes behavior, but the net authorization effect is not established; security impact and intent are not established."
+  - "Same-name pairing across builds comes from the symbolicator map; source-level equivalence is not established."
+  - "Advisory membership is not proof that this change fixes a named CVE."
+  - "No device was connected; runtime behavior was not measured."
+related_evidence:
+  - EVD-0027
+  - EVD-0029
+related_cases:
+  - CASE-0004

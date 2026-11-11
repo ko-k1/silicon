@@ -9,6 +9,12 @@ Derived JSON summaries for `CASE-0004` (iPhone13,1 iOS 27.0.1 `24A446` vs iOS 27
 | `ios27.2-vs-27.0.1-buildmanifest.json` | `BuildManifest.plist` from both IPSWs | Per-identity component comparison: 95 keys compared, 38 identical, 57 different, no additions or removals; full changed list with paths, digests, and flags |
 | `ios27.2-vs-27.0.1-kernelcache.json` | `kernelcache.release.iphone13` from both IPSWs | IM4P and decompressed Mach-O hashes, build descriptions, fileset entry count, kext UUID comparison, unchanged kext names, function-start counts |
 | `ios27.2-vs-27.0.1-sptm-txm.json` | `Firmware/sptm.t8101.release.im4p` and `Firmware/txm.iphoneos.release.im4p` from both IPSWs | IM4P and decompressed hashes, Mach-O UUIDs, source versions, and `__TEXT_EXEC` hashes |
+| `ios27.2-vs-27.0.1-kernel-functions.json` | `com.apple.kernel` from both kernelcaches | Normalized function matching, 222 structural named changes, and triage candidates |
+| `ios27.2-vs-27.0.1-ave2-ane-functions.json` | `AppleAVE2` and `AppleH11ANEInterface` from both kernelcaches | Kext versions, function counts, exact/shape matches, vtable slot comparison, and new classes |
+| `ios27.2-vs-27.0.1-targeted-findings.json` | Extracted kernel and kext images plus symbolication and Ghidra output | Exception-port and thread-state entitlement changes, AVE2 validation routines, ANE vtable qualification, and VM structural follow-up |
+| `ghidra/old-kernel/`, `ghidra/new-kernel/`, `ghidra/ave2-new/` | Extracted `com.apple.kernel` and `AppleAVE2` | Ghidra 12.3_DEV decompilation excerpts for the reviewed routines, with metadata sidecars |
+
+The targeted-findings file was extended on 2026-11-12 with `thread_set_state_internal` and the `vm_map_remap`/`vm_object_update` follow-up (`EVD-0032`, `EVD-0033`, `VAL-0015`). Those entries record observed code changes; they do not map a function to a CVE.
 
 ## Input hashes
 

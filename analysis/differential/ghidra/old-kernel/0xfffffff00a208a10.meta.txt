@@ -1,0 +1,6 @@
+address=0xfffffff00a208a10
+binary=/tmp/opencode/ipsw-kernel-diff/old/com.apple.kernel
+entry=fffffff00a208a10
+name=FUN_fffffff00a208a10
+signature=undefined FUN_fffffff00a208a10(void)
+bytes=1296

@@ -20,13 +20,14 @@ Roadmap items are goals, not claims of completed capability. Move an item only w
 - Runtime state: PPL, SPTM, and TXM remain `unknown` for the exact target. `VAL-0001` is `not-run` because no device was available.
 - Cases: `CASE-0001` records the mechanism finding across the four iPhone 12-family A14 product types; `CASE-0002` records the iOS 27 vulnerability baseline (`research/public-research/ios27-vulnerability-register.yaml`); `CASE-0003` records public bypass scope for A14.
 
-## iOS 27.2 differential (2026-11-11)
+## iOS 27.2 differential (2026-11-11; follow-up 2026-11-12)
 
 - Comparison pair: iPhone13,1 iOS 27.0.1 (24A446) and iOS 27.2 (24B119). The 27.2 image is a local restore IPSW; its BuildManifest SHA-256 is `2d13f370...e431ec` (`EVD-0021`).
 - Build-level diff: 57 of 95 BuildManifest component entries differ, 38 are identical, and no keys were added or removed (`EVD-0022`, `VAL-0009`).
-- Kernel diff: `KernelManagement_host-514.2.2` to `514.40.8`; decompressed image 66,535,424 to 66,813,952 bytes; 207 of 250 kext UUIDs change, 43 remain identical; function starts 1,361 to 1,382 (`EVD-0023`, `VAL-0010`).
+- Kernel diff: `KernelManagement_host-514.2.2` to `514.40.8`; decompressed image 66,535,424 to 66,813,952 bytes; 207 of 250 kext UUIDs change, 43 remain identical; function starts 20,873 to 20,897 (`EVD-0023`, `EVD-0027`, `VAL-0010`, `VAL-0012`).
 - Monitor diff: SPTM 820.0.22 to 820.40.24; TXM remains 217.0.2 but has a different UUID and decompressed hash; both 24B119 IM4P SHA-384 values match manifest digests (`EVD-0024`, `VAL-0011`).
 - Advisory diff: 27.2 has 163 CVEs, disjoint from the 163 in 27.0, including 15 Kernel and 26 WebKit entries (`EVD-0025`, `SRC-0020`). 27.2.1 adds nine CVEs; 24B119 is not the latest patch level (`EVD-0026`, `SRC-0021`).
+- Targeted follow-up: two exception-port validation paths and `thread_set_state_internal` add a `com.apple.security.cs.debugger` entitlement query; `vm_map_remap` adds a rejection condition and VM-entry flag clearing; `vm_object_update` adds `vm_object_pl_req_begin`/`end` accounting (`EVD-0029`, `EVD-0032`, `EVD-0033`, `VAL-0015`). No CVE is mapped.
 - Open work: no CVE-to-function attribution, no runtime measurement, no encrypted-cryptex inspection, no exploitability or bypass claim (`CASE-0004`).
 
 ## Immediate work queue
@@ -37,7 +38,7 @@ Roadmap items are goals, not claims of completed capability. Move an item only w
 4. Expand P3 with dated third-party research and Apple security notes specific to build 24A446; the four iPhone 12-family A14 product types are build-level covered, so extend the check to A14 iPad product types only if they enter scope. Keep the vulnerability register (`CASE-0002`) and bypass scope survey (`CASE-0003`) separate.
 5. Design the P5 non-invasive validation and keep `VAL-0001` `not-run` until it is executed; `VAL-0002` through `VAL-0008` record the completed offline build-artifact checks.
 6. Keep bypass, exploitation, and protection-disablement work out of scope.
-7. In `CASE-0004`, move from build-level diff to a normalized function-level diff of `com.apple.kernel` and the AVE/ANE kexts, then map changed functions to advisory descriptions only when the evidence supports it. Keep WebKit/ImageIO out unless a lawful source for those binaries is available.
+7. In `CASE-0004`, continue from the normalized kernel and kext diff to bounded function-level review. The exception-port and thread-state entitlement changes are deprioritized as fix candidates; `vm_map_remap` and `vm_object_update` now have concrete observed changes. Map a changed function to an advisory description only where the evidence supports it. Keep WebKit/ImageIO out unless a lawful source for those binaries is available.
 
 ## Completion rule
 
