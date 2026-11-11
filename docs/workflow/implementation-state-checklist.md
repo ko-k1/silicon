@@ -54,14 +54,14 @@ Use `passed`, `failed`, `inconclusive`, and `not-run` only for validation result
 | Runtime protection state (P2/P5) | `blocked` | No runtime evidence | Requires a physical target device and non-invasive observation | `VAL-0001` |
 | Public research register (P3) | `partial` | 21 dated `SRC` records covering Apple documentation, advisories, community reports, build artifacts, and restore implementations, including the 27.2 and 27.2.1 advisories | No Apple security note specific to 24A446 was found; community claims need continued re-checking | `research/public-research/README.md` |
 | Vulnerability baseline (P3) | `done` | iOS 27 and iOS 27.2 advisory registers; 27.0.1 CVE status; 27.2.1 delta recorded | Register facts are not exploitability or bypass findings; function-level attribution remains open | `CASE-0002`, `CASE-0004`; `ios27-vulnerability-register.yaml`, `ios27.2-vulnerability-register.yaml` |
-| Function-level differential (P3/P4) | `partial` | Normalized kernel diff and AVE2/ANE first pass with committed summaries | No CVE attribution; no source-level equivalence; kext methods unnamed | `EVD-0027`, `EVD-0028`; `VAL-0012`, `VAL-0013` |
+| Function-level differential (P3/P4) | `partial` | Normalized kernel diff, AVE2/ANE first pass, and targeted exception-port/AVE2/ANE follow-up with committed summaries | No CVE attribution; no source-level equivalence; ANE method labels unreliable | `EVD-0027`-`EVD-0031`; `VAL-0012`-`VAL-0014` |
 | Public bypass scope (P3) | `partial` | Reviewed public compatibility ranges and counter-evidence | No reviewed source demonstrates an A14-specific bypass on 24A446 or 24B119 | `CASE-0003` |
 | BuildManifest tooling (P4) | `done` | Read-only deterministic summarizer and differential tool, with 6 fixture tests for the summarizer and 5 for the diff | No fetching, signature verification, or runtime assertion by design | Section 6 commands 2-3 |
 | Function-diff tooling (P4) | `done` | Read-only normalized function diff for pre-generated disassembly, starts, and symbol maps, with 8 unit tests | Does not disassemble, symbolize, or attribute CVEs itself | Section 6 commands 2-3 |
 | Record integrity tooling (P4) | `done` | Read-only cross-reference validator for `EVD`/`SRC`/`VAL`/`CASE`, synthetic negative tests, and a repository integration test | Does not validate JSON Schema conformance or artifact hashes | Section 6 commands 2-6 |
 | Schema validation tooling (P4) | `done` | Read-only JSON Schema validator for target manifests and all record families, with negative, malformed-input, template, and integration tests | Does not check cross-references or artifact hashes | Section 6 commands 2-6 |
 | Repository archive manifest (P4) | `done` | Root `MANIFEST.json` is generated from the Git-tracked working-tree file list by `archive_manifest.py` and checked by a unit test | Covers tracked files only; untracked and external artifacts are excluded by design | Section 6 commands 2-6 |
-| Validation surface (P5) | `partial` | 12 offline validations passed; 1 device validation is `not-run` | No synthetic protection model; no device runtime measurement | `validation/README.md`; `VAL-0001`-`VAL-0013` |
+| Validation surface (P5) | `partial` | 13 offline validations passed; 1 device validation is `not-run` | No synthetic protection model; no device runtime measurement | `validation/README.md`; `VAL-0001`-`VAL-0014` |
 | Closure/reporting (P6) | `partial` | Baseline and case reports exist | Independent review, closure report, and disclosure decision are not complete | `reports/technical/` |
 
 ## Claim-state matrix
@@ -83,6 +83,9 @@ Use this matrix to keep observations, build-level inferences, and runtime unknow
 | The 24B119 SPTM/TXM payloads differ and match manifest digests | observed | `EVD-0024`; `VAL-0011` | Signature validity or runtime activation |
 | The 27.2 advisory has 163 CVEs disjoint from the 27.0 set | observed | `EVD-0025`; `SRC-0020` | Exploitability on A14 or any CVE-to-function mapping |
 | The first normalized kernel diff finds 13,045 exact matches and 222 structural named changes | observed | `EVD-0027`; `VAL-0012` | That a structural difference is a security fix |
+| Both exception-port validation paths add a `com.apple.security.cs.debugger` query | observed | `EVD-0029`; `VAL-0014` | That the change is a security fix or improvement |
+| AVE2 adds `AVE_HEVC_CheckVPSExtBounds`, `AVE_Client_CheckMCTFInfo`, and `AVE_Client_CheckLRMEInfo` | observed | `EVD-0030`; `VAL-0014` | Which AVE CVE, if any, each routine addresses |
+| The ANE raw 55-slot vtable change is a method-change count | contradicted | `EVD-0031`; `VAL-0014` | Any method-level conclusion from raw slot counts |
 | A specific 27.2 CVE is fixed by a specific changed kernel function | unknown | No function-level attribution yet | Any exploitability or bypass claim |
 | The exact target device is an iPhone13,1 running 24A446 | unknown | `VAL-0001` is `not-run` | Any runtime state |
 | SPTM/TXM is active, configured, and enforcing on the target | unknown | No runtime evidence | Any bypass or exploitability claim |
@@ -164,6 +167,7 @@ Use this matrix to keep observations, build-level inferences, and runtime unknow
 - [x] Offline 24B119 SPTM/TXM payload and manifest-digest check passed (`VAL-0011`)
 - [x] Offline kernel function-level comparison passed (`VAL-0012`)
 - [x] Offline AVE2/ANE function-level comparison passed (`VAL-0013`)
+- [x] Offline exception-port, AVE2 validation-routine, and ANE vtable follow-up passed (`VAL-0014`)
 - [ ] Device metadata check executed (`VAL-0001` is `not-run`)
 - [ ] Synthetic PPL/SPTM/TXM state model added
 - [ ] Regression harness for parser fixtures added
@@ -207,9 +211,9 @@ python3 -m engineering.inventory.record_integrity .
 # expected: "ok": true with no issues
 
 # 7. Record counts
-find research/evidence -name 'EVD-*.yaml' | wc -l          # expected: 28
+find research/evidence -name 'EVD-*.yaml' | wc -l          # expected: 31
 find research/public-research -name 'SRC-*.yaml' | wc -l   # expected: 21
-find validation/results -name 'VAL-*.yaml' | wc -l         # expected: 13
+find validation/results -name 'VAL-*.yaml' | wc -l         # expected: 14
 find research/cases -maxdepth 2 -name 'case.yaml' | wc -l  # expected: 5 (4 cases + template)
 
 # 8. Confirm the device check was not run

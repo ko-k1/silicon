@@ -1,0 +1,53 @@
+schema_version: 1
+id: EVD-0031
+class: derived
+state: observed
+claim: "The AppleH11ANEInterface vtable comparison reports 55 raw structural slots across 34 unique target pairs, but that count is not a method-change count. Name-aware classification of the 55 rows gives 11 same-name/same-slot rows with changed bodies (7 unique target pairs), 20 one-sided-name rows (11 unique target pairs, including slot reordering), and 24 both-unnamed rows (16 unique target pairs). Separately, 12 same-name rows appear at different slots, and 16 same-slot rows at inherited slot 71 map to a new symbolicator label (PMSettingObject::pmSettingObject) whose disassembly matches 27.0 IOUserClient::sendAsyncResult. The 27.2 symbol map does not contain sendAsyncResult, so at least one symbolicator label is demonstrably wrong. ANE also gains three classes: ANEPoolRefillMsg, OSValueObject<ANEInferenceRequest*>, and OSValueObject<ANEMapRequest*>. The named changed-body candidates are labels only: ANEClientHintsUserClient::setProperties, ANEDriver::start, ANEHWDevice::start, ANEHWDevice::stop, ANEHWDevice::dartUnmapMemoryDescriptor, ANEScheduler::free, and ANEScheduler::init."
+source:
+  type: derived-kext-vtable-diff
+  locator: "AppleH11ANEInterface extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: null
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "5a1da0fbdb2e66d230b8eb99685a2d864cf1b8c907101a3f5859453e5d3148a6"
+  bytes: 1926264
+  path_or_uri: "com.apple.driver.AppleH11ANEInterface extracted from the 24B119 kernelcache (not committed)"
+  old_sha256: "9910a96765d85797408ed0d125d67897c6f649d2257858d002fac9123f7abbe1"
+  old_bytes: 1860528
+  raw_structural_slots: 55
+  unique_target_pairs: 34
+  classification:
+    same_name_same_slot_changed_body:
+      rows: 11
+      unique_target_pairs: 7
+    one_sided_name:
+      rows: 20
+      unique_target_pairs: 11
+    both_unnamed:
+      rows: 24
+      unique_target_pairs: 16
+  same_name_different_slot_rows: 12
+  same_slot_different_name_rows: 16
+  new_classes:
+    - "ANEPoolRefillMsg"
+    - "OSValueObject<ANEInferenceRequest*>"
+    - "OSValueObject<ANEMapRequest*>"
+  function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json"
+  targeted_findings_artifact: "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json"
+limitations:
+  - "Vtable comparison by slot index is affected by inherited slots, slot reordering, and parser alignment."
+  - "Symbolicator labels are partial and can be wrong; the sendAsyncResult/pmSettingObject mismatch is recorded as an example."
+  - "The 7 named changed-body pairs are candidate labels, not verified method semantics."
+  - "No device was connected; runtime behavior and exploitability were not measured."
+related_evidence:
+  - EVD-0028
+  - EVD-0030
+related_cases:
+  - CASE-0004

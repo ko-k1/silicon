@@ -1,0 +1,222 @@
+{
+  "comparison": "iPhone13,1 iOS 27.0.1 (24A446) vs iOS 27.2 (24B119), targeted follow-up",
+  "generated_at": "2026-11-11T14:05:00+09:00",
+  "tools": {
+    "ipsw": "v0.0.0-prerelease, BuildCommit 0983ab4cb",
+    "llvm-objdump": "LLVM 23.1.4",
+    "symbolicator": "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950",
+    "kernel_function_diff": "engineering.analyzers.kernel_function_diff"
+  },
+  "inputs": {
+    "24A446": {
+      "kernelcache_im4p_sha256": "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced",
+      "com_apple_kernel_sha256": "e426a4bffbedc744142b37c21533529a03d77d0e2346930b243d90259a370147",
+      "AppleAVE2_sha256": "82ec71cd7ca5855274a25069d9b06fed60b3a22d6e099cbfb0414a7286994578",
+      "AppleH11ANEInterface_sha256": "9910a96765d85797408ed0d125d67897c6f649d2257858d002fac9123f7abbe1"
+    },
+    "24B119": {
+      "kernelcache_im4p_sha256": "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a",
+      "com_apple_kernel_sha256": "9f38cc342b8b6703e270d134d516d8337d0f363d81cd16b1f304b0bf38ba49f7",
+      "AppleAVE2_sha256": "7adb64a1100a35c4749b915208a8041550e2c5ab9b8ec56531d85f626e2b041b",
+      "AppleH11ANEInterface_sha256": "5a1da0fbdb2e66d230b8eb99685a2d864cf1b8c907101a3f5859453e5d3148a6"
+    }
+  },
+  "exception_port_validation": {
+    "functions": [
+      {
+        "name": "ipc_is_valid_exception_port",
+        "old_start": "0xfffffff00a1a1d2c",
+        "new_start": "0xfffffff00a1de01c",
+        "old_insns": 93,
+        "new_insns": 99,
+        "old_entitlements": [
+          "com.apple.private.set-exception-port"
+        ],
+        "new_entitlements": [
+          "com.apple.private.set-exception-port",
+          "com.apple.security.cs.debugger"
+        ],
+        "entitlement_string_addresses": {
+          "com.apple.private.set-exception-port": {
+            "old": "0xfffffff007046316",
+            "new": "0xfffffff007046452"
+          },
+          "com.apple.security.cs.debugger": {
+            "old": null,
+            "new": "0xfffffff00704b27e"
+          }
+        },
+        "observation": "The 27.2 function adds a second entitlement query for com.apple.security.cs.debugger after the existing com.apple.private.set-exception-port query. Both queries use a 30-instruction helper that is shape-identical between builds (old 0xfffffff00a97d030, new 0xfffffff00a9bd5cc, shape SHA-256 bc492fb823add45c...)."
+      },
+      {
+        "name": "set_exception_ports_validation",
+        "old_start": "0xfffffff00a1adf60",
+        "new_start": "0xfffffff00a1ea220",
+        "old_insns": 178,
+        "new_insns": 184,
+        "old_entitlements": [
+          "com.apple.private.set-exception-port",
+          "com.apple.security.only-one-exception-port"
+        ],
+        "new_entitlements": [
+          "com.apple.private.set-exception-port",
+          "com.apple.security.cs.debugger",
+          "com.apple.security.only-one-exception-port"
+        ],
+        "entitlement_string_addresses": {
+          "com.apple.private.set-exception-port": {
+            "old": "0xfffffff007046316",
+            "new": "0xfffffff007046452"
+          },
+          "com.apple.security.cs.debugger": {
+            "old": null,
+            "new": "0xfffffff00704b27e"
+          },
+          "com.apple.security.only-one-exception-port": {
+            "old": "0xfffffff00704633b",
+            "new": "0xfffffff007046477"
+          }
+        },
+        "observation": "The 27.2 function adds a com.apple.security.cs.debugger entitlement query alongside the existing com.apple.private.set-exception-port query before proceeding. The later com.apple.security.only-one-exception-port check is retained."
+      }
+    ],
+    "string_presence": {
+      "com.apple.security.cs.debugger": {
+        "24A446": 0,
+        "24B119": 1
+      }
+    },
+    "interpretation": "Both exception-port validation paths accept an additional debugger entitlement in 27.2. This is an observed behavior change, not evidence of a vulnerability fix; it broadens rather than narrows the accepted entitlement set."
+  },
+  "ave2_validation_routines": {
+    "symbol_source": "ipsw kernel symbolicate with symbolicator/kernel/27.2 signatures on the 24B119 kernelcache; the three names are absent from the 24A446 symbol map",
+    "routines": [
+      {
+        "name": "AVE_HEVC_CheckVPSExtBounds",
+        "new_start": "0xfffffff008421158",
+        "new_insns": 310,
+        "signature_provenance": "direct",
+        "anchor_string_examples": [
+          "HEVC VPS vps_max_layers_minus1 is out of range",
+          "HEVC VPS layer-set total is out of range",
+          "HEVC VPS layer_id_in_nuh is out of range"
+        ],
+        "old_anchor_present": false,
+        "same_va_old_function_start": "0xfffffff00842113c",
+        "same_va_old_insns": 362,
+        "correspondence": "not established; the old function at the same virtual address has a different prologue and line-number immediates",
+        "call_sites": [
+          "AVE_HEVC_CheckInfo",
+          "AVE_Client_CheckDMVInfo",
+          "AVE_Client_CheckGGMInfo",
+          "AVE_Client_CheckMCTFInfo",
+          "AVE_Client_CheckLRMEInfo"
+        ],
+        "unsigned_compare_limits": [64, 65]
+      },
+      {
+        "name": "AVE_Client_CheckMCTFInfo",
+        "new_start": "0xfffffff008423b1c",
+        "new_insns": 737,
+        "signature_provenance": "direct",
+        "anchor_string_examples": [
+          "MCTF strength count out of range"
+        ],
+        "old_anchor_present": false,
+        "same_va_old_function_start": "0xfffffff0084232e4",
+        "same_va_old_insns": 967,
+        "correspondence": "not established",
+        "call_sites": [
+          "AVE_Client_CheckInfo"
+        ],
+        "unsigned_compare_limits": [2, 8, 6, 15, 16, 1, 63, 65, 17, 13, 3, 21]
+      },
+      {
+        "name": "AVE_Client_CheckLRMEInfo",
+        "new_start": "0xfffffff0084246a0",
+        "new_insns": 571,
+        "signature_provenance": "dual-evidence",
+        "anchor_string_examples": [
+          "AVE_Client_CheckLRMEInfo"
+        ],
+        "old_anchor_present": false,
+        "same_va_old_function_start": "0xfffffff008424200",
+        "same_va_old_insns": 512,
+        "correspondence": "not established",
+        "call_sites": [
+          "AVE_Client_CheckInfo"
+        ],
+        "unsigned_compare_limits": [2, 7, 8, 6, 15, 16, 1, 63, 65, 17, 13, 21]
+      }
+    ],
+    "advisory_context": {
+      "component": "AVEVideoEncoder",
+      "cves": [
+        "CVE-2026-112466",
+        "CVE-2026-112468",
+        "CVE-2026-112469",
+        "CVE-2026-112470",
+        "CVE-2026-112689",
+        "CVE-2026-112705"
+      ],
+      "descriptions": "One out-of-bounds read and five out-of-bounds writes, addressed with improved input validation or bounds checking.",
+      "status": "The new routines contain range checks and are called from existing AVE2 check paths. This is a temporal and functional correlation, not a CVE attribution."
+    }
+  },
+  "ane_vtable_qualification": {
+    "raw_counts": {
+      "classes_common": 72,
+      "classes_new": 3,
+      "raw_structural_slots": 55,
+      "unique_target_pairs": 34
+    },
+    "name_aware_classification": {
+      "same_name_same_slot_changed_body": {
+        "rows": 11,
+        "unique_target_pairs": 7
+      },
+      "one_sided_name": {
+        "rows": 20,
+        "unique_target_pairs": 11,
+        "note": "Includes slot reordering: four method names appear at different slots in the two builds."
+      },
+      "both_unnamed": {
+        "rows": 24,
+        "unique_target_pairs": 16
+      },
+      "same_slot_different_name": {
+        "rows": 16,
+        "note": "All at inherited slot 71 across 16 classes; the new target is named PMSettingObject::pmSettingObject, but its disassembly matches IOUserClient::sendAsyncResult. This is a symbolicator misattribution or inherited-slot alignment issue, not evidence of 16 method replacements."
+      }
+    },
+    "named_changed_body_candidates": [
+      "ANEClientHintsUserClient::setProperties(OSObject*)",
+      "ANEDriver::start(IOService*)",
+      "ANEHWDevice::start(IOService*)",
+      "ANEHWDevice::stop(IOService*)",
+      "ANEHWDevice::dartUnmapMemoryDescriptor(...)",
+      "ANEScheduler::free()",
+      "ANEScheduler::init(ANEDriver&, ANEHWInterface&)"
+    ],
+    "symbol_map_warning": {
+      "address": "0xfffffff00a8e69e8",
+      "new_label": "PMSettingObject::pmSettingObject(...)",
+      "actual_match": "The disassembly matches 27.0 IOUserClient::sendAsyncResult at 0xfffffff00a8a6888; the 27.2 symbol map does not contain sendAsyncResult.",
+      "implication": "Symbolicator labels are candidate labels only; at least one label is demonstrably wrong."
+    },
+    "new_classes": [
+      "ANEPoolRefillMsg",
+      "OSValueObject<ANEInferenceRequest*>",
+      "OSValueObject<ANEMapRequest*>"
+    ],
+    "interpretation": "The raw 55-slot count overstates method-level change because it compares by slot index and includes inherited-slot and symbol-name effects. The name-aware subset is 7 unique changed-body target pairs, with 11 one-sided and 16 unnamed pairs unresolved."
+  },
+  "limitations": [
+    "No source-level semantics, call-graph equivalence, or CVE attribution is established.",
+    "The extracted kernel and kext images are stripped; symbolicator labels are partial and can be wrong.",
+    "Same virtual addresses across builds are not function correspondence; the AVE2 old/new pairs are recorded only as same-VA context.",
+    "Vtable slot comparison by index is affected by inherited slots, slot reordering, and parser alignment; counts are not a method-change count.",
+    "No device was connected; runtime behavior and exploitability were not measured.",
+    "The new AVE2 checks are described only by their range-check structure; no specific CVE is mapped to a routine."
+  ]
+}

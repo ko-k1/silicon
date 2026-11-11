@@ -88,7 +88,23 @@ Exact normalization masks absolute branch targets and `adrp`/`add` page-offset p
 
 The 222 structural names are a candidate inventory, not a CVE attribution. They include IPC and port paths (`ipc_kmsg_copyin_from_user`, `ipc_is_valid_exception_port`, `ipc_right_lookup_read`, `set_exception_ports_validation`), VM paths (`vm_fault_internal`, `vm_map_remap`, `vm_object_update`, `vm_object_iopl_request`), process and exception paths (`task_create_internal`, `thread_set_state_internal`, `exception_deliver`, `posix_spawn`, `forkproc`), filesystem paths (`fsctl_internal`, `renameat_internal`, `vn_open_auth`), and networking paths (`necp_client_parse_parameters`, `pf_test_rule`, `bpfdetach`, `uipc_send`). No function is mapped to one of the 15 Kernel CVEs.
 
-The two triaged kexts also change at the function level. `AppleAVE2` changes from 913.43.1 to 913.64.1 with 2,995/2,998 function starts, 1,222 exact-normalized matches, and 2,963 shape-normalized matches. Its vtable comparison maps 45 slots: 21 unchanged, 24 constant-only, and 0 structural. `AppleH11ANEInterface` changes from 10.19.6 to 10.102.4 with 4,902/5,043 starts, 3,080 exact matches, and 4,662 shape matches. Its vtable comparison maps 737 slots: 417 unchanged, 265 constant-only, and 55 structural across 34 unique target pairs; ANE also adds three classes. Vtable counts skip external or unmapped targets, so they are not a complete method inventory. 47 of 267 `ipsw` kext records change version; none are added or removed. The MH_FILESET has 250 entries, so the two kext counts are not interchangeable.
+The two triaged kexts also change at the function level. `AppleAVE2` changes from 913.43.1 to 913.64.1 with 2,995/2,998 function starts, 1,222 exact-normalized matches, and 2,963 shape-normalized matches. Its vtable comparison maps 45 slots: 21 unchanged, 24 constant-only, and 0 structural. `AppleH11ANEInterface` changes from 10.19.6 to 10.102.4 with 4,902/5,043 starts, 3,080 exact matches, and 4,662 shape matches. Its raw vtable comparison maps 737 slots: 417 unchanged, 265 constant-only, and 55 raw structural across 34 unique target pairs; ANE also adds three classes. The 55 raw slots are not a method-change count: name-aware classification gives 11 same-name/same-slot rows with changed bodies (7 unique target pairs), 20 one-sided-name rows (11 unique pairs), and 24 unnamed rows (16 unique pairs). Vtable counts skip external or unmapped targets, so they are not a complete method inventory. 47 of 267 `ipsw` kext records change version; none are added or removed. The MH_FILESET has 250 entries, so the two kext counts are not interchangeable.
+
+### Targeted follow-up
+
+Two exception-port validation functions add a `com.apple.security.cs.debugger` entitlement query in 27.2: `ipc_is_valid_exception_port` (93 -> 99 instructions) and `set_exception_ports_validation` (178 -> 184). The string is absent from the 24A446 kernel and present once in 24B119. Both functions already accept `com.apple.private.set-exception-port`; the new query broadens the accepted entitlement set rather than narrowing it. The entitlement helper used by `ipc_is_valid_exception_port` is shape-identical between builds. No vulnerability-fix or security-impact claim is made.
+
+`AppleAVE2` adds three named validation routines that are absent from the 24A446 symbol map and whose 27.2 `__os_log` anchors are absent from the 24A446 binary:
+
+| Routine | 27.2 start | Instructions | Callers |
+|---|---|---:|---|
+| `AVE_HEVC_CheckVPSExtBounds` | `0xfffffff008421158` | 310 | `AVE_HEVC_CheckInfo`, `AVE_Client_CheckDMVInfo`, `AVE_Client_CheckGGMInfo`, `AVE_Client_CheckMCTFInfo`, `AVE_Client_CheckLRMEInfo` |
+| `AVE_Client_CheckMCTFInfo` | `0xfffffff008423b1c` | 737 | `AVE_Client_CheckInfo` |
+| `AVE_Client_CheckLRMEInfo` | `0xfffffff0084246a0` | 571 | `AVE_Client_CheckInfo` |
+
+The routines contain unsigned range checks with limits including `0x40`/`0x41` (VPS), `0x2`/`0x8`/`0x6`/`0xf`/`0x10`/`0x1`/`0x3f`/`0x41`/`0x11`/`0xd`/`0x3`/`0x15` (MCTF), and `0x2`/`0x7`/`0x8`/`0x6`/`0xf`/`0x10`/`0x1`/`0x3f`/`0x41`/`0x11`/`0xd`/`0x15` (LRME). Their names come from symbolicator signatures anchored on new log strings, not local symbols; same-virtual-address old functions are not confirmed counterparts. The 27.2 advisory lists six AVEVideoEncoder CVEs described as one out-of-bounds read and five out-of-bounds writes addressed with improved input validation or bounds checking. The correlation is temporal and functional, not a CVE attribution.
+
+The ANE symbol map is not authoritative. At `0xfffffff00a8e69e8` the 27.2 map names `PMSettingObject::pmSettingObject`, but the disassembly matches 27.0 `IOUserClient::sendAsyncResult` at `0xfffffff00a8a6888`; `sendAsyncResult` is absent from the 27.2 map. The 7 named changed-body ANE pairs are therefore candidate labels only: `ANEClientHintsUserClient::setProperties`, `ANEDriver::start`, `ANEHWDevice::start`, `ANEHWDevice::stop`, `ANEHWDevice::dartUnmapMemoryDescriptor`, `ANEScheduler::free`, and `ANEScheduler::init`.
 
 ### SPTM and TXM
 
@@ -121,8 +137,8 @@ This table is a **candidate map**, not an attribution. A changed kext or functio
 | Advisory component | CVEs | Candidate artifact | Observed in 24B119 | Triage note |
 |---|---:|---|---|---|
 | Kernel | 15 | `kernelcache.release.iphone13`, `com.apple.kernel` | Changed | First normalized diff complete; 20,873 -> 20,897 function starts and 222 structural named changes. |
-| AVEVideoEncoder | 6 | `com.apple.driver.AppleAVE2` | UUID and version changed | First function diff complete; 1,222 exact / 2,963 shape matches; no CVE mapping. |
-| Apple Neural Engine | 2 | `com.apple.driver.AppleH11ANEInterface` | UUID and version changed | First function diff complete; 3,080 exact / 4,662 shape matches; no CVE mapping. |
+| AVEVideoEncoder | 6 | `com.apple.driver.AppleAVE2` | UUID and version changed; three new validation routines | 27.2 adds HEVC VPS, MCTF, and LRME range checks. Functional correlation with the six out-of-bounds CVEs, but no CVE mapping. |
+| Apple Neural Engine | 2 | `com.apple.driver.AppleH11ANEInterface` | UUID and version changed; three new classes | Raw vtable changes resolve to 7 unique named changed-body candidate pairs plus unresolved rows. Symbolicator labels are not authoritative; no CVE mapping. |
 | WebKit, WebKit Canvas, Process Model, JS Bindings, WebRTC | 32 | WebKit binaries in the App cryptex | Not inspected | Encrypted cryptex; no binary conclusion. |
 | ImageIO | 11 | ImageIO in the system cryptex | Not inspected | Encrypted cryptex; no binary conclusion. |
 | IOHIDFamily | 1 | `com.apple.iokit.IOHIDFamily` | UUID unchanged | Do not map by name alone; fix may be in the kernel proper or userspace. |
@@ -149,15 +165,17 @@ The differential baseline is **observed** with high confidence for the narrow bu
 
 ## Impact assessment
 
-No vulnerability, exploitability, or protection-bypass impact is claimed. The practical value is a prioritized, reproducible target list: the kernel proper has 222 structural named candidates, and the AVE/ANE kexts have version and function-level changes. WebKit and ImageIO require a different acquisition path because their binaries are in encrypted cryptexes.
+No vulnerability, exploitability, or protection-bypass impact is claimed. The practical value is a prioritized, reproducible target list: the kernel proper has 222 structural named candidates, AVE2 has three new range-check routines, and ANE has seven named changed-body candidate pairs plus unresolved vtable rows. WebKit and ImageIO require a different acquisition path because their binaries are in encrypted cryptexes.
 
 ## Reproducibility and limitations
 
-- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff).
-- Derived JSON: `analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json`, `...-kernelcache.json`, `...-sptm-txm.json`, `...-kernel-functions.json`, `...-ave2-ane-functions.json`.
+- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff), `VAL-0014` (targeted exception-port, AVE2, and ANE follow-up).
+- Derived JSON: `analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json`, `...-kernelcache.json`, `...-sptm-txm.json`, `...-kernel-functions.json`, `...-ave2-ane-functions.json`, `...-targeted-findings.json`.
 - No device, no runtime measurement, no signature/trust evaluation.
 - Kernel is stripped; symbolicator names cover 5,318 functions at the same start in both images, leaving unmatched functions unresolved.
+- Symbolicator labels are not authoritative: `0xfffffff00a8e69e8` is named `PMSettingObject::pmSettingObject` in 27.2 but matches 27.0 `IOUserClient::sendAsyncResult`.
 - Function starts come from `ipsw` and are not guaranteed semantic boundaries; instruction-count changes are not proof of a semantic change.
+- The raw 55-slot ANE vtable change is not a method-change count; inherited slots, slot reordering, and parser alignment affect it.
 - The earlier 1,361/1,382 function-start count was an undercount; `EVD-0027` records the corrected 20,873/20,897 count.
 - Encrypted system-volume cryptexes were not inspected.
 - Only iPhone13,1 customer restore identity was compared.
@@ -166,11 +184,12 @@ No vulnerability, exploitability, or protection-bypass impact is claimed. The pr
 
 ## Next steps
 
-1. Disassemble the highest-value structural candidates in both builds and compare control flow and bounds handling, starting with IPC/exception-port and VM paths.
-2. Use the AVE2/ANE class vtables to map changed functions to class methods, then inspect the corresponding call sites.
-3. Map a changed function to a 27.2 Kernel CVE only where the advisory description, strings, call sites, or other evidence support the attribution.
-4. Keep WebKit and ImageIO out of binary conclusions unless a lawful unencrypted source becomes available.
-5. Re-check the advisory register before treating 24B119 as current.
+1. Inspect the three new AVE2 check routines and their call graph in detail, including the fields and limits at each branch, before attempting any CVE-level attribution.
+2. Resolve the ANE one-sided and unnamed vtable rows by function-start alignment and direct call-site analysis, not by symbolicator labels alone.
+3. Continue the highest-value kernel structural candidates. The exception-port change appears to broaden accepted entitlements, so deprioritize it as a fix candidate unless contrary evidence appears.
+4. Map a changed function to a 27.2 Kernel CVE only where the advisory description, strings, call sites, or other evidence support the attribution.
+5. Keep WebKit and ImageIO out of binary conclusions unless a lawful unencrypted source becomes available.
+6. Re-check the advisory register before treating 24B119 as current.
 
 ## Disclosure status
 
@@ -182,5 +201,5 @@ No new vulnerability is claimed. All inputs are public Apple restore images and 
 - `SRC-0004` - Apple security releases index
 - `SRC-0020` - Apple security content of iOS 27.2 / iPadOS 27.2
 - `SRC-0021` - Apple security content of iOS 27.2.1 / iPadOS 27.2.1
-- `EVD-0021` through `EVD-0028`
-- `VAL-0009` through `VAL-0013`
+- `EVD-0021` through `EVD-0031`
+- `VAL-0009` through `VAL-0014`

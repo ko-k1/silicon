@@ -26,7 +26,7 @@ Initial research target: **A14 / iOS 27.0.1 (24A446)**. The repository is design
 3. Check `docs/workflow/implementation-state-checklist.md` for the current implementation snapshot, claim states, and verification commands.
 4. Read `docs/research/methodology.md` and `docs/research/evidence-model.md` before opening a research case.
 5. Review `research/cases/CASE-0001/` for the A14 PPL/SPTM applicability question, `CASE-0002/` and `research/public-research/ios27-vulnerability-register.yaml` for the iOS 27 vulnerability baseline, `CASE-0003/` for public bypass scope, and `CASE-0004/` plus `research/public-research/ios27.2-vulnerability-register.yaml` for the 27.0.1-to-27.2 differential baseline.
-6. Read `reports/technical/A14-iOS-27.0.1-baseline.md` for the consolidated baseline and `reports/technical/A14-iOS-27.2-differential.md` for the 24B119 differential and candidate triage.
+6. Read `reports/technical/A14-iOS-27.0.1-baseline.md` for the consolidated baseline and `reports/technical/A14-iOS-27.2-differential.md` for the 24B119 differential, targeted follow-up, and candidate triage.
 7. Copy `research/cases/_template/` to a new case ID only after defining a falsifiable question; do not edit the template in place.
 8. Store bulky or sensitive raw artifacts outside Git. Commit metadata, hashes, provenance, and sanitized summaries instead.
 

@@ -1,0 +1,42 @@
+schema_version: 1
+id: VAL-0014
+case_id: CASE-0004
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-11T14:05:00+09:00"
+environment:
+  type: offline
+  description: "Offline extraction, symbolication, disassembly, and targeted review of com.apple.kernel, AppleAVE2, and AppleH11ANEInterface from the 24A446 and 24B119 iPhone13,1 restore images. No device was connected."
+  tool_versions:
+    ipsw: "v0.0.0-prerelease, BuildCommit 0983ab4cb"
+    llvm-objdump: "23.1.4"
+    symbolicator: "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950"
+    engineering.analyzers.kernel_function_diff: "repository"
+    python: "3.14.9"
+inputs:
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.2_24B119_Restore.ipsw"
+    sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
+expected_outcome: "The targeted follow-up should identify concrete 27.2 code changes in exception-port validation and AppleAVE2, qualify the ANE vtable counts, and avoid mapping any change to a CVE without evidence."
+observed_outcome: "Both exception-port validation functions add a com.apple.security.cs.debugger entitlement query; the string is absent from 24A446 and present once in 24B119. AppleAVE2 adds three named validation routines with new out-of-range log anchors and multiple unsigned range checks; the routines are called from existing AVE2 check paths. The ANE vtable raw 55-slot count resolves to 11 same-name/same-slot changed-body rows (7 unique target pairs), 20 one-sided rows (11 unique pairs), and 24 unnamed rows (16 unique pairs); a symbolicator misattribution was identified at 0xfffffff00a8e69e8. No CVE was mapped to a function."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The targeted follow-up produced concrete, bounded code-change observations and corrected the interpretation of the ANE vtable counts. It does not establish vulnerability fixes, CVE attribution, or exploitability."
+reproduction:
+  - "Extract com.apple.kernel, AppleAVE2, and AppleH11ANEInterface from each kernelcache with ipsw kernel extract."
+  - "Generate function starts with ipsw macho info -f and disassembly with llvm-objdump -d --no-show-raw-insn."
+  - "Symbolicate with ipsw kernel symbolicate and the matching symbolicator signature set."
+  - "Run python3 -m engineering.analyzers.kernel_function_diff for the kernel and kext pairs."
+  - "Inspect analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json for the exception-port, AVE2, and ANE qualification data."
+  - "Verify the com.apple.security.cs.debugger string presence in both kernel string dumps and the new AVE2 anchor strings in both AVE2 string dumps."
+limitations:
+  - "The kernel and kexts are stripped; helper and method names are partial and symbolicator labels can be wrong."
+  - "Same virtual addresses across builds are not function correspondence."
+  - "Vtable slot counts are raw-slot counts and include inherited-slot and reordering effects."
+  - "No CVE-to-function mapping, exploitability, or protection-bypass conclusion is established."
+  - "No device was connected; runtime behavior was not measured."
+related_evidence:
+  - EVD-0029
+  - EVD-0030
+  - EVD-0031

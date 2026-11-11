@@ -34,7 +34,10 @@ Create one YAML file per evidence record using `schemas/evidence-record.schema.j
 | `EVD-0026` | 27.2.1 advisory adds nine CVEs; 24B119 is not latest | derived | observed |
 | `EVD-0027` | Kernel function diff: 13,045 exact matches, 222 structural named changes; corrects function-start count | derived | observed |
 | `EVD-0028` | AVE2 and ANE version, function-level, and vtable changes | derived | observed |
+| `EVD-0029` | Exception-port validation adds `com.apple.security.cs.debugger` | derived | observed |
+| `EVD-0030` | AVE2 adds three named range-check routines | derived | observed |
+| `EVD-0031` | ANE raw vtable count qualification and symbol-map misattribution | derived | observed |
 
 `EVD-0010`, `EVD-0012`, `EVD-0014`, `EVD-0016`, and `EVD-0017` are the build-level mechanism evidence for the four iPhone 12-family A14 product types; `EVD-0018` and `EVD-0019` link the iPhone13,1 manifest declarations to the extracted installed payload bytes; `EVD-0020` resolves the restore-role digest difference as a fourcc retag at the IM4P level. They are not runtime measurements. `EVD-0002`, `EVD-0003`, and `EVD-0009` are retained as the pre-iOS 27/counter-evidence view.
 
-`EVD-0021` through `EVD-0026` are the 27.0.1-to-27.2 differential baseline for `CASE-0004`. They record build identity, manifest changes, kernelcache and kext UUID changes, SPTM/TXM payload changes, and advisory counts. `EVD-0027` and `EVD-0028` add the first normalized function-level comparison of the kernel and the two triaged kexts. None of these records attributes a CVE to a changed function or establishes exploitability.
+`EVD-0021` through `EVD-0026` are the 27.0.1-to-27.2 differential baseline for `CASE-0004`. They record build identity, manifest changes, kernelcache and kext UUID changes, SPTM/TXM payload changes, and advisory counts. `EVD-0027` and `EVD-0028` add the first normalized function-level comparison of the kernel and the two triaged kexts. `EVD-0029` through `EVD-0031` add the targeted exception-port, AVE2, and ANE follow-up. None of these records attributes a CVE to a changed function or establishes exploitability.

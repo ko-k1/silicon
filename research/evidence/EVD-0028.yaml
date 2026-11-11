@@ -2,7 +2,7 @@ schema_version: 1
 id: EVD-0028
 class: derived
 state: observed
-claim: "The 24B119 `ipsw kernel kexts` inventory lists 267 kext records common to 24A446, with 47 version changes and no additions or removals; the MH_FILESET entry count is 250, so these inventories are not interchangeable. com.apple.driver.AppleAVE2 changes from 913.43.1 to 913.64.1; its extracted image has 2,995 and 2,998 function starts, 1,222 exact-normalized matches, and 2,963 shape-normalized matches. com.apple.driver.AppleH11ANEInterface changes from 10.19.6 to 10.102.4; its extracted image has 4,902 and 5,043 function starts, 3,080 exact-normalized matches, and 4,662 shape-normalized matches. The vtable comparison covers 7 AVE2 classes with 45 mapped slots (21 unchanged, 24 constant-only, 0 structural) and 72 common ANE classes with 737 mapped slots (417 unchanged, 265 constant-only, 55 structural across 34 unique target pairs); ANE also gains three classes. These are build-level changes, not a CVE attribution or a proof that a changed function fixes a named vulnerability."
+claim: "The 24B119 `ipsw kernel kexts` inventory lists 267 kext records common to 24A446, with 47 version changes and no additions or removals; the MH_FILESET entry count is 250, so these inventories are not interchangeable. com.apple.driver.AppleAVE2 changes from 913.43.1 to 913.64.1; its extracted image has 2,995 and 2,998 function starts, 1,222 exact-normalized matches, and 2,963 shape-normalized matches. com.apple.driver.AppleH11ANEInterface changes from 10.19.6 to 10.102.4; its extracted image has 4,902 and 5,043 function starts, 3,080 exact-normalized matches, and 4,662 shape-normalized matches. The raw vtable comparison covers 7 AVE2 classes with 45 mapped slots (21 unchanged, 24 constant-only, 0 structural) and 72 common ANE classes with 737 mapped slots (417 unchanged, 265 constant-only, 55 raw structural across 34 unique target pairs); ANE also gains three classes. The 55 ANE raw structural slots are not a method-change count: name-aware classification gives 11 same-name/same-slot changed-body rows (7 unique target pairs), 20 one-sided-name rows (11 unique pairs), and 24 unnamed rows (16 unique pairs). These are build-level changes, not a CVE attribution or a proof that a changed function fixes a named vulnerability."
 source:
   type: derived-kext-function-diff
   locator: "AppleAVE2 and AppleH11ANEInterface extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
@@ -54,14 +54,16 @@ artifact:
   ane_vtable_structural_unique_target_pairs: 34
   function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json"
 limitations:
-  - "The extracted kexts are stripped; no symbol-level method names were recovered for the changed functions."
+  - "The extracted kexts are stripped; no verified symbol-level method names were recovered for the changed functions."
   - "A version change and a function-hash difference are build-level observations, not proof of a specific security fix."
   - "Shape matches can be inflated by layout-dependent immediate changes; exact matches are the stronger identity signal."
   - "Vtable slot counts skip methods whose targets are outside the extracted kext or do not map to a function start; the large external/unmapped count limits completeness."
+  - "Vtable slot comparison by index is affected by inherited slots, slot reordering, and symbolicator label errors; EVD-0031 records the name-aware qualification."
   - "The 267-record ipsw kext inventory is not the same set as the 250 MH_FILESET entries; the 47-version count uses ipsw's inventory."
   - "No device was connected; runtime behavior and exploitability were not measured."
 related_evidence:
   - EVD-0023
   - EVD-0027
+  - EVD-0031
 related_cases:
   - CASE-0004
