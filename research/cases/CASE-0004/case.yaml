@@ -3,7 +3,7 @@ id: CASE-0004
 title: "iOS 27.2 (24B119) differential baseline for A14 / iPhone 12 mini"
 status: investigating
 created_at: "2026-11-11T11:42:00+09:00"
-updated_at: "2026-11-11T11:52:00+09:00"
+updated_at: "2026-11-11T13:10:00+09:00"
 target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
 owner: null
 reviewer: null
@@ -25,6 +25,7 @@ scope:
     - "Public Apple security advisories for iOS 27, 27.0.1, 27.2, and 27.2.1."
     - "Offline Image4, LZFSE, Mach-O, and MH_FILESET inspection."
     - "Differential comparison of build-level component digests, kernelcache images, kext UUIDs, SPTM, and TXM."
+    - "Normalized function-level comparison of com.apple.kernel and selected unencrypted kexts."
     - "Candidate triage that maps advisory components to artifacts without asserting exploitability."
   out_of_scope:
     - "Exploit chains, kernel read/write primitives, or privilege-escalation payloads."
@@ -53,6 +54,8 @@ evidence:
     - EVD-0024
     - EVD-0025
     - EVD-0026
+    - EVD-0027
+    - EVD-0028
   counter: []
 analysis:
   methods:
@@ -64,6 +67,9 @@ analysis:
     - mh-fileset-inventory
     - kext-uuid-comparison
     - function-start-count-comparison
+    - normalized-function-differential-comparison
+    - symbolicator-function-naming
+    - arm64-disassembly
     - apple-advisory-parsing
     - cve-set-comparison
     - component-to-artifact-triage
@@ -77,13 +83,19 @@ analysis:
     - "analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json"
     - "analysis/differential/ios27.2-vs-27.0.1-kernelcache.json"
     - "analysis/differential/ios27.2-vs-27.0.1-sptm-txm.json"
+    - "analysis/differential/ios27.2-vs-27.0.1-kernel-functions.json"
+    - "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json"
     - "research/public-research/ios27.2-vulnerability-register.yaml"
   tools:
     - python-3.14.9
     - lzfse-0.4.2.post1
     - engineering.analyzers.build_manifest_diff
+    - engineering.analyzers.kernel_function_diff
     - engineering.parsers.image4
     - engineering.parsers.macho
+    - ipsw-v0.0.0-prerelease-0983ab4cb
+    - llvm-objdump-23.1.4
+    - symbolicator-08dbc783663750530d655cb88c1e755aefa10950
     - plistlib
     - unzip-6.00
 validation:
@@ -92,13 +104,18 @@ validation:
     - VAL-0009
     - VAL-0010
     - VAL-0011
+    - VAL-0012
+    - VAL-0013
 conclusion:
   state: observed
   confidence: high
-  summary: "The 24B119 iPhone13,1 image differs from 24A446 at the manifest and binary levels. 57 of 95 BuildManifest component entries differ (56 digest changes and one path-only change), with no keys added or removed. The release kernelcache changes from KernelManagement_host-514.2.2 to 514.40.8; the decompressed image grows from 66,535,424 to 66,813,952 bytes, 207 of 250 fileset kext UUIDs change, and function-start entries increase from 1,361 to 1,382. SPTM changes from source version 820.0.22 to 820.40.24 and TXM keeps 217.0.2 but has a different UUID and decompressed hash; both 24B119 IM4P SHA-384 values match the manifest's installed-component digests. Apple's 27.2 advisory lists 163 CVEs, disjoint from the 163 CVEs in the 27.0 advisory, including 15 Kernel and 26 WebKit entries. These are differential observations; no CVE is mapped to a changed function, and no exploitability or protection-bypass claim is made."
+  summary: "The 24B119 iPhone13,1 image differs from 24A446 at the manifest and binary levels. 57 of 95 BuildManifest component entries differ (56 digest changes and one path-only change), with no keys added or removed. The release kernelcache changes from KernelManagement_host-514.2.2 to 514.40.8; the decompressed image grows from 66,535,424 to 66,813,952 bytes, 207 of 250 fileset kext UUIDs change, and function starts increase from 20,873 to 20,897. A normalized function diff finds 13,045 exact matches and 222 structurally different named functions, including IPC, VM, process, filesystem, and networking paths; no function is mapped to a CVE. AppleAVE2 changes from 913.43.1 to 913.64.1 and AppleH11ANEInterface from 10.19.6 to 10.102.4, with 47 of 267 ipsw kext records changing version. SPTM changes from source version 820.0.22 to 820.40.24 and TXM keeps 217.0.2 but has a different UUID and decompressed hash; both 24B119 IM4P SHA-384 values match the manifest's installed-component digests. Apple's 27.2 advisory lists 163 CVEs, disjoint from the 163 CVEs in the 27.0 advisory, including 15 Kernel and 26 WebKit entries. These are differential observations; no CVE is mapped to a changed function, and no exploitability or protection-bypass claim is made."
   limitations:
     - "No physical device was available; runtime protection state and installation are unmeasured."
     - "The kernel image is stripped; changed functions were not attributed to source symbols or CVEs."
+    - "Function starts are not guaranteed semantic boundaries; structural hash differences can reflect compiler layout or call-target changes."
+    - "Symbolicator coverage is partial: 5,318 names matched at the same start address, while 52 old-only and 51 new-only names remain unmatched."
+    - "The earlier 1,361/1,382 function-start count was an undercount and is superseded by 20,873/20,897 (EVD-0027)."
     - "Kext UUID changes are build-identity changes, not proof of security-relevant code changes."
     - "The 27.2 advisory is documentary evidence; CVE membership does not establish reachability on A14."
     - "WebKit, ImageIO, and most userspace components live in encrypted system-volume cryptexes and were not inspected at the binary level."

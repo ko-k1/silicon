@@ -17,5 +17,7 @@ Validation definitions and results must use the schema in `schemas/validation-re
 | `VAL-0009` | `CASE-0004` | `passed` | Offline 24A446-to-24B119 BuildManifest differential comparison |
 | `VAL-0010` | `CASE-0004` | `passed` | Offline 24B119 kernelcache decompression, fileset inventory, and kext UUID comparison |
 | `VAL-0011` | `CASE-0004` | `passed` | Offline SPTM/TXM payload and manifest-digest comparison |
+| `VAL-0012` | `CASE-0004` | `passed` | Offline normalized `com.apple.kernel` function comparison |
+| `VAL-0013` | `CASE-0004` | `passed` | Offline AppleAVE2 and AppleH11ANEInterface function comparison |
 
-`VAL-0002` through `VAL-0008` establish build packaging, payload structure, restore-role digest behavior, and kernel structure only. They do not measure runtime protection state. `VAL-0009` through `VAL-0011` establish build-level differential observations between 24A446 and 24B119; they do not attribute a CVE to a changed function or measure runtime behavior.
+`VAL-0002` through `VAL-0008` establish build packaging, payload structure, restore-role digest behavior, and kernel structure only. They do not measure runtime protection state. `VAL-0009` through `VAL-0013` establish build-level and normalized function-level differential observations between 24A446 and 24B119; they do not attribute a CVE to a changed function or measure runtime behavior.

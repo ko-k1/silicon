@@ -17,7 +17,7 @@ inputs:
   - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.2_24B119_Restore.ipsw"
     sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
 expected_outcome: "The 24B119 kernelcache should decompress to a valid arm64e MH_FILESET. The inventory should record the IM4P description, decompressed hash and size, fileset entry count, UUID changes, and function-start count without inferring code meaning from a UUID change."
-observed_outcome: "24A446: IM4P description KernelManagement_host-514.2.2, decompressed 66,535,424 bytes, SHA-256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4. 24B119: IM4P description KernelManagement_host-514.40.8, decompressed 66,813,952 bytes, SHA-256 5edba8bacade83ea29c67cc1b3e44793694a93ef2473d78ce610237b553f0f41. Both contain 250 fileset entries. 207 entries have a different LC_UUID and 43 are unchanged; 43 unchanged names are recorded in the analysis JSON. Function-start entries are 1,361 for 24A446 and 1,382 for 24B119."
+observed_outcome: "24A446: IM4P description KernelManagement_host-514.2.2, decompressed 66,535,424 bytes, SHA-256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4. 24B119: IM4P description KernelManagement_host-514.40.8, decompressed 66,813,952 bytes, SHA-256 5edba8bacade83ea29c67cc1b3e44793694a93ef2473d78ce610237b553f0f41. Both contain 250 fileset entries. 207 entries have a different LC_UUID and 43 are unchanged; 43 unchanged names are recorded in the analysis JSON. ipsw reports 20,873 function starts for 24A446 and 20,897 for 24B119; the earlier 1,361/1,382 count was not reproduced and is corrected by VAL-0012."
 result:
   status: passed
   reproducible: "yes"
@@ -29,6 +29,7 @@ reproduction:
   - "Inspect analysis/differential/ios27.2-vs-27.0.1-kernelcache.json for the full unchanged-name list and metadata."
 limitations:
   - "The kernel image is stripped; this validation does not map changed functions to source symbols or CVEs."
+  - "The earlier 1,361/1,382 function-start count was an undercount; VAL-0012 records the corrected 20,873/20,897 count."
   - "LC_UUID equality means the embedded image is identical as packaged; it does not measure runtime behavior."
   - "The extracted and decompressed kernelcache files are not committed."
 related_evidence:

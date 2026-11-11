@@ -24,3 +24,6 @@ Reusable research-support tools belong here. Initial candidates: target inventor
 - `engineering/analyzers/build_manifest_diff.py` - read-only differential summary of two BuildManifest.plist files. It compares component paths, 48-byte digests, and selected flags per build identity and reports added, removed, and changed entries. It does not decompress payloads, verify signatures, or claim that a change is a security fix.
   - Run: `python3 -m engineering.analyzers.build_manifest_diff <old.plist> <new.plist>`
   - Tests: `python3 -m unittest tests.unit.test_build_manifest_diff`
+- `engineering/analyzers/kernel_function_diff.py` - read-only normalized function comparison for two pre-generated disassemblies, function-start lists, and optional symbol maps. It reports exact-normalized and shape-normalized matches and named structural changes; it does not disassemble, symbolize, attribute CVEs, or claim exploitability.
+  - Run: `python3 -m engineering.analyzers.kernel_function_diff --old-dis <old.dis> --new-dis <new.dis> --old-starts <old.starts> --new-starts <new.starts> [--old-syms <old.json> --new-syms <new.json>]`
+  - Tests: `python3 -m unittest tests.unit.test_kernel_function_diff`

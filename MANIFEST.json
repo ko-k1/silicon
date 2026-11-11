@@ -3,7 +3,7 @@
   "project": "silicon",
   "archive": "silicon-repository",
   "algorithm": "sha256",
-  "file_count": 162,
+  "file_count": 170,
   "files": [
     {
       "path": ".gitignore",
@@ -61,14 +61,24 @@
       "sha256": "6c5d135721ccd4db2c742f63c41ad2091cf8aae780afe6dac625c0d202c96d84"
     },
     {
+      "path": "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json",
+      "bytes": 2936,
+      "sha256": "8390967ec16142d61a36f139cdd9eaa93e75576bae2fdfe7c3fe9b324fe8b307"
+    },
+    {
       "path": "analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json",
       "bytes": 125578,
       "sha256": "542c4be2adda69474eedf216ff37649be147be806e3fa106782634970129c563"
     },
     {
+      "path": "analysis/differential/ios27.2-vs-27.0.1-kernel-functions.json",
+      "bytes": 55987,
+      "sha256": "e90e0cdd71412b754805b355030beb6df3e21fe1f1697e79b3e76d293dd142fe"
+    },
+    {
       "path": "analysis/differential/ios27.2-vs-27.0.1-kernelcache.json",
-      "bytes": 5183,
-      "sha256": "759a8e472bc2d6221022c1fed79b0d46b2c60fa6f2b4af1110119eea3e94e41c"
+      "bytes": 5406,
+      "sha256": "dbe42bc704490ffd54d24f65923f330bb3c03ae3597b0aebae0c411c684a5faa"
     },
     {
       "path": "analysis/differential/ios27.2-vs-27.0.1-sptm-txm.json",
@@ -117,8 +127,8 @@
     },
     {
       "path": "docs/workflow/implementation-state-checklist.md",
-      "bytes": 15810,
-      "sha256": "35384792a14e65fae8718749ce3b0c35a43d83ba5501f6389456a891f1cd8b46"
+      "bytes": 16671,
+      "sha256": "472d57e3ea36e94dd4e21da3814d5f5a900c0149851bc5f512c2ae54cbdd990d"
     },
     {
       "path": "docs/workflow/research-lifecycle.md",
@@ -132,8 +142,8 @@
     },
     {
       "path": "engineering/README.md",
-      "bytes": 3202,
-      "sha256": "7fc2832d27b2cf40401f442c90de35bf3291064150fc6b5fc94d4a642fd3e31b"
+      "bytes": 3817,
+      "sha256": "e462f06786141096bd4419a1cbb528d07ca80ab9f6e98b873ac7d54c123886eb"
     },
     {
       "path": "engineering/__init__.py",
@@ -154,6 +164,11 @@
       "path": "engineering/analyzers/build_manifest_diff.py",
       "bytes": 7138,
       "sha256": "734845ae21b76ccf942f5f9df60b83b2f48ef8e2884634470faac756733ab31a"
+    },
+    {
+      "path": "engineering/analyzers/kernel_function_diff.py",
+      "bytes": 12787,
+      "sha256": "65e1f7a930345c8ea2b31740a3050d16ec83bb40a348a7763122c8a7f5841d28"
     },
     {
       "path": "engineering/inventory/__init__.py",
@@ -232,8 +247,8 @@
     },
     {
       "path": "reports/README.md",
-      "bytes": 609,
-      "sha256": "9778b7706270bee4d6cafe312d5bfba46f001599b3f7a6ca7cb884bbeb66cf06"
+      "bytes": 630,
+      "sha256": "ae9fc6fc999489a1f92a716a784a4eefdad9c05f71434450160b3c70b5e0092b"
     },
     {
       "path": "reports/disclosure/.gitkeep",
@@ -252,8 +267,8 @@
     },
     {
       "path": "reports/technical/A14-iOS-27.2-differential.md",
-      "bytes": 10815,
-      "sha256": "573640c7712c2b21105ead521efef5be9d6f831380fb2e9501f2f9c769b502ee"
+      "bytes": 14338,
+      "sha256": "a27ac9c39314acddb97bab2fae26af255ba0412635a389a06855cd7d359519f7"
     },
     {
       "path": "requirements-dev.txt",
@@ -307,8 +322,8 @@
     },
     {
       "path": "research/cases/CASE-0004/case.yaml",
-      "bytes": 7585,
-      "sha256": "b999254963c4fccdaff9688459c4422396f09487723d780296dca38ada54b832"
+      "bytes": 8913,
+      "sha256": "0043272848dc5d91eee395ea438db5bb1a1644eea9f38e20a97993346390ad5c"
     },
     {
       "path": "research/cases/CASE-0004/hypothesis.md",
@@ -317,8 +332,8 @@
     },
     {
       "path": "research/cases/CASE-0004/report.md",
-      "bytes": 10571,
-      "sha256": "a937ec6bdf2a3730143f6bd3634a35a92bb9e6604ce20e0c533b2395c2729ade"
+      "bytes": 14606,
+      "sha256": "a62eda47178fe7e22719c1ae145473fbc3ff87f94b284d9bcd9f184e07317dd8"
     },
     {
       "path": "research/cases/README.md",
@@ -457,8 +472,8 @@
     },
     {
       "path": "research/evidence/EVD-0023.yaml",
-      "bytes": 1866,
-      "sha256": "289cf1a74ed074b5de7ebdfb301b673b674fb145e80d75010f5051bb20f525f8"
+      "bytes": 2173,
+      "sha256": "09b0451d8fb5e973593f53b74fe541731aa5dbd2fe889a964afeff8aa2da5f93"
     },
     {
       "path": "research/evidence/EVD-0024.yaml",
@@ -476,9 +491,19 @@
       "sha256": "99d8c04bf6eddd904142165735a95d710e05e0b7627e8d71f6721b8ba4031358"
     },
     {
+      "path": "research/evidence/EVD-0027.yaml",
+      "bytes": 2878,
+      "sha256": "b99715a8d7d46c9ba8013cbd0184293438011148c8f7bcb08da287a9b99ca7e4"
+    },
+    {
+      "path": "research/evidence/EVD-0028.yaml",
+      "bytes": 2896,
+      "sha256": "11e242d4a38fe5255b44887bfd38fc8b3dc2f92aae2c080f652803a0edd3cf6e"
+    },
+    {
       "path": "research/evidence/README.md",
-      "bytes": 3531,
-      "sha256": "7ced2274916ecdebf55cf0be188387a474acd05e0f753ca96d9e5e8d17c4e76d"
+      "bytes": 3890,
+      "sha256": "e12fdfc7ab13ed74186491193139abd42d54996c098a864990b4ea5015c09ddb"
     },
     {
       "path": "research/public-research/README.md",
@@ -716,6 +741,11 @@
       "sha256": "c658343026631a89228492a6cc5fbc9e1840333c2d1abccd3f092cae116e51ab"
     },
     {
+      "path": "tests/unit/test_kernel_function_diff.py",
+      "bytes": 5443,
+      "sha256": "63f884c1fc01a8be98f12f0658eb66eb5e8b16dbbe0fd6e1174dc5b865b5a4e0"
+    },
+    {
       "path": "tests/unit/test_parsers.py",
       "bytes": 11258,
       "sha256": "e3d8876c4e7f8933a3826b1a1308ca1ba8515e6388773812acf200fb97333648"
@@ -732,8 +762,8 @@
     },
     {
       "path": "validation/README.md",
-      "bytes": 1928,
-      "sha256": "5d31fe71a8e61cde5c06b56204e9adb6100ef1210c8a9c896e57045871a784b8"
+      "bytes": 2163,
+      "sha256": "d8e536021ce5f8804b72aba2c74e28d3bad594147f081f654d7044a26a8d698b"
     },
     {
       "path": "validation/fixtures/.gitkeep",
@@ -797,13 +827,23 @@
     },
     {
       "path": "validation/results/VAL-0010.yaml",
-      "bytes": 2773,
-      "sha256": "ba764138a85d38ad88917bd75a09c0cea5b9cd917e1df22b32808b88c19af2a5"
+      "bytes": 2978,
+      "sha256": "07bb0206fa411aacf48e2471e9b1499b8f5f18f21a248cec0f11bfe489cbfe53"
     },
     {
       "path": "validation/results/VAL-0011.yaml",
       "bytes": 3156,
       "sha256": "941b618427aabd3a04e541d3a7a951edfa5eb4caf88123f65883feeb8a6cbf3a"
+    },
+    {
+      "path": "validation/results/VAL-0012.yaml",
+      "bytes": 3392,
+      "sha256": "de218708bb5ebedb8ac0a3be6990f63a405f6b0dcfa6da29bb0116cac6364e39"
+    },
+    {
+      "path": "validation/results/VAL-0013.yaml",
+      "bytes": 2918,
+      "sha256": "4a312e9af18edbdf9dd8f4fae4999704f8f91655389bfbff33cec027b9373446"
     },
     {
       "path": "validation/results/result.template.yaml",

@@ -1,0 +1,38 @@
+schema_version: 1
+id: VAL-0013
+case_id: CASE-0004
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-11T13:10:30+09:00"
+environment:
+  type: offline
+  description: "Offline extraction and normalized function comparison of AppleAVE2 and AppleH11ANEInterface from the 24A446 and 24B119 iPhone13,1 kernelcaches. No device was connected."
+  tool_versions:
+    ipsw: "v0.0.0-prerelease, BuildCommit 0983ab4cb"
+    llvm-objdump: "23.1.4"
+    engineering.analyzers.kernel_function_diff: "repository"
+    python: "3.14.9"
+inputs:
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.2_24B119_Restore.ipsw"
+    sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
+expected_outcome: "The two candidate kexts should be extractable from both kernelcaches, their version changes and function-level normalized match counts should be recorded, and no CVE should be asserted from name or version alone."
+observed_outcome: "The ipsw kext inventory lists 267 common records, 47 version changes, and no additions or removals; the MH_FILESET entry count is 250, so the inventories are not interchangeable. AppleAVE2: 913.43.1 -> 913.64.1; 2,995/2,998 function starts; 1,222 exact-normalized matches; 2,963 shape-normalized matches. AppleH11ANEInterface: 10.19.6 -> 10.102.4; 4,902/5,043 function starts; 3,080 exact-normalized matches; 4,662 shape-normalized matches. Both extracted images are stripped; no method-level names or CVE mapping were established."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "Both candidate kexts changed version and function-level layout between the builds. This is candidate evidence for later targeted analysis, not an attribution or exploitability finding."
+reproduction:
+  - "Extract AppleAVE2 and AppleH11ANEInterface with ipsw kernel extract <kernelcache> <bundle-id>."
+  - "Compare bundle versions with ipsw kernel kexts --diff <old-kernelcache> <new-kernelcache>."
+  - "Generate function starts with ipsw macho info -f and disassembly with llvm-objdump -d --no-show-raw-insn for each extracted kext."
+  - "Run python3 -m engineering.analyzers.kernel_function_diff for each kext pair."
+  - "Inspect analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json for the counts and input hashes."
+limitations:
+  - "The kexts are stripped; changed functions cannot be named from local symbols."
+  - "Version and hash differences are not proof of a security fix."
+  - "Shape-normalized matches may be inflated by layout-dependent immediates."
+  - "The 267-record ipsw kext inventory is not the same set as the 250 MH_FILESET entries."
+  - "No device was connected; runtime behavior and exploitability were not measured."
+related_evidence:
+  - EVD-0028

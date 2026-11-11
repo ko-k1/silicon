@@ -31,7 +31,7 @@
       "macho": {
         "bytes": 66535424,
         "filetype_name": "MH_FILESET",
-        "function_starts": 1361,
+        "function_starts": 20873,
         "segment_names": [
           "__TEXT",
           "__PRELINK_TEXT",
@@ -77,7 +77,7 @@
       "macho": {
         "bytes": 66813952,
         "filetype_name": "MH_FILESET",
-        "function_starts": 1382,
+        "function_starts": 20897,
         "segment_names": [
           "__TEXT",
           "__PRELINK_TEXT",
@@ -142,7 +142,8 @@
       ],
       "uuid_changed": 207,
       "uuid_unchanged": 43
-    }
+    },
+    "function_starts_note": "Function-start counts are from ipsw macho info -f on the extracted com.apple.kernel entry. They supersede the earlier 1,361/1,382 count, which was not reproduced; see EVD-0023 and EVD-0027."
   },
   "method": "IM4P parsed with engineering.parsers.image4; LZFSE payload decompressed with lzfse 0.4.2.post1; Mach-O headers parsed with engineering.parsers.macho; MH_FILESET entries and LC_FUNCTION_STARTS decoded independently.",
   "tools": {

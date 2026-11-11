@@ -1,0 +1,40 @@
+schema_version: 1
+id: VAL-0012
+case_id: CASE-0004
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-11T13:10:00+09:00"
+environment:
+  type: offline
+  description: "Offline extraction, symbolication, disassembly, and normalized function comparison of com.apple.kernel from the 24A446 and 24B119 iPhone13,1 restore images. No device was connected."
+  tool_versions:
+    ipsw: "v0.0.0-prerelease, BuildCommit 0983ab4cb"
+    llvm-objdump: "23.1.4"
+    symbolicator: "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950"
+    engineering.analyzers.kernel_function_diff: "repository"
+    python: "3.14.9"
+inputs:
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.0.1_24A446_Restore.ipsw"
+    sha256: "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+  - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.2_24B119_Restore.ipsw"
+    sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
+expected_outcome: "The extracted com.apple.kernel images should produce a reproducible function-start count, a stable normalized match count, and a named structural-change inventory. The check should not attribute a change to a CVE or claim exploitability."
+observed_outcome: "ipsw reports 20,873 function starts for 24A446 and 20,897 for 24B119; the analyzer grouped 20,872 and 20,896 functions with instructions. Exact-normalized matches: 13,045. Shape-normalized matches: 20,399. Symbolicator named 5,318 functions at the same start in both images: 2,246 identical, 2,850 constant-only, and 222 structural; 52 old-only and 51 new-only names. The 222 structural names include IPC, VM, process, filesystem, networking, exception, and port paths, but no CVE mapping. The earlier 1,361/1,382 count was not reproduced and is corrected by this result."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The normalized function-level diff is reproducible and yields a bounded structural-change inventory. It establishes binary differences only, not source semantics, vulnerability fixes, or exploitability."
+reproduction:
+  - "Extract kernelcache.release.iphone13 from each IPSW and verify the recorded IM4P SHA-256 values."
+  - "Run ipsw kernel extract <kernelcache> com.apple.kernel to obtain the kernel entry."
+  - "Run ipsw macho info -f <extracted-kernel> and llvm-objdump -d --no-show-raw-insn <extracted-kernel>."
+  - "Run ipsw kernel symbolicate --signatures <symbolicator/kernel/27.0|27.2> --json -o <dir> <kernelcache> for each build."
+  - "Run python3 -m engineering.analyzers.kernel_function_diff with the two disassemblies, start lists, and symbol maps."
+  - "Inspect analysis/differential/ios27.2-vs-27.0.1-kernel-functions.json for the summary, triage candidates, and 222 structural rows."
+limitations:
+  - "Function starts are not guaranteed semantic boundaries; count changes and normalized hash changes require targeted disassembly before a semantic claim."
+  - "The kernel is stripped; symbolicator coverage is partial and unmatched functions are not resolved."
+  - "Address normalization can leave layout-dependent immediates in the exact hash and can over-normalize in the shape hash."
+  - "No CVE-to-function mapping, exploitability, or protection-bypass conclusion is established."
+  - "The extracted and decompressed images are not committed."
+related_evidence:
+  - EVD-0027

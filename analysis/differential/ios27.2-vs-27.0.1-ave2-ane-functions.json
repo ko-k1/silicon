@@ -1,0 +1,78 @@
+{
+  "comparison": "iPhone13,1 iOS 27.0.1 (24A446) vs iOS 27.2 (24B119), AppleAVE2 and AppleH11ANEInterface",
+  "generated_at": "2026-11-11T13:10:00+09:00",
+  "tools": {
+    "ipsw": "v0.0.0-prerelease, BuildCommit 0983ab4cb",
+    "llvm-objdump": "LLVM 23.1.4",
+    "symbolicator": "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950",
+    "kernel_function_diff": "engineering.analyzers.kernel_function_diff"
+  },
+  "inputs": {
+    "24A446": {
+      "kernelcache_im4p_sha256": "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced",
+      "AppleAVE2_sha256": "82ec71cd7ca5855274a25069d9b06fed60b3a22d6e099cbfb0414a7286994578",
+      "AppleAVE2_bytes": 3020688,
+      "AppleH11ANEInterface_sha256": "9910a96765d85797408ed0d125d67897c6f649d2257858d002fac9123f7abbe1",
+      "AppleH11ANEInterface_bytes": 1860528
+    },
+    "24B119": {
+      "kernelcache_im4p_sha256": "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a",
+      "AppleAVE2_sha256": "7adb64a1100a35c4749b915208a8041550e2c5ab9b8ec56531d85f626e2b041b",
+      "AppleAVE2_bytes": 3037072,
+      "AppleH11ANEInterface_sha256": "5a1da0fbdb2e66d230b8eb99685a2d864cf1b8c907101a3f5859453e5d3148a6",
+      "AppleH11ANEInterface_bytes": 1926264
+    }
+  },
+  "kext_inventory": {
+    "common_kexts": 267,
+    "version_changed": 47,
+    "added": 0,
+    "removed": 0
+  },
+  "components": {
+    "com.apple.driver.AppleAVE2": {
+      "version_old": "913.43.1",
+      "version_new": "913.64.1",
+      "function_diff": {
+        "old_functions": 2995,
+        "new_functions": 2998,
+        "exact_normalized_matches": 1222,
+        "shape_normalized_matches": 2963,
+        "old_unmatched_exact": 1773,
+        "new_unmatched_exact": 1776,
+        "named": {
+          "common_names": 0,
+          "old_only_names": 0,
+          "new_only_names": 0,
+          "counts": {}
+        },
+        "changed_named_count": 0
+      }
+    },
+    "com.apple.driver.AppleH11ANEInterface": {
+      "version_old": "10.19.6",
+      "version_new": "10.102.4",
+      "function_diff": {
+        "old_functions": 4902,
+        "new_functions": 5043,
+        "exact_normalized_matches": 3080,
+        "shape_normalized_matches": 4662,
+        "old_unmatched_exact": 1822,
+        "new_unmatched_exact": 1963,
+        "named": {
+          "common_names": 0,
+          "old_only_names": 0,
+          "new_only_names": 0,
+          "counts": {}
+        },
+        "changed_named_count": 0
+      }
+    }
+  },
+  "limitations": [
+    "The extracted kexts are stripped; no symbol-level method names were recovered for the changed functions.",
+    "A version change and a function-hash difference are build-level observations, not proof of a specific security fix.",
+    "Shape matches can be inflated by layout-dependent immediate changes; exact matches are the stronger identity signal.",
+    "No device was connected; runtime behavior and exploitability were not measured."
+  ]
+}

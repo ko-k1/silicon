@@ -1,0 +1,55 @@
+schema_version: 1
+id: EVD-0028
+class: derived
+state: observed
+claim: "The 24B119 `ipsw kernel kexts` inventory lists 267 kext records common to 24A446, with 47 version changes and no additions or removals; the MH_FILESET entry count is 250, so these inventories are not interchangeable. com.apple.driver.AppleAVE2 changes from 913.43.1 to 913.64.1; its extracted image has 2,995 and 2,998 function starts, 1,222 exact-normalized matches, and 2,963 shape-normalized matches. com.apple.driver.AppleH11ANEInterface changes from 10.19.6 to 10.102.4; its extracted image has 4,902 and 5,043 function starts, 3,080 exact-normalized matches, and 4,662 shape-normalized matches. These are build-level changes, not a CVE attribution or a proof that a changed function fixes a named vulnerability."
+source:
+  type: derived-kext-function-diff
+  locator: "AppleAVE2 and AppleH11ANEInterface extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: null
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "7adb64a1100a35c4749b915208a8041550e2c5ab9b8ec56531d85f626e2b041b"
+  bytes: 3037072
+  path_or_uri: "com.apple.driver.AppleAVE2 extracted from the 24B119 kernelcache (not committed)"
+  old_sha256: "82ec71cd7ca5855274a25069d9b06fed60b3a22d6e099cbfb0414a7286994578"
+  old_bytes: 3020688
+  kexts_common: 267
+  kext_versions_changed: 47
+  kexts_added: 0
+  kexts_removed: 0
+  ave2_version_old: "913.43.1"
+  ave2_version_new: "913.64.1"
+  ave2_function_starts_old: 2995
+  ave2_function_starts_new: 2998
+  ave2_exact_matches: 1222
+  ave2_shape_matches: 2963
+  ane_version_old: "10.19.6"
+  ane_version_new: "10.102.4"
+  ane_sha256_old: "9910a96765d85797408ed0d125d67897c6f649d2257858d002fac9123f7abbe1"
+  ane_sha256_new: "5a1da0fbdb2e66d230b8eb99685a2d864cf1b8c907101a3f5859453e5d3148a6"
+  ane_bytes_old: 1860528
+  ane_bytes_new: 1926264
+  ane_function_starts_old: 4902
+  ane_function_starts_new: 5043
+  ane_exact_matches: 3080
+  ane_shape_matches: 4662
+  function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-ave2-ane-functions.json"
+limitations:
+  - "The extracted kexts are stripped; no symbol-level method names were recovered for the changed functions."
+  - "A version change and a function-hash difference are build-level observations, not proof of a specific security fix."
+  - "Shape matches can be inflated by layout-dependent immediate changes; exact matches are the stronger identity signal."
+  - "The 267-record ipsw kext inventory is not the same set as the 250 MH_FILESET entries; the 47-version count uses ipsw's inventory."
+  - "No device was connected; runtime behavior and exploitability were not measured."
+related_evidence:
+  - EVD-0023
+  - EVD-0027
+related_cases:
+  - CASE-0004

@@ -1,0 +1,2062 @@
+{
+  "comparison": "iPhone13,1 iOS 27.0.1 (24A446) vs iOS 27.2 (24B119), com.apple.kernel",
+  "generated_at": "2026-11-11T13:10:00+09:00",
+  "tools": {
+    "ipsw": "v0.0.0-prerelease, BuildCommit 0983ab4cb",
+    "llvm-objdump": "LLVM 23.1.4",
+    "symbolicator": "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950",
+    "kernel_function_diff": "engineering.analyzers.kernel_function_diff"
+  },
+  "inputs": {
+    "24A446": {
+      "kernelcache_im4p_sha256": "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced",
+      "decompressed_sha256": "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4",
+      "com_apple_kernel_sha256": "e426a4bffbedc744142b37c21533529a03d77d0e2346930b243d90259a370147",
+      "com_apple_kernel_bytes": 12207832,
+      "darwin_version": "Darwin Kernel Version 27.0.0: Thu Aug 13 21:55:34 PDT 2026; root:xnu-13432.2.10~2/RELEASE_ARM64_T8101",
+      "function_starts": 20873
+    },
+    "24B119": {
+      "kernelcache_im4p_sha256": "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a",
+      "decompressed_sha256": "5edba8bacade83ea29c67cc1b3e44793694a93ef2473d78ce610237b553f0f41",
+      "com_apple_kernel_sha256": "9f38cc342b8b6703e270d134d516d8337d0f363d81cd16b1f304b0bf38ba49f7",
+      "com_apple_kernel_bytes": 12224264,
+      "darwin_version": "Darwin Kernel Version 27.2.0: Tue Oct 13 21:44:36 PDT 2026; root:xnu-13432.42.3~28/RELEASE_ARM64_T8101",
+      "function_starts": 20897
+    }
+  },
+  "method": {
+    "extract": "ipsw kernel extract <kernelcache> com.apple.kernel",
+    "function_starts": "ipsw macho info -f <extracted-kernel>",
+    "disassembly": "llvm-objdump -d --no-show-raw-insn <extracted-kernel>",
+    "symbolication": "ipsw kernel symbolicate --signatures <symbolicator/kernel/27.0|27.2> --json -o <dir> <kernelcache>",
+    "normalization": "Absolute branch targets and adrp/add page-offset pairs are normalized for exact comparison; all immediates are additionally masked for shape comparison.",
+    "matching": "Aggregate hashes are multiset-matched. Named functions are compared only when the same symbol is at the exact function start in both images.",
+    "function_start_count_correction": "The earlier 1,361/1,382 count was an undercount. ipsw macho info -f and an independent LC_FUNCTION_STARTS decode both give 20,873/20,897; see EVD-0023 and EVD-0027."
+  },
+  "summary": {
+    "old_functions": 20872,
+    "new_functions": 20896,
+    "exact_normalized_matches": 13045,
+    "shape_normalized_matches": 20399,
+    "old_unmatched_exact": 7827,
+    "new_unmatched_exact": 7851,
+    "named": {
+      "common_names": 5318,
+      "old_only_names": 52,
+      "new_only_names": 51,
+      "counts": {
+        "identical": 2246,
+        "constant_only": 2850,
+        "structural": 222
+      }
+    },
+    "changed_named_count": 3072
+  },
+  "triage_candidates": {
+    "selection_basis": "Kernel attack-surface name heuristic: IPC, VM, process, filesystem, networking, and exception paths. This is not a CVE map or proof that a change is security-relevant.",
+    "functions": [
+      {
+        "name": "ipc_kmsg_copyin_from_user",
+        "class": "structural",
+        "old_start": "0xfffffff00a174548",
+        "new_start": "0xfffffff00a1b0500",
+        "old_insns": 982,
+        "new_insns": 995
+      },
+      {
+        "name": "ipc_is_valid_exception_port",
+        "class": "structural",
+        "old_start": "0xfffffff00a1a1d2c",
+        "new_start": "0xfffffff00a1de01c",
+        "old_insns": 93,
+        "new_insns": 99
+      },
+      {
+        "name": "ipc_right_lookup_read",
+        "class": "structural",
+        "old_start": "0xfffffff00a18524c",
+        "new_start": "0xfffffff00a1c140c",
+        "old_insns": 174,
+        "new_insns": 177
+      },
+      {
+        "name": "set_exception_ports_validation",
+        "class": "structural",
+        "old_start": "0xfffffff00a1adf60",
+        "new_start": "0xfffffff00a1ea220",
+        "old_insns": 178,
+        "new_insns": 184
+      },
+      {
+        "name": "task_create_internal",
+        "class": "structural",
+        "old_start": "0xfffffff00a1f0c24",
+        "new_start": "0xfffffff00a22cfac",
+        "old_insns": 999,
+        "new_insns": 1011
+      },
+      {
+        "name": "thread_set_state_internal",
+        "class": "structural",
+        "old_start": "0xfffffff00a208a10",
+        "new_start": "0xfffffff00a244dc8",
+        "old_insns": 324,
+        "new_insns": 348
+      },
+      {
+        "name": "vm_fault_internal",
+        "class": "structural",
+        "old_start": "0xfffffff00a261580",
+        "new_start": "0xfffffff00a29db94",
+        "old_insns": 3878,
+        "new_insns": 3901
+      },
+      {
+        "name": "vm_map_remap",
+        "class": "structural",
+        "old_start": "0xfffffff00a27b7ac",
+        "new_start": "0xfffffff00a2b7fd4",
+        "old_insns": 395,
+        "new_insns": 449
+      },
+      {
+        "name": "vm_object_update",
+        "class": "structural",
+        "old_start": "0xfffffff00a25fa44",
+        "new_start": "0xfffffff00a29be58",
+        "old_insns": 1029,
+        "new_insns": 1157
+      },
+      {
+        "name": "vm_object_iopl_request",
+        "class": "structural",
+        "old_start": "0xfffffff00a2ae7c8",
+        "new_start": "0xfffffff00a2eb460",
+        "old_insns": 2089,
+        "new_insns": 2024
+      },
+      {
+        "name": "necp_client_parse_parameters",
+        "class": "structural",
+        "old_start": "0xfffffff00a4953ec",
+        "new_start": "0xfffffff00a4d2afc",
+        "old_insns": 2730,
+        "new_insns": 2741
+      },
+      {
+        "name": "pf_test_rule",
+        "class": "structural",
+        "old_start": "0xfffffff00a4c8614",
+        "new_start": "0xfffffff00a50607c",
+        "old_insns": 3776,
+        "new_insns": 3807
+      },
+      {
+        "name": "bpfdetach",
+        "class": "structural",
+        "old_start": "0xfffffff00a3d88c0",
+        "new_start": "0xfffffff00a4159ac",
+        "old_insns": 190,
+        "new_insns": 234
+      },
+      {
+        "name": "fsctl_internal",
+        "class": "structural",
+        "old_start": "0xfffffff00a3a24a0",
+        "new_start": "0xfffffff00a3df3bc",
+        "old_insns": 675,
+        "new_insns": 722
+      },
+      {
+        "name": "renameat_internal",
+        "class": "structural",
+        "old_start": "0xfffffff00a39db28",
+        "new_start": "0xfffffff00a3da9f0",
+        "old_insns": 1248,
+        "new_insns": 1269
+      },
+      {
+        "name": "uipc_send",
+        "class": "structural",
+        "old_start": "0xfffffff00a74d084",
+        "new_start": "0xfffffff00a78cad8",
+        "old_insns": 852,
+        "new_insns": 880
+      },
+      {
+        "name": "posix_spawn",
+        "class": "structural",
+        "old_start": "0xfffffff00a6a6a48",
+        "new_start": "0xfffffff00a6e5e70",
+        "old_insns": 2239,
+        "new_insns": 2249
+      },
+      {
+        "name": "forkproc",
+        "class": "structural",
+        "old_start": "0xfffffff00a6b63e4",
+        "new_start": "0xfffffff00a6f58b4",
+        "old_insns": 661,
+        "new_insns": 669
+      },
+      {
+        "name": "host_set_special_port",
+        "class": "structural",
+        "old_start": "0xfffffff00a1a4138",
+        "new_start": "0xfffffff00a1e0490",
+        "old_insns": 115,
+        "new_insns": 62
+      },
+      {
+        "name": "kernel_set_special_port",
+        "class": "structural",
+        "old_start": "0xfffffff00a1a3f50",
+        "new_start": "0xfffffff00a1e0260",
+        "old_insns": 80,
+        "new_insns": 98
+      },
+      {
+        "name": "exception_deliver",
+        "class": "structural",
+        "old_start": "0xfffffff00a1a05c4",
+        "new_start": "0xfffffff00a1dc7b8",
+        "old_insns": 601,
+        "new_insns": 664
+      },
+      {
+        "name": "__mac_execve",
+        "class": "structural",
+        "old_start": "0xfffffff00a6ab5d0",
+        "new_start": "0xfffffff00a6eaa20",
+        "old_insns": 575,
+        "new_insns": 585
+      },
+      {
+        "name": "spec_ioctl",
+        "class": "structural",
+        "old_start": "0xfffffff00a3c22e8",
+        "new_start": "0xfffffff00a3ff360",
+        "old_insns": 262,
+        "new_insns": 278
+      },
+      {
+        "name": "ptyioctl",
+        "class": "structural",
+        "old_start": "0xfffffff00a71b778",
+        "new_start": "0xfffffff00a75ad88",
+        "old_insns": 420,
+        "new_insns": 420
+      },
+      {
+        "name": "ptmx_get_ioctl",
+        "class": "structural",
+        "old_start": "0xfffffff00a71cfd0",
+        "new_start": "0xfffffff00a75c9f8",
+        "old_insns": 268,
+        "new_insns": 268
+      },
+      {
+        "name": "vn_open_auth",
+        "class": "structural",
+        "old_start": "0xfffffff00a3abf04",
+        "new_start": "0xfffffff00a3e8ef4",
+        "old_insns": 776,
+        "new_insns": 788
+      },
+      {
+        "name": "unp_gc",
+        "class": "structural",
+        "old_start": "0xfffffff00a750838",
+        "new_start": "0xfffffff00a790338",
+        "old_insns": 468,
+        "new_insns": 478
+      }
+    ]
+  },
+  "structural_changes": [
+    {
+      "name": "__ZN10IOSKMapper12initWithTaskEP4taskP9IOSKArena",
+      "class": "structural",
+      "old_start": "0xfffffff00a987a9c",
+      "new_start": "0xfffffff00a9c8080",
+      "old_insns": 273,
+      "new_insns": 266
+    },
+    {
+      "name": "__ZN10IOSKMapper4freeEv",
+      "class": "structural",
+      "old_start": "0xfffffff00a984cac",
+      "new_start": "0xfffffff00a9c5248",
+      "old_insns": 78,
+      "new_insns": 96
+    },
+    {
+      "name": "__ZN12IODMACommand7prepareEyybb",
+      "class": "structural",
+      "old_start": "0xfffffff00a905980",
+      "new_start": "0xfffffff00a945ae0",
+      "old_insns": 410,
+      "new_insns": 410
+    },
+    {
+      "name": "__ZN12IOUserServer9_DispatchEPS_5IORPC",
+      "class": "structural",
+      "old_start": "0xfffffff00a89bd60",
+      "new_start": "0xfffffff00a8dbdf0",
+      "old_insns": 132,
+      "new_insns": 137
+    },
+    {
+      "name": "__ZN15IODispatchQueue9MetaClass8DispatchE5IORPC",
+      "class": "structural",
+      "old_start": "0xfffffff00a894e28",
+      "new_start": "0xfffffff00a8d4de4",
+      "old_insns": 59,
+      "new_insns": 60
+    },
+    {
+      "name": "__ZN25IOGeneralMemoryDescriptor11wireVirtualEj",
+      "class": "structural",
+      "old_start": "0xfffffff00a912ddc",
+      "new_start": "0xfffffff00a952f3c",
+      "old_insns": 649,
+      "new_insns": 651
+    },
+    {
+      "name": "__ZN25IOGeneralMemoryDescriptor18memoryReferenceMapEP17IOMemoryReferenceP7_vm_mapyyjPy",
+      "class": "structural",
+      "old_start": "0xfffffff00a910da4",
+      "new_start": "0xfffffff00a950f04",
+      "old_insns": 566,
+      "new_insns": 566
+    },
+    {
+      "name": "__ZN9IOService9_DispatchEPS_5IORPC",
+      "class": "structural",
+      "old_start": "0xfffffff00a88afd4",
+      "new_start": "0xfffffff00a8cae48",
+      "old_insns": 1741,
+      "new_insns": 1577
+    },
+    {
+      "name": "__ZNK25IOGeneralMemoryDescriptor19dmaCommandOperationEjPvj",
+      "class": "structural",
+      "old_start": "0xfffffff00a913d40",
+      "new_start": "0xfffffff00a953ea8",
+      "old_insns": 593,
+      "new_insns": 599
+    },
+    {
+      "name": "___ZN35IOServiceNotificationDispatchSource11Create_ImplEP12OSDictionaryyP15IODispatchQueuePPS__block_invoke",
+      "class": "structural",
+      "old_start": "0xfffffff00a969e64",
+      "new_start": "0xfffffff00a9a9fdc",
+      "old_insns": 375,
+      "new_insns": 426
+    },
+    {
+      "name": "__channel_open",
+      "class": "structural",
+      "old_start": "0xfffffff00a79944c",
+      "new_start": "0xfffffff00a7d90d4",
+      "old_insns": 648,
+      "new_insns": 660
+    },
+    {
+      "name": "__channel_sync",
+      "class": "structural",
+      "old_start": "0xfffffff00a79a41c",
+      "new_start": "0xfffffff00a7da0d4",
+      "old_insns": 961,
+      "new_insns": 1077
+    },
+    {
+      "name": "__mac_execve",
+      "class": "structural",
+      "old_start": "0xfffffff00a6ab5d0",
+      "new_start": "0xfffffff00a6eaa20",
+      "old_insns": 575,
+      "new_insns": 585
+    },
+    {
+      "name": "__nexus_open",
+      "class": "structural",
+      "old_start": "0xfffffff00a7c0d24",
+      "new_start": "0xfffffff00a800bb0",
+      "old_insns": 414,
+      "new_insns": 426
+    },
+    {
+      "name": "__stack_chk_fail",
+      "class": "structural",
+      "old_start": "0xfffffff00a32432c",
+      "new_start": "0xfffffff00a360f84",
+      "old_insns": 402,
+      "new_insns": 402
+    },
+    {
+      "name": "abort_with_payload",
+      "class": "structural",
+      "old_start": "0xfffffff00a6af02c",
+      "new_start": "0xfffffff00a6ee4a4",
+      "old_insns": 23,
+      "new_insns": 25
+    },
+    {
+      "name": "ah6_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a5d0764",
+      "new_start": "0xfffffff00a60f444",
+      "old_insns": 1076,
+      "new_insns": 1030
+    },
+    {
+      "name": "arm_init",
+      "class": "structural",
+      "old_start": "0xfffffff00a9fa058",
+      "new_start": "0xfffffff00aa3acb8",
+      "old_insns": 489,
+      "new_insns": 541
+    },
+    {
+      "name": "arm_vm_init",
+      "class": "structural",
+      "old_start": "0xfffffff00a31a95c",
+      "new_start": "0xfffffff00a357554",
+      "old_insns": 1541,
+      "new_insns": 1549
+    },
+    {
+      "name": "arp_lookup_ip",
+      "class": "structural",
+      "old_start": "0xfffffff00a531f38",
+      "new_start": "0xfffffff00a570a60",
+      "old_insns": 714,
+      "new_insns": 716
+    },
+    {
+      "name": "bpf_setdlt",
+      "class": "structural",
+      "old_start": "0xfffffff00a3d4ba4",
+      "new_start": "0xfffffff00a411c38",
+      "old_insns": 276,
+      "new_insns": 277
+    },
+    {
+      "name": "bpf_setup",
+      "class": "structural",
+      "old_start": "0xfffffff00a3d5898",
+      "new_start": "0xfffffff00a412944",
+      "old_insns": 689,
+      "new_insns": 702
+    },
+    {
+      "name": "bpfdetach",
+      "class": "structural",
+      "old_start": "0xfffffff00a3d88c0",
+      "new_start": "0xfffffff00a4159ac",
+      "old_insns": 190,
+      "new_insns": 234
+    },
+    {
+      "name": "bpfioctl",
+      "class": "structural",
+      "old_start": "0xfffffff00a3d3258",
+      "new_start": "0xfffffff00a4102f4",
+      "old_insns": 1207,
+      "new_insns": 1205
+    },
+    {
+      "name": "bpfread",
+      "class": "structural",
+      "old_start": "0xfffffff00a3d1784",
+      "new_start": "0xfffffff00a40e81c",
+      "old_insns": 667,
+      "new_insns": 668
+    },
+    {
+      "name": "bpfwrite",
+      "class": "structural",
+      "old_start": "0xfffffff00a3d2334",
+      "new_start": "0xfffffff00a40f3d0",
+      "old_insns": 401,
+      "new_insns": 401
+    },
+    {
+      "name": "buf_getblk",
+      "class": "structural",
+      "old_start": "0xfffffff00a35e468",
+      "new_start": "0xfffffff00a39b270",
+      "old_insns": 633,
+      "new_insns": 633
+    },
+    {
+      "name": "buf_invalblkno",
+      "class": "structural",
+      "old_start": "0xfffffff00a35fef0",
+      "new_start": "0xfffffff00a39ccf8",
+      "old_insns": 142,
+      "new_insns": 142
+    },
+    {
+      "name": "bufinit",
+      "class": "structural",
+      "old_start": "0xfffffff00a35d514",
+      "new_start": "0xfffffff00a39a31c",
+      "old_insns": 258,
+      "new_insns": 258
+    },
+    {
+      "name": "c_decompress_page",
+      "class": "structural",
+      "old_start": "0xfffffff00a254ad8",
+      "new_start": "0xfffffff00a290ef0",
+      "old_insns": 704,
+      "new_insns": 704
+    },
+    {
+      "name": "c_seg_switch_state",
+      "class": "structural",
+      "old_start": "0xfffffff00a24f140",
+      "new_start": "0xfffffff00a28b558",
+      "old_insns": 1092,
+      "new_insns": 1092
+    },
+    {
+      "name": "cfil_service_inject_queue",
+      "class": "structural",
+      "old_start": "0xfffffff00a50a620",
+      "new_start": "0xfffffff00a548844",
+      "old_insns": 598,
+      "new_insns": 624
+    },
+    {
+      "name": "cluster_io",
+      "class": "structural",
+      "old_start": "0xfffffff00a365c3c",
+      "new_start": "0xfffffff00a3a2a44",
+      "old_insns": 1397,
+      "new_insns": 1407
+    },
+    {
+      "name": "cluster_read_copy",
+      "class": "structural",
+      "old_start": "0xfffffff00a36de0c",
+      "new_start": "0xfffffff00a3aac3c",
+      "old_insns": 1233,
+      "new_insns": 1233
+    },
+    {
+      "name": "commpage_populate",
+      "class": "structural",
+      "old_start": "0xfffffff00a33332c",
+      "new_start": "0xfffffff00a370120",
+      "old_insns": 458,
+      "new_insns": 462
+    },
+    {
+      "name": "defrtrlist_del",
+      "class": "structural",
+      "old_start": "0xfffffff00a63f4d0",
+      "new_start": "0xfffffff00a67e6fc",
+      "old_insns": 574,
+      "new_insns": 558
+    },
+    {
+      "name": "dlil_clat46",
+      "class": "structural",
+      "old_start": "0xfffffff00a414c78",
+      "new_start": "0xfffffff00a451c34",
+      "old_insns": 219,
+      "new_insns": 238
+    },
+    {
+      "name": "dlil_clat64",
+      "class": "structural",
+      "old_start": "0xfffffff00a414fe4",
+      "new_start": "0xfffffff00a451fec",
+      "old_insns": 248,
+      "new_insns": 249
+    },
+    {
+      "name": "dlil_ifaddr_bytes",
+      "class": "structural",
+      "old_start": "0xfffffff00a40ccec",
+      "new_start": "0xfffffff00a449dec",
+      "old_insns": 57,
+      "new_insns": 63
+    },
+    {
+      "name": "dlil_input_packet_list_common",
+      "class": "structural",
+      "old_start": "0xfffffff00a40f644",
+      "new_start": "0xfffffff00a44c75c",
+      "old_insns": 959,
+      "new_insns": 981
+    },
+    {
+      "name": "dlil_output",
+      "class": "structural",
+      "old_start": "0xfffffff00a4128c0",
+      "new_start": "0xfffffff00a44fa30",
+      "old_insns": 956,
+      "new_insns": 936
+    },
+    {
+      "name": "esp6_input_extended",
+      "class": "structural",
+      "old_start": "0xfffffff00a5d7c10",
+      "new_start": "0xfffffff00a616838",
+      "old_insns": 1816,
+      "new_insns": 1760
+    },
+    {
+      "name": "ether_inet_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a4178a4",
+      "new_start": "0xfffffff00a4548b0",
+      "old_insns": 102,
+      "new_insns": 102
+    },
+    {
+      "name": "exception_deliver",
+      "class": "structural",
+      "old_start": "0xfffffff00a1a05c4",
+      "new_start": "0xfffffff00a1dc7b8",
+      "old_insns": 601,
+      "new_insns": 664
+    },
+    {
+      "name": "flow_divert_create_control_mbuf",
+      "class": "structural",
+      "old_start": "0xfffffff00a5b0b9c",
+      "new_start": "0xfffffff00a5ef818",
+      "old_insns": 192,
+      "new_insns": 192
+    },
+    {
+      "name": "flow_divert_ctloutput",
+      "class": "structural",
+      "old_start": "0xfffffff00a5b263c",
+      "new_start": "0xfffffff00a5f12f8",
+      "old_insns": 102,
+      "new_insns": 110
+    },
+    {
+      "name": "flow_divert_handle_connect_result",
+      "class": "structural",
+      "old_start": "0xfffffff00a5af78c",
+      "new_start": "0xfffffff00a5ee408",
+      "old_insns": 502,
+      "new_insns": 502
+    },
+    {
+      "name": "flow_divert_handle_flow_states_request",
+      "class": "structural",
+      "old_start": "0xfffffff00a5af43c",
+      "new_start": "0xfffffff00a5ee074",
+      "old_insns": 212,
+      "new_insns": 229
+    },
+    {
+      "name": "flow_divert_init",
+      "class": "structural",
+      "old_start": "0xfffffff00a5ad650",
+      "new_start": "0xfffffff00a5ec23c",
+      "old_insns": 433,
+      "new_insns": 434
+    },
+    {
+      "name": "flow_divert_kctl_disconnect",
+      "class": "structural",
+      "old_start": "0xfffffff00a5b1ef0",
+      "new_start": "0xfffffff00a5f0b6c",
+      "old_insns": 298,
+      "new_insns": 314
+    },
+    {
+      "name": "flow_divert_kctl_rcvd",
+      "class": "structural",
+      "old_start": "0xfffffff00a5ae0e0",
+      "new_start": "0xfffffff00a5eccd0",
+      "old_insns": 258,
+      "new_insns": 275
+    },
+    {
+      "name": "flow_divert_kctl_send",
+      "class": "structural",
+      "old_start": "0xfffffff00a5ae4e8",
+      "new_start": "0xfffffff00a5ed11c",
+      "old_insns": 384,
+      "new_insns": 385
+    },
+    {
+      "name": "flow_pkt_classify",
+      "class": "structural",
+      "old_start": "0xfffffff00a7e1acc",
+      "new_start": "0xfffffff00a821a68",
+      "old_insns": 1737,
+      "new_insns": 1817
+    },
+    {
+      "name": "flow_rx_agg_channel",
+      "class": "structural",
+      "old_start": "0xfffffff00a7f39f8",
+      "new_start": "0xfffffff00a833a7c",
+      "old_insns": 1114,
+      "new_insns": 1099
+    },
+    {
+      "name": "flow_rx_agg_host",
+      "class": "structural",
+      "old_start": "0xfffffff00a7f210c",
+      "new_start": "0xfffffff00a8321e8",
+      "old_insns": 1595,
+      "new_insns": 1573
+    },
+    {
+      "name": "forkproc",
+      "class": "structural",
+      "old_start": "0xfffffff00a6b63e4",
+      "new_start": "0xfffffff00a6f58b4",
+      "old_insns": 661,
+      "new_insns": 669
+    },
+    {
+      "name": "fq_if_dequeue_sc",
+      "class": "structural",
+      "old_start": "0xfffffff00a51da1c",
+      "new_start": "0xfffffff00a23c348",
+      "old_insns": 501,
+      "new_insns": 295
+    },
+    {
+      "name": "fq_if_enqueue",
+      "class": "structural",
+      "old_start": "0xfffffff00a51f728",
+      "new_start": "0xfffffff00a55ad2c",
+      "old_insns": 420,
+      "new_insns": 312
+    },
+    {
+      "name": "frag6_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a5eca40",
+      "new_start": "0xfffffff00a62b504",
+      "old_insns": 1582,
+      "new_insns": 1565
+    },
+    {
+      "name": "fsctl_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a3a24a0",
+      "new_start": "0xfffffff00a3df3bc",
+      "old_insns": 675,
+      "new_insns": 722
+    },
+    {
+      "name": "fsw_ring_flush",
+      "class": "structural",
+      "old_start": "0xfffffff00a7d5644",
+      "new_start": "0xfffffff00a815500",
+      "old_insns": 2697,
+      "new_insns": 2692
+    },
+    {
+      "name": "host_set_special_port",
+      "class": "structural",
+      "old_start": "0xfffffff00a1a4138",
+      "new_start": "0xfffffff00a1e0490",
+      "old_insns": 115,
+      "new_insns": 62
+    },
+    {
+      "name": "hv_trap_vcpu_run",
+      "class": "structural",
+      "old_start": "0xfffffff00a347234",
+      "new_start": "0xfffffff00a384038",
+      "old_insns": 3383,
+      "new_insns": 3384
+    },
+    {
+      "name": "i_coal_jetsam_set_taskrole",
+      "class": "structural",
+      "old_start": "0xfffffff00a199dbc",
+      "new_start": "0xfffffff00a1d5edc",
+      "old_insns": 124,
+      "new_insns": 131
+    },
+    {
+      "name": "icmp6_error_flag",
+      "class": "structural",
+      "old_start": "0xfffffff00a5ee930",
+      "new_start": "0xfffffff00a62d3b0",
+      "old_insns": 509,
+      "new_insns": 517
+    },
+    {
+      "name": "icmp6_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a5f001c",
+      "new_start": "0xfffffff00a62eabc",
+      "old_insns": 870,
+      "new_insns": 858
+    },
+    {
+      "name": "icmp6_redirect_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a5f1aac",
+      "new_start": "0xfffffff00a63051c",
+      "old_insns": 518,
+      "new_insns": 520
+    },
+    {
+      "name": "if_ports_used_add_flow_entry",
+      "class": "structural",
+      "old_start": "0xfffffff00a451870",
+      "new_start": "0xfffffff00a48eb88",
+      "old_insns": 262,
+      "new_insns": 286
+    },
+    {
+      "name": "if_ports_used_add_inpcb",
+      "class": "structural",
+      "old_start": "0xfffffff00a450d28",
+      "new_start": "0xfffffff00a48dfe0",
+      "old_insns": 263,
+      "new_insns": 287
+    },
+    {
+      "name": "if_ports_used_match_mbuf",
+      "class": "structural",
+      "old_start": "0xfffffff00a451e74",
+      "new_start": "0xfffffff00a48f1ec",
+      "old_insns": 813,
+      "new_insns": 817
+    },
+    {
+      "name": "if_ports_used_match_pkt",
+      "class": "structural",
+      "old_start": "0xfffffff00a453a08",
+      "new_start": "0xfffffff00a490e4c",
+      "old_insns": 575,
+      "new_insns": 613
+    },
+    {
+      "name": "ifnet_detacher_thread_cont",
+      "class": "structural",
+      "old_start": "0xfffffff00a400fc4",
+      "new_start": "0xfffffff00a43e160",
+      "old_insns": 1517,
+      "new_insns": 1518
+    },
+    {
+      "name": "igi_remref",
+      "class": "structural",
+      "old_start": "0xfffffff00a526324",
+      "new_start": "0xfffffff00a564694",
+      "old_insns": 241,
+      "new_insns": 287
+    },
+    {
+      "name": "igmp_domifdetach",
+      "class": "structural",
+      "old_start": "0xfffffff00a525ccc",
+      "new_start": "0xfffffff00a563f58",
+      "old_insns": 198,
+      "new_insns": 240
+    },
+    {
+      "name": "igmp_flush_relq",
+      "class": "structural",
+      "old_start": "0xfffffff00a525fe4",
+      "new_start": "0xfffffff00a564318",
+      "old_insns": 208,
+      "new_insns": 223
+    },
+    {
+      "name": "igmp_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a5266e8",
+      "new_start": "0xfffffff00a564b10",
+      "old_insns": 428,
+      "new_insns": 418
+    },
+    {
+      "name": "igmp_timeout",
+      "class": "structural",
+      "old_start": "0xfffffff00a528e30",
+      "new_start": "0xfffffff00a56782c",
+      "old_insns": 1298,
+      "new_insns": 1340
+    },
+    {
+      "name": "in6_finalize_cksum",
+      "class": "structural",
+      "old_start": "0xfffffff00a608600",
+      "new_start": "0xfffffff00a647048",
+      "old_insns": 287,
+      "new_insns": 281
+    },
+    {
+      "name": "in6_mc_join",
+      "class": "structural",
+      "old_start": "0xfffffff00a6124ec",
+      "new_start": "0xfffffff00a650f74",
+      "old_insns": 663,
+      "new_insns": 719
+    },
+    {
+      "name": "in6_purgeaddr",
+      "class": "structural",
+      "old_start": "0xfffffff00a5f8868",
+      "new_start": "0xfffffff00a637168",
+      "old_insns": 586,
+      "new_insns": 590
+    },
+    {
+      "name": "in6_selectsrc",
+      "class": "structural",
+      "old_start": "0xfffffff00a60e420",
+      "new_start": "0xfffffff00a64ce80",
+      "old_insns": 307,
+      "new_insns": 317
+    },
+    {
+      "name": "in6_selectsrc_core",
+      "class": "structural",
+      "old_start": "0xfffffff00a60ca7c",
+      "new_start": "0xfffffff00a64b4ac",
+      "old_insns": 1554,
+      "new_insns": 1566
+    },
+    {
+      "name": "in6_tmpifadd",
+      "class": "structural",
+      "old_start": "0xfffffff00a63e7e8",
+      "new_start": "0xfffffff00a67d6e8",
+      "old_insns": 583,
+      "new_insns": 711
+    },
+    {
+      "name": "in6ctl_aifaddr",
+      "class": "structural",
+      "old_start": "0xfffffff00a5f7bcc",
+      "new_start": "0xfffffff00a63645c",
+      "old_insns": 495,
+      "new_insns": 523
+    },
+    {
+      "name": "in_joingroup",
+      "class": "structural",
+      "old_start": "0xfffffff00a537d3c",
+      "new_start": "0xfffffff00a57686c",
+      "old_insns": 625,
+      "new_insns": 681
+    },
+    {
+      "name": "iopl_valid_data",
+      "class": "structural",
+      "old_start": "0xfffffff00a2b168c",
+      "new_start": "0xfffffff00a2ee220",
+      "old_insns": 308,
+      "new_insns": 306
+    },
+    {
+      "name": "ip6_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a601eb8",
+      "new_start": "0xfffffff00a6408e0",
+      "old_insns": 1879,
+      "new_insns": 1847
+    },
+    {
+      "name": "ip6_output_list",
+      "class": "structural",
+      "old_start": "0xfffffff00a6052c0",
+      "new_start": "0xfffffff00a643c58",
+      "old_insns": 3143,
+      "new_insns": 3187
+    },
+    {
+      "name": "ip_input_second_pass",
+      "class": "structural",
+      "old_start": "0xfffffff00a55842c",
+      "new_start": "0xfffffff00a59703c",
+      "old_insns": 1550,
+      "new_insns": 1550
+    },
+    {
+      "name": "ipc_is_valid_exception_port",
+      "class": "structural",
+      "old_start": "0xfffffff00a1a1d2c",
+      "new_start": "0xfffffff00a1de01c",
+      "old_insns": 93,
+      "new_insns": 99
+    },
+    {
+      "name": "ipc_kmsg_copyin_from_user",
+      "class": "structural",
+      "old_start": "0xfffffff00a174548",
+      "new_start": "0xfffffff00a1b0500",
+      "old_insns": 982,
+      "new_insns": 995
+    },
+    {
+      "name": "ipc_right_lookup_read",
+      "class": "structural",
+      "old_start": "0xfffffff00a18524c",
+      "new_start": "0xfffffff00a1c140c",
+      "old_insns": 174,
+      "new_insns": 177
+    },
+    {
+      "name": "ipsec4_delete_pcbpolicy",
+      "class": "structural",
+      "old_start": "0xfffffff00a5e3e64",
+      "new_start": "0xfffffff00a57e768",
+      "old_insns": 39,
+      "new_insns": 48
+    },
+    {
+      "name": "ipsec6_output_tunnel",
+      "class": "structural",
+      "old_start": "0xfffffff00a5e8928",
+      "new_start": "0xfffffff00a627470",
+      "old_insns": 315,
+      "new_insns": 315
+    },
+    {
+      "name": "ipsec_output",
+      "class": "structural",
+      "old_start": "0xfffffff00a4696d8",
+      "new_start": "0xfffffff00a4a6bd0",
+      "old_insns": 541,
+      "new_insns": 562
+    },
+    {
+      "name": "iptap_clone_create",
+      "class": "structural",
+      "old_start": "0xfffffff00a4f61fc",
+      "new_start": "0xfffffff00a533ff0",
+      "old_insns": 213,
+      "new_insns": 215
+    },
+    {
+      "name": "iptap_tap_callback",
+      "class": "structural",
+      "old_start": "0xfffffff00a4f6550",
+      "new_start": "0xfffffff00a53434c",
+      "old_insns": 79,
+      "new_insns": 104
+    },
+    {
+      "name": "issignal_locked",
+      "class": "structural",
+      "old_start": "0xfffffff00a6cfd40",
+      "new_start": "0xfffffff00a701384",
+      "old_insns": 130,
+      "new_insns": 246
+    },
+    {
+      "name": "kdp_lightweight_fault",
+      "class": "structural",
+      "old_start": "0xfffffff00a26dcd4",
+      "new_start": "0xfffffff00a2aa458",
+      "old_insns": 219,
+      "new_insns": 250
+    },
+    {
+      "name": "kern_channel_defunct",
+      "class": "structural",
+      "old_start": "0xfffffff00a793604",
+      "new_start": "0xfffffff00a7d3240",
+      "old_insns": 221,
+      "new_insns": 240
+    },
+    {
+      "name": "kernel_set_special_port",
+      "class": "structural",
+      "old_start": "0xfffffff00a1a3f50",
+      "new_start": "0xfffffff00a1e0260",
+      "old_insns": 80,
+      "new_insns": 98
+    },
+    {
+      "name": "kperf_sample",
+      "class": "structural",
+      "old_start": "0xfffffff00a2e90e8",
+      "new_start": "0xfffffff00a19d648",
+      "old_insns": 384,
+      "new_insns": 285
+    },
+    {
+      "name": "kpersona_alloc_syscall",
+      "class": "structural",
+      "old_start": "0xfffffff00a710e94",
+      "new_start": "0xfffffff00a6e8194",
+      "old_insns": 186,
+      "new_insns": 67
+    },
+    {
+      "name": "m_adj_sum16",
+      "class": "structural",
+      "old_start": "0xfffffff00a732618",
+      "new_start": "0xfffffff00a77205c",
+      "old_insns": 147,
+      "new_insns": 150
+    },
+    {
+      "name": "memorystatus_thread",
+      "class": "structural",
+      "old_start": "0xfffffff00a6e100c",
+      "new_start": "0xfffffff00a720650",
+      "old_insns": 1892,
+      "new_insns": 1892
+    },
+    {
+      "name": "memstat_kill_top_process",
+      "class": "structural",
+      "old_start": "0xfffffff00a6e4cb4",
+      "new_start": "0xfffffff00a7242f8",
+      "old_insns": 698,
+      "new_insns": 698
+    },
+    {
+      "name": "mld_domifdetach",
+      "class": "structural",
+      "old_start": "0xfffffff00a6212a0",
+      "new_start": "0xfffffff00a65ffb8",
+      "old_insns": 202,
+      "new_insns": 244
+    },
+    {
+      "name": "mld_flush_relq",
+      "class": "structural",
+      "old_start": "0xfffffff00a61ff1c",
+      "new_start": "0xfffffff00a65ebf8",
+      "old_insns": 212,
+      "new_insns": 227
+    },
+    {
+      "name": "mld_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a6215c8",
+      "new_start": "0xfffffff00a660388",
+      "old_insns": 896,
+      "new_insns": 897
+    },
+    {
+      "name": "mld_timeout",
+      "class": "structural",
+      "old_start": "0xfffffff00a61d0d4",
+      "new_start": "0xfffffff00a65bc50",
+      "old_insns": 1176,
+      "new_insns": 1218
+    },
+    {
+      "name": "mli_remref",
+      "class": "structural",
+      "old_start": "0xfffffff00a61f5b4",
+      "new_start": "0xfffffff00a65e1d8",
+      "old_insns": 241,
+      "new_insns": 287
+    },
+    {
+      "name": "nat464_translate_46",
+      "class": "structural",
+      "old_start": "0xfffffff00a4bd35c",
+      "new_start": "0xfffffff00a4face8",
+      "old_insns": 93,
+      "new_insns": 99
+    },
+    {
+      "name": "nat464_translate_64",
+      "class": "structural",
+      "old_start": "0xfffffff00a4bd0fc",
+      "new_start": "0xfffffff00a4faa50",
+      "old_insns": 152,
+      "new_insns": 166
+    },
+    {
+      "name": "nat464_translate_icmp_ip",
+      "class": "structural",
+      "old_start": "0xfffffff00a4bcc90",
+      "new_start": "0xfffffff00a4fa5c8",
+      "old_insns": 218,
+      "new_insns": 225
+    },
+    {
+      "name": "nat464_translate_proto",
+      "class": "structural",
+      "old_start": "0xfffffff00a4bd4d0",
+      "new_start": "0xfffffff00a4fae74",
+      "old_insns": 513,
+      "new_insns": 542
+    },
+    {
+      "name": "nd6_dad_na_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a631d94",
+      "new_start": "0xfffffff00a670bfc",
+      "old_insns": 272,
+      "new_insns": 300
+    },
+    {
+      "name": "nd6_lookup_ipv6",
+      "class": "structural",
+      "old_start": "0xfffffff00a62d4d0",
+      "new_start": "0xfffffff00a66c298",
+      "old_insns": 259,
+      "new_insns": 265
+    },
+    {
+      "name": "nd6_na_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a6306f4",
+      "new_start": "0xfffffff00a66f514",
+      "old_insns": 1448,
+      "new_insns": 1466
+    },
+    {
+      "name": "nd6_ns_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a62e07c",
+      "new_start": "0xfffffff00a66ce5c",
+      "old_insns": 862,
+      "new_insns": 878
+    },
+    {
+      "name": "nd6_ra_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a638644",
+      "new_start": "0xfffffff00a677538",
+      "old_insns": 1510,
+      "new_insns": 1512
+    },
+    {
+      "name": "nd6_rs_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a6380c8",
+      "new_start": "0xfffffff00a676fa0",
+      "old_insns": 351,
+      "new_insns": 358
+    },
+    {
+      "name": "necp_application_find_policy_match_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a47bd4c",
+      "new_start": "0xfffffff00a4b9094",
+      "old_insns": 3693,
+      "new_insns": 3693
+    },
+    {
+      "name": "necp_check_drop_all_bypass_result",
+      "class": "structural",
+      "old_start": "0xfffffff00a47f954",
+      "new_start": "0xfffffff00a4bcc9c",
+      "old_insns": 2265,
+      "new_insns": 2332
+    },
+    {
+      "name": "necp_client_add",
+      "class": "structural",
+      "old_start": "0xfffffff00a49e080",
+      "new_start": "0xfffffff00a4db7bc",
+      "old_insns": 1055,
+      "new_insns": 1077
+    },
+    {
+      "name": "necp_client_parse_parameters",
+      "class": "structural",
+      "old_start": "0xfffffff00a4953ec",
+      "new_start": "0xfffffff00a4d2afc",
+      "old_insns": 2730,
+      "new_insns": 2741
+    },
+    {
+      "name": "necp_client_request_nexus",
+      "class": "structural",
+      "old_start": "0xfffffff00a4a18ac",
+      "new_start": "0xfffffff00a4df040",
+      "old_insns": 492,
+      "new_insns": 557
+    },
+    {
+      "name": "necp_create_agent_type_to_id_mapping",
+      "class": "structural",
+      "old_start": "0xfffffff00a473c4c",
+      "new_start": "0xfffffff00a4b1198",
+      "old_insns": 419,
+      "new_insns": 290
+    },
+    {
+      "name": "necp_socket_check_policy",
+      "class": "structural",
+      "old_start": "0xfffffff00a483c1c",
+      "new_start": "0xfffffff00a4c10d8",
+      "old_insns": 2862,
+      "new_insns": 2827
+    },
+    {
+      "name": "necp_socket_find_policy_match",
+      "class": "structural",
+      "old_start": "0xfffffff00a486cc8",
+      "new_start": "0xfffffff00a4c4090",
+      "old_insns": 1846,
+      "new_insns": 1872
+    },
+    {
+      "name": "net_port_info_find_match",
+      "class": "structural",
+      "old_start": "0xfffffff00a452f9c",
+      "new_start": "0xfffffff00a4903b8",
+      "old_insns": 244,
+      "new_insns": 252
+    },
+    {
+      "name": "net_port_info_log_npi",
+      "class": "structural",
+      "old_start": "0xfffffff00a44f0f4",
+      "new_start": "0xfffffff00a48c3a0",
+      "old_insns": 128,
+      "new_insns": 131
+    },
+    {
+      "name": "netif_gso_tcp_segment_mbuf",
+      "class": "structural",
+      "old_start": "0xfffffff00a8135a8",
+      "new_start": "0xfffffff00a8534a0",
+      "old_insns": 616,
+      "new_insns": 594
+    },
+    {
+      "name": "netif_qset_enqueue",
+      "class": "structural",
+      "old_start": "0xfffffff00a815f88",
+      "new_start": "0xfffffff00a855e28",
+      "old_insns": 177,
+      "new_insns": 159
+    },
+    {
+      "name": "netif_vp_na_activate",
+      "class": "structural",
+      "old_start": "0xfffffff00a80f600",
+      "new_start": "0xfffffff00a84f3c4",
+      "old_insns": 427,
+      "new_insns": 425
+    },
+    {
+      "name": "nstat_idle_check",
+      "class": "structural",
+      "old_start": "0xfffffff00a445444",
+      "new_start": "0xfffffff00a4826c8",
+      "old_insns": 956,
+      "new_insns": 966
+    },
+    {
+      "name": "nx_netif_compat_na_activate",
+      "class": "structural",
+      "old_start": "0xfffffff00a802208",
+      "new_start": "0xfffffff00a8421e8",
+      "old_insns": 1310,
+      "new_insns": 1310
+    },
+    {
+      "name": "nx_netif_compat_na_rxsync",
+      "class": "structural",
+      "old_start": "0xfffffff00a800544",
+      "new_start": "0xfffffff00a84053c",
+      "old_insns": 762,
+      "new_insns": 756
+    },
+    {
+      "name": "nx_netif_compat_receive",
+      "class": "structural",
+      "old_start": "0xfffffff00a80379c",
+      "new_start": "0xfffffff00a84377c",
+      "old_insns": 235,
+      "new_insns": 210
+    },
+    {
+      "name": "nx_netif_filter_inject",
+      "class": "structural",
+      "old_start": "0xfffffff00a8089e0",
+      "new_start": "0xfffffff00a8488b8",
+      "old_insns": 215,
+      "new_insns": 215
+    },
+    {
+      "name": "nx_netif_filter_tx_cb",
+      "class": "structural",
+      "old_start": "0xfffffff00a7fe688",
+      "new_start": "0xfffffff00a83e690",
+      "old_insns": 79,
+      "new_insns": 81
+    },
+    {
+      "name": "nx_netif_filter_tx_processed_mbuf_enqueue",
+      "class": "structural",
+      "old_start": "0xfffffff00a8098d4",
+      "new_start": "0xfffffff00a8497ac",
+      "old_insns": 195,
+      "new_insns": 182
+    },
+    {
+      "name": "nx_netif_filter_tx_processed_pkt_enqueue",
+      "class": "structural",
+      "old_start": "0xfffffff00a80a730",
+      "new_start": "0xfffffff00a84a5d4",
+      "old_insns": 212,
+      "new_insns": 192
+    },
+    {
+      "name": "nx_netif_host_output",
+      "class": "structural",
+      "old_start": "0xfffffff00a8040dc",
+      "new_start": "0xfffffff00a844058",
+      "old_insns": 742,
+      "new_insns": 701
+    },
+    {
+      "name": "os_fault_with_payload",
+      "class": "structural",
+      "old_start": "0xfffffff00a6af088",
+      "new_start": "0xfffffff00a6ee508",
+      "old_insns": 72,
+      "new_insns": 90
+    },
+    {
+      "name": "panic_display_zalloc",
+      "class": "structural",
+      "old_start": "0xfffffff00a22a614",
+      "new_start": "0xfffffff00a266a2c",
+      "old_insns": 503,
+      "new_insns": 503
+    },
+    {
+      "name": "pbuf_resize_segment",
+      "class": "structural",
+      "old_start": "0xfffffff00a4ec6c8",
+      "new_start": "0xfffffff00a52a49c",
+      "old_insns": 201,
+      "new_insns": 209
+    },
+    {
+      "name": "persona",
+      "class": "structural",
+      "old_start": "0xfffffff00a6a8d44",
+      "new_start": "0xfffffff00a74fa4c",
+      "old_insns": 67,
+      "new_insns": 647
+    },
+    {
+      "name": "pf_calc_mss",
+      "class": "structural",
+      "old_start": "0xfffffff00a4d40d0",
+      "new_start": "0xfffffff00a511d74",
+      "old_insns": 90,
+      "new_insns": 104
+    },
+    {
+      "name": "pf_frag6cache",
+      "class": "structural",
+      "old_start": "0xfffffff00a4e9648",
+      "new_start": "0xfffffff00a527460",
+      "old_insns": 643,
+      "new_insns": 624
+    },
+    {
+      "name": "pf_fragcache",
+      "class": "structural",
+      "old_start": "0xfffffff00a4e71d4",
+      "new_start": "0xfffffff00a524f80",
+      "old_insns": 608,
+      "new_insns": 609
+    },
+    {
+      "name": "pf_nat64_ipv6",
+      "class": "structural",
+      "old_start": "0xfffffff00a4d24e0",
+      "new_start": "0xfffffff00a51016c",
+      "old_insns": 79,
+      "new_insns": 85
+    },
+    {
+      "name": "pf_normalize_ip6",
+      "class": "structural",
+      "old_start": "0xfffffff00a4e7dcc",
+      "new_start": "0xfffffff00a525b7c",
+      "old_insns": 779,
+      "new_insns": 773
+    },
+    {
+      "name": "pf_route",
+      "class": "structural",
+      "old_start": "0xfffffff00a4cfd60",
+      "new_start": "0xfffffff00a50d988",
+      "old_insns": 379,
+      "new_insns": 404
+    },
+    {
+      "name": "pf_test",
+      "class": "structural",
+      "old_start": "0xfffffff00a4c4704",
+      "new_start": "0xfffffff00a50211c",
+      "old_insns": 1194,
+      "new_insns": 1214
+    },
+    {
+      "name": "pf_test6",
+      "class": "structural",
+      "old_start": "0xfffffff00a4d769c",
+      "new_start": "0xfffffff00a515378",
+      "old_insns": 1277,
+      "new_insns": 1297
+    },
+    {
+      "name": "pf_test_rule",
+      "class": "structural",
+      "old_start": "0xfffffff00a4c8614",
+      "new_start": "0xfffffff00a50607c",
+      "old_insns": 3776,
+      "new_insns": 3807
+    },
+    {
+      "name": "phys_attribute_clear_range_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a30e914",
+      "new_start": "0xfffffff00a2c3300",
+      "old_insns": 897,
+      "new_insns": 252
+    },
+    {
+      "name": "pktap_bpf_tap",
+      "class": "structural",
+      "old_start": "0xfffffff00a4f93cc",
+      "new_start": "0xfffffff00a5372c4",
+      "old_insns": 543,
+      "new_insns": 592
+    },
+    {
+      "name": "pktap_clone_create",
+      "class": "structural",
+      "old_start": "0xfffffff00a4f73dc",
+      "new_start": "0xfffffff00a53527c",
+      "old_insns": 232,
+      "new_insns": 234
+    },
+    {
+      "name": "pktap_detach",
+      "class": "structural",
+      "old_start": "0xfffffff00a4f7874",
+      "new_start": "0xfffffff00a535750",
+      "old_insns": 69,
+      "new_insns": 76
+    },
+    {
+      "name": "pktap_tap_callback",
+      "class": "structural",
+      "old_start": "0xfffffff00a4f777c",
+      "new_start": "0xfffffff00a535624",
+      "old_insns": 62,
+      "new_insns": 75
+    },
+    {
+      "name": "pmap_ro_zone_memcpy_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a1a19a0",
+      "new_start": "0xfffffff00a350eec",
+      "old_insns": 227,
+      "new_insns": 95
+    },
+    {
+      "name": "posix_spawn",
+      "class": "structural",
+      "old_start": "0xfffffff00a6a6a48",
+      "new_start": "0xfffffff00a6e5e70",
+      "old_insns": 2239,
+      "new_insns": 2249
+    },
+    {
+      "name": "prelist_update",
+      "class": "structural",
+      "old_start": "0xfffffff00a63a7f4",
+      "new_start": "0xfffffff00a6796f0",
+      "old_insns": 922,
+      "new_insns": 923
+    },
+    {
+      "name": "proc_prepareexit",
+      "class": "structural",
+      "old_start": "0xfffffff00a6af5bc",
+      "new_start": "0xfffffff00a6eea84",
+      "old_insns": 739,
+      "new_insns": 741
+    },
+    {
+      "name": "ptcread",
+      "class": "structural",
+      "old_start": "0xfffffff00a71ae88",
+      "new_start": "0xfffffff00a75a498",
+      "old_insns": 186,
+      "new_insns": 186
+    },
+    {
+      "name": "ptmx_get_ioctl",
+      "class": "structural",
+      "old_start": "0xfffffff00a71cfd0",
+      "new_start": "0xfffffff00a75c9f8",
+      "old_insns": 268,
+      "new_insns": 268
+    },
+    {
+      "name": "ptmx_kqfilter",
+      "class": "structural",
+      "old_start": "0xfffffff00a71c6bc",
+      "new_start": "0xfffffff00a75bd90",
+      "old_insns": 89,
+      "new_insns": 90
+    },
+    {
+      "name": "ptsopen",
+      "class": "structural",
+      "old_start": "0xfffffff00a71a030",
+      "new_start": "0xfffffff00a759640",
+      "old_insns": 177,
+      "new_insns": 177
+    },
+    {
+      "name": "ptyioctl",
+      "class": "structural",
+      "old_start": "0xfffffff00a71b778",
+      "new_start": "0xfffffff00a75ad88",
+      "old_insns": 420,
+      "new_insns": 420
+    },
+    {
+      "name": "redirect_nx_sync_tx",
+      "class": "structural",
+      "old_start": "0xfffffff00a42819c",
+      "new_start": "0xfffffff00a4651a8",
+      "old_insns": 522,
+      "new_insns": 515
+    },
+    {
+      "name": "regen_tmpaddr",
+      "class": "structural",
+      "old_start": "0xfffffff00a627d7c",
+      "new_start": "0xfffffff00a666b40",
+      "old_insns": 171,
+      "new_insns": 172
+    },
+    {
+      "name": "renameat_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a39db28",
+      "new_start": "0xfffffff00a3da9f0",
+      "old_insns": 1248,
+      "new_insns": 1269
+    },
+    {
+      "name": "route_output",
+      "class": "structural",
+      "old_start": "0xfffffff00a43bf94",
+      "new_start": "0xfffffff00a479224",
+      "old_insns": 1230,
+      "new_insns": 1227
+    },
+    {
+      "name": "rt_setgate",
+      "class": "structural",
+      "old_start": "0xfffffff00a42ecbc",
+      "new_start": "0xfffffff00a47072c",
+      "old_insns": 22,
+      "new_insns": 741
+    },
+    {
+      "name": "rtm_scrub",
+      "class": "structural",
+      "old_start": "0xfffffff00a42f0b4",
+      "new_start": "0xfffffff00a46c0a4",
+      "old_insns": 171,
+      "new_insns": 188
+    },
+    {
+      "name": "sched_clutch_hierarchy_thread_highest",
+      "class": "structural",
+      "old_start": "0xfffffff00a1ccccc",
+      "new_start": "0xfffffff00a209f7c",
+      "old_insns": 208,
+      "new_insns": 708
+    },
+    {
+      "name": "set_exception_ports_validation",
+      "class": "structural",
+      "old_start": "0xfffffff00a1adf60",
+      "new_start": "0xfffffff00a1ea220",
+      "old_insns": 178,
+      "new_insns": 184
+    },
+    {
+      "name": "sigaction",
+      "class": "structural",
+      "old_start": "0xfffffff00a6cf914",
+      "new_start": "0xfffffff00a70ee78",
+      "old_insns": 135,
+      "new_insns": 148
+    },
+    {
+      "name": "spec_ioctl",
+      "class": "structural",
+      "old_start": "0xfffffff00a3c22e8",
+      "new_start": "0xfffffff00a3ff360",
+      "old_insns": 262,
+      "new_insns": 278
+    },
+    {
+      "name": "t6000dart_init",
+      "class": "structural",
+      "old_start": "0xfffffff00a33ea28",
+      "new_start": "0xfffffff00a37b82c",
+      "old_insns": 553,
+      "new_insns": 553
+    },
+    {
+      "name": "t8020dart_init",
+      "class": "structural",
+      "old_start": "0xfffffff00a341264",
+      "new_start": "0xfffffff00a37e068",
+      "old_insns": 710,
+      "new_insns": 710
+    },
+    {
+      "name": "task_create_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a1f0c24",
+      "new_start": "0xfffffff00a22cfac",
+      "old_insns": 999,
+      "new_insns": 1011
+    },
+    {
+      "name": "tcp6_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a56ba34",
+      "new_start": "0xfffffff00a5aa644",
+      "old_insns": 120,
+      "new_insns": 117
+    },
+    {
+      "name": "tcp_close",
+      "class": "structural",
+      "old_start": "0xfffffff00a583b7c",
+      "new_start": "0xfffffff00a5a850c",
+      "old_insns": 482,
+      "new_insns": 22
+    },
+    {
+      "name": "tcp_do_mptcp_options",
+      "class": "structural",
+      "old_start": "0xfffffff00a5cb4d0",
+      "new_start": "0xfffffff00a60a1ac",
+      "old_insns": 1089,
+      "new_insns": 1090
+    },
+    {
+      "name": "tcp_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a56bc14",
+      "new_start": "0xfffffff00a5aa818",
+      "old_insns": 6704,
+      "new_insns": 6704
+    },
+    {
+      "name": "tcp_output",
+      "class": "structural",
+      "old_start": "0xfffffff00a573a84",
+      "new_start": "0xfffffff00a5b2688",
+      "old_insns": 4068,
+      "new_insns": 4062
+    },
+    {
+      "name": "thread_set_state_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a208a10",
+      "new_start": "0xfffffff00a244dc8",
+      "old_insns": 324,
+      "new_insns": 348
+    },
+    {
+      "name": "tx_lookup_flow",
+      "class": "structural",
+      "old_start": "0xfffffff00a7d8308",
+      "new_start": "0xfffffff00a8181b0",
+      "old_insns": 218,
+      "new_insns": 279
+    },
+    {
+      "name": "udp6_input",
+      "class": "structural",
+      "old_start": "0xfffffff00a64b1b4",
+      "new_start": "0xfffffff00a68a508",
+      "old_insns": 1490,
+      "new_insns": 1492
+    },
+    {
+      "name": "uipc_send",
+      "class": "structural",
+      "old_start": "0xfffffff00a74d084",
+      "new_start": "0xfffffff00a78cad8",
+      "old_insns": 852,
+      "new_insns": 880
+    },
+    {
+      "name": "unp_gc",
+      "class": "structural",
+      "old_start": "0xfffffff00a750838",
+      "new_start": "0xfffffff00a790338",
+      "old_insns": 468,
+      "new_insns": 478
+    },
+    {
+      "name": "upl_abort_range",
+      "class": "structural",
+      "old_start": "0xfffffff00a2d5428",
+      "new_start": "0xfffffff00a311ffc",
+      "old_insns": 590,
+      "new_insns": 588
+    },
+    {
+      "name": "upl_commit_range",
+      "class": "structural",
+      "old_start": "0xfffffff00a2d5d60",
+      "new_start": "0xfffffff00a31292c",
+      "old_insns": 1378,
+      "new_insns": 1342
+    },
+    {
+      "name": "utun_ctl_connect",
+      "class": "structural",
+      "old_start": "0xfffffff00a45dd58",
+      "new_start": "0xfffffff00a49b234",
+      "old_insns": 1226,
+      "new_insns": 1233
+    },
+    {
+      "name": "validate_packet",
+      "class": "structural",
+      "old_start": "0xfffffff00a80be50",
+      "new_start": "0xfffffff00a84f184",
+      "old_insns": 294,
+      "new_insns": 42
+    },
+    {
+      "name": "vm_analytics_daily_tick",
+      "class": "structural",
+      "old_start": "0xfffffff00a24a7d0",
+      "new_start": "0xfffffff00a286bdc",
+      "old_insns": 989,
+      "new_insns": 992
+    },
+    {
+      "name": "vm_compressor_compact_and_swap",
+      "class": "structural",
+      "old_start": "0xfffffff00a24e2a4",
+      "new_start": "0xfffffff00a28a6bc",
+      "old_insns": 674,
+      "new_insns": 674
+    },
+    {
+      "name": "vm_compressor_set_size",
+      "class": "structural",
+      "old_start": "0xfffffff00a9f52f0",
+      "new_start": "0xfffffff00aa35f00",
+      "old_insns": 158,
+      "new_insns": 159
+    },
+    {
+      "name": "vm_compressor_swap_init_swap_file_limit",
+      "class": "structural",
+      "old_start": "0xfffffff00a9f5660",
+      "new_start": "0xfffffff00aa36274",
+      "old_insns": 45,
+      "new_insns": 44
+    },
+    {
+      "name": "vm_fault_copy",
+      "class": "structural",
+      "old_start": "0xfffffff00a26cb78",
+      "new_start": "0xfffffff00a2a92f4",
+      "old_insns": 904,
+      "new_insns": 906
+    },
+    {
+      "name": "vm_fault_internal",
+      "class": "structural",
+      "old_start": "0xfffffff00a261580",
+      "new_start": "0xfffffff00a29db94",
+      "old_insns": 3878,
+      "new_insns": 3901
+    },
+    {
+      "name": "vm_fault_page",
+      "class": "structural",
+      "old_start": "0xfffffff00a267678",
+      "new_start": "0xfffffff00a2a3db4",
+      "old_insns": 2440,
+      "new_insns": 2203
+    },
+    {
+      "name": "vm_map_delete_preflight",
+      "class": "structural",
+      "old_start": "0xfffffff00a2731f0",
+      "new_start": "0xfffffff00a2afa10",
+      "old_insns": 172,
+      "new_insns": 173
+    },
+    {
+      "name": "vm_map_relocate",
+      "class": "structural",
+      "old_start": "0xfffffff00a287fbc",
+      "new_start": "0xfffffff00a2c48bc",
+      "old_insns": 841,
+      "new_insns": 849
+    },
+    {
+      "name": "vm_map_remap",
+      "class": "structural",
+      "old_start": "0xfffffff00a27b7ac",
+      "new_start": "0xfffffff00a2b7fd4",
+      "old_insns": 395,
+      "new_insns": 449
+    },
+    {
+      "name": "vm_mem_bootstrap",
+      "class": "structural",
+      "old_start": "0xfffffff00a9f5b0c",
+      "new_start": "0xfffffff00aa366f8",
+      "old_insns": 135,
+      "new_insns": 125
+    },
+    {
+      "name": "vm_object_deactivate_pages",
+      "class": "structural",
+      "old_start": "0xfffffff00a25f724",
+      "new_start": "0xfffffff00a2d7a10",
+      "old_insns": 200,
+      "new_insns": 895
+    },
+    {
+      "name": "vm_object_iopl_request",
+      "class": "structural",
+      "old_start": "0xfffffff00a2ae7c8",
+      "new_start": "0xfffffff00a2eb460",
+      "old_insns": 2089,
+      "new_insns": 2024
+    },
+    {
+      "name": "vm_object_update",
+      "class": "structural",
+      "old_start": "0xfffffff00a25fa44",
+      "new_start": "0xfffffff00a29be58",
+      "old_insns": 1029,
+      "new_insns": 1157
+    },
+    {
+      "name": "vm_object_upl_request",
+      "class": "structural",
+      "old_start": "0xfffffff00a2ac0d0",
+      "new_start": "0xfffffff00a2e8da0",
+      "old_insns": 1366,
+      "new_insns": 1352
+    },
+    {
+      "name": "vm_page_bootstrap",
+      "class": "structural",
+      "old_start": "0xfffffff00a9f811c",
+      "new_start": "0xfffffff00aa38ce0",
+      "old_insns": 547,
+      "new_insns": 544
+    },
+    {
+      "name": "vm_page_diagnose",
+      "class": "structural",
+      "old_start": "0xfffffff00a22181c",
+      "new_start": "0xfffffff00a3011d0",
+      "old_insns": 28,
+      "new_insns": 1054
+    },
+    {
+      "name": "vm_page_relocate",
+      "class": "structural",
+      "old_start": "0xfffffff00a2c2148",
+      "new_start": "0xfffffff00a2fed20",
+      "old_insns": 324,
+      "new_insns": 319
+    },
+    {
+      "name": "vm_page_wire",
+      "class": "structural",
+      "old_start": "0xfffffff00a2bc188",
+      "new_start": "0xfffffff00a2f8d38",
+      "old_insns": 227,
+      "new_insns": 225
+    },
+    {
+      "name": "vm_pageout_iothread_internal_continue",
+      "class": "structural",
+      "old_start": "0xfffffff00a28b160",
+      "new_start": "0xfffffff00a2c7a80",
+      "old_insns": 552,
+      "new_insns": 552
+    },
+    {
+      "name": "vm_pageout_scan",
+      "class": "structural",
+      "old_start": "0xfffffff00a2a7060",
+      "new_start": "0xfffffff00a2e3d3c",
+      "old_insns": 2338,
+      "new_insns": 2350
+    },
+    {
+      "name": "vn_open_auth",
+      "class": "structural",
+      "old_start": "0xfffffff00a3abf04",
+      "new_start": "0xfffffff00a3e8ef4",
+      "old_insns": 776,
+      "new_insns": 788
+    },
+    {
+      "name": "wait4_nocancel",
+      "class": "structural",
+      "old_start": "0xfffffff00a6b1790",
+      "new_start": "0xfffffff00a6f18f8",
+      "old_insns": 574,
+      "new_insns": 468
+    },
+    {
+      "name": "zalloc_ro_mut_validation_panic",
+      "class": "structural",
+      "old_start": "0xfffffff00a9f50a0",
+      "new_start": "0xfffffff00a1ddc90",
+      "old_insns": 87,
+      "new_insns": 227
+    },
+    {
+      "name": "zone_nofail_panic",
+      "class": "structural",
+      "old_start": "0xfffffff00a2201fc",
+      "new_start": "0xfffffff00a2608ec",
+      "old_insns": 130,
+      "new_insns": 116
+    }
+  ],
+  "limitations": [
+    "Function starts are taken from ipsw and may include labels that are not semantic function boundaries; instruction-count changes are not proof of a semantic change.",
+    "Address normalization cannot distinguish a real immediate change from a layout-dependent address materialization in every case.",
+    "Named comparison covers only functions that symbolicator named at the exact start address; 52 old-only and 51 new-only names remain unmatched.",
+    "The image is stripped; no source-level semantics, call-graph equivalence, or CVE attribution is established.",
+    "No device was connected; runtime behavior and exploitability were not measured."
+  ]
+}

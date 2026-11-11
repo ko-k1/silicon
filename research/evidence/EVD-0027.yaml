@@ -1,0 +1,45 @@
+schema_version: 1
+id: EVD-0027
+class: derived
+state: observed
+claim: "A first normalized function-level comparison of com.apple.kernel between iOS 27.0.1 (24A446) and iOS 27.2 (24B119) reports 20,873 function starts in 24A446 and 20,897 in 24B119; 20,872 and 20,896 functions respectively contained disassembled instructions. Of 20,872 old and 20,896 new functions, 13,045 have an exact normalized match and 20,399 have a shape-normalized match. Symbolicator named 5,318 functions at the same start address in both images: 2,246 are exact-normalized identical, 2,850 differ only in immediates, and 222 are structurally different; 52 old names and 51 new names are unmatched. The 222 structural names include IPC, VM, process, filesystem, networking, exception, and port paths, but no function is attributed to a CVE. This record also corrects the earlier 1,361/1,382 function-start count in EVD-0023, which was not reproduced."
+source:
+  type: derived-kernel-function-diff
+  locator: "com.apple.kernel extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: null
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "9f38cc342b8b6703e270d134d516d8337d0f363d81cd16b1f304b0bf38ba49f7"
+  bytes: 12224264
+  path_or_uri: "com.apple.kernel extracted from the 24B119 kernelcache (not committed)"
+  old_sha256: "e426a4bffbedc744142b37c21533529a03d77d0e2346930b243d90259a370147"
+  old_bytes: 12207832
+  function_starts_old: 20873
+  function_starts_new: 20897
+  exact_normalized_matches: 13045
+  shape_normalized_matches: 20399
+  named_identical: 2246
+  named_constant_only: 2850
+  named_structural: 222
+  named_old_only: 52
+  named_new_only: 51
+  function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-kernel-functions.json"
+limitations:
+  - "Function starts come from ipsw and can include labels that are not semantic function boundaries; instruction-count changes are not proof of a semantic change."
+  - "Address normalization cannot distinguish every real immediate change from a layout-dependent address materialization."
+  - "Named comparison covers only functions named by symbolicator at the exact start address; unmatched names may be renamed, removed, or newly added functions."
+  - "The kernel is stripped; no source-level semantics, call-graph equivalence, or CVE attribution is established."
+  - "The earlier 1,361/1,382 count in EVD-0023 was an undercount and is superseded by this record; the corrected count is independently reproduced by ipsw and by decoding LC_FUNCTION_STARTS relative to __TEXT."
+  - "No device was connected; runtime behavior and exploitability were not measured."
+related_evidence:
+  - EVD-0023
+  - EVD-0024
+related_cases:
+  - CASE-0004
