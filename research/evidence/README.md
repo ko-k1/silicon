@@ -26,5 +26,13 @@ Create one YAML file per evidence record using `schemas/evidence-record.schema.j
 | `EVD-0018` | iPhone13,1 SPTM payload matches manifest digest and is an arm64e Mach-O | primary | observed |
 | `EVD-0019` | iPhone13,1 TXM payload matches manifest digest and is an arm64e Mach-O | primary | observed |
 | `EVD-0020` | 24A446 restore SPTM/TXM digests match fourcc-only retags of the installed IM4P files | derived | observed |
+| `EVD-0021` | iOS 27.2 build 24B119 iPhone13,1 restore-image identity | primary | observed |
+| `EVD-0022` | 24A446 to 24B119 BuildManifest: 57 of 95 component entries differ | derived | observed |
+| `EVD-0023` | 24B119 kernelcache build 514.40.8; 207 of 250 kext UUIDs changed | primary | observed |
+| `EVD-0024` | 24B119 SPTM/TXM payloads differ and match manifest digests | primary | observed |
+| `EVD-0025` | 27.2 advisory: 163 CVEs, disjoint from the 27.0 set | derived | observed |
+| `EVD-0026` | 27.2.1 advisory adds nine CVEs; 24B119 is not latest | derived | observed |
 
 `EVD-0010`, `EVD-0012`, `EVD-0014`, `EVD-0016`, and `EVD-0017` are the build-level mechanism evidence for the four iPhone 12-family A14 product types; `EVD-0018` and `EVD-0019` link the iPhone13,1 manifest declarations to the extracted installed payload bytes; `EVD-0020` resolves the restore-role digest difference as a fourcc retag at the IM4P level. They are not runtime measurements. `EVD-0002`, `EVD-0003`, and `EVD-0009` are retained as the pre-iOS 27/counter-evidence view.
+
+`EVD-0021` through `EVD-0026` are the 27.0.1-to-27.2 differential baseline for `CASE-0004`. They record build identity, manifest changes, kernelcache and kext UUID changes, SPTM/TXM payload changes, and advisory counts. They do not attribute a CVE to a changed function or establish exploitability.

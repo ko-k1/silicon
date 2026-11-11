@@ -1,0 +1,3159 @@
+{
+  "identities": {
+    "Customer Erase Install (IPSW)": {
+      "added": [],
+      "changed": [
+        {
+          "digest_new": "46354ca5aba8efe2c144a67c7bb2532e7d1ea0c1492997340ef8df654aa376776385671631b3b2b1512c51a266d7c736",
+          "digest_old": "772d4cae2eee9325107f4fb458522f77b1feeba3cd5ff23e07cc127e4c215253d7f21cc0bda411817587aa4c1e5306c6",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "ANE",
+          "path_new": "Firmware/ane/h13_ane_fw_styx_d5x.im4p",
+          "path_old": "Firmware/ane/h13_ane_fw_styx_d5x.im4p"
+        },
+        {
+          "digest_new": "99984f45874e9caf73632c4d59660b7a222a5e377de77e2548f1b088b709b707aeb70f9c09504824fdd75f12217c3fae",
+          "digest_old": "07f9c7f6e0baf80e9bb336c1c72229bc37b46d3fe8c26d703a844a0fbc090cc48235749773560ec4d8b33d8e6d7074b3",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "ANS",
+          "path_new": "Firmware/ansf.t8101.release.im4p",
+          "path_old": "Firmware/ansf.t8101.release.im4p"
+        },
+        {
+          "digest_new": "66260252d9cfd065f191eee3f6f9f3da1f06f852599696298f2f580eaee7bbca31b803f331cb9c45e4aaf7974cebb1fd",
+          "digest_old": "8a0f033803b113c4f453ee8dde30345a1561d90056110d74f0ab3680c5dd588977390ae705dfebba4430df59a0852359",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "AOP",
+          "path_new": "Firmware/AOP/aopfw-iphone13aop.RELEASE.im4p",
+          "path_old": "Firmware/AOP/aopfw-iphone13aop.RELEASE.im4p"
+        },
+        {
+          "digest_new": "82de26204dda7d886089de79208a48ab65da01e6cdca1a08ecd7bde818e769948c907a3fb59b9e6063341113f7f44f6e",
+          "digest_old": "abdae1cef09b402a874a3b7fd824288391ec6523bffd8d6898e2794ac7263699deeba1f0a53014a3d75fec841046a759",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "AVE",
+          "path_new": "Firmware/ave/AppleAVE2FW_H13.im4p",
+          "path_old": "Firmware/ave/AppleAVE2FW_H13.im4p"
+        },
+        {
+          "digest_new": "66211712d5bd348af41bb57c875760480d77ab00fd8b0a46883de6879f45919943bdfb2e4c213ef9c99fe1f7cc52f5e2",
+          "digest_old": "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,RestoreSecurePageTableMonitor",
+          "path_new": "Firmware/sptm.t8101.release.im4p",
+          "path_old": "Firmware/sptm.t8101.release.im4p"
+        },
+        {
+          "digest_new": "67646890f1d2f372250d43cfd5b0508e063056b6edf13e8b1ebf5b47aa2ff3cc8ae570520798141750f77c22a853bf52",
+          "digest_old": "573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,RestoreTrustedExecutionMonitor",
+          "path_new": "Firmware/txm.iphoneos.release.im4p",
+          "path_old": "Firmware/txm.iphoneos.release.im4p"
+        },
+        {
+          "digest_new": "e35342da606324c531614c62368683146a4e3ff70d5cc4ea5acee58ffc831666522a58c2e1747ff1e67714e7ce2108cd",
+          "digest_old": "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,SecurePageTableMonitor",
+          "path_new": "Firmware/sptm.t8101.release.im4p",
+          "path_old": "Firmware/sptm.t8101.release.im4p"
+        },
+        {
+          "digest_new": "5cc452e97b5fa6c1e672819ac56c1d00c528d979cc7e387e8143f82a55496b9ef28ca23433f4e3c780afac2e70e86d64",
+          "digest_old": "b6523703e2b233339a83689f6d29b327e945e65a4dee1ca0556c9c4ea28b7dee872dc75c5f3d4d11df5d121981fb7911",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,SystemVolumeCanonicalMetadata",
+          "path_new": "Firmware/141-10444-216.dmg.aea.mtree",
+          "path_old": "Firmware/043-68873-661.dmg.aea.mtree"
+        },
+        {
+          "digest_new": "d1f47d55fd17c64cc83b06458acc1d06b1a1897174332c61e63b92fee0083a119b59d366676ab973a73b610168360f3b",
+          "digest_old": "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,TrustedExecutionMonitor",
+          "path_new": "Firmware/txm.iphoneos.release.im4p",
+          "path_old": "Firmware/txm.iphoneos.release.im4p"
+        },
+        {
+          "digest_new": "f83bd6dfb3e5f54377fdc8a117e583cbc566cbb7e5d35331f854c50146cf6333ad14f9a8ad48a82c714d6db55d78d550",
+          "digest_old": "e653eddebb42ca9592304f0d46b77deb09eea4243b852dd800f37e58ea6771d6fb8767a9142796586e1829af0467c3c5",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "AppleLogo",
+          "path_new": "Firmware/all_flash/applelogo@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/applelogo@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "32583558ee156c18e5fb66cfb7014bbbb1d39c0bfeee444287b47dcc8ff14f4c7491733a8536e4fc9f26a90f133ddfe1",
+          "digest_old": "06bacb72e17c9ff005a0b80fa69f849e3a4f4af5e085831c25caadc61ac97aab79b3f773d636097af8f4cfb645eb7093",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": false
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": false
+          },
+          "key": "AudioCodecFirmware",
+          "path_new": "Firmware/D52G_AudioCodecFirmware.im4p",
+          "path_old": "Firmware/D52G_AudioCodecFirmware.im4p"
+        },
+        {
+          "digest_new": null,
+          "digest_old": null,
+          "info_changed": false,
+          "info_new": {},
+          "info_old": {},
+          "key": "BasebandFirmware",
+          "path_new": "Firmware/Mav20-8.10.01.Release.bbfw",
+          "path_old": "Firmware/Mav20-8.00.01.Release.bbfw"
+        },
+        {
+          "digest_new": "a3ea44069ac9d0b1df2d23bb5141c247c68aeeba6285a95ad9ab0caaa85b002b4756e36f76cf4dd2bc84ae6e88086e33",
+          "digest_old": "5f8fcabd477a5a90106dddbfb1981c4d99e261d559404c4761d7db8a7dc90de263cd4cdf9aac6486938566e47700d523",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryCharging0",
+          "path_new": "Firmware/all_flash/batterycharging0@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterycharging0@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "68fed75fd682427dbf66c4e8d20d64cc39fe4a15e249502797599091be356546df8f00de159e55de533b0cf98ea578c5",
+          "digest_old": "69ad970e4a5c5b2d84c106f2f4f92f30676b0d72cadbff5d1a4b18c43358b84131fe9767f28e2ed1f5132c57e33f3df4",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryCharging1",
+          "path_new": "Firmware/all_flash/batterycharging1@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterycharging1@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "7e4b979837317e6421cb38f6d4782366587c6c4323d29ad85c8f54c5ada0c0ca4b12280befd418fd97b15936ddeec438",
+          "digest_old": "16cd5d0143f6f7d8668d6abbbbf4b674c40425fe22fb551ae27ac69e662aa0ec69c6faeb5ff22a57f051f51145a4a209",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryFull",
+          "path_new": "Firmware/all_flash/batteryfull@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batteryfull@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "730b3e98cf6c3989dd77b5a55ea280b4a52a68a233d51e6870992c4e1da558f0d259533c2dd22bafe0a66acfc06370e7",
+          "digest_old": "78cad0c1536127aa1270ab5a26adf603b2423a830e7bda5090a59544db384abda48b9e95d20cc4c094252c3168b8151c",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryLow0",
+          "path_new": "Firmware/all_flash/batterylow0@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterylow0@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "05933d809a5eb7830c770e9371df38c9fd4ee3ea41c38a3e84ce074d586aec425560ebfa86f79ab423094180689ba9df",
+          "digest_old": "1d377d8adae85356f83e41f7e851a518bc09e9d2e515eabbfde89cad546aecfb02620311da2bbb69d1d50cda871f377b",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryLow1",
+          "path_new": "Firmware/all_flash/batterylow1@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterylow1@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "f82bc7c5d63ced82bff88c503a3733fa7b05862b663e8249983e4b20494672972d39b83d04bcbc185085b0128432210c",
+          "digest_old": "b24fab4e1acbd9c2b3dfa5b4a6a7e56deb2691e3fb92cdf2e0c8b6f2a7bf35a78a749d59ca499767ef4a011cfa434531",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryPlugin",
+          "path_new": "Firmware/all_flash/glyphplugin@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/glyphplugin@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "2ba33eb6964dba7ac3a139ba8946e1ead45e1e4ae373bfcc2f27c72b3dc29bfe5a1ad5898cb2dc1ba90be40e063dc5e7",
+          "digest_old": "0b2e502deac6702e00d31d7b625b02cb59b8076ee8a7731220488ba5f4ad7619f7cccfd24193b0962abf3eaad56cdc90",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "Cryptex1,AppOS",
+          "path_new": "141-08824-244.dmg",
+          "path_old": "043-69297-793.dmg"
+        },
+        {
+          "digest_new": "6f30833f63f7605de95117045702dfe1695f0e14960a04f7ef69dd1170764d1b4ce626fcef782301ed029b01ca3cd31e",
+          "digest_old": "9889202c29568a8132fecb056d3848fa3a8d91dc17118a76fd7d4ad3cd6d6b9429c6e7f1f14e68f2bd586561a6f34d36",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,AppTrustCache",
+          "path_new": "Firmware/141-08824-244.dmg.trustcache",
+          "path_old": "Firmware/043-69297-793.dmg.trustcache"
+        },
+        {
+          "digest_new": "f4569b60c98bbf344847d81aa7f2d38a7e46e09196889f18d0abaa1e4b3d2bb9a9a6d0229e1341a27d528e37029272a4",
+          "digest_old": "2c2b68d863460a1a1e24345885b00d1fb94fef18d645e6f8951b909eab67f89d49af6dc49896fabee485f39cac5d0654",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,AppVolume",
+          "path_new": "Firmware/141-08824-244.dmg.root_hash",
+          "path_old": "Firmware/043-69297-793.dmg.root_hash"
+        },
+        {
+          "digest_new": "556fca6323cb207763488a04dc86700c69232684abbea806f9bd9f2278e6838057cbe56eaed3ad7d1fc609dc188fbf05",
+          "digest_old": "fc77c044319106ab466c5f64175560030f26d9bb6032aa08bcb96fc820cd1e539e9fb64ba1bb289d5ee3cb9bee289b18",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "Cryptex1,SystemOS",
+          "path_new": "141-09715-227.dmg.aea",
+          "path_old": "043-69370-711.dmg.aea"
+        },
+        {
+          "digest_new": "f3a009b963362aca50b115b9e3e942a83afb08e7766c88a127bfa75af9f95540a8f59005ebb658e3ff7be04dc04f207e",
+          "digest_old": "1ae06a2f712d742ce4c0ae9f65c5b16fe3005441c781cdaee1c4b020a5ab4527b3cc6ea2a92d4650abe07d460aea768c",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,SystemTrustCache",
+          "path_new": "Firmware/141-09715-227.dmg.aea.trustcache",
+          "path_old": "Firmware/043-69370-711.dmg.aea.trustcache"
+        },
+        {
+          "digest_new": "ea8b306ba1f4d9fff4faacb0ff013c3a6a9da57a8a8193a6cfa9ef59b514e65f412dbfdd23534b7421457797895cb990",
+          "digest_old": "cd534d9b34387fcf9c1f9d3bffbf38fc68d68fe4bdde353d0d1abe0b83f578eb8295e15f5f92e8ec7ed4cdbc4b1c8aad",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,SystemVolume",
+          "path_new": "Firmware/141-09715-227.dmg.aea.root_hash",
+          "path_old": "Firmware/043-69370-711.dmg.aea.root_hash"
+        },
+        {
+          "digest_new": "960537e45752c47e44e714500a3182208360d6927699e2a170e898e414753da23cd761223040b31f7e797a29153c7e6d",
+          "digest_old": "f983684b3e330350ce7733d3468f0ad9247fc9b68f4346c66e26ed414c874ecaf954c625a78321fc3379cd4c21f84372",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "DCP",
+          "path_new": "Firmware/dcp/iphone13dcp.im4p",
+          "path_old": "Firmware/dcp/iphone13dcp.im4p"
+        },
+        {
+          "digest_new": "01a470728ee1b0e861a1651e7af69e3a3988323dea1d17fa57cc4aafb4924c08e1a54ca13cef9b8ee45f752ea79fd910",
+          "digest_old": "3892375e03c61545f212775a556c9c1f7122d71eeecbb52bf704088299747f56ad3733feff6488e147f189a02735daf4",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "DeviceTree",
+          "path_new": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+          "path_old": "Firmware/all_flash/DeviceTree.d52gap.im4p"
+        },
+        {
+          "digest_new": "edd688949e275b1ef5c6d7fbf30e57395aea17f6fe299a6faf8e66d64de90d5e411fa285103e5c8109c974ce3f650953",
+          "digest_old": "864ef3f5488962fb8fd4e7b7b4f710f2550f31f99beee4198e546256021b26536830c429f885fb30ec01bc1eada7ac24",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "GFX",
+          "path_new": "Firmware/agx/armfw_g13p.im4p",
+          "path_old": "Firmware/agx/armfw_g13p.im4p"
+        },
+        {
+          "digest_new": "0d19fa4346666ae87addfa396d4af0fe557b682a379283e789fbc18399f5caec9a5b41cf539181d314bb6698e10f218f",
+          "digest_old": "789d8e209819ce67f30b113fbd1d2ea70a594ac7916d69dc1621f141fde0b81f24ef69c183972885c3fba5adf7ef24a1",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "ISP",
+          "path_new": "Firmware/isp_bni/adc-pallas-d5xg.im4p",
+          "path_old": "Firmware/isp_bni/adc-pallas-d5xg.im4p"
+        },
+        {
+          "digest_new": "b218865b3504d4d3c754e848e2073bf8d45d29258293cb4917e4f742d8e39e5c2acecb7a5ae6ad5444245dca0427ff4a",
+          "digest_old": "2959b13c30596396cb0113c8f021af584ea30d6883b4519139f5248709062d7208e49c874ffe456865871574399ca45f",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "KernelCache",
+          "path_new": "kernelcache.release.iphone13",
+          "path_old": "kernelcache.release.iphone13"
+        },
+        {
+          "digest_new": "3157548b2da6bac04ab4470a9bd9b72cad0d66a24e4446b640df6cdebc19a1abd882416758b58009dfb4f7db5eaa72c3",
+          "digest_old": "c1b7ada480f169e3683f191fa5d736c7548745dec55357005b25036557241cfca8f72cb39e3afc0cd72b169186d4213d",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "LLB",
+          "path_new": "Firmware/all_flash/LLB.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/LLB.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "50d7c3928f2c4d5a22b3b607454fe71007f096aad230297b6f2cbd7f38e8dfb12d19284a00ea3171118bead2421496f1",
+          "digest_old": "67cb0373c485ddaa31ea0ca4d220e13d611e9a51bc787a6b570636d29588af443654fe8ac4077e7213713c113c82a8b8",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Liquid",
+          "path_new": "Firmware/all_flash/liquiddetect@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/liquiddetect@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "6ab6e6a21241eb3666368c8091d1b6e09a6d393b01e2381b398c05343804201463d3894b1555954948e450f13f2aa6d7",
+          "digest_old": "47454e82b37d6d4c53842a7f0e13d88d117fb91a1952da33d943ff2419b2a57a7f8b94e9f81667a8acf112aaec1240e3",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "LowPowerWallet0",
+          "path_new": "Firmware/all_flash/lowpowermode@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/lowpowermode@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "09abc362fc21d7867666f833067b0ee18ac1cd276661720682371ff9b9affbe3b208e88b6f9fcc52fe8a330f9f284539",
+          "digest_old": "d24dc31cfea9eb655072d28401cf5d06a70d81f8348fc1a7baf394f635f45e615a33d05d2898ebf1b6a484101e452853",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "LowPowerWallet1",
+          "path_new": "Firmware/all_flash/lowpowerfindmymode@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/lowpowerfindmymode@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "661f763a43ad26b02d9fe3c361325f8da52c63937fbf41423f76fa2bcfaa10eb339f7f75ce7ad8d65aa1e3b3e5b09eef",
+          "digest_old": "8861220245a0b78e0c34cb5053d4a73db34bde02a6cc47cd01a7b619b13f0bee0ecf09953980886dd45da1e05fd9f0e2",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false,
+            "Trusted": true
+          },
+          "key": "OS",
+          "path_new": "141-10444-216.dmg.aea",
+          "path_old": "043-68873-661.dmg.aea"
+        },
+        {
+          "digest_new": "31113c5e610982b9183c0ef737a93d9726798ca67bd913c6197382c06f4e28c1f45ba013ea81a33ae5b403da71a9453d",
+          "digest_old": "4e2bc186ca973f0b17e9f1bfcb110117bd7620a85dd9d5001553408a2088e87250e771110c6f0a09ccb629daa9350f40",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "PMP",
+          "path_new": "Firmware/pmp/t8101pmp.im4p",
+          "path_old": "Firmware/pmp/t8101pmp.im4p"
+        },
+        {
+          "digest_new": "7a7a6e40c7a10f38c44cfeed52740bb99b55eaea4727e8ce5fac4f7a0eb1b42d09f0ab316ee213482d8f0edd7b730d1c",
+          "digest_old": "a9b32429e298195c62118cbcd5d3683b7108cf4463df4508ea9f54d6e4d08b4e7ac013c0c6afed0cb008ece5af3957ce",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Rap,RTKitOS",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "b0b02ce60b657c65853fefd2aaff96ccf94f54d48cf9675835bb0c6a623eb1abdc8c22c09ed2936fce4a5f1a64feb55b",
+          "digest_old": "7fdb54bfb6422c642db1efeb8fa8fbfcd2ac02f518071b912bf3dd05651532f04eb2616e47bfa1f218414e8ec2766147",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Rap,SoftwareBinaryDsp1",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "048606d6897e2371cd2e6cdc2dbcf2e912e31dbd690cf59d202abcf7d2a90eb4e3f8c8777dab763749a3fb40569379d0",
+          "digest_old": "8daf47ecbbc09e371d93fc2a4ce753a45c19d91620932e855623b79ca504b2876ceb5694920f8aed648430b4baee3df9",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RecoveryMode",
+          "path_new": "Firmware/all_flash/recoverymode@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/recoverymode@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "794a4025f05b285df1e672201c1241ba1d16130cb2fc4bc6b37dc53336bf7ad360943f09e4f05205841d7fa7184be33a",
+          "digest_old": "9b028e1ebb58d0cc6db13287b768c2ac5dfc5cf9fe3952f8b9bdd1b1722d412ae7a10624026a58c0ddcac7af39175acf",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreANS",
+          "path_new": "Firmware/rans.t8101.release.im4p",
+          "path_old": "Firmware/rans.t8101.release.im4p"
+        },
+        {
+          "digest_new": "579a0e9488828b53d463262f463b3c40f9babf588ffebcd18161261f8c4a8d84a5f3578d355844b562164b8335b4e5ae",
+          "digest_old": "8cd8497e8a0f9de8a71ffcb8cf378a673ac2ff70cc7ce8a00bc6b9d94909784b485b885f31a99deb3470b8564a348b04",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreDCP",
+          "path_new": "Firmware/dcp/iphone13dcp_restore.im4p",
+          "path_old": "Firmware/dcp/iphone13dcp_restore.im4p"
+        },
+        {
+          "digest_new": "2d5f258a913c0186702c6cb893dafa4a132584ed81c2a914313bf560cf3c85004050674278fa63f32656dd6979066ae3",
+          "digest_old": "1960ed812c8e5ee4a12ac5c3108da9a08e41fec5d311c73af8b930b8755b8da0dd9255b739484dc1db8310dbacdad75f",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreDeviceTree",
+          "path_new": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+          "path_old": "Firmware/all_flash/DeviceTree.d52gap.im4p"
+        },
+        {
+          "digest_new": "ff2de93cc364e2ee1e37cf2c577e663deade0b28eb9871f5e1f881067b8ea5adb0be4e19adba0e49c44a2b7e40393a52",
+          "digest_old": "8b403769d5f0ab15aa3d47e3ed78d1147a479e8f24a49c1942c605aefca7ab614f48fd76a1a8796819314c8943fe48ae",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreKernelCache",
+          "path_new": "kernelcache.release.iphone13",
+          "path_old": "kernelcache.release.iphone13"
+        },
+        {
+          "digest_new": "3679a078c7ada3a6f4d65b54425776de3320964084b891cfbcddc9c2a7364f84518d496e667a81e0b02f133c08b40c7d",
+          "digest_old": "1c4a063bcb3508531b4229963c465a1db67e2ad35687caa7943556294bdd0bedfa2817c87fa92560a41927a0249a9b66",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreLogo",
+          "path_new": "Firmware/all_flash/applelogo@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/applelogo@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "079ad61471ccd121bf367b2c825520d1d55005f0281f292f958bab188c843090f26dd4b3bff81de8556b1250d7506453",
+          "digest_old": "61c77abba5c3f107bdc8b356f7161e8162cfd1ca244505540db2dc9f90ad5f3a45020a6c2a616a912282d0389edba0f1",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreRamDisk",
+          "path_new": "141-10399-240.dmg",
+          "path_old": "043-69915-784.dmg"
+        },
+        {
+          "digest_new": "01dd5f5937f022b50aa6e62a3377c50be5ad010bb02f5eba00e40d8a6d31accb26f9986d1f5146837c235216ccf59477",
+          "digest_old": "7d62db518add58771e8f326ee945a05b7c3b565a23810d45c3877e9b3cb7bd598128728ffb97900b04ff1d4c0c5be992",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreSEP",
+          "path_new": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "d7466faa10ca62e0076a7e1f6b55c0fe78ca3ab7ea025ecb1fe2974a880918d7f1692d1a5e094a6846298a5492e7b9d5",
+          "digest_old": "64eab1b5700543e8f0e17ac0bb2878f2a2f5b1d9dfb30f4df78fe72e7fd051a61c35cebaf75a082b8f21812cfe58bca4",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreTrustCache",
+          "path_new": "Firmware/141-10399-240.dmg.trustcache",
+          "path_old": "Firmware/043-69915-784.dmg.trustcache"
+        },
+        {
+          "digest_new": "7a7a6e40c7a10f38c44cfeed52740bb99b55eaea4727e8ce5fac4f7a0eb1b42d09f0ab316ee213482d8f0edd7b730d1c",
+          "digest_old": "a9b32429e298195c62118cbcd5d3683b7108cf4463df4508ea9f54d6e4d08b4e7ac013c0c6afed0cb008ece5af3957ce",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "SE,RapRTKitOS",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "b0b02ce60b657c65853fefd2aaff96ccf94f54d48cf9675835bb0c6a623eb1abdc8c22c09ed2936fce4a5f1a64feb55b",
+          "digest_old": "7fdb54bfb6422c642db1efeb8fa8fbfcd2ac02f518071b912bf3dd05651532f04eb2616e47bfa1f218414e8ec2766147",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "SE,RapSwBinDsp",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "6c1aab8b331ee7f770c5fc7649e14ff21632d124447241d90620d5c9ca191c0e3599741933112fd424c7007f7d5e4f1b",
+          "digest_old": "17902774a9e69fc93b57ce36406dacef857c455419940dcf8a4e1671e645f43d74612d8035c9c731d468c130cea23418",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "SEP",
+          "path_new": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "d9d705e44d02589dd1b3a8a3d6b9d6282b91e7e3c140eda8685ba3ee26eb5c297e8f93560c15fa751406b3adf2695682",
+          "digest_old": "b25b08f33eab157dbe958c5809f09c2787cfea2e23f1e46044cdc8586d6c9640a0ee8600154bd53e52a24639b72d320b",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "SIO",
+          "path_new": "Firmware/SmartIOFirmware_ASCv4.im4p",
+          "path_old": "Firmware/SmartIOFirmware_ASCv4.im4p"
+        },
+        {
+          "digest_new": "e8638035c987cdcd3b18bc5e84a96620d4805ad49bd2bd495591735511805f3a4a6db991aaabd8179932208d2a7bc2a6",
+          "digest_old": "8b78d40d00085d4421135f20219413114788ef44ccfdb7bb77448ebcdbba8d65dabd2fb7cd3f8bcab5c199a87d955d12",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "StaticTrustCache",
+          "path_new": "Firmware/141-10444-216.dmg.aea.trustcache",
+          "path_old": "Firmware/043-68873-661.dmg.aea.trustcache"
+        },
+        {
+          "digest_new": "17b1d40f35121c4d613bccd109408574ba13fd7c8afc36414308d9a419a7712589acd49a514cc371abfbbc11ea19151f",
+          "digest_old": "1b747be59449f53e6fa7811a75f1995eb864b9d1f9e7e5bea1fdd6f650aa33139fa041984c56870ca76241b251dcb2f0",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "SystemVolume",
+          "path_new": "Firmware/141-10444-216.dmg.aea.root_hash",
+          "path_old": "Firmware/043-68873-661.dmg.aea.root_hash"
+        },
+        {
+          "digest_new": "506184c4d2c174a914429d5ba6f5659113272db75d8a23c8b38c474e166caffbac8d1f13d634095a684f6b36d7629998",
+          "digest_old": "989423839cf313aafa1699a076c8e4dae140908e8acdbad261831775342d21647a101c81f1dacde74926fb19a6068515",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "WCHFirmwareUpdater",
+          "path_new": "Firmware/WirelessPower/WirelessPower.iphone13.im4p",
+          "path_old": "Firmware/WirelessPower/WirelessPower.iphone13.im4p"
+        },
+        {
+          "digest_new": "90fd6c521600735118e589d69bfda679e0f4fdb3b2f5f948773aeba6823e4b0848372530712b3c5c671a0af8d2ecce03",
+          "digest_old": "ff12d131c2e134b5f6a002594c46f6565a1589d8c6964c0252ca5a1fe33f86c595d2de0bed8058f71d0f64510891e133",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBEC",
+          "path_new": "Firmware/dfu/iBEC.d52g.RELEASE.im4p",
+          "path_old": "Firmware/dfu/iBEC.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "f65b30371b116fd05976866458d68c8555c3f1015725b4611d4645fb84f156248480c3d67e881353aa75c7d40467c1e4",
+          "digest_old": "7ece1b77ede46f5f211d3f95667b0a92e9d35d7be476399feb08fde2d0b706882bc367ef9b2ab44cca34508ac51c815f",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBSS",
+          "path_new": "Firmware/dfu/iBSS.d52g.RELEASE.im4p",
+          "path_old": "Firmware/dfu/iBSS.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "b1c2fc6b6ba3a6ae519ed4848d49c50cdc6707d919b7f6520e0eed6c3659feb30cfe968fd4e1743cc0e2c58d89dfe530",
+          "digest_old": "6bb1593a229aef402ef0535dfa97516e49dd2cc652873383a3bbf5bac993f109562fcb451f3c123854ea47244f0bded4",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBoot",
+          "path_new": "Firmware/all_flash/iBoot.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/iBoot.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "c893bf12b085a5a8e2ff55aac266cd87a44dcfc4740f636eb31f7cac82464d771d91ab47dcff42379727380af6830b1f",
+          "digest_old": "4412b9e41dd979f8abaf09a73eb90aaca4aef84266be2b9d2c345fea64c0d3fb307a464bb7d71d8496e428c339c5cd58",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBootData",
+          "path_new": "Firmware/all_flash/iBootData.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/iBootData.d52g.RELEASE.im4p"
+        }
+      ],
+      "changed_count": 57,
+      "components_compared": 95,
+      "removed": [],
+      "same": 38
+    },
+    "Customer Upgrade Install (IPSW)": {
+      "added": [],
+      "changed": [
+        {
+          "digest_new": "46354ca5aba8efe2c144a67c7bb2532e7d1ea0c1492997340ef8df654aa376776385671631b3b2b1512c51a266d7c736",
+          "digest_old": "772d4cae2eee9325107f4fb458522f77b1feeba3cd5ff23e07cc127e4c215253d7f21cc0bda411817587aa4c1e5306c6",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "ANE",
+          "path_new": "Firmware/ane/h13_ane_fw_styx_d5x.im4p",
+          "path_old": "Firmware/ane/h13_ane_fw_styx_d5x.im4p"
+        },
+        {
+          "digest_new": "99984f45874e9caf73632c4d59660b7a222a5e377de77e2548f1b088b709b707aeb70f9c09504824fdd75f12217c3fae",
+          "digest_old": "07f9c7f6e0baf80e9bb336c1c72229bc37b46d3fe8c26d703a844a0fbc090cc48235749773560ec4d8b33d8e6d7074b3",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "ANS",
+          "path_new": "Firmware/ansf.t8101.release.im4p",
+          "path_old": "Firmware/ansf.t8101.release.im4p"
+        },
+        {
+          "digest_new": "66260252d9cfd065f191eee3f6f9f3da1f06f852599696298f2f580eaee7bbca31b803f331cb9c45e4aaf7974cebb1fd",
+          "digest_old": "8a0f033803b113c4f453ee8dde30345a1561d90056110d74f0ab3680c5dd588977390ae705dfebba4430df59a0852359",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "AOP",
+          "path_new": "Firmware/AOP/aopfw-iphone13aop.RELEASE.im4p",
+          "path_old": "Firmware/AOP/aopfw-iphone13aop.RELEASE.im4p"
+        },
+        {
+          "digest_new": "82de26204dda7d886089de79208a48ab65da01e6cdca1a08ecd7bde818e769948c907a3fb59b9e6063341113f7f44f6e",
+          "digest_old": "abdae1cef09b402a874a3b7fd824288391ec6523bffd8d6898e2794ac7263699deeba1f0a53014a3d75fec841046a759",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "AVE",
+          "path_new": "Firmware/ave/AppleAVE2FW_H13.im4p",
+          "path_old": "Firmware/ave/AppleAVE2FW_H13.im4p"
+        },
+        {
+          "digest_new": "66211712d5bd348af41bb57c875760480d77ab00fd8b0a46883de6879f45919943bdfb2e4c213ef9c99fe1f7cc52f5e2",
+          "digest_old": "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,RestoreSecurePageTableMonitor",
+          "path_new": "Firmware/sptm.t8101.release.im4p",
+          "path_old": "Firmware/sptm.t8101.release.im4p"
+        },
+        {
+          "digest_new": "67646890f1d2f372250d43cfd5b0508e063056b6edf13e8b1ebf5b47aa2ff3cc8ae570520798141750f77c22a853bf52",
+          "digest_old": "573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,RestoreTrustedExecutionMonitor",
+          "path_new": "Firmware/txm.iphoneos.release.im4p",
+          "path_old": "Firmware/txm.iphoneos.release.im4p"
+        },
+        {
+          "digest_new": "e35342da606324c531614c62368683146a4e3ff70d5cc4ea5acee58ffc831666522a58c2e1747ff1e67714e7ce2108cd",
+          "digest_old": "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,SecurePageTableMonitor",
+          "path_new": "Firmware/sptm.t8101.release.im4p",
+          "path_old": "Firmware/sptm.t8101.release.im4p"
+        },
+        {
+          "digest_new": "5cc452e97b5fa6c1e672819ac56c1d00c528d979cc7e387e8143f82a55496b9ef28ca23433f4e3c780afac2e70e86d64",
+          "digest_old": "b6523703e2b233339a83689f6d29b327e945e65a4dee1ca0556c9c4ea28b7dee872dc75c5f3d4d11df5d121981fb7911",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,SystemVolumeCanonicalMetadata",
+          "path_new": "Firmware/141-10444-216.dmg.aea.mtree",
+          "path_old": "Firmware/043-68873-661.dmg.aea.mtree"
+        },
+        {
+          "digest_new": "d1f47d55fd17c64cc83b06458acc1d06b1a1897174332c61e63b92fee0083a119b59d366676ab973a73b610168360f3b",
+          "digest_old": "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Ap,TrustedExecutionMonitor",
+          "path_new": "Firmware/txm.iphoneos.release.im4p",
+          "path_old": "Firmware/txm.iphoneos.release.im4p"
+        },
+        {
+          "digest_new": "f83bd6dfb3e5f54377fdc8a117e583cbc566cbb7e5d35331f854c50146cf6333ad14f9a8ad48a82c714d6db55d78d550",
+          "digest_old": "e653eddebb42ca9592304f0d46b77deb09eea4243b852dd800f37e58ea6771d6fb8767a9142796586e1829af0467c3c5",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "AppleLogo",
+          "path_new": "Firmware/all_flash/applelogo@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/applelogo@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "32583558ee156c18e5fb66cfb7014bbbb1d39c0bfeee444287b47dcc8ff14f4c7491733a8536e4fc9f26a90f133ddfe1",
+          "digest_old": "06bacb72e17c9ff005a0b80fa69f849e3a4f4af5e085831c25caadc61ac97aab79b3f773d636097af8f4cfb645eb7093",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": false
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": false
+          },
+          "key": "AudioCodecFirmware",
+          "path_new": "Firmware/D52G_AudioCodecFirmware.im4p",
+          "path_old": "Firmware/D52G_AudioCodecFirmware.im4p"
+        },
+        {
+          "digest_new": null,
+          "digest_old": null,
+          "info_changed": false,
+          "info_new": {},
+          "info_old": {},
+          "key": "BasebandFirmware",
+          "path_new": "Firmware/Mav20-8.10.01.Release.bbfw",
+          "path_old": "Firmware/Mav20-8.00.01.Release.bbfw"
+        },
+        {
+          "digest_new": "a3ea44069ac9d0b1df2d23bb5141c247c68aeeba6285a95ad9ab0caaa85b002b4756e36f76cf4dd2bc84ae6e88086e33",
+          "digest_old": "5f8fcabd477a5a90106dddbfb1981c4d99e261d559404c4761d7db8a7dc90de263cd4cdf9aac6486938566e47700d523",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryCharging0",
+          "path_new": "Firmware/all_flash/batterycharging0@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterycharging0@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "68fed75fd682427dbf66c4e8d20d64cc39fe4a15e249502797599091be356546df8f00de159e55de533b0cf98ea578c5",
+          "digest_old": "69ad970e4a5c5b2d84c106f2f4f92f30676b0d72cadbff5d1a4b18c43358b84131fe9767f28e2ed1f5132c57e33f3df4",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryCharging1",
+          "path_new": "Firmware/all_flash/batterycharging1@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterycharging1@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "7e4b979837317e6421cb38f6d4782366587c6c4323d29ad85c8f54c5ada0c0ca4b12280befd418fd97b15936ddeec438",
+          "digest_old": "16cd5d0143f6f7d8668d6abbbbf4b674c40425fe22fb551ae27ac69e662aa0ec69c6faeb5ff22a57f051f51145a4a209",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryFull",
+          "path_new": "Firmware/all_flash/batteryfull@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batteryfull@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "730b3e98cf6c3989dd77b5a55ea280b4a52a68a233d51e6870992c4e1da558f0d259533c2dd22bafe0a66acfc06370e7",
+          "digest_old": "78cad0c1536127aa1270ab5a26adf603b2423a830e7bda5090a59544db384abda48b9e95d20cc4c094252c3168b8151c",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryLow0",
+          "path_new": "Firmware/all_flash/batterylow0@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterylow0@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "05933d809a5eb7830c770e9371df38c9fd4ee3ea41c38a3e84ce074d586aec425560ebfa86f79ab423094180689ba9df",
+          "digest_old": "1d377d8adae85356f83e41f7e851a518bc09e9d2e515eabbfde89cad546aecfb02620311da2bbb69d1d50cda871f377b",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryLow1",
+          "path_new": "Firmware/all_flash/batterylow1@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/batterylow1@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "f82bc7c5d63ced82bff88c503a3733fa7b05862b663e8249983e4b20494672972d39b83d04bcbc185085b0128432210c",
+          "digest_old": "b24fab4e1acbd9c2b3dfa5b4a6a7e56deb2691e3fb92cdf2e0c8b6f2a7bf35a78a749d59ca499767ef4a011cfa434531",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "BatteryPlugin",
+          "path_new": "Firmware/all_flash/glyphplugin@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/glyphplugin@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "2ba33eb6964dba7ac3a139ba8946e1ead45e1e4ae373bfcc2f27c72b3dc29bfe5a1ad5898cb2dc1ba90be40e063dc5e7",
+          "digest_old": "0b2e502deac6702e00d31d7b625b02cb59b8076ee8a7731220488ba5f4ad7619f7cccfd24193b0962abf3eaad56cdc90",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "Cryptex1,AppOS",
+          "path_new": "141-08824-244.dmg",
+          "path_old": "043-69297-793.dmg"
+        },
+        {
+          "digest_new": "6f30833f63f7605de95117045702dfe1695f0e14960a04f7ef69dd1170764d1b4ce626fcef782301ed029b01ca3cd31e",
+          "digest_old": "9889202c29568a8132fecb056d3848fa3a8d91dc17118a76fd7d4ad3cd6d6b9429c6e7f1f14e68f2bd586561a6f34d36",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,AppTrustCache",
+          "path_new": "Firmware/141-08824-244.dmg.trustcache",
+          "path_old": "Firmware/043-69297-793.dmg.trustcache"
+        },
+        {
+          "digest_new": "f4569b60c98bbf344847d81aa7f2d38a7e46e09196889f18d0abaa1e4b3d2bb9a9a6d0229e1341a27d528e37029272a4",
+          "digest_old": "2c2b68d863460a1a1e24345885b00d1fb94fef18d645e6f8951b909eab67f89d49af6dc49896fabee485f39cac5d0654",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,AppVolume",
+          "path_new": "Firmware/141-08824-244.dmg.root_hash",
+          "path_old": "Firmware/043-69297-793.dmg.root_hash"
+        },
+        {
+          "digest_new": "556fca6323cb207763488a04dc86700c69232684abbea806f9bd9f2278e6838057cbe56eaed3ad7d1fc609dc188fbf05",
+          "digest_old": "fc77c044319106ab466c5f64175560030f26d9bb6032aa08bcb96fc820cd1e539e9fb64ba1bb289d5ee3cb9bee289b18",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "Cryptex1,SystemOS",
+          "path_new": "141-09715-227.dmg.aea",
+          "path_old": "043-69370-711.dmg.aea"
+        },
+        {
+          "digest_new": "f3a009b963362aca50b115b9e3e942a83afb08e7766c88a127bfa75af9f95540a8f59005ebb658e3ff7be04dc04f207e",
+          "digest_old": "1ae06a2f712d742ce4c0ae9f65c5b16fe3005441c781cdaee1c4b020a5ab4527b3cc6ea2a92d4650abe07d460aea768c",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,SystemTrustCache",
+          "path_new": "Firmware/141-09715-227.dmg.aea.trustcache",
+          "path_old": "Firmware/043-69370-711.dmg.aea.trustcache"
+        },
+        {
+          "digest_new": "ea8b306ba1f4d9fff4faacb0ff013c3a6a9da57a8a8193a6cfa9ef59b514e65f412dbfdd23534b7421457797895cb990",
+          "digest_old": "cd534d9b34387fcf9c1f9d3bffbf38fc68d68fe4bdde353d0d1abe0b83f578eb8295e15f5f92e8ec7ed4cdbc4b1c8aad",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true
+          },
+          "key": "Cryptex1,SystemVolume",
+          "path_new": "Firmware/141-09715-227.dmg.aea.root_hash",
+          "path_old": "Firmware/043-69370-711.dmg.aea.root_hash"
+        },
+        {
+          "digest_new": "960537e45752c47e44e714500a3182208360d6927699e2a170e898e414753da23cd761223040b31f7e797a29153c7e6d",
+          "digest_old": "f983684b3e330350ce7733d3468f0ad9247fc9b68f4346c66e26ed414c874ecaf954c625a78321fc3379cd4c21f84372",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "DCP",
+          "path_new": "Firmware/dcp/iphone13dcp.im4p",
+          "path_old": "Firmware/dcp/iphone13dcp.im4p"
+        },
+        {
+          "digest_new": "01a470728ee1b0e861a1651e7af69e3a3988323dea1d17fa57cc4aafb4924c08e1a54ca13cef9b8ee45f752ea79fd910",
+          "digest_old": "3892375e03c61545f212775a556c9c1f7122d71eeecbb52bf704088299747f56ad3733feff6488e147f189a02735daf4",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "DeviceTree",
+          "path_new": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+          "path_old": "Firmware/all_flash/DeviceTree.d52gap.im4p"
+        },
+        {
+          "digest_new": "edd688949e275b1ef5c6d7fbf30e57395aea17f6fe299a6faf8e66d64de90d5e411fa285103e5c8109c974ce3f650953",
+          "digest_old": "864ef3f5488962fb8fd4e7b7b4f710f2550f31f99beee4198e546256021b26536830c429f885fb30ec01bc1eada7ac24",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "GFX",
+          "path_new": "Firmware/agx/armfw_g13p.im4p",
+          "path_old": "Firmware/agx/armfw_g13p.im4p"
+        },
+        {
+          "digest_new": "0d19fa4346666ae87addfa396d4af0fe557b682a379283e789fbc18399f5caec9a5b41cf539181d314bb6698e10f218f",
+          "digest_old": "789d8e209819ce67f30b113fbd1d2ea70a594ac7916d69dc1621f141fde0b81f24ef69c183972885c3fba5adf7ef24a1",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "ISP",
+          "path_new": "Firmware/isp_bni/adc-pallas-d5xg.im4p",
+          "path_old": "Firmware/isp_bni/adc-pallas-d5xg.im4p"
+        },
+        {
+          "digest_new": "b218865b3504d4d3c754e848e2073bf8d45d29258293cb4917e4f742d8e39e5c2acecb7a5ae6ad5444245dca0427ff4a",
+          "digest_old": "2959b13c30596396cb0113c8f021af584ea30d6883b4519139f5248709062d7208e49c874ffe456865871574399ca45f",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "KernelCache",
+          "path_new": "kernelcache.release.iphone13",
+          "path_old": "kernelcache.release.iphone13"
+        },
+        {
+          "digest_new": "3157548b2da6bac04ab4470a9bd9b72cad0d66a24e4446b640df6cdebc19a1abd882416758b58009dfb4f7db5eaa72c3",
+          "digest_old": "c1b7ada480f169e3683f191fa5d736c7548745dec55357005b25036557241cfca8f72cb39e3afc0cd72b169186d4213d",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "LLB",
+          "path_new": "Firmware/all_flash/LLB.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/LLB.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "50d7c3928f2c4d5a22b3b607454fe71007f096aad230297b6f2cbd7f38e8dfb12d19284a00ea3171118bead2421496f1",
+          "digest_old": "67cb0373c485ddaa31ea0ca4d220e13d611e9a51bc787a6b570636d29588af443654fe8ac4077e7213713c113c82a8b8",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Liquid",
+          "path_new": "Firmware/all_flash/liquiddetect@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/liquiddetect@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "6ab6e6a21241eb3666368c8091d1b6e09a6d393b01e2381b398c05343804201463d3894b1555954948e450f13f2aa6d7",
+          "digest_old": "47454e82b37d6d4c53842a7f0e13d88d117fb91a1952da33d943ff2419b2a57a7f8b94e9f81667a8acf112aaec1240e3",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "LowPowerWallet0",
+          "path_new": "Firmware/all_flash/lowpowermode@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/lowpowermode@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "09abc362fc21d7867666f833067b0ee18ac1cd276661720682371ff9b9affbe3b208e88b6f9fcc52fe8a330f9f284539",
+          "digest_old": "d24dc31cfea9eb655072d28401cf5d06a70d81f8348fc1a7baf394f635f45e615a33d05d2898ebf1b6a484101e452853",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "LowPowerWallet1",
+          "path_new": "Firmware/all_flash/lowpowerfindmymode@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/lowpowerfindmymode@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "661f763a43ad26b02d9fe3c361325f8da52c63937fbf41423f76fa2bcfaa10eb339f7f75ce7ad8d65aa1e3b3e5b09eef",
+          "digest_old": "8861220245a0b78e0c34cb5053d4a73db34bde02a6cc47cd01a7b619b13f0bee0ecf09953980886dd45da1e05fd9f0e2",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false,
+            "Trusted": true
+          },
+          "key": "OS",
+          "path_new": "141-10444-216.dmg.aea",
+          "path_old": "043-68873-661.dmg.aea"
+        },
+        {
+          "digest_new": "31113c5e610982b9183c0ef737a93d9726798ca67bd913c6197382c06f4e28c1f45ba013ea81a33ae5b403da71a9453d",
+          "digest_old": "4e2bc186ca973f0b17e9f1bfcb110117bd7620a85dd9d5001553408a2088e87250e771110c6f0a09ccb629daa9350f40",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "PMP",
+          "path_new": "Firmware/pmp/t8101pmp.im4p",
+          "path_old": "Firmware/pmp/t8101pmp.im4p"
+        },
+        {
+          "digest_new": "7a7a6e40c7a10f38c44cfeed52740bb99b55eaea4727e8ce5fac4f7a0eb1b42d09f0ab316ee213482d8f0edd7b730d1c",
+          "digest_old": "a9b32429e298195c62118cbcd5d3683b7108cf4463df4508ea9f54d6e4d08b4e7ac013c0c6afed0cb008ece5af3957ce",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Rap,RTKitOS",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "b0b02ce60b657c65853fefd2aaff96ccf94f54d48cf9675835bb0c6a623eb1abdc8c22c09ed2936fce4a5f1a64feb55b",
+          "digest_old": "7fdb54bfb6422c642db1efeb8fa8fbfcd2ac02f518071b912bf3dd05651532f04eb2616e47bfa1f218414e8ec2766147",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "Rap,SoftwareBinaryDsp1",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "048606d6897e2371cd2e6cdc2dbcf2e912e31dbd690cf59d202abcf7d2a90eb4e3f8c8777dab763749a3fb40569379d0",
+          "digest_old": "8daf47ecbbc09e371d93fc2a4ce753a45c19d91620932e855623b79ca504b2876ceb5694920f8aed648430b4baee3df9",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RecoveryMode",
+          "path_new": "Firmware/all_flash/recoverymode@2340~iphone-lightning.im4p",
+          "path_old": "Firmware/all_flash/recoverymode@2340~iphone-lightning.im4p"
+        },
+        {
+          "digest_new": "794a4025f05b285df1e672201c1241ba1d16130cb2fc4bc6b37dc53336bf7ad360943f09e4f05205841d7fa7184be33a",
+          "digest_old": "9b028e1ebb58d0cc6db13287b768c2ac5dfc5cf9fe3952f8b9bdd1b1722d412ae7a10624026a58c0ddcac7af39175acf",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreANS",
+          "path_new": "Firmware/rans.t8101.release.im4p",
+          "path_old": "Firmware/rans.t8101.release.im4p"
+        },
+        {
+          "digest_new": "579a0e9488828b53d463262f463b3c40f9babf588ffebcd18161261f8c4a8d84a5f3578d355844b562164b8335b4e5ae",
+          "digest_old": "8cd8497e8a0f9de8a71ffcb8cf378a673ac2ff70cc7ce8a00bc6b9d94909784b485b885f31a99deb3470b8564a348b04",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreDCP",
+          "path_new": "Firmware/dcp/iphone13dcp_restore.im4p",
+          "path_old": "Firmware/dcp/iphone13dcp_restore.im4p"
+        },
+        {
+          "digest_new": "2d5f258a913c0186702c6cb893dafa4a132584ed81c2a914313bf560cf3c85004050674278fa63f32656dd6979066ae3",
+          "digest_old": "1960ed812c8e5ee4a12ac5c3108da9a08e41fec5d311c73af8b930b8755b8da0dd9255b739484dc1db8310dbacdad75f",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreDeviceTree",
+          "path_new": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+          "path_old": "Firmware/all_flash/DeviceTree.d52gap.im4p"
+        },
+        {
+          "digest_new": "ff2de93cc364e2ee1e37cf2c577e663deade0b28eb9871f5e1f881067b8ea5adb0be4e19adba0e49c44a2b7e40393a52",
+          "digest_old": "8b403769d5f0ab15aa3d47e3ed78d1147a479e8f24a49c1942c605aefca7ab614f48fd76a1a8796819314c8943fe48ae",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreKernelCache",
+          "path_new": "kernelcache.release.iphone13",
+          "path_old": "kernelcache.release.iphone13"
+        },
+        {
+          "digest_new": "3679a078c7ada3a6f4d65b54425776de3320964084b891cfbcddc9c2a7364f84518d496e667a81e0b02f133c08b40c7d",
+          "digest_old": "1c4a063bcb3508531b4229963c465a1db67e2ad35687caa7943556294bdd0bedfa2817c87fa92560a41927a0249a9b66",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreLogo",
+          "path_new": "Firmware/all_flash/applelogo@2340~iphone.im4p",
+          "path_old": "Firmware/all_flash/applelogo@2340~iphone.im4p"
+        },
+        {
+          "digest_new": "0f1298a9da147d9bdb4d0506f6711a04ae02e9949fe180414cf9f0ecf8781fb7e08fa87578044e7dc1c8012c8807426e",
+          "digest_old": "c3e159e340934136c445a6c2ed3aa1dbee371618d57d4497bd78e8eb9f80f028bbaa189cbf9c3ef64344142320fcf12d",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreRamDisk",
+          "path_new": "141-09491-242.dmg",
+          "path_old": "043-69093-778.dmg"
+        },
+        {
+          "digest_new": "01dd5f5937f022b50aa6e62a3377c50be5ad010bb02f5eba00e40d8a6d31accb26f9986d1f5146837c235216ccf59477",
+          "digest_old": "7d62db518add58771e8f326ee945a05b7c3b565a23810d45c3877e9b3cb7bd598128728ffb97900b04ff1d4c0c5be992",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreSEP",
+          "path_new": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "e8ede293f4345658ae4ef8c077a0d889efa665b543c552c36ccd57f71e8a59493dfcff59f68f2c024b29a3a8690351fe",
+          "digest_old": "4140f13f39cffc07ad061028428106408012f279859345f6ade70398130157c94a29898c82e7d323191d28421a8ad258",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "RestoreTrustCache",
+          "path_new": "Firmware/141-09491-242.dmg.trustcache",
+          "path_old": "Firmware/043-69093-778.dmg.trustcache"
+        },
+        {
+          "digest_new": "7a7a6e40c7a10f38c44cfeed52740bb99b55eaea4727e8ce5fac4f7a0eb1b42d09f0ab316ee213482d8f0edd7b730d1c",
+          "digest_old": "a9b32429e298195c62118cbcd5d3683b7108cf4463df4508ea9f54d6e4d08b4e7ac013c0c6afed0cb008ece5af3957ce",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "SE,RapRTKitOS",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "b0b02ce60b657c65853fefd2aaff96ccf94f54d48cf9675835bb0c6a623eb1abdc8c22c09ed2936fce4a5f1a64feb55b",
+          "digest_old": "7fdb54bfb6422c642db1efeb8fa8fbfcd2ac02f518071b912bf3dd05651532f04eb2616e47bfa1f218414e8ec2766147",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": false
+          },
+          "key": "SE,RapSwBinDsp",
+          "path_new": "Firmware/Rose/r1p1/ftab.bin",
+          "path_old": "Firmware/Rose/r1p1/ftab.bin"
+        },
+        {
+          "digest_new": "6c1aab8b331ee7f770c5fc7649e14ff21632d124447241d90620d5c9ca191c0e3599741933112fd424c7007f7d5e4f1b",
+          "digest_old": "17902774a9e69fc93b57ce36406dacef857c455419940dcf8a4e1671e645f43d74612d8035c9c731d468c130cea23418",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "SEP",
+          "path_new": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "d9d705e44d02589dd1b3a8a3d6b9d6282b91e7e3c140eda8685ba3ee26eb5c297e8f93560c15fa751406b3adf2695682",
+          "digest_old": "b25b08f33eab157dbe958c5809f09c2787cfea2e23f1e46044cdc8586d6c9640a0ee8600154bd53e52a24639b72d320b",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "SIO",
+          "path_new": "Firmware/SmartIOFirmware_ASCv4.im4p",
+          "path_old": "Firmware/SmartIOFirmware_ASCv4.im4p"
+        },
+        {
+          "digest_new": "e8638035c987cdcd3b18bc5e84a96620d4805ad49bd2bd495591735511805f3a4a6db991aaabd8179932208d2a7bc2a6",
+          "digest_old": "8b78d40d00085d4421135f20219413114788ef44ccfdb7bb77448ebcdbba8d65dabd2fb7cd3f8bcab5c199a87d955d12",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "StaticTrustCache",
+          "path_new": "Firmware/141-10444-216.dmg.aea.trustcache",
+          "path_old": "Firmware/043-68873-661.dmg.aea.trustcache"
+        },
+        {
+          "digest_new": "17b1d40f35121c4d613bccd109408574ba13fd7c8afc36414308d9a419a7712589acd49a514cc371abfbbc11ea19151f",
+          "digest_old": "1b747be59449f53e6fa7811a75f1995eb864b9d1f9e7e5bea1fdd6f650aa33139fa041984c56870ca76241b251dcb2f0",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "SystemVolume",
+          "path_new": "Firmware/141-10444-216.dmg.aea.root_hash",
+          "path_old": "Firmware/043-68873-661.dmg.aea.root_hash"
+        },
+        {
+          "digest_new": "506184c4d2c174a914429d5ba6f5659113272db75d8a23c8b38c474e166caffbac8d1f13d634095a684f6b36d7629998",
+          "digest_old": "989423839cf313aafa1699a076c8e4dae140908e8acdbad261831775342d21647a101c81f1dacde74926fb19a6068515",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "WCHFirmwareUpdater",
+          "path_new": "Firmware/WirelessPower/WirelessPower.iphone13.im4p",
+          "path_old": "Firmware/WirelessPower/WirelessPower.iphone13.im4p"
+        },
+        {
+          "digest_new": "90fd6c521600735118e589d69bfda679e0f4fdb3b2f5f948773aeba6823e4b0848372530712b3c5c671a0af8d2ecce03",
+          "digest_old": "ff12d131c2e134b5f6a002594c46f6565a1589d8c6964c0252ca5a1fe33f86c595d2de0bed8058f71d0f64510891e133",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBEC",
+          "path_new": "Firmware/dfu/iBEC.d52g.RELEASE.im4p",
+          "path_old": "Firmware/dfu/iBEC.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "f65b30371b116fd05976866458d68c8555c3f1015725b4611d4645fb84f156248480c3d67e881353aa75c7d40467c1e4",
+          "digest_old": "7ece1b77ede46f5f211d3f95667b0a92e9d35d7be476399feb08fde2d0b706882bc367ef9b2ab44cca34508ac51c815f",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBSS",
+          "path_new": "Firmware/dfu/iBSS.d52g.RELEASE.im4p",
+          "path_old": "Firmware/dfu/iBSS.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "b1c2fc6b6ba3a6ae519ed4848d49c50cdc6707d919b7f6520e0eed6c3659feb30cfe968fd4e1743cc0e2c58d89dfe530",
+          "digest_old": "6bb1593a229aef402ef0535dfa97516e49dd2cc652873383a3bbf5bac993f109562fcb451f3c123854ea47244f0bded4",
+          "info_changed": false,
+          "info_new": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsLoadedByiBoot": false,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBoot",
+          "path_new": "Firmware/all_flash/iBoot.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/iBoot.d52g.RELEASE.im4p"
+        },
+        {
+          "digest_new": "c893bf12b085a5a8e2ff55aac266cd87a44dcfc4740f636eb31f7cac82464d771d91ab47dcff42379727380af6830b1f",
+          "digest_old": "4412b9e41dd979f8abaf09a73eb90aaca4aef84266be2b9d2c345fea64c0d3fb307a464bb7d71d8496e428c339c5cd58",
+          "info_changed": false,
+          "info_new": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "info_old": {
+            "IsFUDFirmware": true,
+            "IsLoadedByiBoot": true,
+            "Personalize": true,
+            "Trusted": true
+          },
+          "key": "iBootData",
+          "path_new": "Firmware/all_flash/iBootData.d52g.RELEASE.im4p",
+          "path_old": "Firmware/all_flash/iBootData.d52g.RELEASE.im4p"
+        }
+      ],
+      "changed_count": 57,
+      "components_compared": 95,
+      "removed": [],
+      "same": 38
+    }
+  },
+  "identity_count_new": 2,
+  "identity_count_old": 2,
+  "new": {
+    "artifact": {
+      "bytes": 351370,
+      "sha256": "2d13f3705cc346b8d282e2df5d53949c602cf9a6b24f1590e08d0124b6e431ec"
+    },
+    "product_build_version": "24B119",
+    "product_version": "27.2",
+    "supported_product_types": [
+      "iPhone13,1"
+    ]
+  },
+  "old": {
+    "artifact": {
+      "bytes": 351384,
+      "sha256": "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f"
+    },
+    "product_build_version": "24A446",
+    "product_version": "27.0.1",
+    "supported_product_types": [
+      "iPhone13,1"
+    ]
+  },
+  "schema_version": 1,
+  "summary": {
+    "added": [],
+    "changed": [
+      {
+        "digest_new": "46354ca5aba8efe2c144a67c7bb2532e7d1ea0c1492997340ef8df654aa376776385671631b3b2b1512c51a266d7c736",
+        "digest_old": "772d4cae2eee9325107f4fb458522f77b1feeba3cd5ff23e07cc127e4c215253d7f21cc0bda411817587aa4c1e5306c6",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "ANE",
+        "path_new": "Firmware/ane/h13_ane_fw_styx_d5x.im4p",
+        "path_old": "Firmware/ane/h13_ane_fw_styx_d5x.im4p"
+      },
+      {
+        "digest_new": "99984f45874e9caf73632c4d59660b7a222a5e377de77e2548f1b088b709b707aeb70f9c09504824fdd75f12217c3fae",
+        "digest_old": "07f9c7f6e0baf80e9bb336c1c72229bc37b46d3fe8c26d703a844a0fbc090cc48235749773560ec4d8b33d8e6d7074b3",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "ANS",
+        "path_new": "Firmware/ansf.t8101.release.im4p",
+        "path_old": "Firmware/ansf.t8101.release.im4p"
+      },
+      {
+        "digest_new": "66260252d9cfd065f191eee3f6f9f3da1f06f852599696298f2f580eaee7bbca31b803f331cb9c45e4aaf7974cebb1fd",
+        "digest_old": "8a0f033803b113c4f453ee8dde30345a1561d90056110d74f0ab3680c5dd588977390ae705dfebba4430df59a0852359",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "AOP",
+        "path_new": "Firmware/AOP/aopfw-iphone13aop.RELEASE.im4p",
+        "path_old": "Firmware/AOP/aopfw-iphone13aop.RELEASE.im4p"
+      },
+      {
+        "digest_new": "82de26204dda7d886089de79208a48ab65da01e6cdca1a08ecd7bde818e769948c907a3fb59b9e6063341113f7f44f6e",
+        "digest_old": "abdae1cef09b402a874a3b7fd824288391ec6523bffd8d6898e2794ac7263699deeba1f0a53014a3d75fec841046a759",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "AVE",
+        "path_new": "Firmware/ave/AppleAVE2FW_H13.im4p",
+        "path_old": "Firmware/ave/AppleAVE2FW_H13.im4p"
+      },
+      {
+        "digest_new": "66211712d5bd348af41bb57c875760480d77ab00fd8b0a46883de6879f45919943bdfb2e4c213ef9c99fe1f7cc52f5e2",
+        "digest_old": "64ba16b4ca3bbf698d7a04957eb45d09e80e7f3fca8e7ee1d93a0670d9135e3a38841ec7e49666c15fd5faec05312955",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Ap,RestoreSecurePageTableMonitor",
+        "path_new": "Firmware/sptm.t8101.release.im4p",
+        "path_old": "Firmware/sptm.t8101.release.im4p"
+      },
+      {
+        "digest_new": "67646890f1d2f372250d43cfd5b0508e063056b6edf13e8b1ebf5b47aa2ff3cc8ae570520798141750f77c22a853bf52",
+        "digest_old": "573a242a31c5f094d0c9f133d2c028efc5c6242816875fdf44d2450d32acee8ca4548898eda3988d9a8aa46f2b33b06d",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Ap,RestoreTrustedExecutionMonitor",
+        "path_new": "Firmware/txm.iphoneos.release.im4p",
+        "path_old": "Firmware/txm.iphoneos.release.im4p"
+      },
+      {
+        "digest_new": "e35342da606324c531614c62368683146a4e3ff70d5cc4ea5acee58ffc831666522a58c2e1747ff1e67714e7ce2108cd",
+        "digest_old": "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Ap,SecurePageTableMonitor",
+        "path_new": "Firmware/sptm.t8101.release.im4p",
+        "path_old": "Firmware/sptm.t8101.release.im4p"
+      },
+      {
+        "digest_new": "5cc452e97b5fa6c1e672819ac56c1d00c528d979cc7e387e8143f82a55496b9ef28ca23433f4e3c780afac2e70e86d64",
+        "digest_old": "b6523703e2b233339a83689f6d29b327e945e65a4dee1ca0556c9c4ea28b7dee872dc75c5f3d4d11df5d121981fb7911",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Ap,SystemVolumeCanonicalMetadata",
+        "path_new": "Firmware/141-10444-216.dmg.aea.mtree",
+        "path_old": "Firmware/043-68873-661.dmg.aea.mtree"
+      },
+      {
+        "digest_new": "d1f47d55fd17c64cc83b06458acc1d06b1a1897174332c61e63b92fee0083a119b59d366676ab973a73b610168360f3b",
+        "digest_old": "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Ap,TrustedExecutionMonitor",
+        "path_new": "Firmware/txm.iphoneos.release.im4p",
+        "path_old": "Firmware/txm.iphoneos.release.im4p"
+      },
+      {
+        "digest_new": "f83bd6dfb3e5f54377fdc8a117e583cbc566cbb7e5d35331f854c50146cf6333ad14f9a8ad48a82c714d6db55d78d550",
+        "digest_old": "e653eddebb42ca9592304f0d46b77deb09eea4243b852dd800f37e58ea6771d6fb8767a9142796586e1829af0467c3c5",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "AppleLogo",
+        "path_new": "Firmware/all_flash/applelogo@2340~iphone.im4p",
+        "path_old": "Firmware/all_flash/applelogo@2340~iphone.im4p"
+      },
+      {
+        "digest_new": "32583558ee156c18e5fb66cfb7014bbbb1d39c0bfeee444287b47dcc8ff14f4c7491733a8536e4fc9f26a90f133ddfe1",
+        "digest_old": "06bacb72e17c9ff005a0b80fa69f849e3a4f4af5e085831c25caadc61ac97aab79b3f773d636097af8f4cfb645eb7093",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": false
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": false
+        },
+        "key": "AudioCodecFirmware",
+        "path_new": "Firmware/D52G_AudioCodecFirmware.im4p",
+        "path_old": "Firmware/D52G_AudioCodecFirmware.im4p"
+      },
+      {
+        "digest_new": null,
+        "digest_old": null,
+        "info_changed": false,
+        "info_new": {},
+        "info_old": {},
+        "key": "BasebandFirmware",
+        "path_new": "Firmware/Mav20-8.10.01.Release.bbfw",
+        "path_old": "Firmware/Mav20-8.00.01.Release.bbfw"
+      },
+      {
+        "digest_new": "a3ea44069ac9d0b1df2d23bb5141c247c68aeeba6285a95ad9ab0caaa85b002b4756e36f76cf4dd2bc84ae6e88086e33",
+        "digest_old": "5f8fcabd477a5a90106dddbfb1981c4d99e261d559404c4761d7db8a7dc90de263cd4cdf9aac6486938566e47700d523",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "BatteryCharging0",
+        "path_new": "Firmware/all_flash/batterycharging0@2340~iphone.im4p",
+        "path_old": "Firmware/all_flash/batterycharging0@2340~iphone.im4p"
+      },
+      {
+        "digest_new": "68fed75fd682427dbf66c4e8d20d64cc39fe4a15e249502797599091be356546df8f00de159e55de533b0cf98ea578c5",
+        "digest_old": "69ad970e4a5c5b2d84c106f2f4f92f30676b0d72cadbff5d1a4b18c43358b84131fe9767f28e2ed1f5132c57e33f3df4",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "BatteryCharging1",
+        "path_new": "Firmware/all_flash/batterycharging1@2340~iphone.im4p",
+        "path_old": "Firmware/all_flash/batterycharging1@2340~iphone.im4p"
+      },
+      {
+        "digest_new": "7e4b979837317e6421cb38f6d4782366587c6c4323d29ad85c8f54c5ada0c0ca4b12280befd418fd97b15936ddeec438",
+        "digest_old": "16cd5d0143f6f7d8668d6abbbbf4b674c40425fe22fb551ae27ac69e662aa0ec69c6faeb5ff22a57f051f51145a4a209",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "BatteryFull",
+        "path_new": "Firmware/all_flash/batteryfull@2340~iphone.im4p",
+        "path_old": "Firmware/all_flash/batteryfull@2340~iphone.im4p"
+      },
+      {
+        "digest_new": "730b3e98cf6c3989dd77b5a55ea280b4a52a68a233d51e6870992c4e1da558f0d259533c2dd22bafe0a66acfc06370e7",
+        "digest_old": "78cad0c1536127aa1270ab5a26adf603b2423a830e7bda5090a59544db384abda48b9e95d20cc4c094252c3168b8151c",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "BatteryLow0",
+        "path_new": "Firmware/all_flash/batterylow0@2340~iphone.im4p",
+        "path_old": "Firmware/all_flash/batterylow0@2340~iphone.im4p"
+      },
+      {
+        "digest_new": "05933d809a5eb7830c770e9371df38c9fd4ee3ea41c38a3e84ce074d586aec425560ebfa86f79ab423094180689ba9df",
+        "digest_old": "1d377d8adae85356f83e41f7e851a518bc09e9d2e515eabbfde89cad546aecfb02620311da2bbb69d1d50cda871f377b",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "BatteryLow1",
+        "path_new": "Firmware/all_flash/batterylow1@2340~iphone.im4p",
+        "path_old": "Firmware/all_flash/batterylow1@2340~iphone.im4p"
+      },
+      {
+        "digest_new": "f82bc7c5d63ced82bff88c503a3733fa7b05862b663e8249983e4b20494672972d39b83d04bcbc185085b0128432210c",
+        "digest_old": "b24fab4e1acbd9c2b3dfa5b4a6a7e56deb2691e3fb92cdf2e0c8b6f2a7bf35a78a749d59ca499767ef4a011cfa434531",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "BatteryPlugin",
+        "path_new": "Firmware/all_flash/glyphplugin@2340~iphone-lightning.im4p",
+        "path_old": "Firmware/all_flash/glyphplugin@2340~iphone-lightning.im4p"
+      },
+      {
+        "digest_new": "2ba33eb6964dba7ac3a139ba8946e1ead45e1e4ae373bfcc2f27c72b3dc29bfe5a1ad5898cb2dc1ba90be40e063dc5e7",
+        "digest_old": "0b2e502deac6702e00d31d7b625b02cb59b8076ee8a7731220488ba5f4ad7619f7cccfd24193b0962abf3eaad56cdc90",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "key": "Cryptex1,AppOS",
+        "path_new": "141-08824-244.dmg",
+        "path_old": "043-69297-793.dmg"
+      },
+      {
+        "digest_new": "6f30833f63f7605de95117045702dfe1695f0e14960a04f7ef69dd1170764d1b4ce626fcef782301ed029b01ca3cd31e",
+        "digest_old": "9889202c29568a8132fecb056d3848fa3a8d91dc17118a76fd7d4ad3cd6d6b9429c6e7f1f14e68f2bd586561a6f34d36",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "key": "Cryptex1,AppTrustCache",
+        "path_new": "Firmware/141-08824-244.dmg.trustcache",
+        "path_old": "Firmware/043-69297-793.dmg.trustcache"
+      },
+      {
+        "digest_new": "f4569b60c98bbf344847d81aa7f2d38a7e46e09196889f18d0abaa1e4b3d2bb9a9a6d0229e1341a27d528e37029272a4",
+        "digest_old": "2c2b68d863460a1a1e24345885b00d1fb94fef18d645e6f8951b909eab67f89d49af6dc49896fabee485f39cac5d0654",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "key": "Cryptex1,AppVolume",
+        "path_new": "Firmware/141-08824-244.dmg.root_hash",
+        "path_old": "Firmware/043-69297-793.dmg.root_hash"
+      },
+      {
+        "digest_new": "556fca6323cb207763488a04dc86700c69232684abbea806f9bd9f2278e6838057cbe56eaed3ad7d1fc609dc188fbf05",
+        "digest_old": "fc77c044319106ab466c5f64175560030f26d9bb6032aa08bcb96fc820cd1e539e9fb64ba1bb289d5ee3cb9bee289b18",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "key": "Cryptex1,SystemOS",
+        "path_new": "141-09715-227.dmg.aea",
+        "path_old": "043-69370-711.dmg.aea"
+      },
+      {
+        "digest_new": "f3a009b963362aca50b115b9e3e942a83afb08e7766c88a127bfa75af9f95540a8f59005ebb658e3ff7be04dc04f207e",
+        "digest_old": "1ae06a2f712d742ce4c0ae9f65c5b16fe3005441c781cdaee1c4b020a5ab4527b3cc6ea2a92d4650abe07d460aea768c",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "key": "Cryptex1,SystemTrustCache",
+        "path_new": "Firmware/141-09715-227.dmg.aea.trustcache",
+        "path_old": "Firmware/043-69370-711.dmg.aea.trustcache"
+      },
+      {
+        "digest_new": "ea8b306ba1f4d9fff4faacb0ff013c3a6a9da57a8a8193a6cfa9ef59b514e65f412dbfdd23534b7421457797895cb990",
+        "digest_old": "cd534d9b34387fcf9c1f9d3bffbf38fc68d68fe4bdde353d0d1abe0b83f578eb8295e15f5f92e8ec7ed4cdbc4b1c8aad",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true
+        },
+        "key": "Cryptex1,SystemVolume",
+        "path_new": "Firmware/141-09715-227.dmg.aea.root_hash",
+        "path_old": "Firmware/043-69370-711.dmg.aea.root_hash"
+      },
+      {
+        "digest_new": "960537e45752c47e44e714500a3182208360d6927699e2a170e898e414753da23cd761223040b31f7e797a29153c7e6d",
+        "digest_old": "f983684b3e330350ce7733d3468f0ad9247fc9b68f4346c66e26ed414c874ecaf954c625a78321fc3379cd4c21f84372",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "DCP",
+        "path_new": "Firmware/dcp/iphone13dcp.im4p",
+        "path_old": "Firmware/dcp/iphone13dcp.im4p"
+      },
+      {
+        "digest_new": "01a470728ee1b0e861a1651e7af69e3a3988323dea1d17fa57cc4aafb4924c08e1a54ca13cef9b8ee45f752ea79fd910",
+        "digest_old": "3892375e03c61545f212775a556c9c1f7122d71eeecbb52bf704088299747f56ad3733feff6488e147f189a02735daf4",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "DeviceTree",
+        "path_new": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+        "path_old": "Firmware/all_flash/DeviceTree.d52gap.im4p"
+      },
+      {
+        "digest_new": "edd688949e275b1ef5c6d7fbf30e57395aea17f6fe299a6faf8e66d64de90d5e411fa285103e5c8109c974ce3f650953",
+        "digest_old": "864ef3f5488962fb8fd4e7b7b4f710f2550f31f99beee4198e546256021b26536830c429f885fb30ec01bc1eada7ac24",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "GFX",
+        "path_new": "Firmware/agx/armfw_g13p.im4p",
+        "path_old": "Firmware/agx/armfw_g13p.im4p"
+      },
+      {
+        "digest_new": "0d19fa4346666ae87addfa396d4af0fe557b682a379283e789fbc18399f5caec9a5b41cf539181d314bb6698e10f218f",
+        "digest_old": "789d8e209819ce67f30b113fbd1d2ea70a594ac7916d69dc1621f141fde0b81f24ef69c183972885c3fba5adf7ef24a1",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "ISP",
+        "path_new": "Firmware/isp_bni/adc-pallas-d5xg.im4p",
+        "path_old": "Firmware/isp_bni/adc-pallas-d5xg.im4p"
+      },
+      {
+        "digest_new": "b218865b3504d4d3c754e848e2073bf8d45d29258293cb4917e4f742d8e39e5c2acecb7a5ae6ad5444245dca0427ff4a",
+        "digest_old": "2959b13c30596396cb0113c8f021af584ea30d6883b4519139f5248709062d7208e49c874ffe456865871574399ca45f",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "KernelCache",
+        "path_new": "kernelcache.release.iphone13",
+        "path_old": "kernelcache.release.iphone13"
+      },
+      {
+        "digest_new": "3157548b2da6bac04ab4470a9bd9b72cad0d66a24e4446b640df6cdebc19a1abd882416758b58009dfb4f7db5eaa72c3",
+        "digest_old": "c1b7ada480f169e3683f191fa5d736c7548745dec55357005b25036557241cfca8f72cb39e3afc0cd72b169186d4213d",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "LLB",
+        "path_new": "Firmware/all_flash/LLB.d52g.RELEASE.im4p",
+        "path_old": "Firmware/all_flash/LLB.d52g.RELEASE.im4p"
+      },
+      {
+        "digest_new": "50d7c3928f2c4d5a22b3b607454fe71007f096aad230297b6f2cbd7f38e8dfb12d19284a00ea3171118bead2421496f1",
+        "digest_old": "67cb0373c485ddaa31ea0ca4d220e13d611e9a51bc787a6b570636d29588af443654fe8ac4077e7213713c113c82a8b8",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Liquid",
+        "path_new": "Firmware/all_flash/liquiddetect@2340~iphone-lightning.im4p",
+        "path_old": "Firmware/all_flash/liquiddetect@2340~iphone-lightning.im4p"
+      },
+      {
+        "digest_new": "6ab6e6a21241eb3666368c8091d1b6e09a6d393b01e2381b398c05343804201463d3894b1555954948e450f13f2aa6d7",
+        "digest_old": "47454e82b37d6d4c53842a7f0e13d88d117fb91a1952da33d943ff2419b2a57a7f8b94e9f81667a8acf112aaec1240e3",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "LowPowerWallet0",
+        "path_new": "Firmware/all_flash/lowpowermode@2340~iphone-lightning.im4p",
+        "path_old": "Firmware/all_flash/lowpowermode@2340~iphone-lightning.im4p"
+      },
+      {
+        "digest_new": "09abc362fc21d7867666f833067b0ee18ac1cd276661720682371ff9b9affbe3b208e88b6f9fcc52fe8a330f9f284539",
+        "digest_old": "d24dc31cfea9eb655072d28401cf5d06a70d81f8348fc1a7baf394f635f45e615a33d05d2898ebf1b6a484101e452853",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "LowPowerWallet1",
+        "path_new": "Firmware/all_flash/lowpowerfindmymode@2340~iphone-lightning.im4p",
+        "path_old": "Firmware/all_flash/lowpowerfindmymode@2340~iphone-lightning.im4p"
+      },
+      {
+        "digest_new": "661f763a43ad26b02d9fe3c361325f8da52c63937fbf41423f76fa2bcfaa10eb339f7f75ce7ad8d65aa1e3b3e5b09eef",
+        "digest_old": "8861220245a0b78e0c34cb5053d4a73db34bde02a6cc47cd01a7b619b13f0bee0ecf09953980886dd45da1e05fd9f0e2",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false,
+          "Trusted": true
+        },
+        "key": "OS",
+        "path_new": "141-10444-216.dmg.aea",
+        "path_old": "043-68873-661.dmg.aea"
+      },
+      {
+        "digest_new": "31113c5e610982b9183c0ef737a93d9726798ca67bd913c6197382c06f4e28c1f45ba013ea81a33ae5b403da71a9453d",
+        "digest_old": "4e2bc186ca973f0b17e9f1bfcb110117bd7620a85dd9d5001553408a2088e87250e771110c6f0a09ccb629daa9350f40",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "PMP",
+        "path_new": "Firmware/pmp/t8101pmp.im4p",
+        "path_old": "Firmware/pmp/t8101pmp.im4p"
+      },
+      {
+        "digest_new": "7a7a6e40c7a10f38c44cfeed52740bb99b55eaea4727e8ce5fac4f7a0eb1b42d09f0ab316ee213482d8f0edd7b730d1c",
+        "digest_old": "a9b32429e298195c62118cbcd5d3683b7108cf4463df4508ea9f54d6e4d08b4e7ac013c0c6afed0cb008ece5af3957ce",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Rap,RTKitOS",
+        "path_new": "Firmware/Rose/r1p1/ftab.bin",
+        "path_old": "Firmware/Rose/r1p1/ftab.bin"
+      },
+      {
+        "digest_new": "b0b02ce60b657c65853fefd2aaff96ccf94f54d48cf9675835bb0c6a623eb1abdc8c22c09ed2936fce4a5f1a64feb55b",
+        "digest_old": "7fdb54bfb6422c642db1efeb8fa8fbfcd2ac02f518071b912bf3dd05651532f04eb2616e47bfa1f218414e8ec2766147",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "Rap,SoftwareBinaryDsp1",
+        "path_new": "Firmware/Rose/r1p1/ftab.bin",
+        "path_old": "Firmware/Rose/r1p1/ftab.bin"
+      },
+      {
+        "digest_new": "048606d6897e2371cd2e6cdc2dbcf2e912e31dbd690cf59d202abcf7d2a90eb4e3f8c8777dab763749a3fb40569379d0",
+        "digest_old": "8daf47ecbbc09e371d93fc2a4ce753a45c19d91620932e855623b79ca504b2876ceb5694920f8aed648430b4baee3df9",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RecoveryMode",
+        "path_new": "Firmware/all_flash/recoverymode@2340~iphone-lightning.im4p",
+        "path_old": "Firmware/all_flash/recoverymode@2340~iphone-lightning.im4p"
+      },
+      {
+        "digest_new": "794a4025f05b285df1e672201c1241ba1d16130cb2fc4bc6b37dc53336bf7ad360943f09e4f05205841d7fa7184be33a",
+        "digest_old": "9b028e1ebb58d0cc6db13287b768c2ac5dfc5cf9fe3952f8b9bdd1b1722d412ae7a10624026a58c0ddcac7af39175acf",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreANS",
+        "path_new": "Firmware/rans.t8101.release.im4p",
+        "path_old": "Firmware/rans.t8101.release.im4p"
+      },
+      {
+        "digest_new": "579a0e9488828b53d463262f463b3c40f9babf588ffebcd18161261f8c4a8d84a5f3578d355844b562164b8335b4e5ae",
+        "digest_old": "8cd8497e8a0f9de8a71ffcb8cf378a673ac2ff70cc7ce8a00bc6b9d94909784b485b885f31a99deb3470b8564a348b04",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreDCP",
+        "path_new": "Firmware/dcp/iphone13dcp_restore.im4p",
+        "path_old": "Firmware/dcp/iphone13dcp_restore.im4p"
+      },
+      {
+        "digest_new": "2d5f258a913c0186702c6cb893dafa4a132584ed81c2a914313bf560cf3c85004050674278fa63f32656dd6979066ae3",
+        "digest_old": "1960ed812c8e5ee4a12ac5c3108da9a08e41fec5d311c73af8b930b8755b8da0dd9255b739484dc1db8310dbacdad75f",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreDeviceTree",
+        "path_new": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+        "path_old": "Firmware/all_flash/DeviceTree.d52gap.im4p"
+      },
+      {
+        "digest_new": "ff2de93cc364e2ee1e37cf2c577e663deade0b28eb9871f5e1f881067b8ea5adb0be4e19adba0e49c44a2b7e40393a52",
+        "digest_old": "8b403769d5f0ab15aa3d47e3ed78d1147a479e8f24a49c1942c605aefca7ab614f48fd76a1a8796819314c8943fe48ae",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreKernelCache",
+        "path_new": "kernelcache.release.iphone13",
+        "path_old": "kernelcache.release.iphone13"
+      },
+      {
+        "digest_new": "3679a078c7ada3a6f4d65b54425776de3320964084b891cfbcddc9c2a7364f84518d496e667a81e0b02f133c08b40c7d",
+        "digest_old": "1c4a063bcb3508531b4229963c465a1db67e2ad35687caa7943556294bdd0bedfa2817c87fa92560a41927a0249a9b66",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreLogo",
+        "path_new": "Firmware/all_flash/applelogo@2340~iphone.im4p",
+        "path_old": "Firmware/all_flash/applelogo@2340~iphone.im4p"
+      },
+      {
+        "digest_new": "079ad61471ccd121bf367b2c825520d1d55005f0281f292f958bab188c843090f26dd4b3bff81de8556b1250d7506453",
+        "digest_old": "61c77abba5c3f107bdc8b356f7161e8162cfd1ca244505540db2dc9f90ad5f3a45020a6c2a616a912282d0389edba0f1",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreRamDisk",
+        "path_new": "141-10399-240.dmg",
+        "path_old": "043-69915-784.dmg"
+      },
+      {
+        "digest_new": "01dd5f5937f022b50aa6e62a3377c50be5ad010bb02f5eba00e40d8a6d31accb26f9986d1f5146837c235216ccf59477",
+        "digest_old": "7d62db518add58771e8f326ee945a05b7c3b565a23810d45c3877e9b3cb7bd598128728ffb97900b04ff1d4c0c5be992",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreSEP",
+        "path_new": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p",
+        "path_old": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p"
+      },
+      {
+        "digest_new": "d7466faa10ca62e0076a7e1f6b55c0fe78ca3ab7ea025ecb1fe2974a880918d7f1692d1a5e094a6846298a5492e7b9d5",
+        "digest_old": "64eab1b5700543e8f0e17ac0bb2878f2a2f5b1d9dfb30f4df78fe72e7fd051a61c35cebaf75a082b8f21812cfe58bca4",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "RestoreTrustCache",
+        "path_new": "Firmware/141-10399-240.dmg.trustcache",
+        "path_old": "Firmware/043-69915-784.dmg.trustcache"
+      },
+      {
+        "digest_new": "7a7a6e40c7a10f38c44cfeed52740bb99b55eaea4727e8ce5fac4f7a0eb1b42d09f0ab316ee213482d8f0edd7b730d1c",
+        "digest_old": "a9b32429e298195c62118cbcd5d3683b7108cf4463df4508ea9f54d6e4d08b4e7ac013c0c6afed0cb008ece5af3957ce",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "key": "SE,RapRTKitOS",
+        "path_new": "Firmware/Rose/r1p1/ftab.bin",
+        "path_old": "Firmware/Rose/r1p1/ftab.bin"
+      },
+      {
+        "digest_new": "b0b02ce60b657c65853fefd2aaff96ccf94f54d48cf9675835bb0c6a623eb1abdc8c22c09ed2936fce4a5f1a64feb55b",
+        "digest_old": "7fdb54bfb6422c642db1efeb8fa8fbfcd2ac02f518071b912bf3dd05651532f04eb2616e47bfa1f218414e8ec2766147",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": false
+        },
+        "key": "SE,RapSwBinDsp",
+        "path_new": "Firmware/Rose/r1p1/ftab.bin",
+        "path_old": "Firmware/Rose/r1p1/ftab.bin"
+      },
+      {
+        "digest_new": "6c1aab8b331ee7f770c5fc7649e14ff21632d124447241d90620d5c9ca191c0e3599741933112fd424c7007f7d5e4f1b",
+        "digest_old": "17902774a9e69fc93b57ce36406dacef857c455419940dcf8a4e1671e645f43d74612d8035c9c731d468c130cea23418",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "SEP",
+        "path_new": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p",
+        "path_old": "Firmware/all_flash/sep-firmware.d52g.RELEASE.im4p"
+      },
+      {
+        "digest_new": "d9d705e44d02589dd1b3a8a3d6b9d6282b91e7e3c140eda8685ba3ee26eb5c297e8f93560c15fa751406b3adf2695682",
+        "digest_old": "b25b08f33eab157dbe958c5809f09c2787cfea2e23f1e46044cdc8586d6c9640a0ee8600154bd53e52a24639b72d320b",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "SIO",
+        "path_new": "Firmware/SmartIOFirmware_ASCv4.im4p",
+        "path_old": "Firmware/SmartIOFirmware_ASCv4.im4p"
+      },
+      {
+        "digest_new": "e8638035c987cdcd3b18bc5e84a96620d4805ad49bd2bd495591735511805f3a4a6db991aaabd8179932208d2a7bc2a6",
+        "digest_old": "8b78d40d00085d4421135f20219413114788ef44ccfdb7bb77448ebcdbba8d65dabd2fb7cd3f8bcab5c199a87d955d12",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "StaticTrustCache",
+        "path_new": "Firmware/141-10444-216.dmg.aea.trustcache",
+        "path_old": "Firmware/043-68873-661.dmg.aea.trustcache"
+      },
+      {
+        "digest_new": "17b1d40f35121c4d613bccd109408574ba13fd7c8afc36414308d9a419a7712589acd49a514cc371abfbbc11ea19151f",
+        "digest_old": "1b747be59449f53e6fa7811a75f1995eb864b9d1f9e7e5bea1fdd6f650aa33139fa041984c56870ca76241b251dcb2f0",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "SystemVolume",
+        "path_new": "Firmware/141-10444-216.dmg.aea.root_hash",
+        "path_old": "Firmware/043-68873-661.dmg.aea.root_hash"
+      },
+      {
+        "digest_new": "506184c4d2c174a914429d5ba6f5659113272db75d8a23c8b38c474e166caffbac8d1f13d634095a684f6b36d7629998",
+        "digest_old": "989423839cf313aafa1699a076c8e4dae140908e8acdbad261831775342d21647a101c81f1dacde74926fb19a6068515",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "WCHFirmwareUpdater",
+        "path_new": "Firmware/WirelessPower/WirelessPower.iphone13.im4p",
+        "path_old": "Firmware/WirelessPower/WirelessPower.iphone13.im4p"
+      },
+      {
+        "digest_new": "90fd6c521600735118e589d69bfda679e0f4fdb3b2f5f948773aeba6823e4b0848372530712b3c5c671a0af8d2ecce03",
+        "digest_old": "ff12d131c2e134b5f6a002594c46f6565a1589d8c6964c0252ca5a1fe33f86c595d2de0bed8058f71d0f64510891e133",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "iBEC",
+        "path_new": "Firmware/dfu/iBEC.d52g.RELEASE.im4p",
+        "path_old": "Firmware/dfu/iBEC.d52g.RELEASE.im4p"
+      },
+      {
+        "digest_new": "f65b30371b116fd05976866458d68c8555c3f1015725b4611d4645fb84f156248480c3d67e881353aa75c7d40467c1e4",
+        "digest_old": "7ece1b77ede46f5f211d3f95667b0a92e9d35d7be476399feb08fde2d0b706882bc367ef9b2ab44cca34508ac51c815f",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "iBSS",
+        "path_new": "Firmware/dfu/iBSS.d52g.RELEASE.im4p",
+        "path_old": "Firmware/dfu/iBSS.d52g.RELEASE.im4p"
+      },
+      {
+        "digest_new": "b1c2fc6b6ba3a6ae519ed4848d49c50cdc6707d919b7f6520e0eed6c3659feb30cfe968fd4e1743cc0e2c58d89dfe530",
+        "digest_old": "6bb1593a229aef402ef0535dfa97516e49dd2cc652873383a3bbf5bac993f109562fcb451f3c123854ea47244f0bded4",
+        "info_changed": false,
+        "info_new": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsLoadedByiBoot": false,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "iBoot",
+        "path_new": "Firmware/all_flash/iBoot.d52g.RELEASE.im4p",
+        "path_old": "Firmware/all_flash/iBoot.d52g.RELEASE.im4p"
+      },
+      {
+        "digest_new": "c893bf12b085a5a8e2ff55aac266cd87a44dcfc4740f636eb31f7cac82464d771d91ab47dcff42379727380af6830b1f",
+        "digest_old": "4412b9e41dd979f8abaf09a73eb90aaca4aef84266be2b9d2c345fea64c0d3fb307a464bb7d71d8496e428c339c5cd58",
+        "info_changed": false,
+        "info_new": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "info_old": {
+          "IsFUDFirmware": true,
+          "IsLoadedByiBoot": true,
+          "Personalize": true,
+          "Trusted": true
+        },
+        "key": "iBootData",
+        "path_new": "Firmware/all_flash/iBootData.d52g.RELEASE.im4p",
+        "path_old": "Firmware/all_flash/iBootData.d52g.RELEASE.im4p"
+      }
+    ],
+    "changed_count": 57,
+    "components_compared": 95,
+    "identity": "Customer Erase Install (IPSW)",
+    "removed": [],
+    "same": 38
+  }
+}

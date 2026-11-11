@@ -1,0 +1,112 @@
+schema_version: 1
+id: CASE-0004
+title: "iOS 27.2 (24B119) differential baseline for A14 / iPhone 12 mini"
+status: investigating
+created_at: "2026-11-11T11:42:00+09:00"
+updated_at: "2026-11-11T11:52:00+09:00"
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+owner: null
+reviewer: null
+objective: "Determine what changed between iOS 27.0.1 (24A446) and iOS 27.2 (24B119) for the iPhone13,1 A14 restore image, and identify which 27.2 advisory components are plausible candidates for binary-level vulnerability-fix analysis. Exploit development, bypass techniques, and protection-disablement work are explicitly out of scope."
+kinds:
+  - differential-analysis
+  - vulnerability-triage
+  - build-artifact-analysis
+components:
+  - BuildManifest
+  - Kernel
+  - SPTM
+  - TXM
+  - Image4
+  - iOS
+scope:
+  in_scope:
+    - "Apple restore images and BuildManifest metadata for iPhone13,1."
+    - "Public Apple security advisories for iOS 27, 27.0.1, 27.2, and 27.2.1."
+    - "Offline Image4, LZFSE, Mach-O, and MH_FILESET inspection."
+    - "Differential comparison of build-level component digests, kernelcache images, kext UUIDs, SPTM, and TXM."
+    - "Candidate triage that maps advisory components to artifacts without asserting exploitability."
+  out_of_scope:
+    - "Exploit chains, kernel read/write primitives, or privilege-escalation payloads."
+    - "PPL, SPTM, or TXM bypass techniques or protection-disablement procedures."
+    - "Persistence, patch-finding for operational use, or weaponization."
+    - "State-changing or destructive device operations."
+    - "Decrypting or circumventing protected system-volume cryptexes."
+hypothesis:
+  claim: "The iOS 27.2 (24B119) iPhone13,1 image packages different security-relevant components than the iOS 27.0.1 (24A446) image, and the 27.2 advisory's 163 CVEs are disjoint from the 27.0 advisory's 163 CVEs. The pair is therefore a usable offline patch-diff baseline for locating fixed vulnerabilities. This does not assert that any CVE is reachable, exploitable, or a protection-mechanism bypass."
+  preconditions:
+    - "The local 27.2 IPSW is a complete iPhone13,1 restore image for build 24B119."
+    - "The local 27.0.1 IPSW is a complete iPhone13,1 restore image for build 24A446."
+    - "BuildManifest component digests and Image4 payload hashes identify the compared bytes."
+    - "Advisory CVE membership is treated as scope evidence, not exploitability evidence."
+  expected_behavior: "If the claim is correct, security-relevant manifest entries, the release kernelcache, and the SPTM/TXM payloads should differ between the two builds, while some embedded images should remain identical. Re-parsing the advisory JSON should reproduce the 163-CVE 27.2 set and show no overlap with the 27.0 set."
+  rejection_criteria:
+    - "The two BuildManifests declare identical security-relevant payloads."
+    - "The decompressed kernelcache and SPTM/TXM payloads are byte-identical."
+    - "The 27.2 advisory reuses CVEs from the 27.0 advisory rather than introducing a disjoint set."
+    - "Observed differences are fully explained by metadata or packaging changes with no payload-byte changes."
+evidence:
+  supporting:
+    - EVD-0021
+    - EVD-0022
+    - EVD-0023
+    - EVD-0024
+    - EVD-0025
+    - EVD-0026
+  counter: []
+analysis:
+  methods:
+    - build-manifest-inspection
+    - build-manifest-differential-comparison
+    - image4-payload-inspection
+    - lzfse-decompression
+    - macho-header-inspection
+    - mh-fileset-inventory
+    - kext-uuid-comparison
+    - function-start-count-comparison
+    - apple-advisory-parsing
+    - cve-set-comparison
+    - component-to-artifact-triage
+  artifacts:
+    - "BuildManifest.plist from iPhone13,1_27.0.1_24A446_Restore.ipsw (sha256 f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f; not committed)"
+    - "BuildManifest.plist from iPhone13,1_27.2_24B119_Restore.ipsw (sha256 2d13f3705cc346b8d282e2df5d53949c602cf9a6b24f1590e08d0124b6e431ec; not committed)"
+    - "kernelcache.release.iphone13 from 24A446 (IM4P sha256 15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced; decompressed sha256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4; not committed)"
+    - "kernelcache.release.iphone13 from 24B119 (IM4P sha256 71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a; decompressed sha256 5edba8bacade83ea29c67cc1b3e44793694a93ef2473d78ce610237b553f0f41; not committed)"
+    - "Firmware/sptm.t8101.release.im4p from both images (24A446 sha256 fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb; 24B119 sha256 a239ab942984c8251a94cc3f1353bb8e5911bd1aa967c61229bcf7b06a685c76; not committed)"
+    - "Firmware/txm.iphoneos.release.im4p from both images (24A446 sha256 b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff; 24B119 sha256 284e5413dfd447dc81c8840e92748dc8a390b474142f390c1fddee1ac1c716b6; not committed)"
+    - "analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json"
+    - "analysis/differential/ios27.2-vs-27.0.1-kernelcache.json"
+    - "analysis/differential/ios27.2-vs-27.0.1-sptm-txm.json"
+    - "research/public-research/ios27.2-vulnerability-register.yaml"
+  tools:
+    - python-3.14.9
+    - lzfse-0.4.2.post1
+    - engineering.analyzers.build_manifest_diff
+    - engineering.parsers.image4
+    - engineering.parsers.macho
+    - plistlib
+    - unzip-6.00
+validation:
+  safe_method: "Offline extraction and comparison of public restore-image metadata and payloads. No device is connected, no exploit is attempted, no signature or trust bypass is performed, and no encrypted system-volume content is circumvented."
+  validation_ids:
+    - VAL-0009
+    - VAL-0010
+    - VAL-0011
+conclusion:
+  state: observed
+  confidence: high
+  summary: "The 24B119 iPhone13,1 image differs from 24A446 at the manifest and binary levels. 57 of 95 BuildManifest component entries differ (56 digest changes and one path-only change), with no keys added or removed. The release kernelcache changes from KernelManagement_host-514.2.2 to 514.40.8; the decompressed image grows from 66,535,424 to 66,813,952 bytes, 207 of 250 fileset kext UUIDs change, and function-start entries increase from 1,361 to 1,382. SPTM changes from source version 820.0.22 to 820.40.24 and TXM keeps 217.0.2 but has a different UUID and decompressed hash; both 24B119 IM4P SHA-384 values match the manifest's installed-component digests. Apple's 27.2 advisory lists 163 CVEs, disjoint from the 163 CVEs in the 27.0 advisory, including 15 Kernel and 26 WebKit entries. These are differential observations; no CVE is mapped to a changed function, and no exploitability or protection-bypass claim is made."
+  limitations:
+    - "No physical device was available; runtime protection state and installation are unmeasured."
+    - "The kernel image is stripped; changed functions were not attributed to source symbols or CVEs."
+    - "Kext UUID changes are build-identity changes, not proof of security-relevant code changes."
+    - "The 27.2 advisory is documentary evidence; CVE membership does not establish reachability on A14."
+    - "WebKit, ImageIO, and most userspace components live in encrypted system-volume cryptexes and were not inspected at the binary level."
+    - "Only the iPhone13,1 customer restore identity was compared."
+    - "The 27.2.1 advisory adds nine CVEs not present in 24B119; the local image is not the latest patch level."
+    - "No Apple security note specific to 24A446 was found; 27.0.1 remains a no-published-CVE release."
+references:
+  - SRC-0003
+  - SRC-0004
+  - SRC-0020
+  - SRC-0021

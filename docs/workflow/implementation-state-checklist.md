@@ -1,8 +1,8 @@
 # Implementation state checklist
 
-- **Last verified:** 2026-11-10
-- **Verified against commit:** `ed6d8e7`
-- **Target scope:** A14 / iPhone 12 mini / iOS 27.0.1 (24A446), plus repository-level implementation
+- **Last verified:** 2026-11-11
+- **Verified against commit:** pending CASE-0004 working tree
+- **Target scope:** A14 / iPhone 12 mini / iOS 27.0.1 (24A446) baseline, plus the iOS 27.2 (24B119) differential comparison and repository-level implementation
 - **Purpose:** give a human reviewer and an LLM agent the same view of what exists, what is proven, what is blocked, and how to verify it
 
 This document is a status map, not a new evidence record. A checked box means the item exists and the verification command or linked record supports it. It does not upgrade a build-level observation into a runtime fact.
@@ -52,14 +52,14 @@ Use `passed`, `failed`, `inconclusive`, and `not-run` only for validation result
 | Build artifact provenance (P1/P2) | `done` | Apple release listing; BuildManifests for iPhone13,1, iPhone13,4, and iPhone13,2/3; kernelcache; SPTM/TXM payloads; restore-role retag check | Device installation of the build is unverified | `EVD-0001`, `EVD-0010`, `EVD-0014`, `EVD-0016`, `EVD-0017`, `EVD-0018`, `EVD-0019`, `EVD-0020` |
 | Build-level protection model (P2) | `done` | SPTM/TXM packaging, SPTM kernel structure, cross-product kernelcache identity, payload and restore-role digest matches, Mach-O identifiers | A14 iPad coverage remains open; runtime is not claimed | `CASE-0001/report.md`; `VAL-0002`-`VAL-0008` |
 | Runtime protection state (P2/P5) | `blocked` | No runtime evidence | Requires a physical target device and non-invasive observation | `VAL-0001` |
-| Public research register (P3) | `partial` | 19 dated `SRC` records covering Apple documentation, advisories, community reports, build artifacts, and restore implementations | No Apple security note specific to 24A446 was found; community claims need continued re-checking | `research/public-research/README.md` |
-| Vulnerability baseline (P3) | `done` | iOS 27 advisory register and 27.0.1 CVE status | Register facts are not exploitability or bypass findings | `CASE-0002`; `ios27-vulnerability-register.yaml` |
-| Public bypass scope (P3) | `partial` | Reviewed public compatibility ranges and counter-evidence | No reviewed source demonstrates an A14-specific bypass on 24A446 | `CASE-0003` |
-| BuildManifest tooling (P4) | `done` | Read-only deterministic summarizer and 6 fixture tests | No fetching, signature verification, or runtime assertion by design | Section 6 commands 2-3 |
+| Public research register (P3) | `partial` | 21 dated `SRC` records covering Apple documentation, advisories, community reports, build artifacts, and restore implementations, including the 27.2 and 27.2.1 advisories | No Apple security note specific to 24A446 was found; community claims need continued re-checking | `research/public-research/README.md` |
+| Vulnerability baseline (P3) | `done` | iOS 27 and iOS 27.2 advisory registers; 27.0.1 CVE status; 27.2.1 delta recorded | Register facts are not exploitability or bypass findings; function-level attribution remains open | `CASE-0002`, `CASE-0004`; `ios27-vulnerability-register.yaml`, `ios27.2-vulnerability-register.yaml` |
+| Public bypass scope (P3) | `partial` | Reviewed public compatibility ranges and counter-evidence | No reviewed source demonstrates an A14-specific bypass on 24A446 or 24B119 | `CASE-0003` |
+| BuildManifest tooling (P4) | `done` | Read-only deterministic summarizer and differential tool, with 6 fixture tests for the summarizer and 5 for the diff | No fetching, signature verification, or runtime assertion by design | Section 6 commands 2-3 |
 | Record integrity tooling (P4) | `done` | Read-only cross-reference validator for `EVD`/`SRC`/`VAL`/`CASE`, synthetic negative tests, and a repository integration test | Does not validate JSON Schema conformance or artifact hashes | Section 6 commands 2-6 |
 | Schema validation tooling (P4) | `done` | Read-only JSON Schema validator for target manifests and all record families, with negative, malformed-input, template, and integration tests | Does not check cross-references or artifact hashes | Section 6 commands 2-6 |
 | Repository archive manifest (P4) | `done` | Root `MANIFEST.json` is generated from the Git-tracked working-tree file list by `archive_manifest.py` and checked by a unit test | Covers tracked files only; untracked and external artifacts are excluded by design | Section 6 commands 2-6 |
-| Validation surface (P5) | `partial` | 7 offline validations passed; 1 device validation is `not-run` | No synthetic protection model; no device runtime measurement | `validation/README.md`; `VAL-0001`-`VAL-0008` |
+| Validation surface (P5) | `partial` | 10 offline validations passed; 1 device validation is `not-run` | No synthetic protection model; no device runtime measurement | `validation/README.md`; `VAL-0001`-`VAL-0011` |
 | Closure/reporting (P6) | `partial` | Baseline and case reports exist | Independent review, closure report, and disclosure decision are not complete | `reports/technical/` |
 
 ## Claim-state matrix
@@ -75,6 +75,12 @@ Use this matrix to keep observations, build-level inferences, and runtime unknow
 | The 24A446 release kernelcache is structurally an SPTM build | observed | `EVD-0012`; `VAL-0003` | That every boot path loads it |
 | The release kernelcache is byte-identical across the four product types | observed | `EVD-0017`; `VAL-0006` | A per-device runtime measurement |
 | The A14 / 24A446 build-level mechanism is SPTM/TXM, not PPL (high confidence) | inferred | `CASE-0001` conclusion | PPL code or fallback absence |
+| The iOS 27.2 iPhone13,1 image is build 24B119 with the recorded hashes | observed | `EVD-0021` | Device installation or runtime state |
+| 24B119 differs from 24A446 in 57 of 95 BuildManifest component entries | observed | `EVD-0022`; `VAL-0009` | That any difference is a security fix |
+| The 24B119 kernelcache is a different build with 207/250 kext UUID changes | observed | `EVD-0023`; `VAL-0010` | That a UUID change is a code or security change |
+| The 24B119 SPTM/TXM payloads differ and match manifest digests | observed | `EVD-0024`; `VAL-0011` | Signature validity or runtime activation |
+| The 27.2 advisory has 163 CVEs disjoint from the 27.0 set | observed | `EVD-0025`; `SRC-0020` | Exploitability on A14 or any CVE-to-function mapping |
+| A specific 27.2 CVE is fixed by a specific changed kernel function | unknown | No function-level attribution yet | Any exploitability or bypass claim |
 | The exact target device is an iPhone13,1 running 24A446 | unknown | `VAL-0001` is `not-run` | Any runtime state |
 | SPTM/TXM is active, configured, and enforcing on the target | unknown | No runtime evidence | Any bypass or exploitability claim |
 | A public bypass applies to A14 / 24A446 | unknown | `CASE-0003` (evidence gap) | That no private bypass exists |
@@ -119,6 +125,7 @@ Use this matrix to keep observations, build-level inferences, and runtime unknow
 
 - [x] Dated source register with scope and provenance
 - [x] Apple 27.0 advisory and 27.0.1 CVE status recorded
+- [x] Apple 27.2 and 27.2.1 advisories recorded; 27.2 CVE set compared with 27.0
 - [x] Public bypass claims catalogued with counter-evidence
 - [x] Build-artifact sources distinguished from documentary sources
 - [ ] Apple security note or platform-security update specific to 24A446 found
@@ -128,6 +135,7 @@ Use this matrix to keep observations, build-level inferences, and runtime unknow
 ### P4 - Offline tooling (`partial`)
 
 - [x] Read-only BuildManifest summarizer implemented
+- [x] Read-only BuildManifest differential summarizer implemented
 - [x] Synthetic BuildManifest fixture committed
 - [x] Unit tests cover identity, components, digests, kernel references, CLI output, and missing components
 - [x] Tool output is deterministic JSON
@@ -147,6 +155,9 @@ Use this matrix to keep observations, build-level inferences, and runtime unknow
 - [x] Offline cross-product digest check passed
 - [x] Offline SPTM/TXM payload and manifest digest check passed
 - [x] Offline restore-role `rspt`/`rtrx` digest reproduction passed (`VAL-0008`)
+- [x] Offline 24A446-to-24B119 BuildManifest differential check passed (`VAL-0009`)
+- [x] Offline 24B119 kernelcache fileset and kext UUID check passed (`VAL-0010`)
+- [x] Offline 24B119 SPTM/TXM payload and manifest-digest check passed (`VAL-0011`)
 - [ ] Device metadata check executed (`VAL-0001` is `not-run`)
 - [ ] Synthetic PPL/SPTM/TXM state model added
 - [ ] Regression harness for parser fixtures added
@@ -175,7 +186,7 @@ python3 -m engineering.inventory.build_manifest tests/unit/fixtures/BuildManifes
 
 # 3. Unit tests
 python3 -m unittest discover -s tests/unit -t . -v
-# expected: 36 tests, OK
+# expected: 60 tests, OK (with PyYAML and jsonschema installed)
 
 # 4. JSON Schema validation
 python3 -m engineering.inventory.schema_validation .
@@ -190,10 +201,10 @@ python3 -m engineering.inventory.record_integrity .
 # expected: "ok": true with no issues
 
 # 7. Record counts
-find research/evidence -name 'EVD-*.yaml' | wc -l          # expected: 20
-find research/public-research -name 'SRC-*.yaml' | wc -l   # expected: 19
-find validation/results -name 'VAL-*.yaml' | wc -l         # expected: 8
-find research/cases -maxdepth 2 -name 'case.yaml' | wc -l  # expected: 4 (3 cases + template)
+find research/evidence -name 'EVD-*.yaml' | wc -l          # expected: 26
+find research/public-research -name 'SRC-*.yaml' | wc -l   # expected: 21
+find validation/results -name 'VAL-*.yaml' | wc -l         # expected: 11
+find research/cases -maxdepth 2 -name 'case.yaml' | wc -l  # expected: 5 (4 cases + template)
 
 # 8. Confirm the device check was not run
 grep -n 'status: not-run' validation/results/VAL-0001.yaml

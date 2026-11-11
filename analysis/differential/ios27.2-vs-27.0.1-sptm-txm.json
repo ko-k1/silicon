@@ -1,0 +1,204 @@
+{
+  "comparison": "iPhone13,1 iOS 27.0.1 (24A446) vs iOS 27.2 (24B119)",
+  "components": {
+    "sptm": {
+      "24A446": {
+        "im4p": {
+          "compression": "lzfse",
+          "container": {
+            "bytes": 187580,
+            "sha256": "fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb"
+          },
+          "container_bytes": 187580,
+          "description": "1",
+          "extra_elements": [
+            {
+              "bytes": 8,
+              "tag": "0x30"
+            },
+            {
+              "bytes": 303,
+              "tag": "0xa0"
+            }
+          ],
+          "magic": "IM4P",
+          "payload": {
+            "bytes": 187238,
+            "sha256": "04a0dd796adf7fee223850fef69816f534e76fbebab1a1b8ae5f02466d8a280f"
+          },
+          "payload_bytes": 187238,
+          "type": "sptm"
+        },
+        "macho": {
+          "bytes": 1179680,
+          "filetype_name": "MH_EXECUTE",
+          "segment_names": [
+            "__TEXT",
+            "__DATA_CONST",
+            "__LATE_CONST",
+            "__TEXT_EXEC",
+            "__LAST",
+            "__DATA",
+            "__BOOTDATA",
+            "__LINKEDIT"
+          ],
+          "sha256": "e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a",
+          "source_version": "820.0.22",
+          "text_bytes": 376832,
+          "text_segment": "__TEXT_EXEC",
+          "text_sha256": "d7c89122032abde4db1e5b5f9dcc4def3d22ef6f2229e7e8755d0d20b51b1cf6",
+          "uuid": "1693386C-1F3A-346B-906D-804E7138B2F1"
+        }
+      },
+      "24B119": {
+        "im4p": {
+          "compression": "lzfse",
+          "container": {
+            "bytes": 189925,
+            "sha256": "a239ab942984c8251a94cc3f1353bb8e5911bd1aa967c61229bcf7b06a685c76"
+          },
+          "container_bytes": 189925,
+          "description": "1",
+          "extra_elements": [
+            {
+              "bytes": 8,
+              "tag": "0x30"
+            },
+            {
+              "bytes": 303,
+              "tag": "0xa0"
+            }
+          ],
+          "magic": "IM4P",
+          "payload": {
+            "bytes": 189583,
+            "sha256": "6f9c14779fbd51a0592d02ac36f1225682b787d86799deb653065fb91ff17ab8"
+          },
+          "payload_bytes": 189583,
+          "type": "sptm"
+        },
+        "macho": {
+          "bytes": 1179680,
+          "filetype_name": "MH_EXECUTE",
+          "segment_names": [
+            "__TEXT",
+            "__DATA_CONST",
+            "__LATE_CONST",
+            "__TEXT_EXEC",
+            "__LAST",
+            "__DATA",
+            "__BOOTDATA",
+            "__LINKEDIT"
+          ],
+          "sha256": "90f710d8f515d24050eb5a6ebb061fa0a35ea7ecd0b5a921a231bf6592d25539",
+          "source_version": "820.40.24",
+          "text_bytes": 376832,
+          "text_segment": "__TEXT_EXEC",
+          "text_sha256": "db8966facb35f5e88cca3c5aa0795f30b1e7e05faa705800994edc5daab7c118",
+          "uuid": "88CA33DC-BE08-313D-AF19-397E47C76983"
+        }
+      }
+    },
+    "txm": {
+      "24A446": {
+        "im4p": {
+          "compression": "lzfse",
+          "container": {
+            "bytes": 223884,
+            "sha256": "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff"
+          },
+          "container_bytes": 223884,
+          "description": "1",
+          "extra_elements": [
+            {
+              "bytes": 8,
+              "tag": "0x30"
+            },
+            {
+              "bytes": 281,
+              "tag": "0xa0"
+            }
+          ],
+          "magic": "IM4P",
+          "payload": {
+            "bytes": 223564,
+            "sha256": "14ad23e9b99a04e806e34d48ed5d8276b4a3c108e16542bde5af04004add12a7"
+          },
+          "payload_bytes": 223564,
+          "type": "trxm"
+        },
+        "macho": {
+          "bytes": 557088,
+          "filetype_name": "MH_EXECUTE",
+          "segment_names": [
+            "__TEXT",
+            "__DATA_CONST",
+            "__TEXT_EXEC",
+            "__TEXT_BOOT_EXEC",
+            "__DATA",
+            "__LINKEDIT"
+          ],
+          "sha256": "e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04",
+          "source_version": "217.0.2",
+          "text_bytes": 327680,
+          "text_segment": "__TEXT_EXEC",
+          "text_sha256": "a5cd8f655217f995e21b3182c86513c6ca4e85c2a8082fcccd2bc2dc6b3523ff",
+          "uuid": "9F80F5EC-09C8-3E9F-A196-13A6250C04E0"
+        }
+      },
+      "24B119": {
+        "im4p": {
+          "compression": "lzfse",
+          "container": {
+            "bytes": 224174,
+            "sha256": "284e5413dfd447dc81c8840e92748dc8a390b474142f390c1fddee1ac1c716b6"
+          },
+          "container_bytes": 224174,
+          "description": "1",
+          "extra_elements": [
+            {
+              "bytes": 8,
+              "tag": "0x30"
+            },
+            {
+              "bytes": 281,
+              "tag": "0xa0"
+            }
+          ],
+          "magic": "IM4P",
+          "payload": {
+            "bytes": 223854,
+            "sha256": "67e7662d27dbae28823438d5a37d703d8178829c27b754ad3d2874936876b052"
+          },
+          "payload_bytes": 223854,
+          "type": "trxm"
+        },
+        "macho": {
+          "bytes": 557088,
+          "filetype_name": "MH_EXECUTE",
+          "segment_names": [
+            "__TEXT",
+            "__DATA_CONST",
+            "__TEXT_EXEC",
+            "__TEXT_BOOT_EXEC",
+            "__DATA",
+            "__LINKEDIT"
+          ],
+          "sha256": "664ec04c89b0b2d6e81638b773e8551d999155bc7edb7382f2b3ecdd4f75461e",
+          "source_version": "217.0.2",
+          "text_bytes": 327680,
+          "text_segment": "__TEXT_EXEC",
+          "text_sha256": "475aa653663a5f5131f923c64392cd8c16dfbfde5de12caa8d1931b249d36cfa",
+          "uuid": "1EB0EB97-F667-3470-97B9-1CD95D26246F"
+        }
+      }
+    }
+  },
+  "method": "IM4P parsed with engineering.parsers.image4; LZFSE payload decompressed with lzfse 0.4.2.post1; Mach-O headers parsed with engineering.parsers.macho; MH_FILESET entries and LC_FUNCTION_STARTS decoded independently.",
+  "tools": {
+    "engineering.parsers.image4": "repository",
+    "engineering.parsers.macho": "repository",
+    "lzfse": "0.4.2.post1",
+    "python": "3.14.9"
+  }
+}

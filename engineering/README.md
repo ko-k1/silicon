@@ -21,3 +21,6 @@ Reusable research-support tools belong here. Initial candidates: target inventor
 - `engineering/parsers/image4.py` - read-only Image4 (IM4P) and Mach-O inspection for build artifacts. It reports container structure, payload hashes, compression, Mach-O segments/sections, UUID, source version, and PPL/`__TEXT_BOOT_EXEC` markers. It does not decompress Image4 payloads, verify signatures, evaluate trust, or execute code.
   - Run: `python3 -m engineering.parsers.image4 <artifact>`
   - Requires: Python standard library only.
+- `engineering/analyzers/build_manifest_diff.py` - read-only differential summary of two BuildManifest.plist files. It compares component paths, 48-byte digests, and selected flags per build identity and reports added, removed, and changed entries. It does not decompress payloads, verify signatures, or claim that a change is a security fix.
+  - Run: `python3 -m engineering.analyzers.build_manifest_diff <old.plist> <new.plist>`
+  - Tests: `python3 -m unittest tests.unit.test_build_manifest_diff`

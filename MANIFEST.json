@@ -3,7 +3,7 @@
   "project": "silicon",
   "archive": "silicon-repository",
   "algorithm": "sha256",
-  "file_count": 138,
+  "file_count": 161,
   "files": [
     {
       "path": ".gitignore",
@@ -17,13 +17,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 5592,
-      "sha256": "61eab2d680c949f815095b00c2af4d34f5f5dbfae65bcaa2427a3974457d068f"
+      "bytes": 6249,
+      "sha256": "bd66660f45b4bb2cb933e8d48b9b0d361f2a2c4df23b840607f2f2446c1a4cac"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 4724,
-      "sha256": "eb983936979ad3be17943e3a36d20fb77fd2789d1b9b2e4034271ead4ad97561"
+      "bytes": 6168,
+      "sha256": "1ab1fe289abf1dc0eac46035a0d9f2dbcd544e94b88356257f191d64f605faa2"
     },
     {
       "path": "VISION.md",
@@ -54,6 +54,26 @@
       "path": "analysis/differential/.gitkeep",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/differential/README.md",
+      "bytes": 2610,
+      "sha256": "6c5d135721ccd4db2c742f63c41ad2091cf8aae780afe6dac625c0d202c96d84"
+    },
+    {
+      "path": "analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json",
+      "bytes": 125578,
+      "sha256": "542c4be2adda69474eedf216ff37649be147be806e3fa106782634970129c563"
+    },
+    {
+      "path": "analysis/differential/ios27.2-vs-27.0.1-kernelcache.json",
+      "bytes": 5183,
+      "sha256": "759a8e472bc2d6221022c1fed79b0d46b2c60fa6f2b4af1110119eea3e94e41c"
+    },
+    {
+      "path": "analysis/differential/ios27.2-vs-27.0.1-sptm-txm.json",
+      "bytes": 6258,
+      "sha256": "9634a0c0ff883ae65b3caec61d5db5d1b887479da0d572b297e11f955f5e0fb7"
     },
     {
       "path": "analysis/static/.gitkeep",
@@ -97,8 +117,8 @@
     },
     {
       "path": "docs/workflow/implementation-state-checklist.md",
-      "bytes": 14166,
-      "sha256": "e3c0ec2d3e2d8eef58868a43560379d7873e82a6c5d2a1072627bb5206f59704"
+      "bytes": 15831,
+      "sha256": "880b5a4f3106c81f73207f3e9b490e4a4493f46aad32fd8ec58257d061f0bd37"
     },
     {
       "path": "docs/workflow/research-lifecycle.md",
@@ -112,8 +132,8 @@
     },
     {
       "path": "engineering/README.md",
-      "bytes": 2702,
-      "sha256": "f9ee9243920fe4ec26d89695f73e43ada99c59ec18b2e0b588c0929ee71c2a01"
+      "bytes": 3202,
+      "sha256": "7fc2832d27b2cf40401f442c90de35bf3291064150fc6b5fc94d4a642fd3e31b"
     },
     {
       "path": "engineering/__init__.py",
@@ -124,6 +144,16 @@
       "path": "engineering/analyzers/.gitkeep",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "engineering/analyzers/__init__.py",
+      "bytes": 66,
+      "sha256": "f854718d77f1eb2ecf9856441d78972978fa228c5745e2dc7232595dd3852bef"
+    },
+    {
+      "path": "engineering/analyzers/build_manifest_diff.py",
+      "bytes": 7138,
+      "sha256": "734845ae21b76ccf942f5f9df60b83b2f48ef8e2884634470faac756733ab31a"
     },
     {
       "path": "engineering/inventory/__init__.py",
@@ -271,9 +301,24 @@
       "sha256": "53cff858e0d79a9b84cd10b5eaca88ea143a73d2ba13805805f8b28fc28bf4d5"
     },
     {
+      "path": "research/cases/CASE-0004/case.yaml",
+      "bytes": 7585,
+      "sha256": "b999254963c4fccdaff9688459c4422396f09487723d780296dca38ada54b832"
+    },
+    {
+      "path": "research/cases/CASE-0004/hypothesis.md",
+      "bytes": 3792,
+      "sha256": "3543f83a8a6dc653e6a07aa4707302468ec877abd4789713ad86f4d90640f280"
+    },
+    {
+      "path": "research/cases/CASE-0004/report.md",
+      "bytes": 10571,
+      "sha256": "a937ec6bdf2a3730143f6bd3634a35a92bb9e6604ce20e0c533b2395c2729ade"
+    },
+    {
       "path": "research/cases/README.md",
-      "bytes": 1144,
-      "sha256": "b0f6cb7e5bb2e4fbb5f45c9235bde079cb864bafbb51be4239932948deefe64b"
+      "bytes": 1508,
+      "sha256": "051feb9bb2b25ae11b2411e39fa10580ba263a42a8e5da653d3dcdb503c34fef"
     },
     {
       "path": "research/cases/_template/case.yaml",
@@ -396,14 +441,44 @@
       "sha256": "8a91c49f09db4491b2fadc01b454a768c48c546ed1cd034fcaae978a767cb307"
     },
     {
+      "path": "research/evidence/EVD-0021.yaml",
+      "bytes": 1339,
+      "sha256": "c8c9ab5cca2a6453b07cccadb29b690478a84ca059f5347dace2a9479b07a718"
+    },
+    {
+      "path": "research/evidence/EVD-0022.yaml",
+      "bytes": 1892,
+      "sha256": "6477ccc9f80d24d93663b4d48caa26a2751f0859d317ce7789cc5ed6ae64127a"
+    },
+    {
+      "path": "research/evidence/EVD-0023.yaml",
+      "bytes": 1866,
+      "sha256": "289cf1a74ed074b5de7ebdfb301b673b674fb145e80d75010f5051bb20f525f8"
+    },
+    {
+      "path": "research/evidence/EVD-0024.yaml",
+      "bytes": 2412,
+      "sha256": "c25926239b5660918a813678f11bea23a4fd94f003dea75a516358bad0d88b15"
+    },
+    {
+      "path": "research/evidence/EVD-0025.yaml",
+      "bytes": 1384,
+      "sha256": "805ab2fd6b81b20da47beb5944133f852360b4411c3a368dc6867691f6477d86"
+    },
+    {
+      "path": "research/evidence/EVD-0026.yaml",
+      "bytes": 1103,
+      "sha256": "99d8c04bf6eddd904142165735a95d710e05e0b7627e8d71f6721b8ba4031358"
+    },
+    {
       "path": "research/evidence/README.md",
-      "bytes": 2652,
-      "sha256": "ce7b629c6abe4174ec11c3a9263e57e2e368d62cbedb41afeb965378d213d85b"
+      "bytes": 3531,
+      "sha256": "7ced2274916ecdebf55cf0be188387a474acd05e0f753ca96d9e5e8d17c4e76d"
     },
     {
       "path": "research/public-research/README.md",
-      "bytes": 2497,
-      "sha256": "9b5a790ffbf7e0d92848bcbd876b509a907291d128e8f40f4672c0e1eaf02436"
+      "bytes": 2719,
+      "sha256": "4a93598cc438628ad4a91894559f81ac01a6e6ac6d69c4321d1648212fe1ad67"
     },
     {
       "path": "research/public-research/SRC-0001.yaml",
@@ -501,6 +576,16 @@
       "sha256": "5636be7ee44b40e444ed439e29b4cfe16b5a8b58b0e0f4132eea8c5d5da81cf9"
     },
     {
+      "path": "research/public-research/SRC-0020.yaml",
+      "bytes": 1625,
+      "sha256": "1b6fdfb40d7e2028a2aa4f6c5007fabf252a48d5f44698b9a1fb5ac1a9fc46a4"
+    },
+    {
+      "path": "research/public-research/SRC-0021.yaml",
+      "bytes": 1551,
+      "sha256": "fe724551e8aaabad53e666fd978361989fa9d1a32d043979bdd19a56af731145"
+    },
+    {
       "path": "research/public-research/ios27-vulnerability-register.md",
       "bytes": 8412,
       "sha256": "ed8496933d6ea18e2a08b42ea31e42c6d99f6a3452506c0e6a956cb4d97e1a2b"
@@ -509,6 +594,16 @@
       "path": "research/public-research/ios27-vulnerability-register.yaml",
       "bytes": 97261,
       "sha256": "2a2b54a992c62a9dd0140c0ceb5d8aa6a2647a8e2ffcdb8fa9d43f8de4a95571"
+    },
+    {
+      "path": "research/public-research/ios27.2-vulnerability-register.md",
+      "bytes": 6600,
+      "sha256": "71d479a13d9c62da1c9acf9050c974a2c26147167b4ec7d1e4e573118774c0e1"
+    },
+    {
+      "path": "research/public-research/ios27.2-vulnerability-register.yaml",
+      "bytes": 98758,
+      "sha256": "10f9dc638793ac19867d7d421db4c49162f01d80207e513065e408fc2d9605a1"
     },
     {
       "path": "research/public-research/source-record.template.yaml",
@@ -611,6 +706,11 @@
       "sha256": "e34af3708e80228dffbbc3d2f84c34fda11cd0f6730a0a7b371e9f00fe7bc013"
     },
     {
+      "path": "tests/unit/test_build_manifest_diff.py",
+      "bytes": 4585,
+      "sha256": "c658343026631a89228492a6cc5fbc9e1840333c2d1abccd3f092cae116e51ab"
+    },
+    {
       "path": "tests/unit/test_parsers.py",
       "bytes": 11258,
       "sha256": "e3d8876c4e7f8933a3826b1a1308ca1ba8515e6388773812acf200fb97333648"
@@ -627,8 +727,8 @@
     },
     {
       "path": "validation/README.md",
-      "bytes": 1413,
-      "sha256": "c24234df1abe8052c58d5af59b748cf1ff639bec5af4e1bfdff628e18e2e9289"
+      "bytes": 1928,
+      "sha256": "5d31fe71a8e61cde5c06b56204e9adb6100ef1210c8a9c896e57045871a784b8"
     },
     {
       "path": "validation/fixtures/.gitkeep",
@@ -684,6 +784,21 @@
       "path": "validation/results/VAL-0008.yaml",
       "bytes": 5607,
       "sha256": "c8be8f0aa984645509b967213a7e0c57b0d540c19e364ce7a50c55e05327144b"
+    },
+    {
+      "path": "validation/results/VAL-0009.yaml",
+      "bytes": 2611,
+      "sha256": "3f1086b899e9e03937f195258b5bfe139a767b08def7a3b6eaab40db65f00e76"
+    },
+    {
+      "path": "validation/results/VAL-0010.yaml",
+      "bytes": 2773,
+      "sha256": "ba764138a85d38ad88917bd75a09c0cea5b9cd917e1df22b32808b88c19af2a5"
+    },
+    {
+      "path": "validation/results/VAL-0011.yaml",
+      "bytes": 3156,
+      "sha256": "941b618427aabd3a04e541d3a7a951edfa5eb4caf88123f65883feeb8a6cbf3a"
     },
     {
       "path": "validation/results/result.template.yaml",

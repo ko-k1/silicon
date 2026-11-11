@@ -1,0 +1,26 @@
+schema_version: 1
+id: EVD-0021
+class: primary
+state: observed
+claim: "The iPhone13,1 iOS 27.2 restore image is build 24B119 (ProductVersion 27.2). Its BuildManifest.plist is 351,370 bytes with SHA-256 2d13f3705cc346b8d282e2df5d53949c602cf9a6b24f1590e08d0124b6e431ec, and the containing IPSW is 11,397,749,923 bytes with SHA-256 321a47d1b5e11ed6232a4812c51a3ef917cd53c76bf60761226485813b73dce4."
+source:
+  type: apple-build-manifest
+  locator: "iPhone13,1_27.2_24B119_Restore.ipsw (local archive; no public download URL was recorded)"
+  published_at: "2026-10-26"
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "2d13f3705cc346b8d282e2df5d53949c602cf9a6b24f1590e08d0124b6e431ec"
+  bytes: 351370
+  path_or_uri: "BuildManifest.plist inside iPhone13,1_27.2_24B119_Restore.ipsw"
+limitations:
+  - "The IPSW is a local file; its provenance and download source were not independently verified beyond the file hash."
+  - "The BuildManifest establishes the build identity for the package, not installation on a device."
+  - "The 27.2 release date is taken from Apple's advisory metadata, not from the local file timestamps."
+  - "The extracted BuildManifest.plist is not committed; only its hash and selected metadata are retained."
+related_cases:
+  - CASE-0004

@@ -1,0 +1,28 @@
+schema_version: 1
+id: EVD-0025
+class: derived
+state: observed
+claim: "Apple's APPLE-SA-149230 advisory for iOS 27.2 / iPadOS 27.2 (released 2026-10-26) lists 163 CVEs. Of these, 162 are in the iPhone 11-and-later range that includes A14 devices, 1 is limited to iPhone 15 Pro and later, 15 use the Kernel component, and 26 use WebKit. The 27.2 CVE set has zero overlap with the 163 CVEs in APPLE-SA-149034 for iOS 27."
+source:
+  type: apple-security-advisory
+  locator: "https://support.apple.com/en-us/149230"
+  published_at: "2026-10-26"
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone 11 and later"
+    - "iOS 27.2"
+    - "iPadOS 27.2"
+    - "24B119 (build context)"
+artifact:
+  sha256: "23e0ed4e7afed5fb790ec62ccc3b236b63d9a29ee4bd68aa627a0766d5b5e462"
+  bytes: 282615
+  path_or_uri: "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149230.json"
+limitations:
+  - "Advisory membership is scope evidence, not proof of exploitability on 24B119 or any specific device."
+  - "The comparison with APPLE-SA-149034 uses the CSAF JSON snapshots recorded by their SHA-256 values; Apple may revise either advisory."
+  - "Counts are derived from component titles and note text; they are not severity ratings."
+  - "Apple does not label any 27.2 entry as a PPL, SPTM, or TXM bypass."
+related_evidence:
+  - EVD-0005
+related_cases:
+  - CASE-0004

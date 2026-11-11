@@ -1,0 +1,31 @@
+schema_version: 1
+id: EVD-0022
+class: derived
+state: observed
+claim: "Comparing the iPhone13,1 BuildManifest component entries between iOS 27.0.1 (24A446) and iOS 27.2 (24B119) shows 57 of 95 entries differ and 38 are identical, with no component keys added or removed. Of the 57 differences, 56 are payload-digest changes and one is a path-only change (BasebandFirmware, from Mav20-8.00.01.Release.bbfw to Mav20-8.10.01.Release.bbfw). Changed entries include KernelCache, Ap,SecurePageTableMonitor, Ap,TrustedExecutionMonitor, Ap,RestoreSecurePageTableMonitor, Ap,RestoreTrustedExecutionMonitor, SEP, iBoot, LLB, iBEC, iBSS, DeviceTree, the OS and Cryptex volume entries, and their trust-cache entries."
+source:
+  type: derived-build-manifest-comparison
+  locator: "BuildManifest.plist from iPhone13,1_27.0.1_24A446_Restore.ipsw compared with BuildManifest.plist from iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: null
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "2d13f3705cc346b8d282e2df5d53949c602cf9a6b24f1590e08d0124b6e431ec"
+  bytes: 351370
+  path_or_uri: "BuildManifest.plist from iPhone13,1_27.2_24B119_Restore.ipsw"
+limitations:
+  - "Digest or path changes show that the declared payload selection differs; they do not by themselves prove executable-code changes or identify a security fix."
+  - "The comparison covers the customer restore identity for iPhone13,1 only; other product types and variants were not compared."
+  - "The digest comparison uses the manifest's 48-byte component digests; it does not verify signatures, trust, or runtime behavior."
+  - "The derived JSON summary is retained in analysis/differential/; it is not a substitute for the original manifests."
+related_evidence:
+  - EVD-0010
+  - EVD-0021
+related_cases:
+  - CASE-0004

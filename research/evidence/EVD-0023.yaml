@@ -1,0 +1,36 @@
+schema_version: 1
+id: EVD-0023
+class: primary
+state: observed
+claim: "The iOS 27.2 (24B119) release kernelcache is an IM4P with description KernelManagement_host-514.40.8 and SHA-256 71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a; it decompresses to a 66,813,952-byte MH_FILESET with SHA-256 5edba8bacade83ea29c67cc1b3e44793694a93ef2473d78ce610237b553f0f41. The fileset contains 250 kext entries: 207 have a different LC_UUID from 24A446 and 43 are unchanged. The kernel image has 1,382 function-start entries versus 1,361 in 24A446."
+source:
+  type: apple-kernelcache
+  locator: "kernelcache.release.iphone13 inside iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: "2026-10-26"
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
+  bytes: 21122395
+  path_or_uri: "kernelcache.release.iphone13 (IM4P) extracted from iPhone13,1_27.2_24B119_Restore.ipsw"
+  decompressed_sha256: "5edba8bacade83ea29c67cc1b3e44793694a93ef2473d78ce610237b553f0f41"
+  decompressed_bytes: 66813952
+  im4p_description: "KernelManagement_host-514.40.8"
+  fileset_entries: 250
+  kext_uuid_changed: 207
+  kext_uuid_unchanged: 43
+  function_starts: 1382
+limitations:
+  - "An LC_UUID change is a build-identity change; it does not prove that a given kext contains a security-relevant code change."
+  - "The 43 unchanged UUIDs indicate identical embedded images as packaged; they do not establish runtime behavior."
+  - "The kernel image is stripped; function names and source-level attribution were not established by this check."
+  - "The decompressed Mach-O and extracted IM4P are not committed; the recorded hashes identify the compared payloads."
+related_evidence:
+  - EVD-0017
+  - EVD-0022
+related_cases:
+  - CASE-0004

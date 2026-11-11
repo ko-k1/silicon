@@ -1,0 +1,39 @@
+schema_version: 1
+id: SRC-0020
+title: "Apple security content of iOS 27.2 and iPadOS 27.2"
+authors:
+  - "Apple Inc."
+source_type: apple-documentation
+url: "https://support.apple.com/en-us/149230"
+additional_urls:
+  - "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149230.json"
+published_at: "2026-10-26"
+accessed_at: "2026-11-11"
+source_scope:
+  devices:
+    - "iPhone 11 and later"
+  socs: []
+  os_versions:
+    - "iOS 27.2"
+    - "iPadOS 27.2"
+  builds:
+    - "24B119"
+claims:
+  - "Apple published the security content of iOS 27.2 and iPadOS 27.2 on 2026-10-26."
+  - "The advisory lists 163 CVE identifiers across 67 component headings; 15 entries use the Kernel component."
+  - "The advisory CVE set is disjoint from the 163 CVEs in APPLE-SA-149034 for iOS 27."
+  - "Apple does not label any entry as a PPL, SPTM, or TXM bypass."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0025
+  notes:
+    - "The advisory covers the iOS 27.2 release, not a device measurement on 24B119."
+    - "Component names and CVE metadata are used for triage; they are not exploitability findings."
+    - "The structured CSAF JSON was used to derive the 27.2 register; it is not committed as a raw artifact."
+artifact:
+  name: "Apple CSAF advisory 149230"
+  url: "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149230.json"
+  sha256: "23e0ed4e7afed5fb790ec62ccc3b236b63d9a29ee4bd68aa627a0766d5b5e462"
+  bytes: 282615
+license_or_terms: "Apple website terms. CVE identifiers and short factual metadata are retained for research provenance."

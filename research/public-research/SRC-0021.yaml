@@ -1,0 +1,37 @@
+schema_version: 1
+id: SRC-0021
+title: "Apple security content of iOS 27.2.1 and iPadOS 27.2.1"
+authors:
+  - "Apple Inc."
+source_type: apple-documentation
+url: "https://support.apple.com/en-us/149715"
+additional_urls:
+  - "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149715.json"
+published_at: "2026-11-09"
+accessed_at: "2026-11-11"
+source_scope:
+  devices:
+    - "iPhone 11 and later"
+  socs: []
+  os_versions:
+    - "iOS 27.2.1"
+    - "iPadOS 27.2.1"
+  builds: []
+claims:
+  - "Apple released iOS 27.2.1 and iPadOS 27.2.1 on 2026-11-09."
+  - "The advisory lists nine CVEs: AirPlay, App Intents, Bluetooth, brotli, CoreUtils (two), Messages (two), and rapportd."
+  - "The 27.2.1 CVE set is disjoint from the 27.2 advisory set at the time of access."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0026
+  notes:
+    - "No 27.2.1 restore image was used in this comparison; the 24B119 image predates these fixes."
+    - "The 27.2.1 build identity was not verified against an Apple restore image."
+    - "The advisory is recorded to bound the currency of the 24B119 comparison, not to extend the binary diff to 27.2.1."
+artifact:
+  name: "Apple CSAF advisory 149715"
+  url: "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149715.json"
+  sha256: "641e054b98f299d710aa6a3de20fe21266b460d4e839dbcfb167f7f9254c6a5a"
+  bytes: 18049
+license_or_terms: "Apple website terms. CVE identifiers and short factual metadata are retained for research provenance."

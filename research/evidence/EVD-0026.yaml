@@ -1,0 +1,25 @@
+schema_version: 1
+id: EVD-0026
+class: derived
+state: observed
+claim: "Apple's APPLE-SA-149715 advisory for iOS 27.2.1 / iPadOS 27.2.1 (released 2026-11-09) lists nine CVEs in AirPlay, App Intents, Bluetooth, brotli, CoreUtils, Messages, and rapportd. The 27.2.1 CVE set is disjoint from the 27.2 set, so the 24B119 image analysed in CASE-0004 is not the latest patch level as of 2026-11-11."
+source:
+  type: apple-security-advisory
+  locator: "https://support.apple.com/en-us/149715"
+  published_at: "2026-11-09"
+  accessed_at: "2026-11-11"
+  target_scope:
+    - "iPhone 11 and later"
+    - "iOS 27.2.1"
+    - "iPadOS 27.2.1"
+artifact:
+  sha256: "641e054b98f299d710aa6a3de20fe21266b460d4e839dbcfb167f7f9254c6a5a"
+  bytes: 18049
+  path_or_uri: "https://support.apple.com/content/dam/edam/applecare/images/en_US/otherassets/security/149715.json"
+limitations:
+  - "No 27.2.1 restore image was available; the CVE list is documentary evidence only."
+  - "The advisory says nothing about exploitability on A14 or about protection-mechanism bypass."
+related_evidence:
+  - EVD-0025
+related_cases:
+  - CASE-0004

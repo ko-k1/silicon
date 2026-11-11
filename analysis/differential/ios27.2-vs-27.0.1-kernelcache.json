@@ -1,0 +1,154 @@
+{
+  "comparison": "iPhone13,1 iOS 27.0.1 (24A446) vs iOS 27.2 (24B119)",
+  "kernelcache": {
+    "24A446": {
+      "im4p": {
+        "compression": "lzfse",
+        "container": {
+          "bytes": 20978972,
+          "sha256": "15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced"
+        },
+        "container_bytes": 20978972,
+        "description": "KernelManagement_host-514.2.2",
+        "extra_elements": [
+          {
+            "bytes": 9,
+            "tag": "0x30"
+          },
+          {
+            "bytes": 332,
+            "tag": "0xa0"
+          }
+        ],
+        "magic": "IM4P",
+        "payload": {
+          "bytes": 20978570,
+          "sha256": "89667646d374f2cf6a5ff578ccb0fec2413d3308e20af39527e94d4e99757187"
+        },
+        "payload_bytes": 20978570,
+        "type": "krnl"
+      },
+      "macho": {
+        "bytes": 66535424,
+        "filetype_name": "MH_FILESET",
+        "function_starts": 1361,
+        "segment_names": [
+          "__TEXT",
+          "__PRELINK_TEXT",
+          "__DATA_CONST",
+          "__DATA_SPTM",
+          "__TEXT_EXEC",
+          "__TEXT_BOOT_EXEC",
+          "__PRELINK_INFO",
+          "__DATA",
+          "__LINKEDIT"
+        ],
+        "sha256": "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4",
+        "uuid": "F14EAE49-1F5C-CDF8-0E22-56FB0B6679A1"
+      }
+    },
+    "24B119": {
+      "im4p": {
+        "compression": "lzfse",
+        "container": {
+          "bytes": 21122395,
+          "sha256": "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
+        },
+        "container_bytes": 21122395,
+        "description": "KernelManagement_host-514.40.8",
+        "extra_elements": [
+          {
+            "bytes": 9,
+            "tag": "0x30"
+          },
+          {
+            "bytes": 332,
+            "tag": "0xa0"
+          }
+        ],
+        "magic": "IM4P",
+        "payload": {
+          "bytes": 21121992,
+          "sha256": "9d64fe57e0b8be066eeccf7f61669902cc2759dd7a0c9fb47c0245b9eb1bd6b6"
+        },
+        "payload_bytes": 21121992,
+        "type": "krnl"
+      },
+      "macho": {
+        "bytes": 66813952,
+        "filetype_name": "MH_FILESET",
+        "function_starts": 1382,
+        "segment_names": [
+          "__TEXT",
+          "__PRELINK_TEXT",
+          "__DATA_CONST",
+          "__DATA_SPTM",
+          "__TEXT_EXEC",
+          "__TEXT_BOOT_EXEC",
+          "__PRELINK_INFO",
+          "__DATA",
+          "__LINKEDIT"
+        ],
+        "sha256": "5edba8bacade83ea29c67cc1b3e44793694a93ef2473d78ce610237b553f0f41",
+        "uuid": "6C8581BD-086F-0A6C-CA32-916E86684F0C"
+      }
+    },
+    "kexts": {
+      "entries": 250,
+      "unchanged_names": [
+        "com.apple.IOTextEncryptionFamily",
+        "com.apple.driver.AOPTouchKext",
+        "com.apple.driver.AppleAstrisGpioProbe",
+        "com.apple.driver.AppleAudioClockLibs",
+        "com.apple.driver.AppleBSDKextStarter",
+        "com.apple.driver.AppleBasebandPCI",
+        "com.apple.driver.AppleBasebandPCIMAVControl",
+        "com.apple.driver.AppleBasebandPCIMAVPDP",
+        "com.apple.driver.AppleBluetoothDebugService",
+        "com.apple.driver.AppleDockChannel",
+        "com.apple.driver.AppleEffaceableBlockDevice",
+        "com.apple.driver.AppleEffaceableStorage",
+        "com.apple.driver.AppleFireStormErrorHandler",
+        "com.apple.driver.AppleH10PearlCameraInterface",
+        "com.apple.driver.AppleH13CameraInterface",
+        "com.apple.driver.AppleHIDKeyboard",
+        "com.apple.driver.AppleHapticsSupportLEAP",
+        "com.apple.driver.AppleHapticsSupportNVM",
+        "com.apple.driver.AppleIPAppender",
+        "com.apple.driver.AppleJPEGDriver",
+        "com.apple.driver.AppleNANDConfigAccess",
+        "com.apple.driver.AppleOrion",
+        "com.apple.driver.AppleParrot",
+        "com.apple.driver.AppleProxDriver",
+        "com.apple.driver.AppleS5L8920XPWM",
+        "com.apple.driver.AppleS5L8960XNCO",
+        "com.apple.driver.AppleS8000DWI",
+        "com.apple.driver.AppleSerialShim",
+        "com.apple.driver.AppleT8101",
+        "com.apple.driver.AppleTopCaseHIDEventDriver",
+        "com.apple.driver.AppleUSBCardReader",
+        "com.apple.driver.AppleUSBMassStorageInterfaceNub",
+        "com.apple.driver.AppleUSBMike",
+        "com.apple.driver.AppleUSBTopCaseDriver",
+        "com.apple.driver.IOSlaveProcessor",
+        "com.apple.iokit.IOAudio2Family",
+        "com.apple.iokit.IOCECFamily",
+        "com.apple.iokit.IONetworkFamily",
+        "com.apple.iokit.IONetworkingFamily",
+        "com.apple.iokit.IOSerialFamily",
+        "com.apple.iokit.IOStreamFamily",
+        "com.apple.iokit.IOUSBMassStorageDriver",
+        "com.apple.security.Image4"
+      ],
+      "uuid_changed": 207,
+      "uuid_unchanged": 43
+    }
+  },
+  "method": "IM4P parsed with engineering.parsers.image4; LZFSE payload decompressed with lzfse 0.4.2.post1; Mach-O headers parsed with engineering.parsers.macho; MH_FILESET entries and LC_FUNCTION_STARTS decoded independently.",
+  "tools": {
+    "engineering.parsers.image4": "repository",
+    "engineering.parsers.macho": "repository",
+    "lzfse": "0.4.2.post1",
+    "python": "3.14.9"
+  }
+}
