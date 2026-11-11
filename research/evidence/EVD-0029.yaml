@@ -43,6 +43,26 @@ artifact:
     new_start: "0xfffffff00a9bd5cc"
     instructions: 30
     shape_sha256_prefix: "bc492fb823add45c"
+  ghidra_decompilation:
+    tool: "ghidra-headless 12.3_DEV"
+    method: "Ghidra headless analyzer with auto-analysis, then DecompileFuncs post-script"
+    routines:
+      - name: "ipc_is_valid_exception_port"
+        old_address: "0xfffffff00a1a1d2c"
+        new_address: "0xfffffff00a1de01c"
+        old_insns: 372
+        new_insns: 396
+        old_artifact: "analysis/differential/ghidra/old-kernel/0xfffffff00a1a1d2c.c"
+        new_artifact: "analysis/differential/ghidra/new-kernel/0xfffffff00a1de01c.c"
+        key_difference: "New build adds com.apple.security.cs.debugger entitlement query after com.apple.private.set-exception-port check; if either entitlement validates, the function proceeds."
+      - name: "set_exception_ports_validation"
+        old_address: "0xfffffff00a1adf60"
+        new_address: "0xfffffff00a1ea220"
+        old_insns: 712
+        new_insns: 736
+        old_artifact: "analysis/differential/ghidra/old-kernel/0xfffffff00a1adf60.c"
+        new_artifact: "analysis/differential/ghidra/new-kernel/0xfffffff00a1ea220.c"
+        key_difference: "New build adds com.apple.security.cs.debugger entitlement query after com.apple.private.set-exception-port check; if either entitlement validates, the function returns success."
   function_diff_artifact: "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json"
 limitations:
   - "The function is stripped; the helper has no symbol name and is identified by shape only."

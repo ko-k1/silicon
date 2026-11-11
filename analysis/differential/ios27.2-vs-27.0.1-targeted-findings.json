@@ -86,7 +86,39 @@
         "24B119": 1
       }
     },
-    "interpretation": "Both exception-port validation paths accept an additional debugger entitlement in 27.2. This is an observed behavior change, not evidence of a vulnerability fix; it broadens rather than narrows the accepted entitlement set."
+    "interpretation": "Both exception-port validation paths accept an additional debugger entitlement in 27.2. This is an observed behavior change, not evidence of a vulnerability fix; it broadens rather than narrows the accepted entitlement set.",
+    "ghidra_decompilation": {
+      "tool": "ghidra-headless 12.3_DEV",
+      "method": "Ghidra headless analyzer with auto-analysis, then DecompileFuncs post-script",
+      "exception_port_routines": {
+        "ipc_is_valid_exception_port": {
+          "old_artifact": "analysis/differential/ghidra/old-kernel/0xfffffff00a1a1d2c.c",
+          "new_artifact": "analysis/differential/ghidra/new-kernel/0xfffffff00a1de01c.c",
+          "old_decompiled_bytes": 372,
+          "new_decompiled_bytes": 396
+        },
+        "set_exception_ports_validation": {
+          "old_artifact": "analysis/differential/ghidra/old-kernel/0xfffffff00a1adf60.c",
+          "new_artifact": "analysis/differential/ghidra/new-kernel/0xfffffff00a1ea220.c",
+          "old_decompiled_bytes": 712,
+          "new_decompiled_bytes": 736
+        }
+      },
+      "ave2_routines": {
+        "AVE_HEVC_CheckVPSExtBounds": {
+          "new_artifact": "analysis/differential/ghidra/ave2-new/0xfffffff008421158.c",
+          "new_decompiled_bytes": 1240
+        },
+        "AVE_Client_CheckMCTFInfo": {
+          "new_artifact": "analysis/differential/ghidra/ave2-new/0xfffffff008423b1c.c",
+          "new_decompiled_bytes": 2948
+        },
+        "AVE_Client_CheckLRMEInfo": {
+          "new_artifact": "analysis/differential/ghidra/ave2-new/0xfffffff0084246a0.c",
+          "new_decompiled_bytes": 2284
+        }
+      }
+    }
   },
   "ave2_validation_routines": {
     "symbol_source": "ipsw kernel symbolicate with symbolicator/kernel/27.2 signatures on the 24B119 kernelcache; the three names are absent from the 24A446 symbol map",

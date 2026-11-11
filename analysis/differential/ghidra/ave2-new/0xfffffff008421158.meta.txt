@@ -1,0 +1,6 @@
+address=0xfffffff008421158
+binary=/tmp/opencode/ipsw-kernel-diff/new/com.apple.driver.AppleAVE2
+entry=fffffff008421158
+name=FUN_fffffff008421158
+signature=undefined FUN_fffffff008421158(void)
+bytes=1240
