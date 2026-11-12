@@ -402,8 +402,8 @@
     },
     {
       "path": "reports/technical/A14-iOS-27.2-differential.md",
-      "bytes": 21276,
-      "sha256": "29789e5db76ae4d2239c931ec17590baa8fde98ede7a8b9624c437d2b35bb129"
+      "bytes": 21625,
+      "sha256": "00c842c456f614ba5f2cec8ef06520b9e96ebe4665491f7bf3df981e3c5b48cf"
     },
     {
       "path": "requirements-dev.txt",
@@ -467,8 +467,8 @@
     },
     {
       "path": "research/cases/CASE-0004/report.md",
-      "bytes": 22097,
-      "sha256": "fd1fc2b824101d5f511a2d033c355df3ed9b85d41f8c9b35ee5cc7c0247368e1"
+      "bytes": 22450,
+      "sha256": "44747c856008d0fe94fe58d7a21d3d22c3193652e82c829d3a77ed5bed764e36"
     },
     {
       "path": "research/cases/README.md",
@@ -642,8 +642,8 @@
     },
     {
       "path": "research/evidence/EVD-0030.yaml",
-      "bytes": 8597,
-      "sha256": "cea5a8c636810b35b3b32626415fb895addb0079bc9ec8fc3a9d354da3ff4dcb"
+      "bytes": 9356,
+      "sha256": "aeda918d52cfce133a8c52e062eacd76caf0e5749352f739b682d38bd4ba1047"
     },
     {
       "path": "research/evidence/EVD-0031.yaml",
