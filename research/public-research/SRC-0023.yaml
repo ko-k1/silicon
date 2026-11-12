@@ -1,0 +1,41 @@
+schema_version: 1
+id: SRC-0023
+title: "darwin-vm: Run iOS/macOS in QEMU with SPTM/TXM support"
+authors:
+  - "jprx"
+source_type: repository
+url: "https://github.com/jprx/darwin-vm"
+published_at: "2026-10-05"
+accessed_at: "2026-11-12"
+source_scope:
+  devices:
+    - "iPhone13,2 (iPhone 12)"
+    - "iPhone14,5 (iPhone 13)"
+    - "iPhone15,4 (iPhone 15)"
+    - "iPhone17,3 (iPhone 16)"
+    - "iPhone18,3 (iPhone 17)"
+  socs:
+    - "A14 (T8101)"
+    - "A15 (T8110)"
+    - "A16 (T8120)"
+    - "A18 (T8140)"
+    - "A19 (T8150)"
+  os_versions:
+    - "iOS 27.0"
+    - "iOS 26.6"
+  builds:
+    - "24A437"
+claims:
+  - "The README reports tested boots of iPhone13,2 (A14/T8101) on iOS 27.0 (24A437) and lists the iPhone 12 A14 configuration as working."
+  - "The project states that it supports SPTM-based kernels and can debug/patch SPTM and TXM, using its qemu-sptm fork."
+  - "The tested-configuration table lists iPhone 12 (A14) t8101 iOS 27.0 24A437 as a working configuration."
+silicon_assessment:
+  applicability: partial
+  evidence_ids:
+    - EVD-0037
+  notes:
+    - "Emulator-level evidence, not a physical-device measurement."
+    - "The tested build is 24A437 (iOS 27.0), not 24A446 (iOS 27.0.1); the exact target build is not covered."
+    - "The project does not measure protection enforcement or bypass state."
+    - "The README is a project claim; the repository's boot logs were not reproduced in this workspace."
+license_or_terms: "MIT license (per repository README); short factual excerpts only."

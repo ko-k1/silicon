@@ -2,6 +2,8 @@
 
 Store one dated record per paper, repository, advisory, or technical write-up. Preserve the source's exact target scope and separate the author's claim from silicon's assessment. Use `source-record.template.yaml` as a starting point.
 
+`SRC-0022` through `SRC-0025` are the 2026-11-12 additions to the A14 SPTM/PPL public-data set: a T8150 SPTM change analysis, an independent A14 SPTM emulator boot, and two tooling-level A13/A14/M1 TXM sources. Their claims are qualified in the records; none is a physical-device runtime measurement or a CVE attribution.
+
 ## Source index
 
 | ID | Source | Date | Role |
@@ -27,3 +29,7 @@ Store one dated record per paper, repository, advisory, or technical write-up. P
 | `SRC-0019` | idevice crate - IMG4 restore component stitching (`img4.rs`) | 2026-07-11 | Public restore-implementation source |
 | `SRC-0020` | Apple security content of iOS 27.2 / iPadOS 27.2 | 2026-10-26 | Vulnerability advisory |
 | `SRC-0021` | Apple security content of iOS 27.2.1 / iPadOS 27.2.1 | 2026-11-09 | Follow-up vulnerability advisory |
+| `SRC-0022` | IvanIVGrozny - SPTM TLB-invalidation race fix (iPhone Air/T8150) | 2026-10-21 | Public SPTM change analysis / comparison |
+| `SRC-0023` | jprx/darwin-vm - SPTM/TXM-capable QEMU iOS/macOS emulator | 2026-10-05 | Independent A14 SPTM boot evidence (emulator) |
+| `SRC-0024` | Crafttino21/ModStaller - iOS sideloading with TXM/SPTM JIT | 2026-10-24 | Tooling-level A13/A14/M1 TXM claim |
+| `SRC-0025` | star-studios-official/azahar - iOS 27 A13/A14/M1 TXM detection | 2026-08-26 | Tooling-level A13/A14/M1 TXM claim |

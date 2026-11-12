@@ -1,0 +1,328 @@
+{
+  "title": "A14 SPTM/PPL current public data and primary artifact observations",
+  "as_of": "2026-11-12",
+  "scope": {
+    "target": "iPhone13,1 (iPhone 12 mini), A14/T8101, iOS 27.0.1 (24A446)",
+    "comparison_build": "iOS 27.2 (24B119)",
+    "cross_soc_control": "iPhone18,4 (iPhone Air), T8150, 24A446 and 24B119",
+    "statement": "This file collects current public claims and direct artifact observations about A14 page-table protection. It separates build packaging, boot configuration, emulator evidence, public tooling claims, and runtime state."
+  },
+  "apple_documentation": {
+    "source": "SRC-0001",
+    "url": "https://support.apple.com/guide/security/operating-system-integrity-sec8b776536b/web",
+    "published_at": "2026-01-28",
+    "accessed_at": "2026-11-12",
+    "table": {
+      "A10": {"PPL": false, "SPTM": false},
+      "A11/S3": {"PPL": true, "SPTM": false},
+      "A12-A14/S4-S10": {"PPL": true, "SPTM": false},
+      "A15-A18": {"PPL": false, "SPTM": true},
+      "M1": {"PPL": true, "SPTM": false},
+      "M2-M4": {"PPL": false, "SPTM": true},
+      "A19/M5": {"PPL": false, "SPTM": true}
+    },
+    "vendor_statement": "SPTM is supported in the A15 or later and M2 or later SoCs and replaces PPL on supported platforms. In the A15 or later and M2 or later SoCs, SPTM (in combination with TXM) replaces the PPL.",
+    "revision_status": "The guide revision history lists 'Operating system integrity' under January 2026 and does not list it under the August 2026 update. A 2026-11-12 recheck found the same table and the same revision status.",
+    "assessment": "The live vendor page still describes A12-A14 as PPL and SPTM as A15+/M2+, and it does not describe the iOS 27 A14 build. It remains the published platform model for the OS versions it covers, but it is contradicted at build level by the 24A446 artifacts."
+  },
+  "a14_24A446": {
+    "build_manifest": {
+      "sha256": "f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f",
+      "sptm_path": "Firmware/sptm.t8101.release.im4p",
+      "txm_path": "Firmware/txm.iphoneos.release.im4p",
+      "installed_sptm": "Production",
+      "restore_sptm": "Production",
+      "installed_kernelcache": "Production",
+      "restore_kernelcache": "Production",
+      "restore_sptm_loaded_by_iboot": true,
+      "restore_txm_loaded_by_iboot": true
+    },
+    "sptm": {
+      "im4p_bytes": 187580,
+      "im4p_sha256": "fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb",
+      "im4p_sha384": "3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f",
+      "macho_bytes": 1179680,
+      "macho_sha256": "e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a",
+      "macho_uuid": "1693386C-1F3A-346B-906D-804E7138B2F1",
+      "source_version": "820.0.22",
+      "version_string": "SPTM-820.0.22|2026-08-08:13:24:32.076410|",
+      "text_section_bytes": 353108,
+      "text_section_hex": "0x56754",
+      "segment_names": ["__TEXT", "__DATA_CONST", "__LATE_CONST", "__TEXT_EXEC", "__LAST", "__DATA", "__BOOTDATA", "__LINKEDIT"]
+    },
+    "txm": {
+      "im4p_bytes": 223884,
+      "im4p_sha256": "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff",
+      "im4p_sha384": "6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f",
+      "macho_bytes": 557088,
+      "macho_sha256": "e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04",
+      "macho_uuid": "9F80F5EC-09C8-3E9F-A196-13A6250C04E0",
+      "source_version": "217.0.2",
+      "segment_names": ["__TEXT", "__DATA_CONST", "__TEXT_EXEC", "__TEXT_BOOT_EXEC", "__DATA", "__LINKEDIT"]
+    },
+    "kernelcache": {
+      "macho_sha256": "76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4",
+      "sptm_segments": ["__DATA_SPTM", "__TEXT_BOOT_EXEC"],
+      "ppl_segments": [],
+      "sptm_specific_strings": [
+        "__DATA_SPTM",
+        "arm_init: Development SPTM / Release XNU is not a supported configuration.",
+        "32-bit 4k commpage not currently supported for SPTM configurations"
+      ],
+      "ppl_related_strings_still_present": [
+        "IOUAT: failed to call PPL ioctl UAT_PPL_IOCTL_GET_ROOT_TABLE",
+        "IOUAT: failed to call PPL ioctl UAT_PPL_IOCTL_PREPARE_UNMAP",
+        "Image4: attempted to get manifest properties without PPL context"
+      ]
+    },
+    "device_tree": {
+      "path": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+      "im4p_sha256": "f6994c0a19f5afb0e1fc20a604c873afc399a5901d4e5eeab169005748ea24cf",
+      "decompressed_sha256": "1336275e7a908880156d416125f212b915b47715b5a390a33d240e7b11c0e951",
+      "observations": [
+        "chosen:txm-secure-channel = 1",
+        "dart-sep:txm-secure-channel-base = 0x4000",
+        "dart-sep:txm-secure-channel-size = 0x4000",
+        "amcc-ctrr-a, amcc-ctrr-b, amcc-ctrr-c, amcc-ctrr-d nodes are present"
+      ]
+    },
+    "iboot": {
+      "path": "Firmware/all_flash/iBoot.d52g.RELEASE.im4p",
+      "im4p_sha256": "f3f47fc407dffce6156b8bb82c49e371cb5b459eea6c8c61fc06aa29f538be68",
+      "decompressed_sha256": "0732f98fbd163c2003e54165a7f39e70a1c75fc74b0d7263fc8625e08a9422da",
+      "observations": [
+        "lay_out_sptm_objects",
+        "sptm-path",
+        "txm-path",
+        "SPTM-uuid-offset",
+        "SPTM",
+        "kernel-ctrr-to-be-enabled",
+        "ctrr-a, ctrr-b, ctrr-c, ctrr-d"
+      ]
+    }
+  },
+  "a14_24B119": {
+    "sptm": {
+      "im4p_bytes": 189925,
+      "im4p_sha256": "a239ab942984c8251a94cc3f1353bb8e5911bd1aa967c61229bcf7b06a685c76",
+      "im4p_sha384": "e35342da606324c531614c62368683146a4e3ff70d5cc4ea5acee58ffc831666522a58c2e1747ff1e67714e7ce2108cd",
+      "macho_bytes": 1179680,
+      "macho_sha256": "90f710d8f515d24050eb5a6ebb061fa0a35ea7ecd0b5a921a231bf6592d25539",
+      "macho_uuid": "88CA33DC-BE08-313D-AF19-397E47C76983",
+      "source_version": "820.40.24",
+      "version_string": "SPTM-820.40.24|2026-10-03:14:50:35.671934|",
+      "text_section_bytes": 357996,
+      "text_section_hex": "0x5766c",
+      "new_tlb_race_fix_strings": [
+        "uat_dekker_gate_lock",
+        "uat_dekkerlock_lock",
+        "uat_sync_outer_tlb_sapt_flush",
+        "verify-gmmu-tlbis-at-sync",
+        "gmmu-tlbi-verification-reg",
+        "gmmu-tlbi-verification-bit",
+        "%s: Failed to verify TLBI",
+        "VIOLATION_NVME_ILLEGAL_HIBERNATION_QUEUE_LATCH"
+      ]
+    },
+    "txm": {
+      "im4p_bytes": 224174,
+      "im4p_sha256": "284e5413dfd447dc81c8840e92748dc8a390b474142f390c1fddee1ac1c716b6",
+      "im4p_sha384": "d1f47d55fd17c64cc83b06458acc1d06b1a1897174332c61e63b92fee0083a119b59d366676ab973a73b610168360f3b",
+      "macho_bytes": 557088,
+      "macho_sha256": "664ec04c89b0b2d6e81638b773e8551d999155bc7edb7382f2b3ecdd4f75461e",
+      "macho_uuid": "1EB0EB97-F667-3470-97B9-1CD95D26246F",
+      "source_version": "217.0.2"
+    },
+    "device_tree": {
+      "path": "Firmware/all_flash/DeviceTree.d52gap.im4p",
+      "im4p_sha256": "ff4c56597d84781f2ab2836bd59bb7e353777b1c6eae8813845fd0ca81bcf92c",
+      "observation": "chosen:txm-secure-channel = 1"
+    }
+  },
+  "cross_soc_24A446_t8150": {
+    "device": "iPhone18,4 (iPhone Air), T8150",
+    "sptm": {
+      "im4p_bytes": 213408,
+      "im4p_sha256": "a1cbf38a76d24782c4b190f325001ebd6dc348cfc1af95eaaf4fc20a47431543",
+      "im4p_sha384": "b239e8258da310eae11f20bca0160a1d6d1d25d94a2d445204ab909fc457cec14fcaa0fb7ca8e3a70cf859e731505454",
+      "macho_bytes": 1261600,
+      "macho_sha256": "d4b9a9db5d383734585a075da7afdd38a72ec7f5d43dbbd54708f07841fd5734",
+      "macho_uuid": "325C14BC-3EFA-33A3-9E5C-7A7049E321CD",
+      "source_version": "820.0.22",
+      "version_string": "SPTM-820.0.22|2026-08-08:13:24:32.076410|",
+      "text_section_bytes": 398068,
+      "text_section_hex": "0x612f4"
+    },
+    "txm": {
+      "im4p_sha256": "b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff",
+      "macho_sha256": "e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04",
+      "observation": "The T8150 24A446 TXM payload is byte-identical to the T8101 24A446 TXM payload."
+    },
+    "comparison": "Same SPTM source version and build timestamp as the A14 24A446 payload, but a different UUID and a larger Mach-O/text section. The A14 SPTM is not a byte-identical copy of the A15 SPTM."
+  },
+  "cross_soc_24B119_t8150": {
+    "device": "iPhone18,4 (iPhone Air), T8150",
+    "sptm": {
+      "im4p_bytes": 216333,
+      "im4p_sha256": "4a21de2683b3944039ce1ca0977d69c2705585f45b5658fcc67b9d755c0ed9d6",
+      "macho_bytes": 1327136,
+      "macho_sha256": "995affca44c65058814bf6b5ba1e93cd66198ce94f8bbfd7ff061951bc318c4f",
+      "macho_uuid": "6FB95ED6-BE8A-39CF-862B-250BA7EFD5A5",
+      "source_version": "820.40.24",
+      "version_string": "SPTM-820.40.24|2026-10-03:14:50:35.671934|",
+      "text_section_bytes": 402928,
+      "text_section_hex": "0x625f0",
+      "tlb_race_fix_strings_present": true
+    },
+    "txm": {
+      "im4p_sha256": "284e5413dfd447dc81c8840e92748dc8a390b474142f390c1fddee1ac1c716b6",
+      "macho_sha256": "664ec04c89b0b2d6e81638b773e8551d999155bc7edb7382f2b3ecdd4f75461e",
+      "observation": "The T8150 24B119 TXM payload is byte-identical to the T8101 24B119 TXM payload."
+    },
+    "comparison": "Same SPTM source version as A14 24B119, but a different UUID and a larger Mach-O/text section. TXM remains common across the two SoCs."
+  },
+  "public_sources": [
+    {
+      "id": "SRC-0005",
+      "date": "2026-09-23",
+      "claim": "With the release of iOS 27.0 beta, SPTM bypasses apply to A13-A14 and M1 devices in addition to A15-and-later devices.",
+      "relation": "supports A14 SPTM applicability",
+      "limitation": "Community wiki; no build-specific A14 artifact or runtime measurement cited."
+    },
+    {
+      "id": "SRC-0006",
+      "date": null,
+      "claim": "A public SPTM introduction map places A13/A14 and M1 SPTM at Darwin/iOS 27.0.",
+      "relation": "supports A14 SPTM applicability",
+      "limitation": "Community reverse-engineering note; no target measurement or build hash."
+    },
+    {
+      "id": "SRC-0008",
+      "date": "2026-09-28",
+      "claim": "StikDebug 3.1.6 and later treat every iOS 27 device as TXM except A12X, with A13/A14/M1 as the intended case.",
+      "relation": "supports A14 TXM behavior",
+      "limitation": "Tool behavior; not an Apple statement or a direct protection-state measurement."
+    },
+    {
+      "id": "SRC-0022",
+      "date": "2026-10-21",
+      "claim": "Public iPhone Air (T8150) research describes a 27.2 beta 1 to beta 3 SPTM TLB-invalidation race fix, including uat_dekker locks, uat_sync_outer_tlb_sapt_flush, GMMU TLBI verification strings, and a 200,000-tick timeout.",
+      "relation": "supports the A14 24B119 SPTM change and provides a string-level comparison",
+      "limitation": "Target is T8150, not A14; the README's 27.0.1 SPTM version row says 820.40.18, while direct extraction of the 24A446 T8150 and T8101 payloads shows 820.0.22. The version table row is not reproduced."
+    },
+    {
+      "id": "SRC-0023",
+      "date": "2026-10-05 (latest commit); accessed 2026-11-12",
+      "claim": "darwin-vm reports booting iPhone13,2 (A14/T8101) on iOS 27.0 (24A437) with its SPTM/TXM-capable QEMU fork, and lists A14 among its tested configurations.",
+      "relation": "independent emulator-level evidence that the A14 iOS 27 kernel can boot under SPTM",
+      "limitation": "Build is 24A437, not 24A446; emulator, not a physical device; the project does not measure protection enforcement."
+    },
+    {
+      "id": "SRC-0024",
+      "date": "2026-10-24 (latest release); accessed 2026-11-12",
+      "claim": "ModStaller lists A14 and A13 as 'TXM/SPTM from iOS 27' and says iOS 27 treats every supported device like a TXM device; its A14 row is expected/untested.",
+      "relation": "supports A14 TXM behavior",
+      "limitation": "Sideloading tool documentation; the combined TXM/SPTM label is ambiguous and the A14 row is not a device test."
+    },
+    {
+      "id": "SRC-0025",
+      "date": "2026-08-26 (latest commit); accessed 2026-11-12",
+      "claim": "Azahar adds an iOS 27 A13/A14/M1 TXM detection fix that searches additional firmware paths for Ap,TrustedExecutionMonitor.img4.",
+      "relation": "supports A14 TXM firmware-path behavior",
+      "limitation": "Tool implementation note; not a direct SPTM measurement."
+    },
+    {
+      "id": "SRC-0007",
+      "date": "2026-09-30",
+      "claim": "A survey states PPL applies to A12-A14 and M1, while SPTM applies to A15 and later, and uses an iPhone 12 (A14) on iOS 27 betas/GA/27.2 beta as a test device.",
+      "relation": "counter-evidence",
+      "limitation": "The survey's generation statement conflicts with the 24A446 build artifacts and with the A14 boot configuration; it does not state that it measured SPTM on A14."
+    },
+    {
+      "id": "SRC-0015",
+      "date": "2026-11-04",
+      "claim": "A community tracker places A14/M1 in a PPL camp and says A14+ still needs an n-day SPTM bypass; its summary and detailed matrix conflict.",
+      "relation": "counter-evidence",
+      "limitation": "No build-specific A14/24A446 measurement; the tracker's summary says A14+ needs an SPTM bypass while its matrix says A14 is PPL."
+    }
+  ],
+  "observations": [
+    {
+      "id": "OBS-A14-01",
+      "statement": "The 24A446 iPhone13,1 BuildManifest packages SPTM and TXM and marks InstalledSPTM and RestoreSPTM as Production.",
+      "class": "primary",
+      "evidence": ["EVD-0010", "EVD-0018", "EVD-0019"]
+    },
+    {
+      "id": "OBS-A14-02",
+      "statement": "The 24A446 iPhone13,1 DeviceTree contains chosen:txm-secure-channel = 1 and a dart-sep TXM secure-channel base/size of 0x4000.",
+      "class": "primary",
+      "evidence": ["EVD-0035"]
+    },
+    {
+      "id": "OBS-A14-03",
+      "statement": "The 24A446 iPhone13,1 iBoot contains SPTM/TXM layout strings, including lay_out_sptm_objects, sptm-path, txm-path, and SPTM-uuid-offset.",
+      "class": "primary",
+      "evidence": ["EVD-0035"]
+    },
+    {
+      "id": "OBS-A14-04",
+      "statement": "The 24A446 iPhone13,1 kernelcache has __DATA_SPTM and __TEXT_BOOT_EXEC segments and no __PPL* top-level segments, but PPL/IOUAT strings remain in the kernel binary.",
+      "class": "primary",
+      "evidence": ["EVD-0012", "EVD-0035"]
+    },
+    {
+      "id": "OBS-A14-05",
+      "statement": "The A14 24A446 SPTM and the T8150 24A446 SPTM share source version 820.0.22 and the same build timestamp, but have different UUIDs and sizes; TXM is byte-identical across the two SoCs.",
+      "class": "primary",
+      "evidence": ["EVD-0036"]
+    },
+    {
+      "id": "OBS-A14-06",
+      "statement": "The A14 24B119 SPTM is 820.40.24 and contains the TLB-race-fix string family described in the public T8150 research; the A14 24A446 SPTM does not contain those strings.",
+      "class": "primary",
+      "evidence": ["EVD-0036", "SRC-0022"]
+    },
+    {
+      "id": "OBS-A14-07",
+      "statement": "The A14 24B119 DeviceTree still contains chosen:txm-secure-channel = 1.",
+      "class": "primary",
+      "evidence": ["EVD-0035"]
+    },
+    {
+      "id": "OBS-A14-08",
+      "statement": "Independent emulator documentation reports booting an A14/T8101 iOS 27.0 (24A437) kernel with SPTM/TXM support.",
+      "class": "secondary",
+      "evidence": ["EVD-0037", "SRC-0023"]
+    },
+    {
+      "id": "OBS-A14-09",
+      "statement": "Multiple iOS 27 tooling projects treat A13/A14/M1 devices as TXM devices, but their A14 rows are tooling-level, not physical-device SPTM measurements.",
+      "class": "secondary",
+      "evidence": ["EVD-0038", "SRC-0024", "SRC-0025"]
+    }
+  ],
+  "assessment": {
+    "build_level": "SPTM/TXM is packaged as a production component for A14 24A446, and the A14 boot configuration independently references TXM secure-channel and SPTM layout. The build-level mechanism is SPTM/TXM, not PPL, with high confidence.",
+    "runtime": "The physical target's runtime state remains unknown. No device was available, and no runtime protection measurement was performed.",
+    "public_record": "The public record has converged toward A14 SPTM/TXM since iOS 27, but it still contains contradictory PPL claims and tooling-level shortcuts. The strongest public support is the independent A14 SPTM boot in darwin-vm and the cross-SoC SPTM version/string correspondence; the strongest counter-evidence is Apple's unchanged A12-A14 PPL table and the community tracker's PPL camp.",
+    "security_note": "The 24B119 A14 SPTM adds a TLB-race-fix string family also described in public T8150 research. This is an observed code/string change, not a CVE attribution, exploitability finding, or proof that 24A446 is vulnerable.",
+    "ppl_note": "PPL/IOUAT strings remain in the 24A446 kernel binary. Segment naming and packaged monitors establish the build-level mechanism, but they do not prove that no PPL code path or fallback exists."
+  },
+  "limitations": [
+    "No physical device was available; runtime SPTM/TXM state and enforcement were not measured.",
+    "The public A14 SPTM boot evidence is from an emulator on 24A437, not a physical device on 24A446.",
+    "The public T8150 research targets a different SoC; its string-level findings are used only as a comparison, not as an A14 runtime measurement.",
+    "The public research's 27.0.1 SPTM version table row (820.40.18) is not reproduced by direct extraction; the primary artifacts show 820.0.22.",
+    "PPL/IOUAT strings remain in the kernel binary; their presence does not establish an active PPL path, and their absence was not claimed.",
+    "No code-signature or trust evaluation was performed on any payload.",
+    "No CVE is mapped to the A14 SPTM change, and no exploitability or bypass conclusion is established.",
+    "The A14 iPad product types and regional builds were not checked for the same boot configuration."
+  ],
+  "related_records": {
+    "cases": ["CASE-0001", "CASE-0004"],
+    "evidence": ["EVD-0010", "EVD-0012", "EVD-0018", "EVD-0019", "EVD-0035", "EVD-0036", "EVD-0037", "EVD-0038"],
+    "sources": ["SRC-0001", "SRC-0005", "SRC-0006", "SRC-0007", "SRC-0008", "SRC-0015", "SRC-0022", "SRC-0023", "SRC-0024", "SRC-0025"],
+    "validation": ["VAL-0018"]
+  }
+}

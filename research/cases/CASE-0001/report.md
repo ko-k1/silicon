@@ -1,10 +1,10 @@
 # Report - CASE-0001
 
-- Updated: 2026-11-10
+- Updated: 2026-11-12
 
 ## Status
 
-Analyzed at the build level. `VAL-0002` (offline BuildManifest inspection for iPhone13,1), `VAL-0003` (offline kernelcache segment inspection), `VAL-0004` (offline BuildManifest inspection for iPhone13,4), `VAL-0005` (offline BuildManifest inspection for iPhone13,2/iPhone13,3 plus cross-product digest comparison), `VAL-0006` (offline byte comparison of the release kernelcache across all four product types), `VAL-0007` (offline SPTM/TXM Image4 payload and Mach-O inspection), and `VAL-0008` (offline restore-role digest reproduction by fourcc retag) passed; `VAL-0001` (device metadata check) remains `not-run`. No runtime protection measurement was performed.
+Analyzed at the build level. `VAL-0002` (offline BuildManifest inspection for iPhone13,1), `VAL-0003` (offline kernelcache segment inspection), `VAL-0004` (offline BuildManifest inspection for iPhone13,4), `VAL-0005` (offline BuildManifest inspection for iPhone13,2/iPhone13,3 plus cross-product digest comparison), `VAL-0006` (offline byte comparison of the release kernelcache across all four product types), `VAL-0007` (offline SPTM/TXM Image4 payload and Mach-O inspection), `VAL-0008` (offline restore-role digest reproduction by fourcc retag), and `VAL-0018` (offline A14 SPTM/TXM boot-configuration, cross-SoC, and public-data check) passed; `VAL-0001` (device metadata check) remains `not-run`. No runtime protection measurement was performed.
 
 ## Question
 
@@ -40,10 +40,19 @@ Is PPL or SPTM/TXM the page-table protection boundary on an A14 device running i
    - A tooling evidence note says iOS 27 TXM detection treats A13/A14/M1 devices as TXM, except A12X (`EVD-0008`).
 9. A contemporaneous survey still describes PPL on A12-A14/M1 and SPTM on A15+ (`EVD-0009`). A 2026-11-04 community tracker likewise frames A14/M1 as PPL and says A14+ needs an n-day SPTM bypass, but provides no build-specific measurement (`EVD-0015`). Both are retained as counter-evidence; they are consistent with Apple's older published page but do not account for the build manifests or kernelcache.
 10. The primary Apple page carries a January 2026 date and contains no build-specific statement for 24A446; the guide's revision history does not list that page as updated after January 2026 (`EVD-0013`). The build artifacts are newer and target-specific, so they take precedence for the build-level question.
+11. The iPhone13,1 DeviceTree and iBoot independently contain SPTM/TXM boot-configuration references:
+   - DeviceTree `chosen:txm-secure-channel` = 1 and `dart-sep` TXM secure-channel base/size of 0x4000 (`EVD-0035`, `VAL-0018`).
+   - iBoot strings include `lay_out_sptm_objects`, `sptm-path`, `txm-path`, `SPTM-uuid-offset`, `SPTM`, `kernel-ctrr-to-be-enabled`, and `ctrr-a` through `ctrr-d` (`EVD-0035`, `VAL-0018`).
+   - The 24B119 DeviceTree still contains `chosen:txm-secure-channel` = 1 (`EVD-0035`, `VAL-0018`).
+12. Cross-SoC comparison with iPhone18,4 (T8150/A15) shows the 24A446 SPTM payloads share source version 820.0.22 and build timestamp but have different UUIDs and Mach-O sizes; TXM is byte-identical across the two SoCs (`EVD-0036`, `VAL-0018`). The A14 SPTM is therefore a per-SoC payload, not a byte-identical copy of the A15 payload.
+13. The A14 24B119 SPTM is source version 820.40.24 (UUID `88CA33DC-BE08-313D-AF19-397E47C76983`) and contains the `uat_dekker_gate_lock`, `uat_dekkerlock_lock`, `uat_sync_outer_tlb_sapt_flush`, `verify-gmmu-tlbis-at-sync`, `gmmu-tlbi-verification`, and `VIOLATION_NVME_ILLEGAL_HIBERNATION_QUEUE_LATCH` string family absent from the A14 24A446 SPTM (`EVD-0036`, `VAL-0018`). The 24A446-to-24B119 SPTM change on A14 is structural, not merely a version-string change.
+14. Independent emulator documentation (darwin-vm) reports booting iPhone13,2 (A14/T8101) on iOS 27.0 build 24A437 with SPTM/TXM-capable QEMU support (`EVD-0037`, `VAL-0018`). This is emulator-level evidence on a different build, not a physical-device measurement.
+15. Public iOS 27 tooling projects (ModStaller, Azahar) treat A13/A14/M1 devices as TXM devices, but their A14 rows are marked expected/untested and are not physical-device SPTM measurements (`EVD-0038`, `VAL-0018`).
+16. A public T8150 research write-up (SRC-0022) describes a 27.2 beta 1 to beta 3 SPTM TLB-invalidation race fix with the same string family observed in the A14 24B119 SPTM. Its 27.0.1 SPTM version row (820.40.18) is not reproduced by direct extraction; the 24A446 T8150 payload is 820.0.22 (`EVD-0036`, `SRC-0022`).
 
 ## Assessment
 
-The build-level evidence resolves the contradiction: **the A14 / 24A446 images for all four iPhone 12-family product types package SPTM and TXM, mark installed SPTM as a production component, and share a byte-identical release kernelcache built with SPTM segments rather than PPL segments.** The same release SPTM, TXM, and kernelcache payload digests are referenced by the iPhone13,1, iPhone13,2/3, and iPhone13,4 manifests, and the release kernelcache bytes match across the images. For iPhone13,1, the extracted installed SPTM and TXM payload files themselves match the manifest digest fields and carry SPTM/TXM build identifiers, so the packaging claim is supported by the payload bytes and not only by manifest labels. The relevant page-table protection boundary for this build is therefore SPTM/TXM, not PPL. Apple's January 2026 table remains accurate for the OS versions it describes; it does not describe the iOS 27 A14 build.
+The build-level evidence resolves the contradiction: **the A14 / 24A446 images for all four iPhone 12-family product types package SPTM and TXM, mark installed SPTM as a production component, and share a byte-identical release kernelcache built with SPTM segments rather than PPL segments.** The same release SPTM, TXM, and kernelcache payload digests are referenced by the iPhone13,1, iPhone13,2/3, and iPhone13,4 manifests, and the release kernelcache bytes match across the images. For iPhone13,1, the extracted installed SPTM and TXM payload files themselves match the manifest digest fields and carry SPTM/TXM build identifiers, so the packaging claim is supported by the payload bytes and not only by manifest labels. The iPhone13,1 DeviceTree independently configures a TXM secure channel (`txm-secure-channel` = 1, dart-sep base/size 0x4000) and iBoot contains SPTM/TXM layout strings (`lay_out_sptm_objects`, `sptm-path`, `txm-path`, `SPTM-uuid-offset`, `ctrr-a` through `ctrr-d`). Cross-SoC comparison confirms the A14 SPTM is a per-SoC payload sharing version 820.0.22 with the T8150 build but differing in UUID and size; TXM is byte-identical across both SoCs. The relevant page-table protection boundary for this build is therefore SPTM/TXM, not PPL. Apple's January 2026 table remains accurate for the OS versions it describes; it does not describe the iOS 27 A14 build.
 
 **Current conclusion: inferred, high confidence at the build level.** The target device's runtime state remains `unknown`. The manifest's SPTM and TXM states are `inferred`; PPL remains `unknown` rather than being declared absent without a runtime measurement.
 
@@ -53,8 +62,11 @@ The build-level evidence resolves the contradiction: **the A14 / 24A446 images f
 - The extracted iPhone13,1 installed SPTM and TXM payloads are valid Image4 containers whose SHA-384 values match the manifest digest fields; both decompress to arm64e Mach-O with SPTM/TXM build identifiers and no top-level PPL segment names.
 - The restore-role `rspt`/`rtrx` digest difference is explained at the IM4P level by a four-byte type-field retag, not by a distinct payload body.
 - The 24A446 release kernelcache is byte-identical across all four product types and is structurally an SPTM build (`__DATA_SPTM`, `__TEXT_BOOT_EXEC`) with no PPL segment names.
+- The iPhone13,1 DeviceTree configures `txm-secure-channel` = 1 with dart-sep base/size 0x4000, and iBoot contains SPTM/TXM layout strings; the 24B119 DeviceTree retains `txm-secure-channel` = 1 (`EVD-0035`).
+- Cross-SoC comparison: the A14 and A15 24A446 SPTM payloads share source version 820.0.22 but have different UUIDs and Mach-O sizes; TXM is byte-identical across both SoCs (`EVD-0036`).
+- The A14 24B119 SPTM (820.40.24) contains a TLB-fix string family absent from 24A446 (`uat_dekker_gate_lock`, `uat_sync_outer_tlb_sapt_flush`, `verify-gmmu-tlbis-at-sync`, `gmmu-tlbi-verification`) (`EVD-0036`).
 - An "A14 PPL bypass" is mis-scoped for 24A446; the build-level boundary is SPTM/TXM.
-- The public September 2026 reports are corroborated by Apple build artifacts.
+- The public September 2026 reports are corroborated by Apple build artifacts and by independent emulator-level A14 SPTM boot evidence (`EVD-0037`).
 
 ## What this does not establish
 
@@ -80,6 +92,9 @@ The build-level evidence resolves the contradiction: **the A14 / 24A446 images f
 - No Apple source specific to 24A446 narrates the mechanism change; the finding is inferred from the build artifacts plus Apple's mechanism documentation.
 - The supporting secondary sources are community/tooling reports; the contradictory Apple page carries a January 2026 date and is not listed as updated after that, and the contradictory survey and tracker may be imprecise.
 - The A13/A14 grouping in public reports may hide device- or build-specific differences.
+- The independent emulator evidence is from build 24A437 on a different toolchain, not from a physical device running 24A446 (`EVD-0037`).
+- Cross-SoC string-family similarities do not establish code-level equivalence or that the same TLB fix applies to A14 (`EVD-0036`).
+- Public tooling projects' TXM treatment of A14 devices is tooling-level and not a physical-device SPTM measurement (`EVD-0038`).
 
 ## Next steps
 

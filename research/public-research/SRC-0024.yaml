@@ -1,0 +1,35 @@
+schema_version: 1
+id: SRC-0024
+title: "ModStaller: iOS sideloading tool with TXM/SPTM JIT support"
+authors:
+  - "Crafttino21"
+source_type: repository
+url: "https://github.com/Crafttino21/ModStaller"
+published_at: "2026-10-24"
+accessed_at: "2026-11-12"
+source_scope:
+  devices:
+    - "iPhone 12 series (A14)"
+    - "iPhone 11 series (A13)"
+    - "M1 iPad"
+  socs:
+    - "A13"
+    - "A14"
+    - "M1"
+  os_versions:
+    - "iOS 26"
+    - "iOS 27"
+  builds: []
+claims:
+  - "The supported-device table lists A14 iPhone 12 series and A13 iPhone 11 series as 'TXM/SPTM from iOS 27', with the A14 row marked expected/untested."
+  - "The README says that from iOS 27 on, iOS treats every supported device like a TXM device, and JIT on TXM/SPTM devices requires the breakpoint protocol."
+  - "The JIT section describes a per-page debugger-write protocol for TXM/SPTM devices rather than the older single debugger-attach behavior."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0038
+  notes:
+    - "Tooling-level documentation, not a direct protection-state measurement."
+    - "The combined TXM/SPTM column is ambiguous; the A14 row is expected/untested, not a device test."
+    - "It supports the public pattern that iOS 27 treats A13/A14/M1 as TXM devices, but it does not establish SPTM activation or enforcement on A14."
+license_or_terms: "GPL-3.0 (per repository); short factual excerpts only."

@@ -1,0 +1,23 @@
+schema_version: 1
+id: EVD-0038
+class: secondary
+state: observed
+claim: "ModStaller lists A14 iPhone 12 series and A13 iPhone 11 series as 'TXM/SPTM from iOS 27' and says iOS 27 treats every supported device like a TXM device; Azahar adds an iOS 27 A13/A14/M1 TXM detection fix that checks additional firmware paths for Ap,TrustedExecutionMonitor.img4."
+source:
+  type: public-repository-documentation
+  locator: "https://github.com/Crafttino21/ModStaller and https://github.com/star-studios-official/azahar/blob/master/JIT_IMPLEMENTATION.md"
+  published_at: "2026-10-24"
+  accessed_at: "2026-11-12"
+  target_scope:
+    - "A13"
+    - "A14"
+    - "M1"
+    - "iOS 27"
+artifact: null
+limitations:
+  - "Tooling-level documentation, not a direct protection-state measurement."
+  - "ModStaller's combined TXM/SPTM column is ambiguous, and its A14 row is marked expected/untested."
+  - "Azahar's firmware-path detection indicates an expected TXM path, not proof that SPTM is active or enforcing."
+  - "The tools' behavior may reflect compatibility heuristics rather than a measured A14 SPTM/TXM configuration."
+related_cases:
+  - CASE-0001

@@ -40,7 +40,13 @@ Create one YAML file per evidence record using `schemas/evidence-record.schema.j
 | `EVD-0032` | `thread_set_state_internal` adds the debugger entitlement in three paths | derived | observed |
 | `EVD-0033` | `vm_map_remap` and `vm_object_update` add validation and pl_req accounting | derived | observed |
 | `EVD-0034` | ANE function-start alignment resolves seven vtable slot reorderings | derived | observed |
+| `EVD-0035` | 24A446 A14 DeviceTree/iBoot contain SPTM/TXM boot-configuration references | primary | observed |
+| `EVD-0036` | A14/T8150 SPTM versions, UUIDs, sizes, and 24B119 TLB-fix string family | primary | observed |
+| `EVD-0037` | darwin-vm reports an A14/T8101 iOS 27.0 SPTM/TXM emulator boot | secondary | observed |
+| `EVD-0038` | ModStaller and Azahar treat A13/A14/M1 iOS 27 devices as TXM | secondary | observed |
 
 `EVD-0010`, `EVD-0012`, `EVD-0014`, `EVD-0016`, and `EVD-0017` are the build-level mechanism evidence for the four iPhone 12-family A14 product types; `EVD-0018` and `EVD-0019` link the iPhone13,1 manifest declarations to the extracted installed payload bytes; `EVD-0020` resolves the restore-role digest difference as a fourcc retag at the IM4P level. They are not runtime measurements. `EVD-0002`, `EVD-0003`, and `EVD-0009` are retained as the pre-iOS 27/counter-evidence view.
+
+`EVD-0035` and `EVD-0036` extend the A14 build-level mechanism evidence beyond packaging: the 24A446 DeviceTree and iBoot contain TXM/SPTM boot-configuration references, and the A14 SPTM is a per-SoC payload whose 24B119 build contains the TLB-race-fix string family described by public T8150 research. `EVD-0037` records an independent emulator-level A14 SPTM boot on a different build (24A437), and `EVD-0038` records tooling-level A13/A14/M1 TXM behavior. None of these is a physical-device runtime measurement or a CVE attribution.
 
 `EVD-0021` through `EVD-0026` are the 27.0.1-to-27.2 differential baseline for `CASE-0004`. They record build identity, manifest changes, kernelcache and kext UUID changes, SPTM/TXM payload changes, and advisory counts. `EVD-0027` and `EVD-0028` add the first normalized function-level comparison of the kernel and the two triaged kexts. `EVD-0029` through `EVD-0031` add the targeted exception-port, AVE2, and ANE follow-up. `EVD-0032` and `EVD-0033` add the thread-state entitlement and VM structural follow-up. `EVD-0034` adds the ANE function-start alignment that resolves seven slot reorderings and qualifies the earlier PMSettingObject label as a signature-set coverage artifact (xnu-only map) rather than a full-map label. None of these records attributes a CVE to a changed function or establishes exploitability.

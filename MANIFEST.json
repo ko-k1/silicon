@@ -417,8 +417,8 @@
     },
     {
       "path": "research/cases/CASE-0001/case.yaml",
-      "bytes": 8784,
-      "sha256": "b6bce9c8c247644a28d4a43ff755afdc50484aeba90be4996e281251fd04926b"
+      "bytes": 10005,
+      "sha256": "215f26df31e6b1bf7ee1a4a9a15c706a84ba390aa826213e980491307d4fd5f6"
     },
     {
       "path": "research/cases/CASE-0001/hypothesis.md",
@@ -427,8 +427,8 @@
     },
     {
       "path": "research/cases/CASE-0001/report.md",
-      "bytes": 11701,
-      "sha256": "cd3af91cbf0a32ec3f234f9977c880d1438129a84b99505273d17fea015dc731"
+      "bytes": 15439,
+      "sha256": "2cd55fb0da4f42c8b8f8532907854308c7463f1b02ee909c82b2c7c6b4f6e33b"
     },
     {
       "path": "research/cases/CASE-0002/case.yaml",
@@ -462,8 +462,8 @@
     },
     {
       "path": "research/cases/CASE-0004/case.yaml",
-      "bytes": 11410,
-      "sha256": "0e5e8859a90cf1215a8732e13fda78dfd513dfee249244468815c325c9cf0b07"
+      "bytes": 11425,
+      "sha256": "ba1d9e45b428e477969fb849901cb70724465a2c719b131e64ce6d2af2615825"
     },
     {
       "path": "research/cases/CASE-0004/hypothesis.md",
@@ -672,13 +672,13 @@
     },
     {
       "path": "research/evidence/README.md",
-      "bytes": 4904,
-      "sha256": "be6b0b06d5954666493b88ce2f95147bfcbddebdef8c3b7a3b96368429a6ca89"
+      "bytes": 5868,
+      "sha256": "459787151f086e2be54a88e9d2f807929c4a8a96f537b22bb3fc50e36e28b238"
     },
     {
       "path": "research/public-research/README.md",
-      "bytes": 2719,
-      "sha256": "4a93598cc438628ad4a91894559f81ac01a6e6ac6d69c4321d1648212fe1ad67"
+      "bytes": 3572,
+      "sha256": "60b93d4d53c8b7990715cf168f92a8459a173dfbeb7cbdde221b031a93a2b033"
     },
     {
       "path": "research/public-research/SRC-0001.yaml",
@@ -932,8 +932,8 @@
     },
     {
       "path": "validation/README.md",
-      "bytes": 2591,
-      "sha256": "92e575d99f6f75f61343309c843127bafd8646377f27191da432d2cf2128639b"
+      "bytes": 2867,
+      "sha256": "ead6274c25351019d14c45f4756f6fd19bc787caa002b30a4975fb77a69934ed"
     },
     {
       "path": "validation/fixtures/.gitkeep",

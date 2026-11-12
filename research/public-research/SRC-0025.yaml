@@ -1,0 +1,30 @@
+schema_version: 1
+id: SRC-0025
+title: "Azahar iOS JIT implementation notes - iOS 27 A13/A14/M1 TXM detection"
+authors:
+  - "star-studios-official"
+source_type: repository
+url: "https://github.com/star-studios-official/azahar/blob/master/JIT_IMPLEMENTATION.md"
+published_at: "2026-08-26"
+accessed_at: "2026-11-12"
+source_scope:
+  devices:
+    - "iPhone with A13/A14/M1"
+  socs:
+    - "A13"
+    - "A14"
+    - "M1"
+  os_versions:
+    - "iOS 27"
+  builds: []
+claims:
+  - "The document adds an iOS 27 TXM detection fix for A13/A14/M1 chips by checking additional firmware paths for Ap,TrustedExecutionMonitor.img4."
+  - "It says apps requiring JIT on iOS 27 with these chips may need their own patches."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0038
+  notes:
+    - "Implementation note for a JIT tool; not a direct SPTM/TXM measurement."
+    - "The added firmware paths indicate that A13/A14/M1 iOS 27 devices are expected to have a TXM firmware path, but do not establish that SPTM is active."
+license_or_terms: "GPLv2 or later (per document); short factual excerpts only."

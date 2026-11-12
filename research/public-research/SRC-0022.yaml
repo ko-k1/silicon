@@ -1,0 +1,38 @@
+schema_version: 1
+id: SRC-0022
+title: "Anatomy of an SPTM TLB-Invalidation Race Fix (iOS 27.2 beta 1 to beta 3, iPhone18,4/T8150)"
+authors:
+  - "IvanIVGrozny"
+source_type: repository-write-up
+url: "https://github.com/IvanIVGrozny/iOS27.0.1-SPTM-Research"
+published_at: "2026-10-21"
+accessed_at: "2026-11-12"
+source_scope:
+  devices:
+    - "iPhone18,4 (iPhone Air)"
+  socs:
+    - "T8150"
+  os_versions:
+    - "iOS 27.0.1"
+    - "iOS 27.2 beta 1"
+    - "iOS 27.2 beta 3"
+  builds:
+    - "24A446"
+    - "24B5084k"
+    - "24B5099f"
+claims:
+  - "The repository analyzes SPTM address-translation code changes between iOS 27.2 beta 1 (24B5084k) and beta 3 (24B5099f) on iPhone Air (T8150)."
+  - "It describes a per-CPU mutual-exclusion gate, memory barriers, GMMU TLBI verification, and a new 'Failed to verify TLBI' panic around UAT stage-2 mapping mutations."
+  - "It reports the 27.2b1 SPTM __text as 0x61340 and the 27.2b3 SPTM __text as 0x62038, with new uat_dekker, uat_sync_outer_tlb_sapt_flush, and gmmu-tlbi-verification strings."
+  - "Its corpus table lists SPTM 820.40.18 for 27.0.1 and 27.2b1, and SPTM 820.40.23 for 27.2b3; the 27.0.1 row is not reproduced by direct extraction of the 24A446 T8150 payload, which is SPTM 820.0.22."
+silicon_assessment:
+  applicability: comparative-only
+  evidence_ids:
+    - EVD-0036
+  notes:
+    - "The target is T8150, not A14; the analysis is used only as a comparison for the A14 24B119 SPTM string family."
+    - "The 24B119 A14 SPTM contains the same new uat_dekker, uat_sync_outer_tlb_sapt_flush, verify-gmmu-tlbis-at-sync, and gmmu-tlbi-verification string family described here."
+    - "The 24A446 A14 SPTM does not contain those strings, so the A14 24A446 and 24B119 SPTM payloads are structurally different."
+    - "The README's 27.0.1 SPTM version row conflicts with the primary 24A446 payload extraction; the primary artifact value is 820.0.22."
+    - "This source does not establish A14 runtime state, CVE attribution, exploitability, or a bypass."
+license_or_terms: "Author's repository terms; short factual excerpts only."

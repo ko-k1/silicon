@@ -1,0 +1,44 @@
+schema_version: 1
+id: EVD-0035
+class: primary
+state: observed
+claim: "The iOS 27.0.1 (24A446) iPhone13,1 DeviceTree contains chosen:txm-secure-channel = 1 and a dart-sep TXM secure-channel base/size of 0x4000; its iBoot contains SPTM/TXM layout strings including lay_out_sptm_objects, sptm-path, txm-path, SPTM-uuid-offset, SPTM, kernel-ctrr-to-be-enabled, and ctrr-a through ctrr-d. The iOS 27.2 (24B119) iPhone13,1 DeviceTree still contains chosen:txm-secure-channel = 1."
+source:
+  type: apple-device-tree-and-iboot
+  locator: "Firmware/all_flash/DeviceTree.d52gap.im4p and Firmware/all_flash/iBoot.d52g.RELEASE.im4p inside the iPhone13,1 24A446 and 24B119 restore images"
+  published_at: "2026-09-28"
+  accessed_at: "2026-11-12"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  files:
+    - name: "DeviceTree.d52gap.im4p (24A446)"
+      sha256: "f6994c0a19f5afb0e1fc20a604c873afc399a5901d4e5eeab169005748ea24cf"
+      bytes: 46846
+      decompressed_sha256: "1336275e7a908880156d416125f212b915b47715b5a390a33d240e7b11c0e951"
+      decompressed_bytes: 247756
+    - name: "iBoot.d52g.RELEASE.im4p (24A446)"
+      sha256: "f3f47fc407dffce6156b8bb82c49e371cb5b459eea6c8c61fc06aa29f538be68"
+      bytes: 1073996
+      decompressed_sha256: "0732f98fbd163c2003e54165a7f39e70a1c75fc74b0d7263fc8625e08a9422da"
+      decompressed_bytes: 2179192
+    - name: "DeviceTree.d52gap.im4p (24B119)"
+      sha256: "ff4c56597d84781f2ab2836bd59bb7e353777b1c6eae8813845fd0ca81bcf92c"
+      bytes: 46841
+limitations:
+  - "DeviceTree properties and iBoot strings establish build/boot configuration references, not runtime selection or enforcement."
+  - "The strings were read from the decompressed images; no code-path or control-flow proof is provided."
+  - "No code-signature or trust evaluation was performed."
+  - "The raw images are not committed; hashes and extracted observations are recorded instead."
+  - "The 24B119 DeviceTree check covers the chosen TXM property only; a full 24B119 iBoot string comparison was not performed."
+related_evidence:
+  - EVD-0010
+  - EVD-0012
+  - EVD-0036
+related_cases:
+  - CASE-0001

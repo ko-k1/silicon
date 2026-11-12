@@ -3,7 +3,7 @@ id: CASE-0001
 title: "Page-table protection mechanism for A14 / iOS 27.0.1 (24A446)"
 status: analyzed
 created_at: "2026-11-05T08:38:54+09:00"
-updated_at: "2026-11-10T12:38:30+09:00"
+updated_at: "2026-11-12T12:40:00+09:00"
 target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
 owner: null
 reviewer: null
@@ -54,6 +54,10 @@ evidence:
     - EVD-0018
     - EVD-0019
     - EVD-0020
+    - EVD-0035
+    - EVD-0036
+    - EVD-0037
+    - EVD-0038
   counter:
     - EVD-0002
     - EVD-0003
@@ -70,7 +74,11 @@ analysis:
     - image4-payload-inspection
     - restore-variant-digest-comparison
     - macho-header-inspection
+    - device-tree-inspection
+    - iboot-string-inspection
     - cross-product-build-check
+    - cross-soc-payload-comparison
+    - public-source-review
     - contradiction-analysis
   artifacts:
     - "BuildManifest.plist from iPhone13,1_27.0.1_24A446_Restore.ipsw (sha256 f929ea00c7846fa2960d9b8bceeafcc0a93572daf3b595b1ce3cc9f481d3734f; not committed)"
@@ -80,6 +88,10 @@ analysis:
     - "kernelcache.release.iphone13 (IM4P) from the iPhone13,1, iPhone13,2/3, and iPhone13,4 images; all three copies sha256 15549697de8054b02321a224e3062861f46763256b28056d392b36b4bfbb6ced; decompressed Mach-O sha256 76e0da7892f11a1ff7265cf217306c1211434682a2f398f6bfd7a042d7611fd4; not committed"
     - "Firmware/sptm.t8101.release.im4p from the iPhone13,1 image; sha256 fd020710ee88becc1b3da1e8156e73fe69aaa094166d3705f811040c237503bb; sha384 3d99f0041b42c5c5e70f97281533914231d0d1d2709a98f28117149c27523d0c388645e808dabd4597a532d4c090844f; decompressed Mach-O sha256 e531396c674ad1be1c8677d1ea283e9be8726cf4cf52598fa68f23e906bad81a; not committed"
     - "Firmware/txm.iphoneos.release.im4p from the iPhone13,1 image; sha256 b81fb0c2db25d77055639bfdf8d1dc4610f31cde914f77d873e757c7405c65ff; sha384 6b5c4cc10785a68743b80af7b5a7fc6846fef4fb12c197e85aa5709e199753c3a4e798c98ba5d3e938f974b40f28796f; decompressed Mach-O sha256 e058931840ac000f6d050578fd7fc4ddb8c640125d92a713f61433be793fbf04; not committed"
+    - "Firmware/all_flash/DeviceTree.d52gap.im4p from the iPhone13,1 24A446 image; sha256 f6994c0a19f5afb0e1fc20a604c873afc399a5901d4e5eeab169005748ea24cf; decompressed sha256 1336275e7a908880156d416125f212b915b47715b5a390a33d240e7b11c0e951; not committed"
+    - "Firmware/all_flash/iBoot.d52g.RELEASE.im4p from the iPhone13,1 24A446 image; sha256 f3f47fc407dffce6156b8bb82c49e371cb5b459eea6c8c61fc06aa29f538be68; decompressed sha256 0732f98fbd163c2003e54165a7f39e70a1c75fc74b0d7263fc8625e08a9422da; not committed"
+    - "Firmware/sptm.t8150.release.im4p from the iPhone18,4 24A446 image; sha256 a1cbf38a76d24782c4b190f325001ebd6dc348cfc1af95eaaf4fc20a47431543; decompressed Mach-O sha256 d4b9a9db5d383734585a075da7afdd38a72ec7f5d43dbbd54708f07841fd5734; not committed"
+    - "Firmware/sptm.t8150.release.im4p from the iPhone18,4 24B119 image; sha256 4a21de2683b3944039ce1ca0977d69c2705585f45b5658fcc67b9d755c0ed9d6; decompressed Mach-O sha256 995affca44c65058814bf6b5ba1e93cd66198ce94f8bbfd7ff061951bc318c4f; not committed"
   tools:
     - python-3.14.9
     - remotezip-0.12.6
@@ -99,6 +111,7 @@ validation:
     - VAL-0006
     - VAL-0007
     - VAL-0008
+    - VAL-0018
 conclusion:
   state: inferred
   confidence: high
