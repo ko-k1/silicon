@@ -43,9 +43,10 @@ The question is what changed between the two builds and which advisory component
 | `EVD-0028` | AVE2 913.43.1 -> 913.64.1; ANE 10.19.6 -> 10.102.4; function-level counts |
 | `EVD-0029` | Exception-port validation adds a `com.apple.security.cs.debugger` query |
 | `EVD-0030` | AVE2 adds three named validation routines with HEVC VPS, MCTF, and LRME range checks |
-| `EVD-0031` | ANE raw vtable count qualification and symbol-map misattribution |
+| `EVD-0031` | ANE raw vtable count qualification, exact-start name split, and signature-set qualification |
 | `EVD-0032` | `thread_set_state_internal` adds the same debugger entitlement in three paths |
 | `EVD-0033` | `vm_map_remap` and `vm_object_update` add validation and pl_req accounting |
+| `EVD-0034` | ANE function-start alignment resolves seven vtable slot reorderings |
 
 Derived summaries are committed under `analysis/differential/`. Raw IPSWs, manifests, and extracted payloads are not committed.
 
@@ -93,7 +94,7 @@ Exact normalization masks absolute branch targets and `adrp`/`add` page-offset p
 
 The 222 structural names are a candidate inventory, not a CVE attribution. They include IPC and port paths (`ipc_kmsg_copyin_from_user`, `ipc_is_valid_exception_port`, `ipc_right_lookup_read`, `set_exception_ports_validation`), VM paths (`vm_fault_internal`, `vm_map_remap`, `vm_object_update`, `vm_object_iopl_request`), process and exception paths (`task_create_internal`, `thread_set_state_internal`, `exception_deliver`, `posix_spawn`, `forkproc`), filesystem paths (`fsctl_internal`, `renameat_internal`, `vn_open_auth`), and networking paths (`necp_client_parse_parameters`, `pf_test_rule`, `bpfdetach`, `uipc_send`). No function is mapped to one of the 15 Kernel CVEs.
 
-The two triaged kexts also change at the function level. `AppleAVE2` changes from 913.43.1 to 913.64.1 with 2,995/2,998 function starts, 1,222 exact-normalized matches, and 2,963 shape-normalized matches. Its vtable comparison maps 45 slots: 21 unchanged, 24 constant-only, and 0 structural. `AppleH11ANEInterface` changes from 10.19.6 to 10.102.4 with 4,902/5,043 starts, 3,080 exact matches, and 4,662 shape matches. Its raw vtable comparison maps 737 slots: 417 unchanged, 265 constant-only, and 55 raw structural across 34 unique target pairs; ANE also adds three classes. The 55 raw slots are not a method-change count: name-aware classification gives 11 same-name/same-slot rows with changed bodies (7 unique target pairs), 20 one-sided-name rows (11 unique pairs), and 24 unnamed rows (16 unique pairs). Vtable counts skip external or unmapped targets, so they are not a complete method inventory. 47 of 267 `ipsw` kext records change version; none are added or removed. The MH_FILESET has 250 entries, so the two kext counts are not interchangeable.
+The two triaged kexts also change at the function level. `AppleAVE2` changes from 913.43.1 to 913.64.1 with 2,995/2,998 function starts, 1,222 exact-normalized matches, and 2,963 shape-normalized matches. Its vtable comparison maps 45 slots: 21 unchanged, 24 constant-only, and 0 structural. `AppleH11ANEInterface` changes from 10.19.6 to 10.102.4 with 4,902/5,043 starts, 3,080 exact matches, and 4,662 shape matches. Its raw vtable comparison maps 737 slots: 417 unchanged, 265 constant-only, and 55 raw structural across 34 unique target pairs; ANE also adds three classes. The 55 raw slots are not a method-change count: exact-start name-aware classification gives 11 same-name/same-slot rows with changed bodies (7 unique target pairs), 8 one-sided-name rows (4 unique pairs), and 36 both-unnamed rows (23 unique pairs); function-start alignment then resolves seven pairs as slot reordering (`EVD-0034`). Vtable counts skip external or unmapped targets, so they are not a complete method inventory. 47 of 267 `ipsw` kext records change version; none are added or removed. The MH_FILESET has 250 entries, so the two kext counts are not interchangeable.
 
 ### Targeted follow-up
 
@@ -119,7 +120,7 @@ The routines contain unsigned range checks with limits including `0x40`/`0x41` (
 | `AVE_Client_CheckMCTFInfo` | 13 | layer 1..2; sub-layer <8; temporal layers <8; VPS count fields; `num_add_layer_sets` <65; SPS count <=6; `log2_max_pic_order_cnt_lsb_minus4` <=12; MCTF strength <3; LookAhead <21; DLB |
 | `AVE_Client_CheckLRMEInfo` | 10 | layer 1..2; sub-layer 1..7; temporal layers <8; VPS count fields; `num_add_layer_sets` <65; SPS count <=6; `log2_max_pic_order_cnt_lsb_minus4` <=12; LookAhead <21; DLB |
 
-The ANE symbol map is not authoritative. At `0xfffffff00a8e69e8` the 27.2 map names `PMSettingObject::pmSettingObject`, but the disassembly matches 27.0 `IOUserClient::sendAsyncResult` at `0xfffffff00a8a6888`; `sendAsyncResult` is absent from the 27.2 map. The 7 named changed-body ANE pairs are therefore candidate labels only: `ANEClientHintsUserClient::setProperties`, `ANEDriver::start`, `ANEHWDevice::start`, `ANEHWDevice::stop`, `ANEHWDevice::dartUnmapMemoryDescriptor`, `ANEScheduler::free`, and `ANEScheduler::init`.
+The earlier ANE symbol-map warning was rechecked. At `0xfffffff00a8e69e8` the xnu-only signature map names `PMSettingObject::pmSettingObject`, while the full xnu+kext signature map at the same commit names `IOUserClient::sendAsyncResult`, matching the 27.0 function at `0xfffffff00a8a6888`. The earlier claim that the map lacks `sendAsyncResult` is true only for the xnu-only map; this is a signature-set coverage artifact. Overlaying the xnu-only new-build names on the full map reproduces the earlier 16 same-slot-different-name rows exactly; they are not 16 method replacements. Function-start alignment of the 55 structural rows (32 unique old and 34 unique new functions) resolves seven pairs as slot reordering, including `ANEHWDevice::ReleaseDebugWorkProcessor` and `ANEHWDevice::ANE_RegisterDebugWorkProcessor` moving from slots 225/226 to 229/230 in `ANEHWDevice` and `H11ANEIn`. Seven pairs remain same-name/same-slot body changes: `ANEClientHintsUserClient::setProperties`, `ANEDriver::start`, `ANEHWDevice::start`, `ANEHWDevice::stop`, `ANEHWDevice::dartUnmapMemoryDescriptor`, `ANEScheduler::free`, and `ANEScheduler::init`. Eighteen old and twenty new functions remain unresolved because they are unnamed and their body hashes are ambiguous or absent. `ANEHWDevice`/`H11ANEIn` grow from 232 to 236 slots and `ANEDeviceInterface` from 222 to 226, so same-index comparisons after the insertion are spurious. No CVE is mapped.
 
 ### SPTM and TXM
 
@@ -180,18 +181,18 @@ The differential baseline is **observed** with high confidence for the narrow bu
 
 ## Impact assessment
 
-No vulnerability, exploitability, or protection-bypass impact is claimed. The practical value is a prioritized, reproducible target list: the kernel proper has 222 structural named candidates, AVE2 has three new range-check routines, and ANE has seven named changed-body candidate pairs plus unresolved vtable rows. WebKit and ImageIO require a different acquisition path because their binaries are in encrypted cryptexes.
+No vulnerability, exploitability, or protection-bypass impact is claimed. The practical value is a prioritized, reproducible target list: the kernel proper has 222 structural named candidates, AVE2 has three new range-check routines, and ANE has seven named changed-body candidate pairs, seven resolved slot reorderings, and 18 old/20 new unresolved functions. WebKit and ImageIO require a different acquisition path because their binaries are in encrypted cryptexes.
 
 ## Reproducibility and limitations
 
-- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff), `VAL-0014` (targeted exception-port, AVE2, and ANE follow-up), `VAL-0015` (thread-state and VM decompilation follow-up), `VAL-0016` (AVE2 branch-check mapping).
-- Derived JSON: `analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json`, `...-kernelcache.json`, `...-sptm-txm.json`, `...-kernel-functions.json`, `...-ave2-ane-functions.json`, `...-targeted-findings.json`.
+- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff), `VAL-0014` (targeted exception-port, AVE2, and ANE follow-up), `VAL-0015` (thread-state and VM decompilation follow-up), `VAL-0016` (AVE2 branch-check mapping), `VAL-0017` (ANE vtable row alignment).
+- Derived JSON: `analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json`, `...-kernelcache.json`, `...-sptm-txm.json`, `...-kernel-functions.json`, `...-ave2-ane-functions.json`, `...-ane-vtable-resolution.json`, `...-targeted-findings.json`.
 - Ghidra decompilation excerpts: `analysis/differential/ghidra/old-kernel/`, `.../new-kernel/`, and `.../ave2-new/`.
 - No device, no runtime measurement, no signature/trust evaluation.
 - Kernel is stripped; symbolicator names cover 5,318 functions at the same start in both images, leaving unmatched functions unresolved.
-- Symbolicator labels are not authoritative: `0xfffffff00a8e69e8` is named `PMSettingObject::pmSettingObject` in 27.2 but matches 27.0 `IOUserClient::sendAsyncResult`.
+- Symbolicator labels are candidate labels. The `PMSettingObject::pmSettingObject` example is a signature-set coverage artifact: it appears with the xnu-only signature set, while the full xnu+kext set names the same address `IOUserClient::sendAsyncResult`.
 - Function starts come from `ipsw` and are not guaranteed semantic boundaries; instruction-count changes are not proof of a semantic change.
-- The raw 55-slot ANE vtable change is not a method-change count; inherited slots, slot reordering, and parser alignment affect it.
+- The raw 55-slot ANE vtable change is not a method-change count; inherited slots, slot reordering, and parser alignment affect it. The revised one-sided and both-unnamed counts depend on the exact-start name rule; nearest-symbol or slot-index association produces different counts.
 - `thread_set_state_internal`, `vm_map_remap`, and `vm_object_update` are paired by symbolicator name; source-level equivalence is not established.
 - The `vm_map_remap` flag bits and `vm_object_update` field offsets are decompiler-derived and were not checked against kernel source.
 - The `vm_object_pl_req_begin`/`end` counter is an observed accounting change; its purpose and security relevance are not established.
@@ -204,7 +205,7 @@ No vulnerability, exploitability, or protection-bypass impact is claimed. The pr
 ## Next steps
 
 1. Finish the AVE2 check-routine review by mapping each branch to the corresponding HEVC/MCTF/LRME field and bound; the current pass records the checks but does not establish which input bug, if any, they address.
-2. Resolve the ANE one-sided and unnamed vtable rows by function-start alignment and direct call-site analysis, not by symbolicator labels alone.
+2. Treat the remaining 18 old and 20 new ANE functions as unresolved unless a stronger name source or call-site evidence becomes available; do not assign labels from nearest-symbol or slot-index association.
 3. Continue the highest-value kernel structural candidates. The exception-port and thread-state changes broaden accepted entitlements, so deprioritize them as fix candidates unless contrary evidence appears. `vm_map_remap` and `vm_object_update` now have concrete observed changes; the next step is to test whether either aligns with a specific advisory description without asserting attribution.
 4. Map a changed function to a 27.2 Kernel CVE only where the advisory description, strings, call sites, or other evidence support the attribution.
 5. Keep WebKit and ImageIO out of binary conclusions unless a lawful unencrypted source becomes available.
@@ -220,5 +221,5 @@ No new vulnerability is claimed. All inputs are public Apple restore images and 
 - `SRC-0004` - Apple security releases index
 - `SRC-0020` - Apple security content of iOS 27.2 / iPadOS 27.2
 - `SRC-0021` - Apple security content of iOS 27.2.1 / iPadOS 27.2.1
-- `EVD-0021` through `EVD-0033`
-- `VAL-0009` through `VAL-0016`
+- `EVD-0021` through `EVD-0034`
+- `VAL-0009` through `VAL-0017`

@@ -1,0 +1,42 @@
+schema_version: 1
+id: VAL-0017
+case_id: CASE-0004
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-12T11:40:00+09:00"
+environment:
+  type: offline
+  description: "Offline function-start alignment of the AppleH11ANEInterface vtable rows from the two recorded IPSWs. No device was connected."
+  tool_versions:
+    ipsw: "v0.0.0-prerelease, BuildCommit 0983ab4cb"
+    llvm_objdump: "LLVM 23.1.4"
+    symbolicator: "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950"
+    python: "3.14.9"
+    pyyaml: "repository validation environment"
+inputs:
+  - name: "AppleH11ANEInterface extracted from 24A446 kernelcache"
+    sha256: "9910a96765d85797408ed0d125d67897c6f649d2257858d002fac9123f7abbe1"
+  - name: "AppleH11ANEInterface extracted from 24B119 kernelcache"
+    sha256: "5a1da0fbdb2e66d230b8eb99685a2d864cf1b8c907101a3f5859453e5d3148a6"
+expected_outcome: "The 55 structural vtable rows should be separated into same-name/same-slot body changes, slot-reordered functions, and unresolved functions. A row should be called reordered only when a unique exact-normalized or shape-normalized body match places the same function at a different slot. Names should be assigned only at symbolicated function starts."
+observed_outcome: "The rows contain 32 unique old functions and 34 unique new functions. Seven pairs are confirmed slot reorderings, including ANEHWDevice::ReleaseDebugWorkProcessor and ANEHWDevice::ANE_RegisterDebugWorkProcessor moving from slots 225/226 to 229/230. Seven pairs are same-name/same-slot body changes. The remaining 18 old and 20 new functions are unresolved. ANEHWDevice and H11ANEIn grow from 232 to 236 slots and ANEDeviceInterface from 222 to 226. The xnu-only signature map names 0xfffffff00a8e69e8 PMSettingObject::pmSettingObject, while the full xnu+kext map names it IOUserClient::sendAsyncResult; the earlier label is a signature-set coverage artifact, and overlaying the xnu-only new-build names on the full map reproduces the earlier 16 same-slot-different-name rows exactly."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The function-start alignment is reproducible from the recorded IPSWs and symbolicator commit. It corrects the earlier name-aware split, resolves the four one-sided debug-work-processor rows as slot reordering, and qualifies the PMSettingObject label as a signature-set coverage artifact. Unresolved functions are left unnamed."
+reproduction:
+  - "Extract AppleH11ANEInterface from each kernelcache with ipsw kernel extract."
+  - "Generate function starts with ipsw macho info -f and disassemble with llvm-objdump -d --no-show-raw-insn --arch=arm64e."
+  - "Generate symbol maps with ipsw kernel sym --json --signatures <symbolicator>/kernel at commit 08dbc783663750530d655cb88c1e755aefa10950."
+  - "Dump vtables with ipsw kernel cpp --json --methods -e com.apple.driver.AppleH11ANEInterface."
+  - "Group instructions by function start, normalize exact and shape bodies, and accept a counterpart only when the opposite build has exactly one matching start."
+  - "Compare the result with analysis/differential/ios27.2-vs-27.0.1-ane-vtable-resolution.json and EVD-0034."
+limitations:
+  - "The kext is stripped; names are signature-derived candidate labels."
+  - "Shape-normalized matching ignores immediate values and can match unrelated boilerplate; unique matches are stronger evidence but not source-level proof."
+  - "Vtable slot numbers are parser output and are affected by inherited slots and alignment."
+  - "The raw binaries are not committed; hashes and commands are recorded instead."
+  - "No CVE is mapped and no vulnerability, exploitability, or protection-bypass conclusion is established."
+  - "No device was connected; runtime dispatch was not measured."
+related_evidence:
+  - EVD-0031
+  - EVD-0034

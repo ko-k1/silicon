@@ -558,23 +558,77 @@
       "unique_target_pairs": 34
     },
     "name_aware_classification": {
+      "name_rule": "a target is named only when it equals a symbolicated function start; nearest-symbol lookup is not used",
       "same_name_same_slot_changed_body": {
         "rows": 11,
         "unique_target_pairs": 7
       },
       "one_sided_name": {
-        "rows": 20,
-        "unique_target_pairs": 11,
-        "note": "Includes slot reordering: four method names appear at different slots in the two builds."
+        "rows": 8,
+        "unique_target_pairs": 4,
+        "note": "All eight rows resolve to two slot-moved methods: ANEHWDevice::ReleaseDebugWorkProcessor and ANEHWDevice::ANE_RegisterDebugWorkProcessor."
       },
       "both_unnamed": {
-        "rows": 24,
-        "unique_target_pairs": 16
+        "rows": 36,
+        "unique_target_pairs": 23
       },
       "same_slot_different_name": {
-        "rows": 16,
-        "note": "All at inherited slot 71 across 16 classes; the new target is named PMSettingObject::pmSettingObject, but its disassembly matches IOUserClient::sendAsyncResult. This is a symbolicator misattribution or inherited-slot alignment issue, not evidence of 16 method replacements."
+        "rows": 0,
+        "note": "All 16 inherited slot-71 rows are IOUserClient::sendAsyncResult on both sides under the full xnu+kext map; the earlier PMSettingObject label comes from the xnu-only signature set and is not used in the full-map analysis."
+      },
+      "superseded": {
+        "note": "Original 2026-11-11 name-aware split; not reproducible under exact function-start symbolication, retained for provenance.",
+        "one_sided_name": {
+          "rows": 20,
+          "unique_target_pairs": 11
+        },
+        "both_unnamed": {
+          "rows": 24,
+          "unique_target_pairs": 16
+        },
+        "same_name_different_slot_rows": 12,
+        "same_slot_different_name_rows": 16
       }
+    },
+    "function_start_alignment": {
+      "artifact": "analysis/differential/ios27.2-vs-27.0.1-ane-vtable-resolution.json",
+      "unique_old_functions": 32,
+      "unique_new_functions": 34,
+      "named_same_slot_body_changes": 7,
+      "reordered_function_pairs": 7,
+      "unresolved_old_functions": 18,
+      "unresolved_new_functions": 20,
+      "both_unnamed_unresolved_row_pairs": 18,
+      "vtable_size_changes": {
+        "ANEHWDevice": {
+          "old": 232,
+          "new": 236
+        },
+        "H11ANEIn": {
+          "old": 232,
+          "new": 236
+        },
+        "ANEDeviceInterface": {
+          "old": 222,
+          "new": 226
+        }
+      },
+      "resolved_reordered_methods": [
+        {
+          "name": "ANEHWDevice::ReleaseDebugWorkProcessor(ipc_port*)",
+          "old_start": "0xfffffff0089c8a58",
+          "new_start": "0xfffffff0089f2790",
+          "old_slots": "ANEHWDevice/H11ANEIn 225",
+          "new_slots": "ANEHWDevice/H11ANEIn 229"
+        },
+        {
+          "name": "ANEHWDevice::ANE_RegisterDebugWorkProcessor(ANEDebugWorkProcessorRegistrationArgs*, unsigned long long*, void*)",
+          "old_start": "0xfffffff0089c673c",
+          "new_start": "0xfffffff0089f0474",
+          "old_slots": "ANEHWDevice/H11ANEIn 226",
+          "new_slots": "ANEHWDevice/H11ANEIn 230"
+        }
+      ]
     },
     "named_changed_body_candidates": [
       "ANEClientHintsUserClient::setProperties(OSObject*)",
@@ -585,18 +639,32 @@
       "ANEScheduler::free()",
       "ANEScheduler::init(ANEDriver&, ANEHWInterface&)"
     ],
-    "symbol_map_warning": {
+    "symbol_map_recheck": {
       "address": "0xfffffff00a8e69e8",
-      "new_label": "PMSettingObject::pmSettingObject(...)",
-      "actual_match": "The disassembly matches 27.0 IOUserClient::sendAsyncResult at 0xfffffff00a8a6888; the 27.2 symbol map does not contain sendAsyncResult.",
-      "implication": "Symbolicator labels are candidate labels only; at least one label is demonstrably wrong."
+      "old_address": "0xfffffff00a8a6888",
+      "full_map_old_symbol": "__ZN12IOUserClient15sendAsyncResultEPjiPPvj",
+      "full_map_new_symbol": "__ZN12IOUserClient15sendAsyncResultEPjiPPvj",
+      "xnu_only_map_new_symbol": "__ZN15PMSettingObject15pmSettingObjectEP14IOPMrootDomainPFiP8OSObjectPK8OSSymbolS3_mES3_mjPS6_PS3_",
+      "xnu_only_map_old_symbol": null,
+      "full_map_command": "ipsw kernel sym <kernelcache> --signatures <symbolicator>/kernel --lookup 0xfffffff00a8e69e8",
+      "xnu_only_command": "ipsw kernel sym <24B119 kernelcache> --signatures <directory containing only kernel/27.2/xnu.json> --lookup 0xfffffff00a8e69e8",
+      "result": "The earlier PMSettingObject::pmSettingObject label is reproducible with the xnu-only signature map. The full xnu+kext map at the same commit names the address IOUserClient::sendAsyncResult.",
+      "correction": "This is a signature-set coverage artifact: the xnu-only map does not carry the IOUserClient name at this address and assigns PMSettingObject. The full xnu+kext map is used for the row analysis. The earlier claim that the 27.2 symbol map lacks sendAsyncResult is true only for the xnu-only map.",
+      "xnu_only_signature_file": "kernel/27.2/xnu.json",
+      "full_map_note": "The full map includes xnu and kext signatures; the kext signature set supplies the IOUserClient::sendAsyncResult label at this address.",
+      "slot_71_reproduction": {
+        "merged_map_rows": 16,
+        "old_symbol": "__ZN12IOUserClient15sendAsyncResultEPjiPPvj (full old map)",
+        "new_symbol": "__ZN15PMSettingObject15pmSettingObjectEP14IOPMrootDomainPFiP8OSObjectPK8OSSymbolS3_mES3_mjPS6_PS3_ (xnu-only new map)",
+        "note": "Overlaying the xnu-only new-build names on the full map reproduces the earlier 16 same-slot-different-name rows exactly; this is a signature-precedence artifact, not 16 method replacements."
+      }
     },
     "new_classes": [
       "ANEPoolRefillMsg",
       "OSValueObject<ANEInferenceRequest*>",
       "OSValueObject<ANEMapRequest*>"
     ],
-    "interpretation": "The raw 55-slot count overstates method-level change because it compares by slot index and includes inherited-slot and symbol-name effects. The name-aware subset is 7 unique changed-body target pairs, with 11 one-sided and 16 unnamed pairs unresolved."
+    "interpretation": "The raw 55-slot count overstates method-level change because it compares by slot index and includes inherited-slot and symbol-name effects. Function-start alignment resolves seven function pairs as slot reordering, including the two named debug-work-processor methods, and leaves 18 old and 20 new functions unresolved. Seven named pairs are genuine same-name/same-slot body changes. Under the exact-start rule there are four old-only and four new-only rows, and all eight resolve to the two slot-moved methods; the earlier 20-row one-sided count is not reproduced."
   },
   "kernel_structural_followup": {
     "functions": [

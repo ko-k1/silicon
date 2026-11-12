@@ -1,0 +1,1177 @@
+{
+  "comparison": "iPhone13,1 iOS 27.0.1 (24A446) vs iOS 27.2 (24B119), AppleH11ANEInterface vtable row resolution",
+  "generated_at": "2026-11-12T11:30:00+09:00",
+  "tools": {
+    "ipsw": "v0.0.0-prerelease, BuildCommit 0983ab4cb",
+    "llvm-objdump": "LLVM 23.1.4",
+    "symbolicator": "blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950",
+    "kernel_function_diff": "engineering.analyzers.kernel_function_diff"
+  },
+  "inputs": {
+    "24A446": {
+      "AppleH11ANEInterface_sha256": "9910a96765d85797408ed0d125d67897c6f649d2257858d002fac9123f7abbe1",
+      "function_starts": 4902
+    },
+    "24B119": {
+      "AppleH11ANEInterface_sha256": "5a1da0fbdb2e66d230b8eb99685a2d864cf1b8c907101a3f5859453e5d3148a6",
+      "function_starts": 5043
+    }
+  },
+  "method": {
+    "vtable_source": "ipsw kernel cpp --json --methods -e com.apple.driver.AppleH11ANEInterface",
+    "function_starts": "ipsw macho info -f",
+    "disassembly": "llvm-objdump -d --no-show-raw-insn --arch=arm64e",
+    "symbols": "ipsw kernel sym --json --signatures <symbolicator>/kernel",
+    "alignment": "exact-normalized SHA-256, then shape-normalized SHA-256; a row is resolved only when the opposite build has exactly one matching function start",
+    "name_rule": "a target is named only when it equals a symbolicated function start; nearest-symbol lookup is not used"
+  },
+  "counts": {
+    "raw_structural_rows": 55,
+    "unique_row_pairs": 34,
+    "unique_old_functions": 32,
+    "unique_new_functions": 34,
+    "named_same_slot_body_changes": 7,
+    "reordered_function_pairs": 7,
+    "unresolved_old_functions": 18,
+    "unresolved_new_functions": 20
+  },
+  "named_same_slot_body_changes": [
+    {
+      "name": "__ZN24ANEClientHintsUserClient13setPropertiesEP8OSObject",
+      "old": {
+        "start": "0xfffffff008972378",
+        "name": "__ZN24ANEClientHintsUserClient13setPropertiesEP8OSObject",
+        "insns": 520,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEClientHintsUserClient",
+            "index": 44
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089af448",
+        "name": "__ZN24ANEClientHintsUserClient13setPropertiesEP8OSObject",
+        "insns": 524,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEClientHintsUserClient",
+            "index": 44
+          }
+        ]
+      },
+      "old_insns": 520,
+      "new_insns": 524,
+      "classes": [
+        "ANEClientHintsUserClient"
+      ]
+    },
+    {
+      "name": "__ZN9ANEDriver5startEP9IOService",
+      "old": {
+        "start": "0xfffffff00895f528",
+        "name": "__ZN9ANEDriver5startEP9IOService",
+        "insns": 493,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEDriver",
+            "index": 86
+          },
+          {
+            "class": "H1xANELoadBalancer",
+            "index": 86
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff008990b38",
+        "name": "__ZN9ANEDriver5startEP9IOService",
+        "insns": 623,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEDriver",
+            "index": 86
+          },
+          {
+            "class": "H1xANELoadBalancer",
+            "index": 86
+          }
+        ]
+      },
+      "old_insns": 493,
+      "new_insns": 623,
+      "classes": [
+        "ANEDriver",
+        "H1xANELoadBalancer"
+      ]
+    },
+    {
+      "name": "__ZN11ANEHWDevice5startEP9IOService",
+      "old": {
+        "start": "0xfffffff0089e9550",
+        "name": "__ZN11ANEHWDevice5startEP9IOService",
+        "insns": 4859,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 86
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 86
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff008a138c4",
+        "name": "__ZN11ANEHWDevice5startEP9IOService",
+        "insns": 4903,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 86
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 86
+          }
+        ]
+      },
+      "old_insns": 4859,
+      "new_insns": 4903,
+      "classes": [
+        "ANEHWDevice",
+        "H11ANEIn"
+      ]
+    },
+    {
+      "name": "__ZN11ANEHWDevice4stopEP9IOService",
+      "old": {
+        "start": "0xfffffff0089f6364",
+        "name": "__ZN11ANEHWDevice4stopEP9IOService",
+        "insns": 388,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 87
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 87
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff008a21040",
+        "name": "__ZN11ANEHWDevice4stopEP9IOService",
+        "insns": 391,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 87
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 87
+          }
+        ]
+      },
+      "old_insns": 388,
+      "new_insns": 391,
+      "classes": [
+        "ANEHWDevice",
+        "H11ANEIn"
+      ]
+    },
+    {
+      "name": "__ZN11ANEHWDevice25dartUnmapMemoryDescriptorEP12IODMACommandyjjm20ANEResourceUsageTypeP20RTBuddyVisibleMemoryb",
+      "old": {
+        "start": "0xfffffff0089c57bc",
+        "name": "__ZN11ANEHWDevice25dartUnmapMemoryDescriptorEP12IODMACommandyjjm20ANEResourceUsageTypeP20RTBuddyVisibleMemoryb",
+        "insns": 183,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 176
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 176
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089ef380",
+        "name": "__ZN11ANEHWDevice25dartUnmapMemoryDescriptorEP12IODMACommandyjjm20ANEResourceUsageTypeP20RTBuddyVisibleMemoryb",
+        "insns": 143,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 176
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 176
+          }
+        ]
+      },
+      "old_insns": 183,
+      "new_insns": 143,
+      "classes": [
+        "ANEHWDevice",
+        "H11ANEIn"
+      ]
+    },
+    {
+      "name": "__ZN12ANEScheduler4freeEv",
+      "old": {
+        "start": "0xfffffff0089660e4",
+        "name": "__ZN12ANEScheduler4freeEv",
+        "insns": 172,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEScheduler",
+            "index": 14
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff008998668",
+        "name": "__ZN12ANEScheduler4freeEv",
+        "insns": 189,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEScheduler",
+            "index": 14
+          }
+        ]
+      },
+      "old_insns": 172,
+      "new_insns": 189,
+      "classes": [
+        "ANEScheduler"
+      ]
+    },
+    {
+      "name": "__ZN12ANEScheduler4initER9ANEDriverR14ANEHWInterface",
+      "old": {
+        "start": "0xfffffff008964de4",
+        "name": "__ZN12ANEScheduler4initER9ANEDriverR14ANEHWInterface",
+        "insns": 732,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEScheduler",
+            "index": 15
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089972c0",
+        "name": "__ZN12ANEScheduler4initER9ANEDriverR14ANEHWInterface",
+        "insns": 734,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEScheduler",
+            "index": 15
+          }
+        ]
+      },
+      "old_insns": 732,
+      "new_insns": 734,
+      "classes": [
+        "ANEScheduler"
+      ]
+    }
+  ],
+  "reordered_function_pairs": [
+    {
+      "old": {
+        "start": "0xfffffff00898ac0c",
+        "name": null,
+        "insns": 35,
+        "alignment": "shape",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 219
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 219
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089c9114",
+        "name": null,
+        "insns": 35,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 222
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 222
+          }
+        ]
+      },
+      "evidence": "shape"
+    },
+    {
+      "old": {
+        "start": "0xfffffff0089c673c",
+        "name": "__ZN11ANEHWDevice30ANE_RegisterDebugWorkProcessorEP37ANEDebugWorkProcessorRegistrationArgsPyPv",
+        "insns": 36,
+        "alignment": "shape",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 226
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 226
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089f0474",
+        "name": "__ZN11ANEHWDevice30ANE_RegisterDebugWorkProcessorEP37ANEDebugWorkProcessorRegistrationArgsPyPv",
+        "insns": 36,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 230
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 230
+          }
+        ]
+      },
+      "evidence": "shape"
+    },
+    {
+      "old": {
+        "start": "0xfffffff0089c8670",
+        "name": null,
+        "insns": 74,
+        "alignment": "shape",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 222
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 222
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089f23a8",
+        "name": null,
+        "insns": 74,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 226
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 226
+          }
+        ]
+      },
+      "evidence": "shape"
+    },
+    {
+      "old": {
+        "start": "0xfffffff0089c8798",
+        "name": null,
+        "insns": 94,
+        "alignment": "shape",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 223
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 223
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089f24d0",
+        "name": null,
+        "insns": 94,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 227
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 227
+          }
+        ]
+      },
+      "evidence": "shape"
+    },
+    {
+      "old": {
+        "start": "0xfffffff0089c8910",
+        "name": null,
+        "insns": 82,
+        "alignment": "shape",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 224
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 224
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089f2648",
+        "name": null,
+        "insns": 82,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 228
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 228
+          }
+        ]
+      },
+      "evidence": "shape"
+    },
+    {
+      "old": {
+        "start": "0xfffffff0089c8a58",
+        "name": "__ZN11ANEHWDevice25ReleaseDebugWorkProcessorEP8ipc_port",
+        "insns": 756,
+        "alignment": "shape",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 225
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 225
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff0089f2790",
+        "name": "__ZN11ANEHWDevice25ReleaseDebugWorkProcessorEP8ipc_port",
+        "insns": 756,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 229
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 229
+          }
+        ]
+      },
+      "evidence": "shape"
+    },
+    {
+      "old": {
+        "start": "0xfffffff0089f8aa0",
+        "name": null,
+        "insns": 3,
+        "alignment": "exact",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 220
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 220
+          }
+        ]
+      },
+      "new": {
+        "start": "0xfffffff008a23788",
+        "name": null,
+        "insns": 3,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 224
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 224
+          }
+        ]
+      },
+      "evidence": "exact"
+    }
+  ],
+  "unresolved_functions": {
+    "old": [
+      {
+        "start": "0xfffffff0088edba8",
+        "name": null,
+        "insns": 2,
+        "alignment": "exact",
+        "aligned_candidate_count": 209,
+        "vtable_slots": [
+          {
+            "class": "ANEDeviceInterface",
+            "index": 218
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0088edbb0",
+        "name": null,
+        "insns": 2,
+        "alignment": "exact",
+        "aligned_candidate_count": 209,
+        "vtable_slots": [
+          {
+            "class": "ANEDeviceInterface",
+            "index": 220
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00895eea8",
+        "name": null,
+        "insns": 29,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEDriver",
+            "index": 0
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00895f268",
+        "name": null,
+        "insns": 29,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "H1xANELoadBalancer",
+            "index": 0
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089601b8",
+        "name": null,
+        "insns": 114,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEDriver",
+            "index": 87
+          },
+          {
+            "class": "H1xANELoadBalancer",
+            "index": 87
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008989b00",
+        "name": null,
+        "insns": 36,
+        "alignment": "shape",
+        "aligned_candidate_count": 3,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 181
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 181
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00898a17c",
+        "name": null,
+        "insns": 36,
+        "alignment": "shape",
+        "aligned_candidate_count": 3,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 184
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 184
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00898a224",
+        "name": null,
+        "insns": 35,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 185
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 185
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00898a2c8",
+        "name": null,
+        "insns": 35,
+        "alignment": "shape",
+        "aligned_candidate_count": 2,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 191
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 191
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00898ab70",
+        "name": null,
+        "insns": 35,
+        "alignment": "shape",
+        "aligned_candidate_count": 2,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 218
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 218
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00898ad78",
+        "name": null,
+        "insns": 3,
+        "alignment": "shape",
+        "aligned_candidate_count": 58,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 217
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c6b10",
+        "name": null,
+        "insns": 21,
+        "alignment": "shape",
+        "aligned_candidate_count": 3,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 227
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 227
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c6c50",
+        "name": null,
+        "insns": 22,
+        "alignment": "shape",
+        "aligned_candidate_count": 2,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 228
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 228
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c7824",
+        "name": null,
+        "insns": 22,
+        "alignment": "shape",
+        "aligned_candidate_count": 2,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 229
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 229
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c80f4",
+        "name": null,
+        "insns": 21,
+        "alignment": "shape",
+        "aligned_candidate_count": 5,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 230
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 230
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089f0448",
+        "name": null,
+        "insns": 123,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 117
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 117
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089f5728",
+        "name": null,
+        "insns": 21,
+        "alignment": "shape",
+        "aligned_candidate_count": 5,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 221
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 221
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089f8bdc",
+        "name": null,
+        "insns": 3,
+        "alignment": "shape",
+        "aligned_candidate_count": 58,
+        "vtable_slots": [
+          {
+            "class": "H11ANEIn",
+            "index": 217
+          }
+        ]
+      }
+    ],
+    "new": [
+      {
+        "start": "0xfffffff00891b030",
+        "name": null,
+        "insns": 3,
+        "alignment": "exact",
+        "aligned_candidate_count": 7,
+        "vtable_slots": [
+          {
+            "class": "ANEDeviceInterface",
+            "index": 218
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00891b0b4",
+        "name": null,
+        "insns": 3,
+        "alignment": "exact",
+        "aligned_candidate_count": 7,
+        "vtable_slots": [
+          {
+            "class": "ANEDeviceInterface",
+            "index": 220
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008990484",
+        "name": null,
+        "insns": 32,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEDriver",
+            "index": 0
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff00899086c",
+        "name": null,
+        "insns": 32,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "H1xANELoadBalancer",
+            "index": 0
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008991bcc",
+        "name": null,
+        "insns": 126,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEDriver",
+            "index": 87
+          },
+          {
+            "class": "H1xANELoadBalancer",
+            "index": 87
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c7b7c",
+        "name": null,
+        "insns": 37,
+        "alignment": "shape",
+        "aligned_candidate_count": 1,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 181
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 181
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c8344",
+        "name": null,
+        "insns": 37,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 184
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 184
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c8494",
+        "name": null,
+        "insns": 36,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 185
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 185
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c85e0",
+        "name": null,
+        "insns": 35,
+        "alignment": "shape",
+        "aligned_candidate_count": 2,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 191
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 191
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c9078",
+        "name": null,
+        "insns": 35,
+        "alignment": "shape",
+        "aligned_candidate_count": 3,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 221
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 221
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c91e0",
+        "name": null,
+        "insns": 50,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 223
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 223
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c937c",
+        "name": null,
+        "insns": 4,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 217
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c938c",
+        "name": null,
+        "insns": 4,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 218
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089c939c",
+        "name": null,
+        "insns": 3,
+        "alignment": "shape",
+        "aligned_candidate_count": 58,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 220
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff0089dffa4",
+        "name": null,
+        "insns": 34,
+        "alignment": "shape",
+        "aligned_candidate_count": 4,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 219
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 219
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008a1a86c",
+        "name": null,
+        "insns": 138,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 117
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 117
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008a20338",
+        "name": null,
+        "insns": 21,
+        "alignment": "shape",
+        "aligned_candidate_count": 5,
+        "vtable_slots": [
+          {
+            "class": "ANEHWDevice",
+            "index": 225
+          },
+          {
+            "class": "H11ANEIn",
+            "index": 225
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008a238c4",
+        "name": null,
+        "insns": 4,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "H11ANEIn",
+            "index": 217
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008a238d4",
+        "name": null,
+        "insns": 4,
+        "alignment": "none",
+        "aligned_candidate_count": 0,
+        "vtable_slots": [
+          {
+            "class": "H11ANEIn",
+            "index": 218
+          }
+        ]
+      },
+      {
+        "start": "0xfffffff008a238e4",
+        "name": null,
+        "insns": 3,
+        "alignment": "shape",
+        "aligned_candidate_count": 58,
+        "vtable_slots": [
+          {
+            "class": "H11ANEIn",
+            "index": 220
+          }
+        ]
+      }
+    ]
+  },
+  "symbol_map_recheck": {
+    "address": "0xfffffff00a8e69e8",
+    "old_address": "0xfffffff00a8a6888",
+    "full_map_old_symbol": "__ZN12IOUserClient15sendAsyncResultEPjiPPvj",
+    "full_map_new_symbol": "__ZN12IOUserClient15sendAsyncResultEPjiPPvj",
+    "xnu_only_map_new_symbol": "__ZN15PMSettingObject15pmSettingObjectEP14IOPMrootDomainPFiP8OSObjectPK8OSSymbolS3_mES3_mjPS6_PS3_",
+    "xnu_only_map_old_symbol": null,
+    "full_map_command": "ipsw kernel sym <kernelcache> --signatures <symbolicator>/kernel --lookup 0xfffffff00a8e69e8",
+    "xnu_only_command": "ipsw kernel sym <24B119 kernelcache> --signatures <directory containing only kernel/27.2/xnu.json> --lookup 0xfffffff00a8e69e8",
+    "result": "The earlier PMSettingObject::pmSettingObject label is reproducible with the xnu-only signature map. The full xnu+kext map at the same commit names the address IOUserClient::sendAsyncResult.",
+    "correction": "This is a signature-set coverage artifact: the xnu-only map does not carry the IOUserClient name at this address and assigns PMSettingObject. The full xnu+kext map is used for the row analysis. The earlier claim that the 27.2 symbol map lacks sendAsyncResult is true only for the xnu-only map.",
+    "xnu_only_signature_file": "kernel/27.2/xnu.json",
+    "full_map_note": "The full map includes xnu and kext signatures; the kext signature set supplies the IOUserClient::sendAsyncResult label at this address.",
+    "slot_71_reproduction": {
+      "merged_map_rows": 16,
+      "old_symbol": "__ZN12IOUserClient15sendAsyncResultEPjiPPvj (full old map)",
+      "new_symbol": "__ZN15PMSettingObject15pmSettingObjectEP14IOPMrootDomainPFiP8OSObjectPK8OSSymbolS3_mES3_mjPS6_PS3_ (xnu-only new map)",
+      "note": "Overlaying the xnu-only new-build names on the full map reproduces the earlier 16 same-slot-different-name rows exactly; this is a signature-precedence artifact, not 16 method replacements."
+    }
+  },
+  "interpretation": "The raw 55 structural rows are not 55 method changes. Seven function pairs are same-name/same-slot body changes. Seven pairs are the same function at a different vtable slot, confirmed by a unique exact/shape body match; two of these are the named ReleaseDebugWorkProcessor and ANE_RegisterDebugWorkProcessor methods that move from slots 225/226 to 229/230 in ANEHWDevice and H11ANEIn. The remaining old/new functions are unresolved because they are unnamed and their body hashes are ambiguous or absent. The ANEHWDevice and H11ANEIn vtables grow from 232 to 236 slots, and ANEDeviceInterface from 222 to 226, which shifts later slots and creates spurious same-index comparisons. No CVE is mapped and no vulnerability conclusion is drawn.",
+  "limitations": [
+    "The kext is stripped; function names come from signature-based symbolication and are candidate labels.",
+    "Shape-normalized matches ignore immediate values and can match unrelated boilerplate; a unique match is stronger evidence than a shared hash but is not source-level proof of identity.",
+    "Slot indices are parser output; inherited slots and vtable alignment can affect the reported slot number.",
+    "The raw binaries are not committed; the artifact records hashes and reproduction commands.",
+    "No device was connected; runtime dispatch and behavior were not measured."
+  ]
+}

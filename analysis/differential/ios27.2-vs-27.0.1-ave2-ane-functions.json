@@ -4120,7 +4120,17 @@
           "new_insns": 126,
           "class_of_change": "structural"
         }
-      ]
+      ],
+      "row_resolution_artifact": "analysis/differential/ios27.2-vs-27.0.1-ane-vtable-resolution.json",
+      "row_resolution_summary": {
+        "unique_old_functions": 32,
+        "unique_new_functions": 34,
+        "named_same_slot_body_changes": 7,
+        "reordered_function_pairs": 7,
+        "unresolved_old_functions": 18,
+        "unresolved_new_functions": 20,
+        "note": "Function-start alignment; see EVD-0034 and VAL-0017."
+      }
     }
   }
 }

@@ -1,0 +1,152 @@
+schema_version: 1
+id: EVD-0034
+class: derived
+state: observed
+claim: "Function-start alignment resolves part of the 55-row AppleH11ANEInterface vtable comparison. The rows contain 32 unique old functions and 34 unique new functions. Seven old/new pairs are the same function at a different vtable slot, confirmed by a unique exact-normalized or shape-normalized body match: 0xfffffff00898ac0c -> 0xfffffff0089c9114, 0xfffffff0089f8aa0 -> 0xfffffff008a23788, 0xfffffff0089c8670 -> 0xfffffff0089f23a8, 0xfffffff0089c8798 -> 0xfffffff0089f24d0, 0xfffffff0089c8910 -> 0xfffffff0089f2648, 0xfffffff0089c8a58 -> 0xfffffff0089f2790, and 0xfffffff0089c673c -> 0xfffffff0089f0474. The last two carry the names ANEHWDevice::ReleaseDebugWorkProcessor and ANEHWDevice::ANE_RegisterDebugWorkProcessor and move from slots 225/226 to 229/230 in ANEHWDevice and H11ANEIn; those four raw one-sided rows are therefore slot reordering, not method replacement. Seven other pairs are same-name/same-slot body changes: ANEClientHintsUserClient::setProperties, ANEDriver::start, ANEHWDevice::start, ANEHWDevice::stop, ANEHWDevice::dartUnmapMemoryDescriptor, ANEScheduler::free, and ANEScheduler::init. The remaining 18 old and 20 new functions are unresolved: they are unnamed and their body hashes are ambiguous or absent. ANEHWDevice and H11ANEIn grow from 232 to 236 vtable slots and ANEDeviceInterface from 222 to 226, which shifts later slots and creates spurious same-index comparisons. The earlier PMSettingObject::pmSettingObject label at 0xfffffff00a8e69e8 is reproducible with the xnu-only signature set; the full xnu+kext map at the same commit names that address IOUserClient::sendAsyncResult. No CVE is mapped and no vulnerability conclusion is drawn."
+source:
+  type: derived-kext-vtable-alignment
+  locator: "AppleH11ANEInterface extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
+  published_at: null
+  accessed_at: "2026-11-12"
+  target_scope:
+    - "iPhone13,1"
+    - "A14 (T8101)"
+    - "iOS 27.0.1"
+    - "24A446"
+    - "iOS 27.2"
+    - "24B119"
+artifact:
+  sha256: "5a1da0fbdb2e66d230b8eb99685a2d864cf1b8c907101a3f5859453e5d3148a6"
+  bytes: 1926264
+  path_or_uri: "com.apple.driver.AppleH11ANEInterface extracted from the 24B119 kernelcache (not committed)"
+  old_sha256: "9910a96765d85797408ed0d125d67897c6f649d2257858d002fac9123f7abbe1"
+  old_bytes: 1860528
+  resolution_artifact: "analysis/differential/ios27.2-vs-27.0.1-ane-vtable-resolution.json"
+  method:
+    vtable_source: "ipsw kernel cpp --json --methods -e com.apple.driver.AppleH11ANEInterface"
+    function_starts: "ipsw macho info -f"
+    disassembly: "llvm-objdump -d --no-show-raw-insn --arch=arm64e"
+    symbols: "ipsw kernel sym --json --signatures <symbolicator>/kernel at blacktop/symbolicator 08dbc783663750530d655cb88c1e755aefa10950"
+    alignment: "exact-normalized SHA-256, then shape-normalized SHA-256; a pair is resolved only when the opposite build has exactly one matching function start"
+    name_rule: "a target is named only when it equals a symbolicated function start; nearest-symbol lookup is not used"
+  counts:
+    raw_structural_rows: 55
+    unique_row_pairs: 34
+    unique_old_functions: 32
+    unique_new_functions: 34
+    named_same_slot_body_changes: 7
+    reordered_function_pairs: 7
+    unresolved_old_functions: 18
+    unresolved_new_functions: 20
+    both_unnamed_unique_row_pairs: 23
+    both_unnamed_unresolved_row_pairs: 18
+  reordered_function_pairs:
+    - old_start: "0xfffffff00898ac0c"
+      new_start: "0xfffffff0089c9114"
+      old_slots: "ANEHWDevice/H11ANEIn 219"
+      new_slots: "ANEHWDevice/H11ANEIn 222"
+      evidence: "shape-normalized match"
+    - old_start: "0xfffffff0089f8aa0"
+      new_start: "0xfffffff008a23788"
+      old_slots: "ANEHWDevice/H11ANEIn 220"
+      new_slots: "ANEHWDevice/H11ANEIn 224"
+      evidence: "exact-normalized match"
+    - old_start: "0xfffffff0089c8670"
+      new_start: "0xfffffff0089f23a8"
+      old_slots: "ANEHWDevice/H11ANEIn 222"
+      new_slots: "ANEHWDevice/H11ANEIn 226"
+      evidence: "shape-normalized match"
+    - old_start: "0xfffffff0089c8798"
+      new_start: "0xfffffff0089f24d0"
+      old_slots: "ANEHWDevice/H11ANEIn 223"
+      new_slots: "ANEHWDevice/H11ANEIn 227"
+      evidence: "shape-normalized match"
+    - old_start: "0xfffffff0089c8910"
+      new_start: "0xfffffff0089f2648"
+      old_slots: "ANEHWDevice/H11ANEIn 224"
+      new_slots: "ANEHWDevice/H11ANEIn 228"
+      evidence: "shape-normalized match"
+    - old_start: "0xfffffff0089c8a58"
+      new_start: "0xfffffff0089f2790"
+      old_slots: "ANEHWDevice/H11ANEIn 225"
+      new_slots: "ANEHWDevice/H11ANEIn 229"
+      name: "ANEHWDevice::ReleaseDebugWorkProcessor(ipc_port*)"
+      evidence: "shape-normalized match"
+    - old_start: "0xfffffff0089c673c"
+      new_start: "0xfffffff0089f0474"
+      old_slots: "ANEHWDevice/H11ANEIn 226"
+      new_slots: "ANEHWDevice/H11ANEIn 230"
+      name: "ANEHWDevice::ANE_RegisterDebugWorkProcessor(ANEDebugWorkProcessorRegistrationArgs*, unsigned long long*, void*)"
+      evidence: "shape-normalized match"
+  named_same_slot_body_changes:
+    - name: "ANEClientHintsUserClient::setProperties(OSObject*)"
+      old_insns: 520
+      new_insns: 524
+      slot: 44
+    - name: "ANEDriver::start(IOService*)"
+      old_insns: 493
+      new_insns: 623
+      slot: 86
+    - name: "ANEHWDevice::start(IOService*)"
+      old_insns: 4859
+      new_insns: 4903
+      slot: 86
+    - name: "ANEHWDevice::stop(IOService*)"
+      old_insns: 388
+      new_insns: 391
+      slot: 87
+    - name: "ANEHWDevice::dartUnmapMemoryDescriptor(IODMACommand*, unsigned long long, unsigned int, unsigned long long, unsigned int, ANEResourceUsageType, RTBuddyVisibleMemory*, bool)"
+      old_insns: 183
+      new_insns: 143
+      slot: 176
+    - name: "ANEScheduler::free()"
+      old_insns: 172
+      new_insns: 189
+      slot: 14
+    - name: "ANEScheduler::init(ANEDriver&, ANEHWInterface&)"
+      old_insns: 732
+      new_insns: 734
+      slot: 15
+  vtable_size_changes:
+    - class: "ANEHWDevice"
+      old_slots: 232
+      new_slots: 236
+    - class: "H11ANEIn"
+      old_slots: 232
+      new_slots: 236
+    - class: "ANEDeviceInterface"
+      old_slots: 222
+      new_slots: 226
+  symbol_map_recheck:
+    address: "0xfffffff00a8e69e8"
+    old_address: "0xfffffff00a8a6888"
+    full_map_old_symbol: "__ZN12IOUserClient15sendAsyncResultEPjiPPvj"
+    full_map_new_symbol: "__ZN12IOUserClient15sendAsyncResultEPjiPPvj"
+    xnu_only_map_new_symbol: "__ZN15PMSettingObject15pmSettingObjectEP14IOPMrootDomainPFiP8OSObjectPK8OSSymbolS3_mES3_mjPS6_PS3_"
+    xnu_only_map_old_symbol: null
+    xnu_only_signature_file: "kernel/27.2/xnu.json"
+    full_map_command: "ipsw kernel sym <kernelcache> --signatures <symbolicator>/kernel --lookup 0xfffffff00a8e69e8"
+    xnu_only_command: "ipsw kernel sym <24B119 kernelcache> --signatures <directory containing only kernel/27.2/xnu.json> --lookup 0xfffffff00a8e69e8"
+    full_map_note: "The full map includes xnu and kext signatures; the kext signature set supplies the IOUserClient::sendAsyncResult label at this address."
+    result: "The earlier PMSettingObject::pmSettingObject label is reproducible with the xnu-only signature map. The full xnu+kext map at the same commit names the address IOUserClient::sendAsyncResult."
+    correction: "This is a signature-set coverage artifact: the xnu-only map does not carry the IOUserClient name at this address and assigns PMSettingObject. The full xnu+kext map is used for the row analysis. The earlier claim that the 27.2 symbol map lacks sendAsyncResult is true only for the xnu-only map."
+    slot_71_reproduction:
+      merged_map_rows: 16
+      old_symbol: "__ZN12IOUserClient15sendAsyncResultEPjiPPvj (full old map)"
+      new_symbol: "__ZN15PMSettingObject15pmSettingObjectEP14IOPMrootDomainPFiP8OSObjectPK8OSSymbolS3_mES3_mjPS6_PS3_ (xnu-only new map)"
+      note: "Overlaying the xnu-only new-build names on the full map reproduces the earlier 16 same-slot-different-name rows exactly; this is a signature-precedence artifact, not 16 method replacements."
+limitations:
+  - "The kext is stripped; function names come from signature-based symbolication and are candidate labels."
+  - "Shape-normalized matches ignore immediate values and can match unrelated boilerplate; a unique match is stronger evidence than a shared hash but is not source-level proof of identity."
+  - "Slot indices are parser output; inherited slots and vtable alignment can affect the reported slot number."
+  - "The unresolved functions are unnamed and their body hashes are ambiguous or absent; no name is assigned to them."
+  - "The raw binaries are not committed; the artifact records hashes and reproduction commands."
+  - "No CVE is mapped; no vulnerability, exploitability, or protection-bypass conclusion is drawn."
+  - "No device was connected; runtime dispatch and behavior were not measured."
+related_evidence:
+  - EVD-0028
+  - EVD-0031
+related_cases:
+  - CASE-0004
+validation_ids:
+  - VAL-0017

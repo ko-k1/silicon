@@ -2,7 +2,7 @@ schema_version: 1
 id: EVD-0031
 class: derived
 state: observed
-claim: "The AppleH11ANEInterface vtable comparison reports 55 raw structural slots across 34 unique target pairs, but that count is not a method-change count. Name-aware classification of the 55 rows gives 11 same-name/same-slot rows with changed bodies (7 unique target pairs), 20 one-sided-name rows (11 unique target pairs, including slot reordering), and 24 both-unnamed rows (16 unique target pairs). Separately, 12 same-name rows appear at different slots, and 16 same-slot rows at inherited slot 71 map to a new symbolicator label (PMSettingObject::pmSettingObject) whose disassembly matches 27.0 IOUserClient::sendAsyncResult. The 27.2 symbol map does not contain sendAsyncResult, so at least one symbolicator label is demonstrably wrong. ANE also gains three classes: ANEPoolRefillMsg, OSValueObject<ANEInferenceRequest*>, and OSValueObject<ANEMapRequest*>. The named changed-body candidates are labels only: ANEClientHintsUserClient::setProperties, ANEDriver::start, ANEHWDevice::start, ANEHWDevice::stop, ANEHWDevice::dartUnmapMemoryDescriptor, ANEScheduler::free, and ANEScheduler::init."
+claim: "The AppleH11ANEInterface vtable comparison reports 55 raw structural slots across 34 unique target pairs, but that count is not a method-change count. With names assigned only when a target equals a symbolicated function start, the 55 rows give 11 same-name/same-slot rows with changed bodies (7 unique target pairs), 8 one-sided-name rows (4 unique target pairs), and 36 both-unnamed rows (23 unique target pairs). The four old-only rows and four new-only rows are the same two methods moving from slots 225/226 to 229/230; function-start alignment confirms them as slot reordering. Two same-name methods appear at different slots (four rows across two classes), not 12. The 16 inherited slot-71 rows are IOUserClient::sendAsyncResult on both sides, not a name change. The earlier PMSettingObject::pmSettingObject label is reproducible with an xnu-only signature map; the full xnu+kext signature map at the same commit names 0xfffffff00a8e69e8 IOUserClient::sendAsyncResult. This is a signature-set coverage artifact. ANE also gains three classes: ANEPoolRefillMsg, OSValueObject<ANEInferenceRequest*>, and OSValueObject<ANEMapRequest*>. The named changed-body candidates are labels only: ANEClientHintsUserClient::setProperties, ANEDriver::start, ANEHWDevice::start, ANEHWDevice::stop, ANEHWDevice::dartUnmapMemoryDescriptor, ANEScheduler::free, and ANEScheduler::init."
 source:
   type: derived-kext-vtable-diff
   locator: "AppleH11ANEInterface extracted from kernelcache.release.iphone13 in iPhone13,1_27.0.1_24A446_Restore.ipsw and iPhone13,1_27.2_24B119_Restore.ipsw"
@@ -24,17 +24,31 @@ artifact:
   raw_structural_slots: 55
   unique_target_pairs: 34
   classification:
+    name_rule: "a target is named only when it equals a symbolicated function start; nearest-symbol lookup is not used"
     same_name_same_slot_changed_body:
       rows: 11
       unique_target_pairs: 7
+    one_sided_name:
+      rows: 8
+      unique_target_pairs: 4
+      note: "All eight rows resolve to two slot-moved methods: ANEHWDevice::ReleaseDebugWorkProcessor and ANEHWDevice::ANE_RegisterDebugWorkProcessor."
+    both_unnamed:
+      rows: 36
+      unique_target_pairs: 23
+  same_name_different_slot_rows: 4
+  same_name_different_slot_methods: 2
+  same_slot_different_name_rows: 0
+  slot_71_note: "All 16 inherited slot-71 rows are IOUserClient::sendAsyncResult on both sides under the full xnu+kext map. A merged map that overlays the xnu-only new-build names reproduces the earlier 16 same-slot-different-name rows exactly, with the new target labeled PMSettingObject; this is a signature-precedence artifact, not 16 method replacements."
+  superseded_classification:
+    note: "Original 2026-11-11 name-aware split; it is not reproducible under exact function-start symbolication and is retained for provenance."
     one_sided_name:
       rows: 20
       unique_target_pairs: 11
     both_unnamed:
       rows: 24
       unique_target_pairs: 16
-  same_name_different_slot_rows: 12
-  same_slot_different_name_rows: 16
+    same_name_different_slot_rows: 12
+    same_slot_different_name_rows: 16
   new_classes:
     - "ANEPoolRefillMsg"
     - "OSValueObject<ANEInferenceRequest*>"
@@ -43,11 +57,15 @@ artifact:
   targeted_findings_artifact: "analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json"
 limitations:
   - "Vtable comparison by slot index is affected by inherited slots, slot reordering, and parser alignment."
-  - "Symbolicator labels are partial and can be wrong; the sendAsyncResult/pmSettingObject mismatch is recorded as an example."
+  - "Symbolicator labels are partial and remain candidate labels; the sendAsyncResult/pmSettingObject mismatch is reproducible with the xnu-only signature set but not with the full xnu+kext set."
   - "The 7 named changed-body pairs are candidate labels, not verified method semantics."
+  - "The revised one-sided and both-unnamed counts depend on the exact-start name rule; nearest-symbol or slot-index association produces different counts."
   - "No device was connected; runtime behavior and exploitability were not measured."
 related_evidence:
   - EVD-0028
   - EVD-0030
+  - EVD-0034
 related_cases:
   - CASE-0004
+validation_ids:
+  - VAL-0017

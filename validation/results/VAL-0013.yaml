@@ -17,7 +17,7 @@ inputs:
   - name: "kernelcache.release.iphone13 (IM4P) from iPhone13,1_27.2_24B119_Restore.ipsw"
     sha256: "71b4bb5e110710fa9cfe504ce9f9c750f512004840d016f1978a3f9dece0349a"
 expected_outcome: "The two candidate kexts should be extractable from both kernelcaches, their version changes and function-level normalized match counts should be recorded, and no CVE should be asserted from name or version alone."
-observed_outcome: "The ipsw kext inventory lists 267 common records, 47 version changes, and no additions or removals; the MH_FILESET entry count is 250, so the inventories are not interchangeable. AppleAVE2: 913.43.1 -> 913.64.1; 2,995/2,998 function starts; 1,222 exact-normalized matches; 2,963 shape-normalized matches. AppleH11ANEInterface: 10.19.6 -> 10.102.4; 4,902/5,043 function starts; 3,080 exact-normalized matches; 4,662 shape-normalized matches. Raw vtable comparison: AVE2 has 7 classes and 45 mapped slots (21 unchanged, 24 constant-only, 0 structural); ANE has 72 common classes plus 3 new classes and 737 mapped slots (417 unchanged, 265 constant-only, 55 raw structural across 34 unique target pairs). The 55 ANE raw slots are not a method-change count; VAL-0014 records the name-aware qualification (11 same-name/same-slot rows with changed bodies, 7 unique target pairs; 20 one-sided rows; 24 unnamed rows). Both extracted images are stripped; no verified method-level names or CVE mapping were established."
+observed_outcome: "The ipsw kext inventory lists 267 common records, 47 version changes, and no additions or removals; the MH_FILESET entry count is 250, so the inventories are not interchangeable. AppleAVE2: 913.43.1 -> 913.64.1; 2,995/2,998 function starts; 1,222 exact-normalized matches; 2,963 shape-normalized matches. AppleH11ANEInterface: 10.19.6 -> 10.102.4; 4,902/5,043 function starts; 3,080 exact-normalized matches; 4,662 shape-normalized matches. Raw vtable comparison: AVE2 has 7 classes and 45 mapped slots (21 unchanged, 24 constant-only, 0 structural); ANE has 72 common classes plus 3 new classes and 737 mapped slots (417 unchanged, 265 constant-only, 55 raw structural across 34 unique target pairs). The 55 ANE raw slots are not a method-change count; VAL-0014 and VAL-0017 record the later qualification: exact-start name-aware classification gives 11 same-name/same-slot rows with changed bodies (7 unique target pairs), 8 one-sided rows (4 unique pairs), and 36 both-unnamed rows (23 unique pairs), and function-start alignment resolves seven pairs as slot reordering. Both extracted images are stripped; no verified method-level names or CVE mapping were established."
 result:
   status: passed
   reproducible: "yes"
@@ -35,7 +35,8 @@ limitations:
   - "Shape-normalized matches may be inflated by layout-dependent immediates."
   - "The 267-record ipsw kext inventory is not the same set as the 250 MH_FILESET entries."
   - "Vtable slot counts skip targets outside the extracted kext or not mapped to a function start; they are not a complete method inventory."
-  - "Vtable slot comparison by index is affected by inherited slots, slot reordering, and symbolicator label errors; VAL-0014 records the qualification."
+  - "Vtable slot comparison by index is affected by inherited slots, slot reordering, and symbolicator label errors; VAL-0014 and VAL-0017 record the qualification, and the earlier 20 one-sided/24 unnamed split is superseded."
   - "No device was connected; runtime behavior and exploitability were not measured."
 related_evidence:
   - EVD-0028
+  - EVD-0034
