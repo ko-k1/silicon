@@ -61,7 +61,7 @@ Use `passed`, `failed`, `inconclusive`, and `not-run` only for validation result
 | Record integrity tooling (P4) | `done` | Read-only cross-reference validator for `EVD`/`SRC`/`VAL`/`CASE`, synthetic negative tests, and a repository integration test | Does not validate JSON Schema conformance or artifact hashes | Section 6 commands 2-6 |
 | Schema validation tooling (P4) | `done` | Read-only JSON Schema validator for target manifests and all record families, with negative, malformed-input, template, and integration tests | Does not check cross-references or artifact hashes | Section 6 commands 2-6 |
 | Repository archive manifest (P4) | `done` | Root `MANIFEST.json` is generated from the Git-tracked working-tree file list by `archive_manifest.py` and checked by a unit test | Covers tracked files only; untracked and external artifacts are excluded by design | Section 6 commands 2-6 |
-| Validation surface (P5) | `partial` | 14 offline validations passed; 1 device validation is `not-run` | No synthetic protection model; no device runtime measurement | `validation/README.md`; `VAL-0001`-`VAL-0015` |
+| Validation surface (P5) | `partial` | 15 offline validations passed; 1 device validation is `not-run` | No synthetic protection model; no device runtime measurement | `validation/README.md`; `VAL-0001`-`VAL-0016` |
 | Closure/reporting (P6) | `partial` | Baseline and case reports exist | Independent review, closure report, and disclosure decision are not complete | `reports/technical/` |
 
 ## Claim-state matrix
@@ -216,7 +216,7 @@ python3 -m engineering.inventory.record_integrity .
 # 7. Record counts
 find research/evidence -name 'EVD-*.yaml' | wc -l          # expected: 33
 find research/public-research -name 'SRC-*.yaml' | wc -l   # expected: 21
-find validation/results -name 'VAL-*.yaml' | wc -l         # expected: 15
+find validation/results -name 'VAL-*.yaml' | wc -l         # expected: 16
 find research/cases -maxdepth 2 -name 'case.yaml' | wc -l  # expected: 5 (4 cases + template)
 
 # 8. Confirm the device check was not run

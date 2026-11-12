@@ -1,0 +1,36 @@
+schema_version: 1
+id: VAL-0016
+case_id: CASE-0004
+target_manifest: targets/manifests/iphone12mini-ios27.0.1.yaml
+timestamp: "2026-11-12T10:40:00+09:00"
+environment:
+  type: offline
+  description: "Offline review of committed Ghidra decompilation excerpts for the three 24B119 AppleAVE2 validation routines. No device was connected."
+  tool_versions:
+    ghidra: "12.3_DEV"
+    python: "3.14.9"
+    pyyaml: "repository validation environment"
+inputs:
+  - name: "AppleAVE2 extracted from 24A446 kernelcache"
+    sha256: "82ec71cd7ca5855274a25069d9b06fed60b3a22d6e099cbfb0414a7286994578"
+  - name: "AppleAVE2 extracted from 24B119 kernelcache"
+    sha256: "7adb64a1100a35c4749b915208a8041550e2c5ab9b8ec56531d85f626e2b041b"
+expected_outcome: "Each direct branch in AVE_HEVC_CheckVPSExtBounds, AVE_Client_CheckMCTFInfo, and AVE_Client_CheckLRMEInfo should be mapped to a field offset, limit, and failure log string. The mapping should correct any earlier labels that do not match the decompiled control flow and should not attribute a branch to a CVE."
+observed_outcome: "The review recorded 5 branch checks in AVE_HEVC_CheckVPSExtBounds, 13 in AVE_Client_CheckMCTFInfo, and 10 in AVE_Client_CheckLRMEInfo. It corrected the earlier MCTF/LRME labels: layer number 1..2 at offset 0x68, sub-layer count 1..7 at 0x510, temporal-layer count <8 at 0x768, MCTF strength count <3 at 0x5e0, and LookAhead frame count <21 at 0x420. The VPS routine bounds vps_max_layers_minus1 <64, layer-set totals <65, layer_id_in_nuh <=63, and the highest_layer_idx_plus1 sum <=64. No CVE was mapped."
+result:
+  status: passed
+  reproducible: "yes"
+  summary: "The branch-level mapping is reproducible from the committed decompiled excerpts and corrects the initial field labels. It remains a validation-structure observation, not a vulnerability or CVE finding."
+reproduction:
+  - "Open analysis/differential/ghidra/ave2-new/0xfffffff008421158.c, 0xfffffff008423b1c.c, and 0xfffffff0084246a0.c."
+  - "Enumerate each conditional branch and its adjacent __os_log failure string."
+  - "Map the condition to the object field offset and unsigned limit shown in the decompiled expression."
+  - "Compare the result with the branch_checks arrays in research/evidence/EVD-0030.yaml and analysis/differential/ios27.2-vs-27.0.1-targeted-findings.json."
+limitations:
+  - "The kext is stripped; field names are inferred from adjacent log strings, not local symbols or source."
+  - "Some object offsets are shared across different error branches; MCTF uses 0x5e0 for the MCTF strength check and 0x420 for LookAhead, while LRME uses 0x420 for LookAhead."
+  - "Decompiler control-flow reconstruction can merge or reorder branches; the counts are not a source-level check inventory."
+  - "No CVE is mapped and no exploitability or protection-bypass conclusion is established."
+  - "No device was connected; runtime behavior was not measured."
+related_evidence:
+  - EVD-0030

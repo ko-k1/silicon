@@ -111,7 +111,13 @@ Two VM functions were also decompiled to narrow structural candidates. `vm_map_r
 | `AVE_Client_CheckMCTFInfo` | `0xfffffff008423b1c` | 737 | `AVE_Client_CheckInfo` |
 | `AVE_Client_CheckLRMEInfo` | `0xfffffff0084246a0` | 571 | `AVE_Client_CheckInfo` |
 
-The routines contain unsigned range checks with limits including `0x40`/`0x41` (VPS), `0x2`/`0x8`/`0x6`/`0xf`/`0x10`/`0x1`/`0x3f`/`0x41`/`0x11`/`0xd`/`0x3`/`0x15` (MCTF), and `0x2`/`0x7`/`0x8`/`0x6`/`0xf`/`0x10`/`0x1`/`0x3f`/`0x41`/`0x11`/`0xd`/`0x15` (LRME). The decompiled MCTF and LRME routines also bound the layer number to 1..2, the sub-layer count to 1..7, the temporal-layer count to <8, several VPS count fields, the SPS count, and object offset `0x420` to <`0x15`; these labels come from the decompiled control flow and adjacent log strings, and some offsets are shared across different error branches. Caller wiring changed: `AVE_HEVC_CheckInfo` grew from 361 to 893 instructions and now calls `AVE_HEVC_CheckVPSExtBounds`; `AVE_Client_CheckInfo` grew from 506 to 604 instructions and now calls `AVE_Client_CheckGGMInfo`, `AVE_Client_CheckLRMEInfo`, and `AVE_Client_CheckMCTFInfo`. New HEVC VPS/PPS/RPS/SPS range-check log strings and constraint strings appeared; three temporal-layer strings were removed (relaxed bounds). Their names come from symbolicator signatures anchored on new log strings, not local symbols; same-virtual-address old functions are not confirmed counterparts. The 27.2 advisory lists six AVEVideoEncoder CVEs described as one out-of-bounds read and five out-of-bounds writes addressed with improved input validation or bounds checking. The correlation is temporal and functional, not a CVE attribution.
+The routines contain unsigned range checks with limits including `0x40`/`0x41` (VPS), `0x2`/`0x8`/`0x6`/`0xf`/`0x10`/`0x1`/`0x3f`/`0x41`/`0x11`/`0xd`/`0x3`/`0x15` (MCTF), and `0x2`/`0x7`/`0x8`/`0x6`/`0xf`/`0x10`/`0x1`/`0x3f`/`0x41`/`0x11`/`0xd`/`0x15` (LRME). The decompiled MCTF and LRME routines also bound the layer number to 1..2, the sub-layer count to 1..7, the temporal-layer count to <8, several VPS count fields, the SPS count, object offset `0x5e0` to <3, and object offset `0x420` to <`0x15`; these labels come from the decompiled control flow and adjacent log strings, and some offsets are shared across different error branches. Caller wiring changed: `AVE_HEVC_CheckInfo` grew from 361 to 893 instructions and now calls `AVE_HEVC_CheckVPSExtBounds`; `AVE_Client_CheckInfo` grew from 506 to 604 instructions and now calls `AVE_Client_CheckGGMInfo`, `AVE_Client_CheckLRMEInfo`, and `AVE_Client_CheckMCTFInfo`. New HEVC VPS/PPS/RPS/SPS range-check log strings and constraint strings appeared; three temporal-layer strings were removed (relaxed bounds). Their names come from symbolicator signatures anchored on new log strings, not local symbols; same-virtual-address old functions are not confirmed counterparts. The 27.2 advisory lists six AVEVideoEncoder CVEs described as one out-of-bounds read and five out-of-bounds writes addressed with improved input validation or bounds checking. The correlation is temporal and functional, not a CVE attribution.
+
+| Routine | Recorded branch checks | Main bounds |
+|---|---:|---|
+| `AVE_HEVC_CheckVPSExtBounds` | 5 | `vps_max_layers_minus1` <64; layer-set total <65; output-layer-set total <65; `layer_id_in_nuh` <=63; `highest_layer_idx_plus1` sum <=64 |
+| `AVE_Client_CheckMCTFInfo` | 13 | layer 1..2; sub-layer <8; temporal layers <8; VPS count fields; `num_add_layer_sets` <65; SPS count <=6; `log2_max_pic_order_cnt_lsb_minus4` <=12; MCTF strength <3; LookAhead <21; DLB |
+| `AVE_Client_CheckLRMEInfo` | 10 | layer 1..2; sub-layer 1..7; temporal layers <8; VPS count fields; `num_add_layer_sets` <65; SPS count <=6; `log2_max_pic_order_cnt_lsb_minus4` <=12; LookAhead <21; DLB |
 
 The ANE symbol map is not authoritative. At `0xfffffff00a8e69e8` the 27.2 map names `PMSettingObject::pmSettingObject`, but the disassembly matches 27.0 `IOUserClient::sendAsyncResult` at `0xfffffff00a8a6888`; `sendAsyncResult` is absent from the 27.2 map. The 7 named changed-body ANE pairs are therefore candidate labels only: `ANEClientHintsUserClient::setProperties`, `ANEDriver::start`, `ANEHWDevice::start`, `ANEHWDevice::stop`, `ANEHWDevice::dartUnmapMemoryDescriptor`, `ANEScheduler::free`, and `ANEScheduler::init`.
 
@@ -178,7 +184,7 @@ No vulnerability, exploitability, or protection-bypass impact is claimed. The pr
 
 ## Reproducibility and limitations
 
-- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff), `VAL-0014` (targeted exception-port, AVE2, and ANE follow-up), `VAL-0015` (thread-state and VM decompilation follow-up).
+- Validation records: `VAL-0009` (BuildManifest diff), `VAL-0010` (kernelcache inventory), `VAL-0011` (SPTM/TXM), `VAL-0012` (kernel function diff), `VAL-0013` (AVE2/ANE function diff), `VAL-0014` (targeted exception-port, AVE2, and ANE follow-up), `VAL-0015` (thread-state and VM decompilation follow-up), `VAL-0016` (AVE2 branch-check mapping).
 - Derived JSON: `analysis/differential/ios27.2-vs-27.0.1-buildmanifest.json`, `...-kernelcache.json`, `...-sptm-txm.json`, `...-kernel-functions.json`, `...-ave2-ane-functions.json`, `...-targeted-findings.json`.
 - Ghidra decompilation excerpts: `analysis/differential/ghidra/old-kernel/`, `.../new-kernel/`, and `.../ave2-new/`.
 - No device, no runtime measurement, no signature/trust evaluation.
@@ -215,4 +221,4 @@ No new vulnerability is claimed. All inputs are public Apple restore images and 
 - `SRC-0020` - Apple security content of iOS 27.2 / iPadOS 27.2
 - `SRC-0021` - Apple security content of iOS 27.2.1 / iPadOS 27.2.1
 - `EVD-0021` through `EVD-0033`
-- `VAL-0009` through `VAL-0015`
+- `VAL-0009` through `VAL-0016`
